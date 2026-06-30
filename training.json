@@ -1,0 +1,164 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate and mitigate the presence of the BRICKSTORM backdoor on the target system. This backdoor uses advanced techniques to evade detection, including SOCKS proxying, multi-layered web service communication, and varied command execution. The investigation will cover the initial infection vector, lateral movement techniques, command and control (C2) communication, and persistence mechanisms.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify suspicious services and files",
+    "Investigate lateral movement techniques",
+    "Mitigate command and control (C2) communication",
+    "Remove persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The BRICKSTORM backdoor has been detected on the target system. Your task is to identify the malicious activity, understand its behavior, and mitigate the threat. The backdoor was initially introduced through a phishing email that exploited a vulnerability in the email client, allowing the attackers to gain a foothold in the system. The BRICKSTORM backdoor employs advanced techniques such as SOCKS proxying, multi-layered web service communication, and varied command execution to evade detection and maintain persistence. The compromise lifecycle includes initial access, persistence, lateral movement, and command and control (C2) communication. The BRICKSTORM backdoor is known for its sophisticated evasion techniques, including dynamic payload delivery, encrypted communication channels, and periodic reconfiguration to avoid signature-based detection."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target system via SSH using the provided credentials.",
+      "local_content": "Access the target system via SSH using the provided credentials."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "The BRICKSTORM backdoor uses a suspicious service named 'payload-transfer.service' for its operations. Investigate the running services on the target system and identify this malicious service related to the BRICKSTORM backdoor.",
+      "solution": "1. Connect to the target system using SSH.\n2. List all running services using the command `systemctl list-units --type=service`.\n3. Identify the suspicious service related to the BRICKSTORM backdoor.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or unfamiliar services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "The BRICKSTORM backdoor has been transferring files between hosts for lateral movement using the 'payload-transfer.service'. Investigate the file transfer mechanism and identify the configuration file responsible for this activity.",
+      "solution": "1. Examine the system logs for any suspicious file transfer activities using the command `grep -r 'rsync' /var/log/`.\n2. Identify the configuration file responsible for the lateral movement.\n3. Document the findings.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the system logs for any unusual file transfer activities.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `grep -r 'rsync' /var/log/` to examine the system logs.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "grep -r 'rsync' /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r 'rsync' /var/log/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Mitigate C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "443",
+      "answer_variable_name": null,
+      "content": "The BRICKSTORM backdoor communicates with a command and control (C2) server. Identify the C2 IP address and port used by the backdoor and mitigate it to prevent further malicious activity.",
+      "solution": "1. Identify the C2 IP address and port used by the backdoor using the command `ss -tulnp | grep -E '443|80|8080'`.\n2. Block the C2 communication using the command `iptables -A OUTPUT -p tcp --dport 443 -j DROP`.\n3. Document the steps taken to mitigate the threat.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the network connections for any suspicious outbound connections to external IP addresses.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ss -tulnp | grep -E '443|80|8080'` to identify the C2 IP address and port.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "mitigate_c2",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep -E '443|80|8080'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp | grep -E '443|80|8080'",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 80,
+  "variant_sandboxes": false
+}

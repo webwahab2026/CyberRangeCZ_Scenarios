@@ -1,0 +1,17 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: vmsrc
+  content: "vmsrc\n"
+- name: 73fe8b8fb4bd7776362fd356fdc189c93cf5d9f6724f6237d829024c10263fe5
+  content: "73fe8b8fb4bd7776362fd356fdc189c93cf5d9f6724f6237d829024c10263fe5\n"
+- name: updatemgr
+  content: "updatemgr\n"
+packages_to_install:
+- openssh-server
