@@ -1,0 +1,145 @@
+{
+  "title": "Mirai Worm Investigation",
+  "description": "Investigate an infection of the Mirai worm within a controlled network environment. Identify the extent of the infection, understand the propagation mechanism, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Mirai worm is a well-known malware that targets Linux systems, particularly IoT devices. It propagates by exploiting vulnerabilities and uses compromised devices to launch distributed denial-of-service (DDoS) attacks. In this scenario, you will investigate an infection of the Mirai worm within a controlled network environment. Your goal is to identify the extent of the infection, understand the propagation mechanism, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the `patient-zero` host with the username `cyrano` and password `cyrano`. From this host, you can investigate the infection and access other compromised hosts within the network.",
+      "local_content": "You have SSH access to the `patient-zero` host with the username `cyrano` and password `cyrano`. From this host, you can investigate the infection and access other compromised hosts within the network."
+    },
+    {
+      "title": "Identify the suspicious scheduled task/timer used by the malware for persistence",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "The Mirai worm uses a scheduled task to maintain persistence on infected hosts. Investigate the systemd timers on the `patient-zero` host to identify the malicious timer. The flag is the name of the timer.",
+      "solution": "The malicious timer used by the Mirai worm for persistence is `sysnet-monitor.timer`. This timer is located in the `/etc/systemd/system/` directory.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for timers in the `/etc/systemd/system/` directory.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sysnet-monitor.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the hidden malware directory used by the worm",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm",
+      "answer_variable_name": null,
+      "content": "The Mirai worm creates a hidden directory to store its files. Investigate the file system on the `patient-zero` host to locate this directory. The flag is the path to the hidden directory.",
+      "solution": "The hidden malware directory used by the Mirai worm is `/opt/.worm`. This directory contains the worm's files and logs.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check directories in `/opt/` for suspicious names.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /opt/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/opt/.worm",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the compromised host discovered through propagation logs",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.10",
+      "answer_variable_name": null,
+      "content": "The Mirai worm logs its propagation activities. Investigate the spread log on the `patient-zero` host to identify a compromised host. The flag is the IP address of the compromised host.",
+      "solution": "The compromised host discovered through propagation logs is `192.168.90.10`. This host was compromised by the Mirai worm and is part of the infected network.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the spread log located in the hidden malware directory.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /opt/.worm/spread.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.90.10",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
