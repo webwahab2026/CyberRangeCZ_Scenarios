@@ -1,0 +1,145 @@
+{
+  "title": "Godfather Trojan Investigation",
+  "description": "Investigate the Godfather Android banking Trojan in your network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Godfather Android banking Trojan has been detected in your network. This trojan is designed to harvest login credentials for banking applications and other financial services, and drain the accounts. It uses web fakes to overlay on infected devices that appear when a user interacts with a decoy notification or tries to open one of the legitimate applications targeted by Godfather. Any data entered on the web fakes is exfiltrated to command-and-control (C&C) servers. Godfather can also exfiltrate SMS and push notifications to bypass two-factor authentication."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have access to the victim host `victim` with the username `cyrano` and password `cyrano`. You can also access the C2 server `c2-server` with the same credentials.",
+      "local_content": "You have access to the victim host `victim` with the username `cyrano` and password `cyrano`. You can also access the C2 server `c2-server` with the same credentials."
+    },
+    {
+      "title": "Identify the suspicious scheduled task/timer used by the Godfather trojan",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "GoogleProtect.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the systemd timers on the victim host to find any suspicious scheduled tasks that might be related to the Godfather trojan.",
+      "solution": "Look for timers that are not part of the standard system configuration. The suspicious timer is named `GoogleProtect.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for timers that are not part of the standard system configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the hidden malware directory used by the Godfather trojan",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/lib/.netd",
+      "answer_variable_name": null,
+      "content": "Search the victim host for any hidden directories that might be used by the Godfather trojan to store its files.",
+      "solution": "Look for directories with unusual names or locations. The hidden directory is `/var/lib/.netd`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for directories with unusual names or locations.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "find / -type d -name '.*' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -type d -name '.*' 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the attacker-controlled C2 server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.60.20",
+      "answer_variable_name": null,
+      "content": "Investigate the network connections on the victim host to find any suspicious outbound connections to a command-and-control (C&C) server.",
+      "solution": "Look for connections to IP addresses that are not part of your internal network. The IP address of the C2 server is `192.168.60.20`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for connections to IP addresses that are not part of your internal network.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
