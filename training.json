@@ -1,0 +1,181 @@
+{
+  "title": "Android Implant Investigation",
+  "description": "This scenario focuses on investigating an Android implant known as 'HackingTeam' spyware. The malware is designed to spy on Android devices, collect sensitive information, and exfiltrate data to a command and control (C2) server. Your task is to analyze the compromised system, identify the malware's behavior, and mitigate the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "This scenario focuses on investigating an Android implant known as 'HackingTeam' spyware. The malware is designed to spy on Android devices, collect sensitive information, and exfiltrate data to a command and control (C2) server. Your task is to analyze the compromised system, identify the malware's behavior, and mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host is part of a network that includes a spy server and a colleague host. You can use standard Linux commands and tools to investigate the system.",
+      "local_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host is part of a network that includes a spy server and a colleague host. You can use standard Linux commands and tools to investigate the system."
+    },
+    {
+      "title": "Identify the suspicious service used for data exfiltration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-telemetry.service",
+      "answer_variable_name": null,
+      "content": "The malware has a data exfiltration mechanism that sends collected data to a C2 server. Investigate the system services to identify the suspicious service responsible for this exfiltration. The flag is the name of the suspicious service unit.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "System services can be listed using systemctl. Look for any unusual services that might be related to data exfiltration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all services and look for any suspicious ones.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service unit name is `sys-telemetry.timer`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the keylogging mechanism used by the malware",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/lib/.monitor/keylog.log",
+      "answer_variable_name": null,
+      "content": "The malware includes a keylogging feature that captures user keystrokes. Investigate the system to find the file or script responsible for this keylogging activity. The flag is the path to the keylogging file.",
+      "solution": "ls -la /var/lib/.monitor",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Keyloggers often store captured keystrokes in log files. Check system directories for unusual files.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `ls -la /var/lib/.monitor` to list files in the directory where the keylogging file might be located.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The keylogging file is located at `/var/lib/.monitor/keylog.log`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /var/lib/.monitor",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /var/lib/.monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the suspicious outbound IP communication used for exfiltration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.100.5:443",
+      "answer_variable_name": null,
+      "content": "The malware communicates with a C2 server to exfiltrate collected data. Investigate the network connections to identify the suspicious IP address and port used for this communication. The flag is the IP address of the C2 server.",
+      "solution": "ss -tnp",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often communicates with a C2 server using network connections. Check for unusual outbound connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `ss -tnp` to list all network connections and look for any suspicious outbound IPs.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious outbound IP address is `192.168.100.5`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
