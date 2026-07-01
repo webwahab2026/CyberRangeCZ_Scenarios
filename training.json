@@ -1,0 +1,193 @@
+{
+  "title": "BiBi-Linux Wiper Incident Response",
+  "description": "Investigate and respond to the BiBi-Linux wiper malware incident affecting your network. This scenario will help you develop skills in identifying and mitigating wiper malware threats on Linux systems.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identifying suspicious file destruction activity",
+    "Analyzing malware execution logs and forensic artifacts",
+    "Tracing malware spread between hosts"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The BiBi-Linux wiper malware has been detected in your network. This malware is designed to corrupt files with random data, manipulate partition tables, and append mocking 'BiBi' extensions. It does not have command-and-control (C2) capabilities or lateral movement features but does exfiltrate data. The malware targets Linux systems. The initial compromise occurred through a phishing email that tricked a user into executing a malicious script, leading to the deployment of the wiper malware. The attack progressed through several stages, including initial access, execution, persistence, and data exfiltration, before the malware's destructive actions were triggered. This scenario will guide you through the investigation and response process, starting with the easiest tasks and escalating in complexity."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have access to the workstation (192.168.50.5) as user 'cyrano' with password 'cyrano'. From this host, you can SSH to the file-server (192.168.50.6) using the same credentials.",
+      "local_content": "You have access to the workstation (192.168.50.5) as user 'cyrano' with password 'cyrano'. From this host, you can SSH to the file-server (192.168.50.6) using the same credentials."
+    },
+    {
+      "title": "Identify and investigate suspicious file destruction activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/data/company_files",
+      "answer_variable_name": null,
+      "content": "Examine the system logs and file artifacts on the workstation to identify any suspicious file destruction activity. Look for evidence of files being overwritten with random data or renamed with random hex strings. The flag you are looking for is a directory path.",
+      "solution": "Check the system logs in /var/log/ for any unusual activity. Also, examine the contents of the /data/company_files directory for any signs of file corruption or unusual filenames.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "System logs often contain evidence of unusual activity. Start by examining the logs in the /var/log/ directory. Pay special attention to logs around the time of the initial compromise.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for any signs of file corruption or unusual filenames in the /data/company_files directory. Check for files with 'BiBi' extensions or random hex strings in their names.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The flag you are looking for is the path to the directory containing corrupted files. This directory is /data/company_files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /data/company_files",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /data/company_files",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "ls -la /data/company_files",
+        "grep -i 'error' /var/log/*",
+        "find /data/company_files -name '*BiBi*'"
+      ],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate malware execution logs and forensic artifacts",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/log/disk-maintenance.log",
+      "answer_variable_name": null,
+      "content": "Analyze the logs and artifacts left by the BiBi-Linux wiper malware on the workstation. Look for any logs or files that indicate the malware's execution and the extent of the damage caused. The flag you are looking for is a file path.",
+      "solution": "Check the /var/log/disk-maintenance.log file for detailed logs of the malware's activity. Also, examine the /var/cache/.trigger_received file for any indicators of the malware's trigger mechanism.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often leaves logs of its activity. Start by examining the logs in the /var/log/ directory. Focus on logs that might indicate the malware's execution and trigger mechanisms.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for detailed logs of the malware's activity in the /var/log/disk-maintenance.log file. This file contains comprehensive logs of the malware's actions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The flag you are looking for is the path to the log file containing detailed logs of the malware's activity. This file is /var/log/disk-maintenance.log.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /var/log/disk-maintenance.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /var/log/disk-maintenance.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "cat /var/log/disk-maintenance.log",
+        "ls -la /var/cache/",
+        "grep -i 'trigger' /var/log/*"
+      ],
+      "commands_required": false
+    },
+    {
+      "title": "Trace malware spread from one host to another",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/net-sync.sh",
+      "answer_variable_name": null,
+      "content": "Investigate how the BiBi-Linux wiper malware spread from the workstation to the file-server. Look for any scripts, services, or logs that indicate lateral movement activity. The flag you are looking for is a file path.",
+      "solution": "Examine the /usr/local/bin/net-sync.sh script on the workstation for any signs of lateral movement. Also, check the /home/cyrano/net-sync.log file for logs of the spreader's activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement often involves scripts or services. Start by examining scripts in the /usr/local/bin/ directory. Look for scripts that might have been used to spread the malware.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for signs of lateral movement in the /usr/local/bin/net-sync.sh script. This script is likely responsible for spreading the malware to other hosts.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The flag you are looking for is the path to the script responsible for lateral movement. This script is /usr/local/bin/net-sync.sh.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /usr/local/bin/net-sync.sh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /usr/local/bin/net-sync.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "cat /usr/local/bin/net-sync.sh",
+        "ls -la /home/cyrano/",
+        "grep -i 'sync' /home/cyrano/net-sync.log"
+      ],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 50,
+  "variant_sandboxes": false
+}
