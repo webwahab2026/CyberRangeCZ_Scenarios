@@ -1,0 +1,145 @@
+{
+  "title": "Mirai Botnet Investigation",
+  "description": "Investigate and mitigate a Mirai botnet infection on compromised Linux systems within your network. The botnet is using the Linux/Mirai-Hilix variant to launch DDoS attacks.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services and processes.",
+    "Detect and analyze C2 communication.",
+    "Mitigate the botnet infection by containing the threat and removing persistence mechanisms."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Your organization has detected unusual network traffic and potential DDoS attacks originating from internal systems. Initial analysis suggests a Mirai botnet infection. Your task is to investigate the compromised systems, identify the command-and-control (C2) infrastructure, and mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox in cloud using the provided credentials.",
+      "local_content": "Access the local sandbox using the provided credentials."
+    },
+    {
+      "title": "Identify the suspicious beacon service used for C2 communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-Hilix.sh.service",
+      "answer_variable_name": null,
+      "content": "The compromised systems are communicating with a C2 server. Investigate the system services and identify the beacon service used for C2 communication.",
+      "solution": "1. SSH into bot1 using the provided credentials.\n2. List all running services using `systemctl list-units --type=service`.\n3. Identify the suspicious service related to C2 communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for services with unusual names or descriptions related to system health or updates.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_beacon_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the suspicious flood service used for DDoS attacks",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood-Hilix.sh.service",
+      "answer_variable_name": null,
+      "content": "The compromised systems are launching DDoS attacks against a target. Investigate the system services and identify the flood service used for these attacks.",
+      "solution": "1. SSH into bot1 using the provided credentials.\n2. List all running services using `systemctl list-units --type=service`.\n3. Identify the suspicious service related to DDoS attacks.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for services with unusual names or descriptions related to network diagnostics or probes.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_flood_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Remove the persistence mechanism used by the malware",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "The malware has established persistence on the compromised systems. Investigate the system and remove the persistence mechanism to prevent reinfection.",
+      "solution": "1. SSH into bot1 using the provided credentials.\n2. List all systemd timers using `systemctl list-timers`.\n3. Identify and disable the suspicious timer related to the malware's persistence.\n4. Remove the timer and its associated service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for timers with unusual names or descriptions related to system updates or health checks.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "remove_persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
