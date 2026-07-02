@@ -1,0 +1,147 @@
+{
+  "title": "Mirai Botnet Investigation",
+  "description": "Investigate and contain a Mirai botnet infection in the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge",
+    "Basic knowledge of systemd",
+    "Basic knowledge of botnet investigations"
+  ],
+  "outcomes": [
+    "Usage of systemctl for service management",
+    "Usage of iptables for network traffic control",
+    "Investigation of systemd timers and services"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has been experiencing unusual traffic patterns and performance degradation. Initial investigations suggest a possible botnet infection. Your task is to investigate and contain the threat. To proceed, enter the word 'start'."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox in cloud using the following credentials: To proceed, enter the word 'start'.",
+      "local_content": "Access the local sandbox using the following credentials: To proceed, enter the word 'start'."
+    },
+    {
+      "title": "Identify the suspicious beacon service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-Hilix.x86.elf.service",
+      "answer_variable_name": null,
+      "content": "Investigate the system services on bot1. Identify the service responsible for beaconing to the C2 server. The service name will be your flag. The flag is the name of the service.",
+      "solution": "Check the systemd services and look for unusual service names. The suspicious beacon service is named bot-beacon-Hilix.x86.elf.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Check the systemd services and look for unusual service names.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon-Hilix.x86.elf.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the persistence mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.service",
+      "answer_variable_name": null,
+      "content": "Investigate the systemd timers and services on bot1. Identify the persistence mechanism that ensures the malware runs after reboots. The service name will be your flag. The flag is the name of the service.",
+      "solution": "Look for services related to system updates or health checks. The persistence service is named system-update-checker.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Look for services related to system updates or health checks.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "system-update-checker.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain the C2 communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2222",
+      "answer_variable_name": null,
+      "content": "Identify the IP address and port used for C2 communication. Implement a firewall rule to block this communication. The port number will be your flag. The flag is the port number.",
+      "solution": "Check the beacon script and the C2 listener configuration. The port number used for C2 communication is 2222. Implement a firewall rule to block this communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Check the beacon script and the C2 listener configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "block_c2",
+          "prereq_state": [],
+          "cmd": "iptables -A OUTPUT -p tcp --dport 2222 -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "iptables -A OUTPUT -p tcp --dport 2222 -j DROP",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
