@@ -1,0 +1,187 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate the BRICKSTORM backdoor, a sophisticated 64-bit ELF executable written in Go, targeting Linux systems. It employs advanced evasion techniques such as SOCKS proxying, multi-layered web service communication, and varied command execution.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge",
+    "Basic knowledge of systemd services",
+    "Basic knowledge of network analysis tools"
+  ],
+  "outcomes": [
+    "Usage of systemd services",
+    "Usage of network analysis tools",
+    "Identification of suspicious services"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The BRICKSTORM backdoor is a sophisticated 64-bit ELF executable written in Go, targeting Linux systems. It employs advanced evasion techniques such as SOCKS proxying, multi-layered web service communication, and varied command execution. The backdoor uses Domain over HTTPS (DoH), nested TLS encryption, and abuses legitimate cloud services to evade detection. It is capable of C2 communication, lateral movement, data exfiltration, and persistence."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host `target` (IP: 192.168.50.5) using SSH with the username `cyrano` and password `cyrano`.",
+      "local_content": "Access the target host `target` (IP: 192.168.50.5) using SSH with the username `cyrano` and password `cyrano`."
+    },
+    {
+      "title": "Identify the Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr.service",
+      "answer_variable_name": null,
+      "content": "Investigate the services running on the target host and identify the suspicious service related to the BRICKSTORM backdoor. The flag is the name of the suspicious service.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Check the systemd services and look for any unusual or unfamiliar services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third Hint",
+          "content": "Look for a service named `updatemgr.service` which is unusual for a system update manager.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "updatemgr.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate the Suspicious Outbound IP and Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5:443",
+      "answer_variable_name": null,
+      "content": "Analyze the network connections on the target host to identify any suspicious outbound IP addresses and ports used by the BRICKSTORM backdoor for C2 communication. The flag is the suspicious outbound IP and port in the format `IP:PORT`.",
+      "solution": "netstat -tuln",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Use tools like `netstat`, `ss`, or `tcpdump` to inspect network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second Hint",
+          "content": "Use the command `netstat -tuln` to list all network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third Hint",
+          "content": "Look for a connection to `192.168.40.5:443` which is unusual for a system update manager.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_check",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192\\.168\\.40\\.5:443",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the File Transfer Mechanism for Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the file transfer mechanism used by the BRICKSTORM backdoor for lateral movement between the target and next-target hosts. The flag is the name of the file transfer service.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Check the systemd services and logs for any file transfer activities.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third Hint",
+          "content": "Look for a service named `payload-transfer.service` which is unusual for a system file transfer mechanism.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_transfer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false,
+  "difficulty_progression": "Medium",
+  "narrative_strength": "High",
+  "attack_chain_coverage": "C2 Communication, Lateral Movement, Data Exfiltration, Persistence",
+  "technique_accuracy": "High"
+}
