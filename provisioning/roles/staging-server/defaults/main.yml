@@ -1,0 +1,9 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.120.5", name: "staging-server"}
+- {ip: "192.168.120.10", name: "victim"}
+- {ip: "192.168.120.20", name: "c2-server"}
+staging_root: /var/www/share
+staging_port: 7070

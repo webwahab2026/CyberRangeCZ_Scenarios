@@ -1,0 +1,145 @@
+{
+  "title": "Rhombus Dropper Investigation",
+  "description": "Investigate the Rhombus Linux DDoS botnet dropper compromise on the victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has been compromised by the Rhombus Linux DDoS botnet dropper. Your task is to investigate the compromise, identify the indicators of compromise (IOCs), and contain the threat. The malware is known to have persistence capabilities and communicates with a command and control (C2) server."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host's IP address is `192.168.120.10`.",
+      "local_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host's IP address is `192.168.120.10`."
+    },
+    {
+      "title": "Identify the suspicious scheduled task/timer created by the malware",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.timer",
+      "answer_variable_name": null,
+      "content": "The Rhombus dropper is known to create a scheduled task for persistence. Investigate the systemd timers on the victim host to identify the suspicious timer.",
+      "solution": "Look for timers in the `/etc/systemd/system/` directory. The suspicious timer is `session-mgr.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for timers in the `/etc/systemd/system/` directory.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/systemd/system/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the hidden malware directory",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/tmp/.session",
+      "answer_variable_name": null,
+      "content": "The malware creates a hidden directory to store its components. Search the victim host for suspicious directories, especially in the `/tmp` directory.",
+      "solution": "Use the `ls` command with appropriate options to list hidden directories. The hidden malware directory is `/tmp/.session`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `ls` command with appropriate options to list hidden directories.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /tmp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /tmp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the remote access trojan (RAT) component",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "rat.sh",
+      "answer_variable_name": null,
+      "content": "The Rhombus dropper deploys a RAT component that communicates with the C2 server. Investigate the contents of the hidden malware directory to identify the RAT script.",
+      "solution": "Look for scripts in the hidden directory identified in the previous task. The RAT script is `rat.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for scripts in the hidden directory identified in the previous task.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /tmp/.session",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /tmp/.session",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
