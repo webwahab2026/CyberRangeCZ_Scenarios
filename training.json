@@ -1,0 +1,181 @@
+{
+  "title": "Umbreon Rootkit Investigation",
+  "description": "Investigate and respond to the Umbreon rootkit incident on the victim host, following a realistic compromise lifecycle from initial detection to artifact identification.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Detection of rootkit artifacts",
+    "Investigation of shared library injections",
+    "Identification of hidden files and directories"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a sophisticated Linux rootkit designed to hide its presence and manipulate system processes. It targets both Intel and ARM processors and can perform various malicious activities such as process hiding, network traffic manipulation, and system persistence. The rootkit has been detected in your network, and your task is to investigate and respond to this incident, following a structured approach from initial access to artifact identification."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host's IP address is `192.168.50.5`.",
+      "local_content": "Instructions for local sandbox usage."
+    },
+    {
+      "title": "Identify Suspicious Shared Library Injection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for any suspicious shared library injections. Look for any unusual libraries that might be loaded system-wide. You are searching for a Shared Library Identifier, which is a suspicious shared library that might be part of the Umbreon rootkit.",
+      "solution": "ls -la /lib/x86_64-linux-gnu/",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Shared libraries are essential components that multiple programs can use simultaneously. Malicious actors often inject their own libraries to manipulate system behavior.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "System-wide shared libraries are typically located in the `/lib/x86_64-linux-gnu/` directory. Start your investigation there.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for the library `libsysmon.so.1` which is part of the Umbreon rootkit.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /lib/x86_64-linux-gnu/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /lib/x86_64-linux-gnu/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Malicious System-Wide Preload Configuration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "Examine the system-wide preload configuration to identify any malicious entries. This configuration can be found in `/etc/ld.so.preload`. You are searching for a Preload Configuration Identifier, which is a malicious entry in the preload configuration that might be part of the Umbreon rootkit.",
+      "solution": "cat /etc/ld.so.preload",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "The preload configuration allows the system to load specific libraries before any other libraries. This can be exploited by malicious actors to manipulate system behavior.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "The system-wide preload configuration is typically located in the `/etc/ld.so.preload` file. Start your investigation there.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The Umbreon rootkit adds its library path to this file. Look for any unusual paths in the `/etc/ld.so.preload` file.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Hidden File or Directory Artifacts",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf",
+      "answer_variable_name": null,
+      "content": "Search for any hidden files or directories that might be related to the Umbreon rootkit. These artifacts could be hidden in various locations on the system. You are searching for a Hidden Artifact Identifier, which is a hidden file or directory that might be part of the Umbreon rootkit.",
+      "solution": "ls -la /etc/.kit_conf",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Hidden files and directories are often used by malicious actors to store configuration files, logs, and other artifacts that they do not want to be easily discovered.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use commands like `ls -la` to reveal hidden files and directories. Start your investigation in directories like `/etc/` and `/var/log/`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for hidden directories such as `/etc/.kit_conf` and `/var/log/.kit_log`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /etc/.kit_conf",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /etc/.kit_conf",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 80,
+  "variant_sandboxes": false
+}
