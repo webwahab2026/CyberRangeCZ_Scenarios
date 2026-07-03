@@ -1,0 +1,229 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "Investigate and respond to a Kobalos malware infection in a high-performance computing environment.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Systemd service investigation",
+    "Malware persistence mechanism analysis"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are a cybersecurity analyst working for a high-performance computing (HPC) organization.\n\nYour organization has detected suspicious network activity and believes a Kobalos malware infection may be present.\n\nKobalos is a complex, multiplatform malware that targets HPC clusters and other high-profile systems. It is known for creating suspicious outbound connections, using systemd timers for persistence, and maintaining a low profile to avoid detection.\n\nYour task is to investigate the infection, identify indicators of compromise, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Entry host: target (IP: 192.168.50.5)\nUsername: cyrano\nPassword: cyrano\nAccess method: SSH\nPrivilege boundaries: You have sudo privileges on the entry host.\n\nTo proceed to the next level, enter the word 'start'.",
+      "local_content": "Entry host: target (IP: 192.168.50.5)\nUsername: cyrano\nPassword: cyrano\nAccess method: SSH\nPrivilege boundaries: You have sudo privileges on the entry host.\n\nTo proceed to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Identify and investigate suspicious outbound connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5",
+      "answer_variable_name": null,
+      "content": "Investigate the network connections on the target host.\nIdentify any suspicious outbound connections.\nDetermine the destination IP address, port, and frequency of the connections.\n\nThe flag you need to find is the destination IP address (string) of the suspicious outbound connections.",
+      "solution": "Check the system logs and network statistics for unusual outbound traffic.\nThe destination IP address of the suspicious outbound connections is 192.168.40.5.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often communicates with command and control servers. Look for unusual outbound connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use network monitoring tools to inspect active connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run 'ss -tulnp' to list all active network connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "journalctl -u lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate and contain the suspicious service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for the suspicious outbound connections.\nInvestigate the service's configuration and behavior.\nContain the service by stopping it and preventing it from starting at boot.\n\nThe flag you need to find is the name of the suspicious service (string).",
+      "solution": "Check the systemd services and look for any unusual or recently created services.\nThe name of the suspicious service is lab-checkin.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often uses system services to maintain persistence. Investigate systemd services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "List all systemd timers to identify suspicious services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run 'systemctl list-timers --all' to list all systemd timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl stop lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl stop lab-checkin.timer",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl disable lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl disable lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate and remove the persistence mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 45,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the persistence mechanism used by the malware.\nIdentify any scheduled tasks or cron jobs that ensure the malware's persistence.\nRemove the persistence mechanism to prevent the malware from restarting after a reboot.\n\nThe flag you need to find is the name of the persistence mechanism (string).",
+      "solution": "Check the systemd timers and look for any unusual or recently created timers.\nThe name of the persistence mechanism is lab-checkin.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often uses persistence mechanisms to survive reboots. Investigate systemd timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "List all systemd timers to identify persistence mechanisms.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run 'systemctl list-timers --all' to list all systemd timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl stop lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl stop lab-checkin.timer",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl disable lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl disable lab-checkin.timer",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "rm /etc/systemd/system/lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "rm /etc/systemd/system/lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 105,
+  "variant_sandboxes": false
+}
