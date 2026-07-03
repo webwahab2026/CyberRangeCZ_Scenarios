@@ -1,0 +1,375 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "Investigate and respond to a Kobalos malware infection in a high-performance computing environment, following a realistic compromise lifecycle from initial access to containment.",
+  "prerequisites": [
+    "Basic knowledge of Linux systems",
+    "Network security",
+    "Incident response procedures"
+  ],
+  "outcomes": [
+    "Identify and contain the Kobalos malware",
+    "Investigate its behavior and persistence mechanisms",
+    "Analyze network communication for command and control (C2) and data exfiltration",
+    "Implement containment measures to prevent further lateral movement"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Investigate and respond to a Kobalos malware infection in a high-performance computing environment. Follow a realistic compromise lifecycle from initial access to containment, including identifying suspicious services, persistence mechanisms, network communication, and implementing containment measures."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the username 'cyrano' and password 'cyrano'.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the username 'cyrano' and password 'cyrano'."
+    },
+    {
+      "title": "Identify suspicious service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the running services on the target host and identify any suspicious services that might be related to the Kobalos malware. The flag is the name of the suspicious service.",
+      "solution": "Check the status of all services and look for any unusual or unfamiliar services. The suspicious service is named 'payload-transfer.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by checking the status of all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any unusual or unfamiliar services in the list.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is related to payload transfer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate service persistence mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "Examine the persistence mechanism of the suspicious service identified in the previous task. The flag is the name of the persistence mechanism.",
+      "solution": "Check the systemd service files and timers related to the service. The persistence mechanism is named 'payload-transfer.timer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by checking the systemd timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any unusual or unfamiliar timers in the list.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The persistence mechanism is related to payload transfer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify suspicious file",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "fbf0a76ced2939d1f7ec5f9ea58c5a294207f7fe",
+      "answer_variable_name": "suspicious_malware_binary",
+      "content": "Search for suspicious files on the target host that might be related to the Kobalos malware. The flag is the name of the suspicious binary file.",
+      "solution": "Look for files with unusual names or locations, especially in the home directory of the user cyrano. The suspicious file is named 'fbf0a76ced2939d1f7ec5f9ea58c5a294207f7fe'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by searching the home directory of the user cyrano.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for files with unusual names or locations.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious file is a binary that appears to be part of the malware.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_search",
+          "prereq_state": [],
+          "cmd": "find /home/cyrano -type f -name 'fbf0a76ced2939d1f7ec5f9ea58c5a294207f7fe'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "fbf0a76ced2939d1f7ec5f9ea58c5a294207f7fe",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify suspicious outbound IP",
+      "level_type": "TRAINING_LEVEL",
+      "order": 5,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5",
+      "answer_variable_name": "suspicious_c2_server_ip",
+      "content": "Analyze network connections and identify any suspicious outbound IP addresses that might be used for command and control (C2) communication. The flag is the suspicious IP address.",
+      "solution": "Use network monitoring tools to inspect outgoing connections. The suspicious outbound IP address is '192.168.40.5'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by checking the network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any unusual or unfamiliar IP addresses in the list.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious IP address is likely a C2 server.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_check",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.40.5",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify suspicious outbound port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 6,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": "suspicious_c2_port",
+      "content": "Determine the port used for suspicious outbound communication identified in the previous task. The flag is the suspicious port number.",
+      "solution": "Check the network connections and look for the port number used in the communication. The suspicious outbound port is '7070'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by checking the network connections again.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the port number used in the suspicious communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious port is likely used for C2 communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_check",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "7070",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify data exfiltration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 7,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.log",
+      "answer_variable_name": "data_exfiltration_log",
+      "content": "Investigate whether any data exfiltration is occurring through the suspicious service or network connections. The flag is the name of the log file containing evidence of data exfiltration.",
+      "solution": "Inspect logs and network traffic for any signs of data being sent to external hosts. The data exfiltration log is named 'payload-transfer.log'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by inspecting the log files.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any signs of data being sent to external hosts.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The log file may contain evidence of data exfiltration.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "log_check",
+          "prereq_state": [],
+          "cmd": "cat /home/cyrano/payload-transfer.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain C2 communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 8,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": "contained_c2_port",
+      "content": "Implement measures to contain the C2 communication identified in the previous tasks. The flag is the port number to block.",
+      "solution": "Use firewall rules or other network security measures to block the suspicious outbound communication. The port to block is '7070'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by implementing firewall rules.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the port number used in the suspicious communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The port to block is likely used for C2 communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "firewall_block",
+          "prereq_state": [],
+          "cmd": "iptables -A OUTPUT -p tcp --dport 7070 -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "7070",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 90,
+  "variant_sandboxes": false
+}
