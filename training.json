@@ -1,0 +1,171 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's network. Kobalos is a complex, multiplatform malware that targets high-performance computing (HPC) clusters and other high-profile systems. It grants remote access to the file system, provides the ability to spawn terminal sessions, and allows proxying connections to other Kobalos-infected servers. Your goal is to identify and mitigate the malware's presence.",
+  "prerequisites": [
+    "Basic knowledge of Linux commands and system administration.",
+    "Familiarity with network security concepts and tools."
+  ],
+  "outcomes": [
+    "Identify suspicious services and files related to Kobalos malware.",
+    "Investigate lateral movement and data exfiltration activities.",
+    "Contain and mitigate the malware's impact."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's network. Kobalos is a complex, multiplatform malware that targets high-performance computing (HPC) clusters and other high-profile systems. It grants remote access to the file system, provides the ability to spawn terminal sessions, and allows proxying connections to other Kobalos-infected servers. Your goal is to identify and mitigate the malware's presence. During this investigation, you will encounter various types of flags, including service names and port numbers."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) using SSH with the provided credentials. Enter the word 'start' to progress to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) using SSH with the provided credentials. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the services running on the target host and identify any suspicious services that might be related to the Kobalos malware. The flag you are looking for is a service name.",
+      "solution": "1. SSH into the target host using the provided credentials.\n2. List all running services using the `systemctl list-units --type=service` command.\n3. Look for any suspicious services, especially those that are not part of the standard system services.\n4. Identify the service name that appears to be related to the Kobalos malware.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Pay attention to services that are not part of the standard system services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services that have unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "rsync",
+      "answer_variable_name": null,
+      "content": "Investigate the lateral movement activities between the target host and the next-target host. Identify the service or mechanism used for transferring data between these hosts. The flag you are looking for is a service name.",
+      "solution": "1. SSH into the target host using the provided credentials.\n2. Check the system logs for any suspicious activities related to data transfer.\n3. Look for any scripts or services that are responsible for transferring data to the next-target host.\n4. Identify the service or mechanism used for lateral movement.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the `/var/log/syslog` file for any suspicious activities.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any scripts or services that are responsible for transferring data to the next-target host.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "ps aux | grep -i rsync",
+          "cmd_type": "bash-command",
+          "cmd_regex": "rsync",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "Identify and contain the command and control (C2) communication between the target host and the c2-server host. Block the C2 communication to prevent further malware activities. The flag you are looking for is a port number.",
+      "solution": "1. SSH into the target host using the provided credentials.\n2. Check the network connections using the `netstat -tuln` command.\n3. Identify the C2 IP address and port used for communication.\n4. Block the C2 communication using the `iptables` command.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for any unusual network connections to the c2-server host.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `iptables` command to block the identified port.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "contain_c2_communication",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "7070",
+          "optional": false
+        },
+        {
+          "state_name": "contain_c2_communication",
+          "prereq_state": [],
+          "cmd": "iptables -A INPUT -p tcp --dport 7070 -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "iptables -A INPUT -p tcp --dport 7070 -j DROP",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 120,
+  "variant_sandboxes": false
+}
