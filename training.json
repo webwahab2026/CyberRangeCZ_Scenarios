@@ -1,0 +1,145 @@
+{
+  "title": "Mirai Botnet Investigation",
+  "description": "Investigate and contain a Mirai botnet infection affecting the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has been experiencing unusual traffic patterns and performance degradation. Initial investigations suggest a possible botnet infection. Your task is to investigate and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox via the provided cloud environment.",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Identify the Suspicious Beacon Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-Hilix.sh.service",
+      "answer_variable_name": null,
+      "content": "Investigate the services running on bot1 and identify the service responsible for beaconing to the C2 server.",
+      "solution": "Check the systemd services and look for any unusual or recently created services. The suspicious beacon service is named `bot-beacon-Hilix.sh.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Check the systemd services and look for any unusual or recently created services.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon-Hilix.sh.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Suspicious Flood Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood-Hilix.sh.service",
+      "answer_variable_name": null,
+      "content": "Examine the systemd services on bot1 and find the service that is generating flood traffic.",
+      "solution": "Look for services related to network diagnostics or similar descriptions. The suspicious flood service is named `bot-flood-Hilix.sh.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Look for services related to network diagnostics or similar descriptions.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-flood-Hilix.sh.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain the C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2222",
+      "answer_variable_name": null,
+      "content": "Identify the port used for C2 communication and block it to prevent further beaconing.",
+      "solution": "Check the beacon service configuration for the port number. The port used for C2 communication is `2222`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Check the beacon service configuration for the port number.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_port",
+          "prereq_state": [],
+          "cmd": "grep -r 'listen_port' /etc/systemd/system/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "2222",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
