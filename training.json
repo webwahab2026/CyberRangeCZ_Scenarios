@@ -1,0 +1,181 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "Investigate and respond to a Kobalos malware infection in a high-performance computing environment.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are a cybersecurity analyst responding to an alert about suspicious activity on the target host. The target host is part of a high-performance computing cluster running Ubuntu. Initial analysis suggests the presence of the Kobalos malware, a complex backdoor that targets HPC clusters. Your goal is to investigate the infection, identify the scope, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "SSH access to the target host (192.168.50.5) as user cyrano with password cyrano. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Local sandbox access is not required for this scenario. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify the suspicious service running on the target host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate running services on the target host. Identify any suspicious or unexpected services. The name of the suspicious service is the flag.",
+      "solution": "Check systemd services and look for any services related to payload transfer or check-in.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd services can be listed using the systemctl command. Look for any services that seem out of place or related to malicious activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the systemctl command to list all services and look for any services related to payload transfer or check-in.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command 'systemctl list-units --type=service' to list all services and identify the suspicious one.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate the suspicious outbound connection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "Analyze network connections from the target host. Identify any suspicious outbound connections. The destination port of the suspicious outbound connection is the flag.",
+      "solution": "Check the systemd timer and service files for the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Network connections can be analyzed using the ss command. Look for any connections that seem suspicious or unexpected.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the ss command to list all network connections and look for any outbound connections that seem suspicious.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command 'ss -tulnp' to list all network connections and identify the suspicious outbound connection.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain the C2 communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "Based on your previous findings, contain the C2 communication. The port number used to contain the communication is the flag.",
+      "solution": "Use firewall rules to block the identified port.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Firewall rules can be used to block network traffic. Look for any rules that can block the suspicious port.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the iptables command to create a firewall rule that blocks the identified port.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command 'iptables -A INPUT -p tcp --dport 7070 -j DROP' to block the suspicious port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "iptables -A INPUT -p tcp --dport 7070 -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "iptables -A INPUT -p tcp --dport 7070 -j DROP",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
