@@ -1,0 +1,163 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate and respond to a BRICKSTORM backdoor infection on the target network. The BRICKSTORM malware is a sophisticated 64-bit ELF executable written in Go, known for its advanced evasion techniques including SOCKS proxying, multi-layered web service communication, and varied command execution.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services and files.",
+    "Analyze network traffic for signs of command and control (C2) communication.",
+    "Contain and mitigate the threat posed by the BRICKSTORM backdoor."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Investigate and respond to a BRICKSTORM backdoor infection on the target network. The BRICKSTORM malware is a sophisticated 64-bit ELF executable written in Go, known for its advanced evasion techniques including SOCKS proxying, multi-layered web service communication, and varied command execution.\n\nThe security team has detected suspicious activity on the target network. Your task is to investigate the compromised host, identify the malware, and take appropriate containment measures."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the provided credentials. Enter the word 'start' to proceed.",
+      "local_content": "Access the target host via SSH using the provided credentials. Enter the word 'start' to proceed."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for suspicious services. The BRICKSTORM backdoor is known to use SOCKS proxying and multi-layered web service communication. Identify any unusual services running on the host. Look for a service named 'updatemgr.service'.",
+      "solution": "Check the list of running services and look for any that appear suspicious or unusual. The BRICKSTORM backdoor is known to use SOCKS proxying and multi-layered web service communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the list of running services and look for any that appear suspicious or unusual.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "The BRICKSTORM backdoor is known to use SOCKS proxying and multi-layered web service communication.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Suspicious File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/updatemgr",
+      "answer_variable_name": null,
+      "content": "Examine the target host for suspicious files. The BRICKSTORM backdoor is a 64-bit ELF executable written in Go. Look for any unusual files that match this description. Specifically, check for a file located at '/home/cyrano/updatemgr'.",
+      "solution": "Search for files with unusual names or properties that match the description of the BRICKSTORM backdoor.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Search for files with unusual names or properties that match the description of the BRICKSTORM backdoor.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "The BRICKSTORM backdoor is a 64-bit ELF executable written in Go.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "find / -type f -name 'updatemgr' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -type f -name 'updatemgr' 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "443",
+      "answer_variable_name": null,
+      "content": "Identify and block any outbound communication to known command and control (C2) servers. The BRICKSTORM backdoor uses HTTPS and WebSocket addresses for C2 communication. Block the port used for this communication to contain the threat. Specifically, block port '443'.",
+      "solution": "Check network connections and block the port used for C2 communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check network connections and block the port used for C2 communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "The BRICKSTORM backdoor uses HTTPS and WebSocket addresses for C2 communication.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "iptables -A OUTPUT -p tcp --destination-port 443 -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "iptables -A OUTPUT -p tcp --destination-port 443 -j DROP",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
