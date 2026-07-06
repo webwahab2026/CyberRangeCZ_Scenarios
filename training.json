@@ -1,0 +1,163 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's network. Kobalos is a complex, multiplatform malware that targets high-performance computing (HPC) clusters and other high-profile systems. It grants remote access to the file system, provides the ability to spawn terminal sessions, and allows proxying connections to other Kobalos-infected servers. Your goal is to identify and mitigate the threat.",
+  "prerequisites": [
+    "Basic knowledge of Linux commands and system administration.",
+    "Familiarity with incident response procedures."
+  ],
+  "outcomes": [
+    "Identify suspicious services and files related to Kobalos malware.",
+    "Investigate lateral movement and data exfiltration activities.",
+    "Contain and mitigate the threat."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's network. Kobalos is a complex, multiplatform malware that targets high-performance computing (HPC) clusters and other high-profile systems. It grants remote access to the file system, provides the ability to spawn terminal sessions, and allows proxying connections to other Kobalos-infected servers. Your goal is to identify and mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) using SSH with the username 'cyrano' and password 'cyrano'. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) using SSH with the username 'cyrano' and password 'cyrano'. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for any suspicious services that might be related to the Kobalos malware. Focus on services that are not part of the standard system configuration. The flag you are looking for is the name of a suspicious service.",
+      "solution": "1. Log in to the target host using SSH.\n2. List all running services using the `systemctl list-units --type=service` command.\n3. Identify any suspicious services that might be related to Kobalos malware.\nThe suspicious service is `payload-transfer.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Check for non-standard services",
+          "content": "Look for services that are not part of the standard system configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Examine recently added or modified services",
+          "content": "Pay attention to services that have been recently added or modified.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "lateral-movement.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for any signs of lateral movement to the next-target host. Focus on any services or processes that might be transferring data between the hosts. The flag you are looking for is the name of a service responsible for lateral movement.",
+      "solution": "1. Log in to the target host using SSH.\n2. Check the system logs for any signs of data transfer between the target and next-target hosts.\n3. Identify any services or processes that might be responsible for the lateral movement.\nThe service responsible for lateral movement is `lateral-movement.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Examine data transfer between hosts",
+          "content": "Look for services that are transferring data between the target and next-target hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Check recently added or modified services",
+          "content": "Pay attention to any services that have been recently added or modified.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "journalctl -u lateral-movement.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u lateral-movement.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "Identify and contain any C2 communication between the target host and the c2-server. Focus on blocking the communication to prevent further data exfiltration. The flag you are looking for is the port number used for C2 communication.",
+      "solution": "1. Log in to the target host using SSH.\n2. Identify any outbound connections to the c2-server.\n3. Block the communication to prevent further data exfiltration.\nThe port number used for C2 communication is `7070`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Identify outbound connections",
+          "content": "Look for any outbound connections to the c2-server.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Check services communicating with c2-server",
+          "content": "Pay attention to any services that are communicating with the c2-server.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "contain_c2_communication",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep c2-server",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp | grep c2-server",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 120,
+  "variant_sandboxes": false
+}
