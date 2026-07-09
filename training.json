@@ -1,0 +1,181 @@
+{
+  "title": "Mirai Botnet Investigation",
+  "description": "Investigate a network compromised by the Mirai botnet variant Linux/Mirai-Hilix. Identify the beacon service communicating with the C2 server, the flood service responsible for DDoS attacks, and the persistence mechanism ensuring the malware's continued operation.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux systemd services",
+    "Basic knowledge of Linux system administration"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Investigation of systemd services",
+    "Identification of persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has been experiencing unusual traffic patterns and performance degradation. Your task is to investigate and identify the source of these issues. The network consists of several Linux-based systems, including a command-and-control server (c2-server), two potential compromised hosts (bot1 and bot2), and a victim server (victim). All systems are running Ubuntu Noble."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the entry host bot1 with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nTo proceed to the next level, enter the word 'start'.",
+      "local_content": "Local sandbox access is not required for this scenario.\n\nTo proceed to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Identify the Suspicious Beacon Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-Hilix.sh.service",
+      "answer_variable_name": null,
+      "content": "Investigate the services running on bot1 and identify the service responsible for beaconing to the C2 server. The flag is the name of the service.",
+      "solution": "Check the systemd services and look for any unusual or recently created services. The service name is bot-beacon-Hilix.sh.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Beaconing services typically communicate with a command-and-control server at regular intervals.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for services that might be communicating with external servers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the systemd services and look for any unusual or recently created services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon-Hilix.sh.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Suspicious Flood Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood-Hilix.sh.service",
+      "answer_variable_name": null,
+      "content": "Examine the services on bot1 and find the service that is generating flood traffic. The flag is the name of the service.",
+      "solution": "Look for services related to network diagnostics or similar descriptions. The service name is bot-flood-Hilix.sh.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Flood services typically generate excessive network traffic to overwhelm target systems.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for services that might be generating high volumes of network traffic.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the systemd services and look for any unusual or recently created services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-flood-Hilix.sh.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify and Remove the Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the systemd timers and services to find and remove the persistence mechanism that ensures the malware runs after reboots. The flag is the name of the timer.",
+      "solution": "Check the systemd timers and look for any suspicious timers that might be related to the malware. The timer name is system-update-checker.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms often use systemd timers to ensure malware runs after system reboots.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for timers that might be triggering the execution of suspicious services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the systemd timers and look for any suspicious timers that might be related to the malware.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "system-update-checker.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
