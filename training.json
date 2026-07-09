@@ -1,0 +1,181 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate the compromise of the target system by the BRICKSTORM backdoor malware, identify indicators of compromise (IOCs), and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has been compromised by the BRICKSTORM backdoor malware. Your task is to investigate the compromise, identify indicators of compromise (IOCs), and contain the threat. This scenario will guide you through a realistic compromise lifecycle, from initial access to lateral movement. The BRICKSTORM backdoor malware is known for its stealthy persistence mechanisms and ability to establish command and control (C2) communication channels. It often masquerades as legitimate system services to evade detection. BRICKSTORM is particularly notorious for its ability to maintain persistence through system reboots and its use of encrypted communication channels to avoid detection by traditional network monitoring tools."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) in the cloud sandbox. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) in the local sandbox. Username: cyrano, Password: cyrano. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify the suspicious service running on the target host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr.service",
+      "answer_variable_name": null,
+      "content": "Investigate the running services on the target host and identify the suspicious service related to the BRICKSTORM backdoor. The flag is the name of the suspicious service (e.g., updatemgr.service).",
+      "solution": "Check the systemd services and look for any unusual or unfamiliar services. The suspicious service is updatemgr.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd services are managed by the systemd system and service manager. Unusual services might indicate malware.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the systemctl command to list all running services and look for any that seem out of place.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service name starts with 'updatemgr'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "updatemgr.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the suspicious outbound IP address used for C2 communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5",
+      "answer_variable_name": null,
+      "content": "Analyze the network connections and logs on the target host to identify the suspicious outbound IP address used for command and control (C2) communication. The flag is the suspicious outbound IP address (e.g., 192.168.40.5).",
+      "solution": "Check the network logs and connection history for any unusual IP addresses. The suspicious outbound IP address is 192.168.40.5.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Command and control (C2) communication typically involves outbound connections to external IP addresses.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the ss command to list all network connections and look for any unusual outbound IP addresses.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious outbound IP address is in the 192.168.40.0/24 range.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_check",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192\\.168\\.40\\.5",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the file transfer service used for lateral movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the file transfer mechanisms on the target host to identify the service used for lateral movement to the next-target host. The flag is the name of the file transfer service (e.g., payload-transfer.service).",
+      "solution": "Check the systemd services and logs for any file transfer activities. The file transfer service used for lateral movement is payload-transfer.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement often involves file transfer services that allow malware to spread to other systems.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the systemctl command to list all running services and look for any that seem related to file transfer.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The file transfer service name starts with 'payload-transfer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_transfer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 45,
+  "variant_sandboxes": false
+}
