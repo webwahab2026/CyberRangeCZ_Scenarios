@@ -1,0 +1,183 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate and respond to a BRICKSTORM backdoor infection on the target network. This scenario is designed to be completed within a sandbox environment, allowing you to achieve the learning objectives in a controlled setting.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services",
+    "Detect and analyze service persistence mechanisms",
+    "Identify and investigate suspicious outbound IP addresses and ports",
+    "Contain and block C2 communication",
+    "Kill suspicious services and remove persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Investigate and respond to a BRICKSTORM backdoor infection on the target network. The BRICKSTORM backdoor is a 64-bit ELF executable written in Go, designed to handle environment variables for connection parameters, set up logging, configure a WebSocket connector, create service instances, and define request handlers for different request types. It uses VSOCK proxying, multi-layered web service communication, and varied command execution to obscure its activities. The backdoor uses XOR cipher encryption to hide key strings within its code.\n\nThe BRICKSTORM backdoor has been detected on the target network. Your task is to investigate the infection, identify the command and control (C2) infrastructure, and contain the threat. This involves understanding the initial compromise, lateral movement, persistence mechanisms, and exfiltration channels used by the backdoor. The suspicious service created by the backdoor is named 'bkd.service'. The backdoor communicates with a C2 server at '192.168.50.5:8090'. This scenario simulates a realistic compromise lifecycle, allowing you to practice incident response within a controlled sandbox environment."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the provided credentials.",
+      "local_content": "Access the target host via SSH using the provided credentials."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "The BRICKSTORM backdoor is known to create a suspicious service on the infected host. Investigate the services running on the target host and identify the suspicious service name (the flag is a service name).",
+      "solution": "1. Log in to the target host using SSH.\n2. List all running services using the command `systemctl list-units --type=service`.\n3. Identify the suspicious service related to the BRICKSTORM backdoor.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "System services in Linux are managed by systemd, which allows you to list and manage them.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use systemctl to list all running services and look for any that seem unusual or not part of the standard system services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the service files in /etc/systemd/system/ for any unusual entries, such as a service named bkd.service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service | grep bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Suspicious Outbound IP and Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.50.5:8090",
+      "answer_variable_name": null,
+      "content": "The BRICKSTORM backdoor communicates with a command and control (C2) server. Identify the suspicious outbound IP address and port used by the backdoor (the flag is a C2 IP address and port).",
+      "solution": "1. Investigate the network connections on the target host using the command `netstat -tuln`.\n2. Identify the suspicious outbound IP address and port used by the BRICKSTORM backdoor.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Network connections in Linux can be listed using tools like netstat or ss.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use netstat or ss to list all network connections and look for any that seem unusual or not part of the standard network traffic.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Focus on connections to IP addresses outside the local network range, such as 192.168.50.5:8090.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_network_connections",
+          "prereq_state": [],
+          "cmd": "netstat -tuln | grep 192.168.50.5:8090",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln | grep 192.168.50.5:8090",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain and Block C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "8090",
+      "answer_variable_name": null,
+      "content": "To prevent further communication with the C2 server, you need to contain and block the C2 communication. Identify the service responsible for the C2 communication and block the port (the flag is a port number).",
+      "solution": "1. Identify the service responsible for the C2 communication.\n2. Block the service to prevent further communication with the C2 server using the command `iptables -A INPUT -p tcp --dport <port> -j DROP`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "iptables is a powerful tool for configuring firewall rules in Linux.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use iptables or ufw to block the suspicious port and ensure that the service is stopped and cannot be restarted.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Verify the blocking rule with `iptables -L -n` to ensure it is in place, specifically for port 8090.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "block_c2_communication",
+          "prereq_state": [],
+          "cmd": "iptables -A INPUT -p tcp --dport 8090 -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "iptables -A INPUT -p tcp --dport 8090 -j DROP",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 75,
+  "variant_sandboxes": false
+}
