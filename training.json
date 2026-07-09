@@ -1,0 +1,181 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "Investigate and respond to the Kobalos malware incident in your network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Usage of iptables",
+    "Log analysis techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Kobalos Malware Investigation",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Kobalos malware has been detected in your network. It is a complex backdoor that targets high-performance computing (HPC) clusters and other high-profile systems. Kobalos grants remote access to the file system, provides the ability to spawn terminal sessions, and allows proxying connections to other Kobalos-infected servers. It also includes a credential stealer component that captures SSH credentials.\n\nYour task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox environment via the provided cloud interface. Enter the word 'start' to progress to the next level.",
+      "local_content": "Instructions for local sandbox usage. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate the suspicious service that is communicating with the C2 server.\n\nThe Kobalos malware is known to create persistent services for communication. Investigate the services running on the `target` host and identify the suspicious one. The flag is the name of the suspicious service.",
+      "solution": "Check the systemd services and look for any unusual or recently created services.\n\nThe suspicious service is named `payload-transfer.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often creates persistent services to maintain communication with command and control servers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the systemd services for any unusual or recently created services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service is named `payload-transfer.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Data Exfiltration Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "Identify the data exfiltration mechanism used by the malware.\n\nKobalos is known to exfiltrate data from infected systems. Investigate the network connections and file transfers on the `target` host to identify the data exfiltration mechanism. The flag is the filename used for data exfiltration.",
+      "solution": "Check the logs for any unusual outbound connections or file transfers.\n\nThe data exfiltration mechanism is using the `payload-transfer.sh` script.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Data exfiltration often involves scripts or processes that transfer data to external servers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the logs for any unusual outbound connections or file transfers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The data exfiltration mechanism is using the `payload-transfer.sh` script.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_logs",
+          "prereq_state": [],
+          "cmd": "grep -i 'exfiltration' /var/log/syslog",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -i 'exfiltration' /var/log/syslog",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "Contain the C2 communication by blocking the suspicious port.\n\nTo prevent further communication with the C2 server, you need to block the port used by the malicious service. Identify the port and implement a containment strategy. The flag is the port number used for C2 communication.",
+      "solution": "Use firewall rules or service configuration to block the port.\n\nThe port number used for C2 communication is `7070`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Blocking communication with the command and control server is crucial to contain the malware.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use firewall rules or service configuration to block the port.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The port number used for C2 communication is `7070`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "block_port",
+          "prereq_state": [],
+          "cmd": "iptables -A INPUT -p tcp --dport 7070 -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "iptables -A INPUT -p tcp --dport 7070 -j DROP",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
