@@ -1,0 +1,23 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.100.5", name: "spy-server"}
+- {ip: "192.168.100.10", name: "victim"}
+- {ip: "192.168.100.20", name: "colleague"}
+packages_to_install:
+- openssh-server
+- netcat-openbsd
+- curl
+- wget
+files_to_copy:
+- readme.txt
+files_to_create:
+- name: VODA apk
+  content: "VODA apk"
+- name: 03ea8043d16ecb9a462cc99d26b80889671e7621
+  content: "03ea8043d16ecb9a462cc99d26b80889671e7621"
+- name: project_notes.txt
+  content: "Q3 budget review — confidential\ndb_host=db-prod.internal\n"
+- name: vpn_credentials.txt
+  content: "VPN server: vpn.internal\nUsername: victimuser\nPassword: Sup3rS3cr3t!\n"
