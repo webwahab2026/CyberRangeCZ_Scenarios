@@ -1,0 +1,182 @@
+{
+  "title": "Umbreon Rootkit Investigation",
+  "description": "Investigate and analyze the compromised systems to identify and mitigate the Umbreon rootkit's presence. This scenario simulates a realistic compromise lifecycle, from initial access to rootkit persistence.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques",
+    "Rootkit detection and mitigation"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a Linux rootkit that targets both x86 and ARM systems. It is designed to hide its presence and provide backdoor access to the attacker. The rootkit uses various techniques to maintain persistence and evade detection. Your task is to investigate and analyze the compromised systems to identify and mitigate the rootkit's presence. This scenario will guide you through the steps of detecting and mitigating the rootkit in a realistic compromise lifecycle."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host's IP address is `192.168.50.5`. To proceed to the next level, enter the word `start`.",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Identify the suspicious shared library injection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Investigate the system for any suspicious shared libraries that might be injected into the system's library path. You are looking for a file path.",
+      "solution": "Check the `/lib/x86_64-linux-gnu/` directory for any unusual libraries.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Rootkits often inject malicious libraries into the system's library path to maintain persistence.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the standard library directories for unusual files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look in the `/lib/x86_64-linux-gnu/` directory for files that do not belong to standard system libraries.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /lib/x86_64-linux-gnu/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /lib/x86_64-linux-gnu/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the malicious system-wide preload configuration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "Examine the system-wide preload configuration to detect any malicious entries that might be used to load suspicious libraries. You are looking for a file path.",
+      "solution": "Check the `/etc/ld.so.preload` file for any unusual entries.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malicious preload configurations can be used to load suspicious libraries at system startup.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the standard configuration files for system-wide preload settings.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look in the `/etc/` directory for files related to library preloading.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the hidden file or directory artifacts",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf/config",
+      "answer_variable_name": null,
+      "content": "Search for any hidden files or directories that might be used by the rootkit to store configuration files, logs, or other artifacts. You are looking for a file path.",
+      "solution": "Look for files or directories with names starting with a dot (e.g., `.kit_`).",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Rootkits often use hidden files or directories to store configuration and other artifacts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Search for files or directories that are not normally visible in standard directory listings.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the `find` command to search for files or directories with names starting with a dot.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "find / -name '.*' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -name '.*' 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
