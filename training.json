@@ -1,0 +1,155 @@
+{
+  "title": "PACHA Malware Investigation",
+  "description": "Investigate and respond to the PACHA malware infection on the target systems.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemd for service management",
+    "Usage of iptables for network filtering",
+    "Investigation of log files and system processes"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The PACHA malware is a Linux server infection that uses coinminers and employs various techniques for persistence, exfiltration, and command and control (C2) communication. Your task is to investigate and respond to this malware infection on the target systems."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "The PACHA malware uses a service for its malicious activities. Investigate the target host to identify this suspicious service. The flag is the name of the service.",
+      "solution": "Check the systemd services running on the target host. The suspicious service is payload-transfer.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Check systemd services",
+          "content": "Check the systemd services running on the target host.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Data Exfiltration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/payload-transfer.log",
+      "answer_variable_name": null,
+      "content": "The PACHA malware exfiltrates data from the infected host. Investigate the target host to identify the file used for data exfiltration. The flag is the full path to the file.",
+      "solution": "Check the logs and files in the home directory of the user cyrano. The file used for data exfiltration is payload-transfer.log.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Inspect user home directory",
+          "content": "Check the logs and files in the home directory of the user cyrano.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_exfiltration_file",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "8080",
+      "answer_variable_name": null,
+      "content": "The PACHA malware communicates with a C2 server using a specific port. Identify and block this port to contain the malware's activities. The flag is the port number.",
+      "solution": "Check the network connections and open ports on the target host. The port used for C2 communication is 8080. Block this port using iptables.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Check network connections",
+          "content": "Check the network connections and open ports on the target host.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_c2_port",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "8080",
+          "optional": false
+        },
+        {
+          "state_name": "block_c2_port",
+          "prereq_state": [
+            "identify_c2_port"
+          ],
+          "cmd": "iptables -A INPUT -p tcp --dport 8080 -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "iptables -A INPUT -p tcp --dport 8080 -j DROP",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 45,
+  "variant_sandboxes": false
+}
