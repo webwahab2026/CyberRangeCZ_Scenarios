@@ -1,0 +1,182 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate the BRICKSTORM backdoor, a sophisticated 64-bit ELF executable written in Go, targeting Linux systems. It employs advanced evasion techniques such as SOCKS proxying, multi-layered web service communication, and varied command execution. This scenario will guide you through the investigation of a compromised system, from initial access to exfiltration, to enhance your understanding of advanced backdoor behaviors and evasion techniques. During this investigation, you will need to identify flags such as service names and network connections.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of sophisticated backdoors",
+    "Identification of C2 communication channels",
+    "Analysis of lateral movement techniques",
+    "Detection of evasion techniques such as DoH and nested TLS encryption"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The BRICKSTORM backdoor is a sophisticated 64-bit ELF executable written in Go, targeting Linux systems. It employs advanced evasion techniques such as SOCKS proxying, multi-layered web service communication, and varied command execution. The backdoor uses DoH, nested TLS encryption, and abuses a legitimate cloud service to evade detection. It is capable of C2 communication, lateral movement, exfiltration, and persistence. This scenario will guide you through the investigation of a compromised system, from initial access to exfiltration, to enhance your understanding of advanced backdoor behaviors and evasion techniques. During this investigation, you will need to identify flags such as service names and network connections."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) using SSH with the username 'cyrano' and password 'cyrano'. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) using SSH with the username 'cyrano' and password 'cyrano'. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "vmware-sphere.service",
+      "answer_variable_name": null,
+      "content": "The target host is exhibiting unusual network behavior. Investigate the running services to identify any suspicious activity. The suspicious service is likely to be named in a way that blends with legitimate system services. The flag you are looking for is the name of the suspicious service.",
+      "solution": "Check the systemd services and look for any unusual or unfamiliar services. The suspicious service is named 'vmware-sphere.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "System services can sometimes be disguised to blend in with legitimate services. Look for any services that seem out of place.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the systemctl command to list all running services and look for any that appear suspicious.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service is named 'vmware-sphere.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "vmware-sphere.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5:4444",
+      "answer_variable_name": null,
+      "content": "The BRICKSTORM backdoor is communicating with a C2 server using nested TLS encryption and DoH to evade detection. This communication involves multiple layers of encryption and uses a legitimate cloud service to avoid detection. Identify the IP address and port used for this communication. The flag you are looking for is an IP address and port.",
+      "solution": "Check the network connections and logs for any suspicious outbound connections. The C2 communication is using the IP address 192.168.40.5 and port 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "C2 communication often involves encrypted connections to external servers. Look for any unusual outbound connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the ss command to list all network connections and look for any suspicious outbound connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The C2 communication is using the IP address 192.168.40.5 and port 4444.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_check",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.40.5:4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "The BRICKSTORM backdoor is transferring files between hosts for lateral movement using rsync and SSH. Identify the service responsible for this activity. The flag you are looking for is the name of the service.",
+      "solution": "Check the systemd services and logs for any file transfer activities. The service responsible for lateral movement is named 'payload-transfer.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement often involves file transfers between hosts. Look for any services that handle file transfers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the systemctl command to list all running services and look for any that handle file transfers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The service responsible for lateral movement is named 'payload-transfer.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_transfer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
