@@ -1,0 +1,197 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate and mitigate the BRICKSTORM backdoor malware on the target system. This malware uses advanced techniques for evasion, including SOCKS proxying, multi-layered web service communication, and varied command execution.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Understand the behavior of the BRICKSTORM backdoor malware.",
+    "Identify and investigate suspicious services and files.",
+    "Mitigate the threat by containing and removing the malware."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "content": "The BRICKSTORM backdoor is a sophisticated malware family known for its advanced evasion techniques, including SOCKS proxying, multi-layered web service communication, and varied command execution. This malware has been detected on the target system, and your task is to investigate its behavior, identify its persistence mechanisms, and mitigate the threat. The investigation will involve analyzing systemd services, identifying suspicious files, and removing the malware to secure the system.\n\nThe BRICKSTORM backdoor is designed to maintain persistence on compromised systems, communicate with command and control (C2) servers, and execute malicious commands. It employs various techniques to evade detection, including the use of SOCKS proxying to hide its network traffic and multi-layered web service communication to obfuscate its C2 interactions."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 2,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target system via SSH using the provided credentials. Enter the word 'start' to proceed to the next level. This is a mandatory step to begin the investigation.",
+      "local_content": "Access the target system via SSH using the provided credentials. Enter the word 'start' to proceed to the next level. This is a mandatory step to begin the investigation."
+    },
+    {
+      "title": "Identify the suspicious service related to the BRICKSTORM backdoor",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "backdoor-persistence.service",
+      "answer_variable_name": null,
+      "content": "The BRICKSTORM backdoor uses a persistence mechanism through a systemd service. Investigate the systemd services on the target system to identify the suspicious service. The flag you are looking for is the name of the service.\n\nThe BRICKSTORM backdoor communicates with its command and control (C2) server using multi-layered web service communication. The suspicious service is likely involved in maintaining this communication.\n\nSteps:\n1. SSH into the target system using the provided credentials.\n2. List all systemd services and look for any suspicious services.\n3. Identify the service related to the BRICKSTORM backdoor.",
+      "solution": "The suspicious service related to the BRICKSTORM backdoor is backdoor-persistence.service.\n\nSteps:\n1. SSH into the target system using the provided credentials.\n2. List all systemd services using the command: `systemctl list-units --type=service`.\n3. Look for the service named backdoor-persistence.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Look for services that are not part of the standard system services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all systemd services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service is named backdoor-persistence.service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate the suspicious file used by the BRICKSTORM backdoor",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/java/jre-vmware/bin/updatemgr",
+      "answer_variable_name": null,
+      "content": "The BRICKSTORM backdoor uses a backdoor binary for its operations. Investigate the file system to identify the suspicious file. The flag you are looking for is the path to the binary.\n\nThe suspicious file is likely involved in executing commands from the C2 server and maintaining the backdoor's functionality. It may also be involved in SOCKS proxying to evade detection.\n\nSteps:\n1. SSH into the target system using the provided credentials.\n2. Search the file system for suspicious files, especially in the `/usr/java/jre-vmware/bin` directory.\n3. Identify the backdoor binary used by the BRICKSTORM malware.",
+      "solution": "The suspicious file used by the BRICKSTORM backdoor is /usr/java/jre-vmware/bin/updatemgr.\n\nSteps:\n1. SSH into the target system using the provided credentials.\n2. Search the file system for suspicious files using the command: `find / -name updatemgr 2>/dev/null`.\n3. Identify the backdoor binary located at /usr/java/jre-vmware/bin/updatemgr.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Look for files that are not part of the standard system files.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `find / -name updatemgr 2>/dev/null` to search for the suspicious file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious file is located at /usr/java/jre-vmware/bin/updatemgr.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_file",
+          "prereq_state": [],
+          "cmd": "find / -name updatemgr 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -name updatemgr 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Mitigate the BRICKSTORM backdoor by removing its persistence mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "backdoor-persistence.service",
+      "answer_variable_name": null,
+      "content": "The BRICKSTORM backdoor has a persistence mechanism through a systemd service. Remove the persistence mechanism to mitigate the threat. The flag you are looking for is the name of the service.\n\nSteps:\n1. SSH into the target system using the provided credentials.\n2. Stop and disable the suspicious systemd service identified in TRAINING_LEVEL 1.\n3. Remove the backdoor binary identified in TRAINING_LEVEL 2.\n4. Verify that the service and binary have been removed.",
+      "solution": "To mitigate the BRICKSTORM backdoor, stop and disable the backdoor-persistence.service and remove the /usr/java/jre-vmware/bin/updatemgr binary.\n\nSteps:\n1. SSH into the target system using the provided credentials.\n2. Stop and disable the backdoor-persistence.service using the commands:\n   - `systemctl stop backdoor-persistence.service`\n   - `systemctl disable backdoor-persistence.service`\n3. Remove the backdoor binary using the command: `rm -f /usr/java/jre-vmware/bin/updatemgr`.\n4. Verify that the service and binary have been removed using the commands:\n   - `systemctl list-units --type=service`\n   - `ls -l /usr/java/jre-vmware/bin`",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Use systemd commands to stop and disable the service, and use file removal commands to delete the binary.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the commands `systemctl stop backdoor-persistence.service` and `systemctl disable backdoor-persistence.service` to stop and disable the service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `rm -f /usr/java/jre-vmware/bin/updatemgr` to remove the backdoor binary.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "stop_service",
+          "prereq_state": [],
+          "cmd": "systemctl stop backdoor-persistence.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl stop backdoor-persistence.service",
+          "optional": false
+        },
+        {
+          "state_name": "disable_service",
+          "prereq_state": [],
+          "cmd": "systemctl disable backdoor-persistence.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl disable backdoor-persistence.service",
+          "optional": false
+        },
+        {
+          "state_name": "remove_binary",
+          "prereq_state": [],
+          "cmd": "rm -f /usr/java/jre-vmware/bin/updatemgr",
+          "cmd_type": "bash-command",
+          "cmd_regex": "rm -f /usr/java/jre-vmware/bin/updatemgr",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
