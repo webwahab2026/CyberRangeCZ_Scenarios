@@ -1,0 +1,145 @@
+{
+  "title": "Rhombus Botnet Incident Response",
+  "description": "Investigate a Linux-based Rhombus botnet infection on a network. The botnet has established persistence mechanisms and is communicating with a Command and Control (C2) server. The malware uses IRC protocol for C2 communication and performs DDoS attacks.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify C2 communication mechanisms",
+    "Detect persistence mechanisms",
+    "Analyze DDoS attack vectors"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "content": "This scenario involves investigating a Linux-based Rhombus botnet infection on a network. The botnet has established persistence mechanisms and is communicating with a Command and Control (C2) server. The malware uses IRC protocol for C2 communication and performs DDoS attacks. The sandbox environment contains a C2 server and two infected bots (bot1 and bot2) that are actively communicating with the C2 server and performing simulated DDoS floods against a victim host. The initial compromise occurred through a phishing email that led to the execution of a malicious payload, which then installed the Rhombus botnet on the systems. Access to the environment is provided through SSH with the username `cyrano` and password `cyrano` on the following hosts:\n- bot1 (192.168.70.10)\n- bot2 (192.168.70.11)\n- c2-server (192.168.70.5)\n\nThe victim host (192.168.80.100) is not directly accessible for SSH access but is the target of the DDoS attacks."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access to the environment is provided through SSH with the username `cyrano` and password `cyrano` on the following hosts:\n- bot1 (192.168.70.10)\n- bot2 (192.168.70.11)\n- c2-server (192.168.70.5)\n\nThe victim host (192.168.80.100) is not directly accessible for SSH access but is the target of the DDoS attacks.",
+      "local_content": "Access to the environment is provided through SSH with the username `cyrano` and password `cyrano` on the following hosts:\n- bot1 (192.168.70.10)\n- bot2 (192.168.70.11)\n- c2-server (192.168.70.5)\n\nThe victim host (192.168.80.100) is not directly accessible for SSH access but is the target of the DDoS attacks."
+    },
+    {
+      "title": "Identify the C2 Communication Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-RHOMBUS.sh4.timer",
+      "answer_variable_name": "c2_beacon_service",
+      "content": "Investigate the bot hosts to identify how the Rhombus botnet communicates with its Command and Control (C2) server. Determine the specific service or script responsible for sending beacon signals to the C2 server.\n\n1. SSH into either bot1 or bot2 using the credentials `cyrano`/`cyrano`\n2. Examine running services and scheduled tasks to identify beacon-related processes\n3. Review log files for evidence of C2 communication\n4. Identify the specific systemd timer responsible for beaconing",
+      "solution": "The beacon service responsible for sending beacon signals to the C2 server is named `bot-beacon-RHOMBUS.sh4.timer`. This timer triggers a systemd service named `bot-beacon-RHOMBUS.sh4.service` which sends beacon signals to C2 IPs including 205.185.122.243, 167.172.128.4, 209.126.69.167, and 45.135.134.132. The beacon payload contains system information such as hostname, OS version, and network interface details. The flag is the name of the systemd timer responsible for sending beacon signals to the C2 server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Look for services that run on a schedule and contain references to C2 communication or beaconing.",
+          "hint_penalty": 1,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 30,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_beacon_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files | grep bot-beacon",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon-RHOMBUS\\.sh4\\.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanisms",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": "persistence_service",
+      "content": "Investigate the bot hosts to identify how the Rhombus botnet maintains persistence on the infected systems. Determine the specific service or script responsible for ensuring the malware survives system reboots.\n\n1. SSH into either bot1 or bot2 using the credentials `cyrano`/`cyrano`\n2. Examine system startup mechanisms and scheduled tasks\n3. Look for scripts or services that are configured to run at boot or on a regular schedule\n4. Identify the specific systemd timer responsible for persistence",
+      "solution": "The persistence mechanism uses a systemd timer named `system-update-checker.timer` which triggers a service called `system-update-checker.service`. This service executes a script that adds persistence to the system via a systemd timer and script, not rc.local or cron. The flag is the name of the systemd timer responsible for maintaining persistence on the infected host.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Persistence mechanisms often involve systemd timers or scripts added to system startup files like rc.local.",
+          "hint_penalty": 1,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 30,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files | grep system-update-checker",
+          "cmd_type": "bash-command",
+          "cmd_regex": "system-update-checker\\.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the DDoS Attack Vector",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "rhombus-flood.timer",
+      "answer_variable_name": "ddos_service",
+      "content": "Investigate the bot hosts to identify how the Rhombus botnet performs DDoS attacks. Determine the specific service or script responsible for sending flood traffic to the victim host.\n\n1. SSH into either bot1 or bot2 using the credentials `cyrano`/`cyrano`\n2. Examine running services and scheduled tasks to identify flood-related processes\n3. Review log files for evidence of DDoS attack activity\n4. Identify the specific systemd timer responsible for sending flood traffic",
+      "solution": "The DDoS attack vector uses a systemd timer named `rhombus-flood.timer` which triggers a service called `rhombus-flood.service`. This service sends flood traffic to the victim host at 192.168.80.100:8888. The flood script uses a combination of TCP and UDP packets to overwhelm the target port. The flag is the name of the systemd timer responsible for sending DDoS flood traffic to the victim host.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Look for services that run on a schedule and contain references to network flooding or DDoS attacks.",
+          "hint_penalty": 1,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 30,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "ddos_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files | grep rhombus-flood",
+          "cmd_type": "bash-command",
+          "cmd_regex": "rhombus-flood\\.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
