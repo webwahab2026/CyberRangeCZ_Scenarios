@@ -1,0 +1,18 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.70.5", name: "c2-server"}
+- {ip: "192.168.70.10", name: "bot1"}
+- {ip: "192.168.70.11", name: "bot2"}
+packages_to_install:
+- openssh-server
+- netcat-openbsd
+files_to_copy: []
+files_to_create:
+- name: Hilix.x86.elf
+  content: "Hilix.x86.elf"
+- name: 211a86e25710ef4f23f12a5242eeabaa
+  content: "211a86e25710ef4f23f12a5242eeabaa"
+- name: Hilix.sh
+  content: "Hilix.sh"

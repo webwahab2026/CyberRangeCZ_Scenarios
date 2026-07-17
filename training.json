@@ -1,0 +1,184 @@
+{
+  "title": "Mirai Botnet Investigation",
+  "description": "The scenario simulates a Mirai botnet infection targeting Realtek and Huawei routers. The botnet establishes a command-and-control (C2) infrastructure and performs DDoS attacks. Your task is to investigate and respond to this incident.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge",
+    "Basic knowledge of systemd services"
+  ],
+  "outcomes": [
+    "Identifying suspicious systemd services",
+    "Analyzing systemd timers for persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The scenario simulates a Mirai botnet infection targeting Realtek and Huawei routers. The botnet establishes a command-and-control (C2) infrastructure and performs DDoS attacks. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox via the provided link. Use the following credentials to log in via SSH:\n\nHost: bot1\nUsername: cyrano\nPassword: cyrano",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Identify the suspicious beacon service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-Hilix.x86.elf.service",
+      "answer_variable_name": null,
+      "content": "Investigate the services running on bot1 and identify the service responsible for beaconing to the C2 server. The flag is the name of the suspicious service file. The beacon service maintains persistent communication with the command-and-control server, allowing the botnet to receive instructions and updates. The C2 communication typically involves periodic check-ins and status reports from the infected device to the C2 server.",
+      "solution": "Check the systemd services and look for any unusual services. The suspicious beacon service is named bot-beacon-Hilix.x86.elf.service. The flag is the name of the service file.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Systemd services manage the lifecycle of applications. Start by listing all active services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint",
+          "content": "Look for services that might not belong to standard system operations, focusing on names and descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint",
+          "content": "The service name contains 'bot-beacon', which is unusual for standard system services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon-Hilix.x86.elf.service",
+          "optional": false,
+          "description": "List all systemd services to identify any unusual or suspicious services. The command will display all active services, allowing you to spot the beacon service."
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the suspicious flood service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood-Hilix.x86.elf.service",
+      "answer_variable_name": null,
+      "content": "Investigate the services running on bot1 and identify the service responsible for performing DDoS attacks. The flag is the name of the suspicious service file. The flood service is designed to overwhelm target systems with excessive requests, causing denial of service. The C2 server can instruct the botnet to launch various types of DDoS attacks, such as UDP floods, TCP SYN floods, or HTTP floods.",
+      "solution": "Check the systemd services and look for any unusual services. The suspicious flood service is named bot-flood-Hilix.x86.elf.service. The flag is the name of the service file.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Systemd services manage the lifecycle of applications. Start by listing all active services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint",
+          "content": "Look for services that might not belong to standard system operations, focusing on names and descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint",
+          "content": "The service name contains 'bot-flood', which is unusual for standard system services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-flood-Hilix.x86.elf.service",
+          "optional": false,
+          "description": "List all systemd services to identify any unusual or suspicious services. The command will display all active services, allowing you to spot the flood service."
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the persistence mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the systemd services and timers on bot1 to identify any persistence mechanisms used by the malware. The flag is the name of the suspicious timer file. The persistence mechanism ensures that the malware is reinstalled or reactivated after system reboots or other disruptions. The C2 server can use persistence mechanisms to maintain control over the infected device even after system updates or reboots.",
+      "solution": "Check the systemd timers and look for any unusual timers. The persistence mechanism is named system-update-checker.timer. The flag is the name of the timer file.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Systemd timers are used to trigger services at specific intervals. Start by listing all active timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint",
+          "content": "Look for timers that might not belong to standard system operations, focusing on names and descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint",
+          "content": "The timer name contains 'system-update-checker', which is unusual for standard system timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "system-update-checker.timer",
+          "optional": false,
+          "description": "List all systemd timers to identify any unusual or suspicious timers. The command will display all active timers, allowing you to spot the persistence mechanism."
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 90,
+  "variant_sandboxes": false
+}
