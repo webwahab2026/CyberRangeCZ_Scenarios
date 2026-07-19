@@ -1,0 +1,182 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate and determine the nature of unusual network activity on the target host, following a realistic compromise lifecycle from initial access to persistence mechanisms.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Investigation of systemd services and timers",
+    "Analysis of service configurations",
+    "Understanding of persistence mechanisms in Linux environments"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target host has exhibited unusual network activity, potentially indicative of a BRICKSTORM backdoor. This malware family is known for establishing persistent command and control (C2) channels. The suspicious service, named `backdoor-c2.service`, has been observed engaging in unusual network communication patterns, suggesting it may be part of a C2 infrastructure. Your task is to investigate and determine the nature of this activity, following a realistic compromise lifecycle from initial access to persistence mechanisms. You will identify suspicious services, determine persistence mechanisms, and locate associated executable files."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. The target host's IP address is `192.168.50.5`. To proceed to the next level, enter the word 'start'.",
+      "local_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. The target host's IP address is `192.168.50.5`. To proceed to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "backdoor-c2.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for any unauthorized or suspicious services running. What is the name of the suspicious service (service name) you identified?",
+      "solution": "Check the status of all services and look for any that appear unusual or unauthorized. The suspicious service is named `backdoor-c2.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Look for services that might be related to network communication or remote access, such as those involving unusual ports or unexpected processes. Focus on identifying the service name.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all services and identify any that appear suspicious. Pay attention to the service names.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the status of all services using `systemctl list-units --type=service` and look for any that appear unusual or unauthorized. The service name you are looking for is `backdoor-c2.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "backdoor-c2.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "backdoor-c2.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. What is the persistence mechanism (timer name) used by the suspicious service?",
+      "solution": "Examine systemd services and timers to find how the service maintains persistence. The persistence mechanism is a systemd timer named `backdoor-c2.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd timers are often used to trigger services at specific intervals or after system events, ensuring persistence. Look for the timer name associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `systemctl list-timers` to list all timers and identify the one associated with the suspicious service. Focus on finding the timer name.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the systemd timers using `systemctl list-timers` to find the persistence mechanism. The timer name you are looking for is `backdoor-c2.timer`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "backdoor-c2.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Executable or File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/c2-communicate.sh",
+      "answer_variable_name": null,
+      "content": "Locate the executable or file associated with the suspicious service. What is the path to the executable or file (file path) associated with the suspicious service?",
+      "solution": "Investigate the service configuration to find the path to its executable. The path to the executable is `/usr/local/bin/c2-communicate.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Service configurations often contain the path to the executable they manage, which can be found in the service unit file. Look for the file path in the service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `systemctl cat` command followed by the service name to view the service configuration file. Focus on finding the file path.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run `systemctl cat backdoor-c2.service` to find the path to the executable. The file path you are looking for is `/usr/local/bin/c2-communicate.sh`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "executable_check",
+          "prereq_state": [],
+          "cmd": "systemctl cat backdoor-c2.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/usr/local/bin/c2-communicate.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 55,
+  "variant_sandboxes": false
+}

@@ -1,0 +1,219 @@
+---
+- name: Add host aliases
+  lineinfile:
+      path: '/etc/hosts'
+      line: "{{ item.ip }} {{ item.name }}"
+      state: present
+  loop: "{{ hosts_entries }}"
+
+- name: Add user and set password
+  user:
+    name: '{{ username }}'
+    password: '{{ password | password_hash(''sha512'') }}'
+    shell: '/bin/bash'
+    groups: sudo
+    append: yes
+
+- name: Copy Payloads
+  copy:
+      src: "{{ item }}"
+      dest: "/home/{{ username }}/{{ item }}"
+      owner: "{{ username }}"
+      mode: "0644"
+  loop: "{{ files_to_copy }}"
+
+- name: Create Payloads
+  copy:
+      dest: "/home/{{ username }}/{{ item.name }}"
+      content: "{{ item.content }}"
+      owner: "{{ username }}"
+      mode: "0644"
+  loop: "{{ files_to_create }}"
+
+- name: Install packages
+  apt:
+      name: "{{ packages_to_install }}"
+      state: present
+      update_cache: yes
+
+- name: Create inventory script
+  copy:
+    dest: /usr/local/bin/local-inventory.sh
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/sh
+      set -eu
+      OUT_DIR="/var/log/local-inventory"
+      OUT_FILE="$OUT_DIR/inventory.log"
+      mkdir -p "$OUT_DIR"
+      {
+        echo "==== inventory run $(date -Is) ===="
+        echo "hostname: $(hostname)"
+        echo "kernel: $(uname -srmo)"
+        echo "uptime: $(uptime -p || true)"
+        echo "os:"
+        if [ -f /etc/os-release ]; then sed 's/^/  /' /etc/os-release; fi
+        echo "network addresses:"
+        ip -o addr show 2>/dev/null || true
+        echo "routes:"
+        ip route 2>/dev/null || true
+        echo "dns:"
+        cat /etc/resolv.conf 2>/dev/null || true
+        echo "mounted filesystems:"
+        mount | sed 's/^/  /' || true
+        echo "disk usage:"
+        df -h || true
+        echo "memory:"
+        free -h || true
+        echo "logged in users:"
+        who || true
+        echo
+      } >> "$OUT_FILE"
+
+- name: Create systemd unit for local inventory
+  copy:
+    dest: /etc/systemd/system/local-inventory.service
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=Local boot inventory collection
+      After=network-online.target
+      Wants=network-online.target
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/local/bin/local-inventory.sh
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Install systemd timer for periodic local inventory
+  copy:
+    dest: /etc/systemd/system/local-inventory.timer
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=Run local inventory periodically
+      [Timer]
+      OnBootSec=2min
+      OnUnitActiveSec=1h
+      Unit=local-inventory.service
+      [Install]
+      WantedBy=timers.target
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: true
+
+- name: Enable local inventory service
+  systemd:
+    name: local-inventory.service
+    enabled: true
+
+- name: Enable and start local inventory timer
+  systemd:
+    name: local-inventory.timer
+    enabled: true
+    state: started
+
+- name: Create backdoor persistence mechanism
+  copy:
+    dest: "/etc/sysconfig/vmckd"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      #!/bin/bash
+      # Backdoor persistence script
+      export [redacted]NET4="true"
+      export [redacted]NET3="true"
+      exec /usr/java/jre-vmware/bin/updatemgr "$@"
+
+- name: Create updatemgr binary
+  copy:
+    dest: "/usr/java/jre-vmware/bin/updatemgr"
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/bash
+      # Simulated updatemgr binary
+      echo "updatemgr executed"
+      # Simulate DoH resolution and C2 communication
+      sleep 1
+      # Simulate command execution
+      if [ -n "$1" ]; then
+        echo "Executing command: $1"
+      fi
+
+- name: Create directory structure for backdoor
+  file:
+    path: "/usr/java/jre-vmware/bin"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Set up backdoor self-watcher mechanism
+  copy:
+    dest: "/usr/local/bin/self-watcher.sh"
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/bash
+      # Self-watcher for backdoor persistence
+      if [ -z "$[redacted]NET3" ]; then
+        # Reinstall backdoor
+        cp /etc/sysconfig/vmckd /usr/java/jre-vmware/bin/updatemgr
+        export PATH="/usr/java/jre-vmware/bin:$PATH"
+        exec /usr/java/jre-vmware/bin/updatemgr "$@"
+      fi
+      # Continue normal execution
+      echo "Backdoor running normally"
+
+- name: Create systemd service for backdoor self-watcher
+  copy:
+    dest: "/etc/systemd/system/backdoor-selfwatcher.service"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=Backdoor self-watcher
+      After=network-online.target
+      Wants=network-online.target
+      [Service]
+      Type=simple
+      ExecStart=/usr/local/bin/self-watcher.sh
+      Restart=always
+      RestartSec=5
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Create systemd timer for backdoor self-watcher
+  copy:
+    dest: "/etc/systemd/system/backdoor-selfwatcher.timer"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=Run backdoor self-watcher periodically
+      [Timer]
+      OnBootSec=1min
+      OnUnitActiveSec=30s
+      Unit=backdoor-selfwatcher.service
+      [Install]
+      WantedBy=timers.target
+
+- name: Enable and start backdoor self-watcher timer
+  systemd:
+    name: backdoor-selfwatcher.timer
+    enabled: true
+    state: started
+    daemon_reload: true
