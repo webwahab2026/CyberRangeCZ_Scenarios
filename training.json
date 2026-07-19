@@ -1,0 +1,145 @@
+{
+  "title": "BRICKSTORM Incident Response",
+  "description": "Investigate a BRICKSTORM backdoor infection on a target system with focus on C2 communication, lateral movement, and persistence mechanisms.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identification of suspicious outbound network connections",
+    "Detection of lateral movement activities",
+    "Recognition of persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "content": "This scenario involves investigating a BRICKSTORM backdoor infection on a target system. The malware is a Go-based backdoor that uses advanced evasion techniques including DoH, nested TLS encryption, and abuse of legitimate cloud services. It employs SOCKS proxying, multi-layered web service communication, and varied command execution to obscure its activities. The backdoor uses XOR cipher encryption to hide key strings and implements self-preservation mechanisms through environment variable checks and process reinstallation. The malware exhibits C2 communication, lateral movement, data exfiltration, and persistence capabilities. The malware achieves C2 communication by establishing outbound connections to a command and control server, uses systemd services for lateral movement and persistence, and maintains its presence through periodic check-ins and file-based persistence mechanisms. The malware listens on port 4444 on the target system for incoming connections from the C2 server, and uses systemd services to perform lateral movement and maintain persistence. The C2 communication is established through outbound connections from the target system to the C2 server, while lateral movement is achieved via the payload-transfer.service systemd service, and persistence is maintained through the lab-checkin.service systemd service."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 2,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access to the target system is provided via SSH using the user `cyrano` with password `cyrano`. The target system has a user `cyrano` with sudo privileges. The target system can also communicate with the next-target system via SSH. The C2 server is accessible from the target system. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Local sandbox access is not required for this scenario. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify suspicious outbound communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "Investigate the target system for suspicious outbound network connections that may indicate C2 communication. Identify the port and destination IP address used by the malware for C2 communication. The flag is the port number used for C2 communication. The port number is 4444. The malware listens on port 4444 on the target system for incoming connections from the C2 server. The flag is the port number on which the target system listens for incoming connections from the C2 server.",
+      "solution": "Check system logs for outbound connections to the C2 server. Look for connections on port 4444. The malware communicates with the C2 server on port 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Check the system logs for outbound connections to the C2 server. Look for connections on port 4444.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 30,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_c2_port",
+          "prereq_state": [],
+          "cmd": "netstat -tuln | grep 4444",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln | grep 4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify file transfer between hosts for lateral movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target system for evidence of lateral movement. Identify the service responsible for transferring data between the target and next-target systems. The flag is the service name responsible for lateral movement. The service name is 'payload-transfer.service'. The service is running on the target system and is responsible for transferring data between hosts. The flag is the service name responsible for lateral movement.",
+      "solution": "Look for services that are running and responsible for data synchronization between hosts. Check systemd services. The service responsible for lateral movement is `payload-transfer.service`. The log file `transfer-2023-11-01.log` contains the transfer details.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Look for services that are running and responsible for data synchronization between hosts. Check systemd services.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 30,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_lateral_movement_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units | grep payload-transfer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units | grep payload-transfer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify persistence mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target system for persistence mechanisms implemented by the malware. Identify the service responsible for maintaining persistence on the system. The flag is the service name responsible for persistence. The service name is 'lab-checkin.service'. The service is running on the target system and is responsible for maintaining persistence through periodic check-ins. The flag is the service name responsible for persistence.",
+      "solution": "Check for services that are configured to start automatically on system boot. Look for services related to periodic check-ins. The service responsible for maintaining persistence is `lab-checkin.service`. The log file `checkin-2023-11-01.log` contains the check-in details.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Check for services that are configured to start automatically on system boot. Look for services related to periodic check-ins.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 30,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units | grep lab-checkin",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units | grep lab-checkin",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
