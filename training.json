@@ -1,0 +1,147 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "You are an incident responder tasked with investigating a compromised Linux host infected with the Kobalos malware. Your goal is to identify persistence mechanisms, detect command-and-control (C2) communication, and trace lateral movement to other hosts in the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify persistence mechanisms hidden in systemd services and timers",
+    "Detect active network listeners and outbound C2 connections",
+    "Trace lateral movement via SSH and rsync",
+    "Analyze shell scripts deployed as malware payloads",
+    "Correlate log evidence across multiple hosts"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised Linux host infected with the Kobalos malware. Your goal is to identify persistence mechanisms, detect command-and-control (C2) communication, and trace lateral movement to other hosts in the network."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the provided credentials. Enter the word 'start' to progress to the next level.",
+      "local_content": "Access the target host via SSH using the provided credentials. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin-listener.service",
+      "answer_variable_name": null,
+      "content": "Investigate the running services on the target host. Identify the suspicious service that is listening on port 8080 and serving the contents of the inventory log file. The flag is the name of the suspicious service.",
+      "solution": "Check the systemd services running on the target host and look for any services listening on port 8080.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services running on the target host and look for any services listening on port 8080.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin-listener.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Service Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service identified in Task 1 is maintained on the system. Identify the persistence mechanism used to ensure the service starts automatically. The flag is the name of the persistence mechanism.",
+      "solution": "Examine the systemd timers and services to find the persistence mechanism for the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd timers and services to find the persistence mechanism for the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "local-inventory.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Data Exfiltration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/log/local-inventory/inventory.log 192.168.40.5",
+      "answer_variable_name": null,
+      "content": "Analyze the network connections and logs to identify the data exfiltration mechanism. Determine the file being exfiltrated and the destination IP address. The flag is the file being exfiltrated and the destination IP address.",
+      "solution": "Check the network connections and logs on the target host to identify the data exfiltration mechanism.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the network connections and logs on the target host to identify the data exfiltration mechanism.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": ".*ESTABLISHED.*",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
