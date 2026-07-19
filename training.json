@@ -1,0 +1,180 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate and determine the nature of unusual network activity on a Linux-based target system potentially compromised by the BRICKSTORM backdoor. This scenario will guide you through a realistic compromise lifecycle, from initial access to command-and-control communication.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl for service management",
+    "Usage of ss for network connection analysis"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity. Your task is to investigate and determine the nature of this activity. The system is running a Linux-based operating system and has shown signs of potential compromise. This scenario will guide you through a realistic compromise lifecycle, from initial access to command-and-control communication."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. Enter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr.service",
+      "answer_variable_name": null,
+      "content": "Investigate the network connections on the target system and identify any suspicious or unauthorized services. The suspicious service exhibits unusual behavior, such as connecting to external IP addresses and running at irregular intervals.\n\n**Question:** What is the name of the suspicious service running on the target system? (Enter the exact service name as the flag. The flag type is a service name.)",
+      "solution": "To identify the suspicious service, you can use the `systemctl list-units --type=service` command to list all running services. Look for any services that are not part of the standard system configuration. The suspicious service in this scenario is the `updatemgr.service`, which exhibits unusual behavior such as connecting to external IP addresses and running at irregular intervals.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Check the list of running services and look for any that are not part of the standard system configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `systemctl list-units --type=service` command to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service name starts with 'updatemgr'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 12,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after a system reboot. The persistence mechanism ensures the service runs periodically, maintaining its presence on the system.\n\n**Question:** What is the persistence mechanism used by the suspicious service? (Enter the exact timer name as the flag. The flag type is a timer name.)",
+      "solution": "To determine the persistence mechanism, examine the systemd services and timers. The suspicious service `updatemgr.service` is scheduled to run periodically by the `updatemgr.timer`. This timer is configured to run the service at specified intervals, ensuring it persists across reboots and maintains its presence on the system.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Examine the systemd services and timers to identify how the service is scheduled to run.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `systemctl list-timers` command to list all systemd timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The persistence mechanism name starts with 'updatemgr'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Command-and-Control Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5",
+      "answer_variable_name": null,
+      "content": "Identify the remote IP address contacted by the suspicious process. The command-and-control communication involves regular data exchanges with an external IP address.\n\n**Question:** What is the IP address used for command-and-control communication? (Enter the exact IP address as the flag. The flag type is an IP address.)",
+      "solution": "To identify the command-and-control communication, analyze the network connections. Use the `ss -tulnp` command to list all network connections. Look for any outbound connections to external addresses. The suspicious service `updatemgr.service` connects to the IP address `192.168.40.5` on port `443`, indicating regular data exchanges with an external IP address.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Analyze the network connections and look for any outbound connections to external addresses.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `ss -tulnp` command to list all network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The command-and-control IP address is in the `192.168.40.0/24` range.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_connections",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 42,
+  "variant_sandboxes": false
+}
