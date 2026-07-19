@@ -1,0 +1,189 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Your organization has detected suspicious network activity originating from one of its Linux servers. Initial analysis suggests the presence of a sophisticated backdoor known as BRICKSTORM. Your task is to investigate the compromised host, identify the malicious activity, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services and processes.",
+    "Analyze network connections for command-and-control communications.",
+    "Contain and eradicate the threat."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Your organization has detected suspicious network activity originating from one of its Linux servers. Initial analysis suggests the presence of a sophisticated backdoor known as BRICKSTORM. This malware is known for establishing persistent command-and-control (C2) communications and exfiltrating sensitive data. Your task is to investigate the compromised host, identify the malicious activity, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from the target host. Investigate the running services on the target host to identify any unauthorized or suspicious services. The hidden flag is the name of the suspicious service.",
+      "solution": "To identify the suspicious service, you can use the `netstat` or `ss` command to list all running services and their associated network connections. Look for any services that appear unusual or unauthorized. The hidden flag is the name of the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Check the list of running services and look for any that appear unusual or unauthorized.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `netstat` or `ss` command to list all running services and their associated network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service named `updatemgr.service` which is likely the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (IP)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, determine the remote IP address it is communicating with. This will help you understand the command-and-control infrastructure. The hidden flag is the C2 IP address.",
+      "solution": "To determine the remote IP address, you can use the `netstat` or `ss` command to analyze the network connections associated with the suspicious service. Look for any connections to external IP addresses. The hidden flag is the C2 IP address.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Analyze the network connections associated with the suspicious service to find the remote IP address.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `netstat` or `ss` command to analyze the network connections associated with the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a connection to the IP address `192.168.40.5` which is likely the C2 server.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tuln | grep <suspicious_service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln | grep <suspicious_service>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Process Termination",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "To prevent further damage, you need to stop the malicious process associated with the suspicious service. Terminate the process while minimizing impact on legitimate services. The hidden flag is the process name.",
+      "solution": "To terminate the malicious process, you can use the `kill` command to stop the process by its PID. First, identify the PID of the process using the `ps` command. Then, use the `kill` command to terminate the process. The hidden flag is the process name or service name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Identify the process responsible for the suspicious activity and use appropriate commands to terminate it.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `ps` command to identify the PID of the process and the `kill` command to terminate it.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a process named `lab-checkin.sh` which is likely the malicious process.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "process_termination",
+          "prereq_state": [],
+          "cmd": "ps aux | grep <suspicious_service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux | grep <suspicious_service>",
+          "optional": false
+        },
+        {
+          "state_name": "process_termination",
+          "prereq_state": [],
+          "cmd": "kill <PID>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "kill <PID>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 100,
+  "variant_sandboxes": false
+}
