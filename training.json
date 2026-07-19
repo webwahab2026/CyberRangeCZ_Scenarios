@@ -1,0 +1,147 @@
+{
+  "title": "BRICKSTORM Incident Response Investigation",
+  "description": "Participants are tasked with investigating a compromised Linux host (`target`) that has been infected with the BRICKSTORM backdoor. The malware exhibits advanced evasion techniques, including DoH, nested TLS encryption, and abuse of legitimate cloud services. It uses SOCKS proxying, multi-layered web service communication, and varied command execution to obscure its activities. The backdoor also implements self-preservation mechanisms through environment variable checks and process reinstallation.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify persistence mechanisms hidden in systemd services and timers",
+    "Detect active network listeners and outbound C2 connections",
+    "Trace lateral movement via SSH and rsync",
+    "Analyse shell scripts deployed as malware payloads",
+    "Correlate log evidence across multiple hosts"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "BRICKSTORM Incident Response Investigation",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "content": "Participants are tasked with investigating a compromised Linux host (`target`) that has been infected with the BRICKSTORM backdoor. The malware exhibits advanced evasion techniques, including DoH, nested TLS encryption, and abuse of legitimate cloud services. It uses SOCKS proxying, multi-layered web service communication, and varied command execution to obscure its activities. The backdoor also implements self-preservation mechanisms through environment variable checks and process reinstallation.\n\nThe sandbox environment simulates a post-compromise scenario where an attacker has already established a foothold on the `target` host. The environment includes three machines:\n\n- **target** \u2014 the initially compromised host, running a C2 listener and a persistent lateral-movement agent\n- **next-target** \u2014 a secondary host receiving stolen data via SSH-based file transfer\n- **c2-server** \u2014 the attacker's command-and-control server, periodically connecting to the target to exfiltrate system inventory\n\nParticipants start on the target-side network and must investigate active services, running processes, scheduled tasks, and network connections to reconstruct the attack chain."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 2,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox environment using the provided credentials.",
+      "local_content": "Access the sandbox environment using the provided credentials. The `target` host is located at 192.168.50.5. The `cyrano` user has sudo privileges on the `target` and `c2-server` hosts."
+    },
+    {
+      "title": "Identify Suspicious Service Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "Use `systemctl` to list all running services and timers. Identify which service or timer is responsible for maintaining persistence on the host. The service should be related to data exfiltration or lateral movement.",
+      "solution": "The service responsible for maintaining persistence is `payload-transfer.service`. This service is configured to run an infinite rsync loop, copying data from `/home/cyrano/` to `next-target:/home/cyrano/`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Look for services or timers that are enabled and running, and consider which ones might be related to data exfiltration or lateral movement. The service name is `payload-transfer.service`.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 20,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Detect C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "8080",
+      "answer_variable_name": null,
+      "content": "Use `ss` or `netstat` to identify listening ports on the `target` host. Confirm that a service is listening on port `4444` and is likely serving as a C2 listener. The C2 listener is a benign service designed to mimic a monitoring endpoint. It is configured to serve the contents of `/var/log/local-inventory/inventory.log` when connected to.",
+      "solution": "The C2 listener is a benign service designed to mimic a monitoring endpoint. It is configured to serve the contents of `/var/log/local-inventory/inventory.log` when connected to. The port it is listening on is 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "The C2 listener is a benign service designed to mimic a monitoring endpoint. It is configured to serve the contents of `/var/log/local-inventory/inventory.log` when connected to. The port it is listening on is 4444.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 20,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_listening_ports",
+          "prereq_state": [],
+          "cmd": "ss -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Trace Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Use `systemctl` to identify the service responsible for transferring data to the `next-target` host. Confirm that the service is running on the `target` host and is using SSH to transfer data.",
+      "solution": "The service responsible for transferring data to the `next-target` host is `payload-transfer.service`. This service is configured to run an infinite rsync loop, copying data from `/home/cyrano/` to `next-target:/home/cyrano/`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "The service is configured to run an infinite rsync loop, copying data from `/home/cyrano/` to `next-target:/home/cyrano/`. The service name is `payload-transfer.service`.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 20,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_lateral_movement_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
