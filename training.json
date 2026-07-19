@@ -1,0 +1,182 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "Investigate a potential Kobalos malware infection in your organization's Linux-based systems.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Understand the behavior and indicators of Kobalos malware.",
+    "Investigate and analyze compromised systems for signs of infection.",
+    "Identify and mitigate persistence mechanisms.",
+    "Contain and block C2 communication."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Scenario Overview",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's Linux-based systems. Kobalos is a sophisticated backdoor malware that targets high-performance computing (HPC) clusters and other high-profile systems. It provides remote access to the file system, terminal sessions, and proxying connections to other infected servers. The malware also includes an SSH credential stealer component. The suspicious service involved in this scenario is a systemd service named `payload-transfer.service`, which maintains persistence through a systemd timer named `payload-transfer.timer`. The malware communicates with its command and control (C2) server using a specific port. The malicious files associated with this malware are typically found in unusual directories and have obfuscated names. Your tasks will involve identifying these components and mitigating the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target system via SSH using the provided credentials.",
+      "local_content": "Access the target system via SSH using the provided credentials."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target system for any suspicious services that might be related to the Kobalos malware. Focus on services that are not part of the standard system configuration. The flag you are looking for is the name of the suspicious service. The suspicious service is a systemd service that maintains persistence and is likely involved in the malware's operations.",
+      "solution": "Check the systemd service list and look for any unusual or unfamiliar services. The suspicious service is named `payload-transfer.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd services are managed by the systemd init system. You can list all active services using systemd commands.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `systemctl list-units --type=service` command to list all active services on the system.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service named `payload-transfer.service` in the list of active services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Service Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service identified in the previous task maintains persistence on the system. Look for any systemd timers or other mechanisms that ensure the service restarts automatically. The flag you are looking for is the name of the persistence mechanism. The persistence mechanism is a systemd timer that ensures the service is regularly restarted, maintaining the malware's presence on the system.",
+      "solution": "Examine the systemd timer configurations and check for any scripts or commands that might be responsible for restarting the service. The persistence mechanism is `payload-transfer.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd timers are used to schedule systemd services. You can list all active timers using systemd commands.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `systemctl list-timers` command to list all active timers on the system.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a timer named `payload-transfer.timer` in the list of active timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 35,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "Identify the C2 communication port used by the malware and block it to prevent further communication with the command and control server. The flag you are looking for is the port number used for C2 communication. The C2 communication port is used by the malware to receive commands and exfiltrate data from the infected system.",
+      "solution": "Check the network connections and listen ports on the target system to identify the C2 communication port. The C2 communication port is `7070`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Network connections and listening ports can be checked using various network utility commands.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `ss -tulnp` command to list all listening ports and network connections on the system.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a listening port with the number `7070` in the output of the `ss -tulnp` command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_check",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "7070",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 100,
+  "variant_sandboxes": false
+}
