@@ -1,0 +1,233 @@
+---
+- name: Add host aliases
+  lineinfile:
+      path: '/etc/hosts'
+      line: "{{ item.ip }} {{ item.name }}"
+      state: present
+  loop: "{{ hosts_entries }}"
+
+- name: Add user and set password
+  user:
+    name: '{{ username }}'
+    password: '{{ password | password_hash(''sha512'') }}'
+    shell: '/bin/bash'
+    groups: sudo
+    append: yes
+
+- name: Copy Payloads
+  copy:
+      src: "{{ item }}"
+      dest: "/home/{{ username }}/{{ item }}"
+      owner: "{{ username }}"
+      mode: "0644"
+  loop: "{{ files_to_copy }}"
+
+- name: Create Payloads
+  copy:
+      dest: "/home/{{ username }}/{{ item.name }}"
+      content: "{{ item.content }}"
+      owner: "{{ username }}"
+      mode: "0644"
+  loop: "{{ files_to_create }}"
+
+- name: Install packages
+  apt:
+      name: "{{ packages_to_install }}"
+      state: present
+      update_cache: yes
+
+- name: Create inventory script
+  copy:
+    dest: /usr/local/bin/local-inventory.sh
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/sh
+      set -eu
+      OUT_DIR="/var/log/local-inventory"
+      OUT_FILE="$OUT_DIR/inventory.log"
+      mkdir -p "$OUT_DIR"
+      {
+        echo "==== inventory run $(date -Is) ===="
+        echo "hostname: $(hostname)"
+        echo "kernel: $(uname -srmo)"
+        echo "uptime: $(uptime -p || true)"
+        echo "os:"
+        if [ -f /etc/os-release ]; then sed 's/^/  /' /etc/os-release; fi
+        echo "network addresses:"
+        ip -o addr show 2>/dev/null || true
+        echo "routes:"
+        ip route 2>/dev/null || true
+        echo "dns:"
+        cat /etc/resolv.conf 2>/dev/null || true
+        echo "mounted filesystems:"
+        mount | sed 's/^/  /' || true
+        echo "disk usage:"
+        df -h || true
+        echo "memory:"
+        free -h || true
+        echo "logged in users:"
+        who || true
+        echo
+      } >> "$OUT_FILE"
+
+- name: Create systemd unit for local inventory
+  copy:
+    dest: /etc/systemd/system/local-inventory.service
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=Local boot inventory collection
+      After=network-online.target
+      Wants=network-online.target
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/local/bin/local-inventory.sh
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Install systemd timer for periodic local inventory
+  copy:
+    dest: /etc/systemd/system/local-inventory.timer
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=Run local inventory periodically
+      [Timer]
+      OnBootSec=2min
+      OnUnitActiveSec=1h
+      Unit=local-inventory.service
+      [Install]
+      WantedBy=timers.target
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: true
+
+- name: Enable local inventory service
+  systemd:
+    name: local-inventory.service
+    enabled: true
+
+- name: Enable and start local inventory timer
+  systemd:
+    name: local-inventory.timer
+    enabled: true
+    state: started
+
+- name: Create BRICKSTORM persistence mechanism
+  copy:
+    dest: "/etc/sysconfig/viocli"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      #!/bin/bash
+      # BRICKSTORM backdoor configuration
+      export [redacted]NET6="true"
+      export [redacted]NET5="true"
+      # This file is used by BRICKSTORM backdoor to verify execution path
+
+- name: Create updatemgr backdoor binary
+  copy:
+    dest: "/usr/java/jre-vmware/bin/updatemgr"
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/bash
+      # Simulated BRICKSTORM backdoor binary
+      # This is a placeholder for the actual binary
+      echo "BRICKSTORM backdoor running"
+      # Simulate DoH resolution and C2 communication
+      sleep 10
+      exit 0
+
+- name: Create systemd service for BRICKSTORM persistence
+  copy:
+    dest: "/etc/systemd/system/bricks.service"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=BRICKSTORM Backdoor Persistence
+      After=network-online.target
+      Wants=network-online.target
+      [Service]
+      Type=simple
+      ExecStart=/usr/java/jre-vmware/bin/updatemgr
+      Restart=always
+      RestartSec=5
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Enable and start BRICKSTORM service
+  systemd:
+    name: bricks.service
+    enabled: true
+    state: started
+    daemon_reload: true
+
+- name: Create BRICKSTORM self-watcher script
+  copy:
+    dest: "/usr/local/bin/bricks-watcher.sh"
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/bash
+      # BRICKSTORM self-watcher to ensure persistence
+      if [ -z "$[redacted]NET5" ]; then
+        # Reinstall backdoor
+        cp /etc/sysconfig/viocli /usr/java/jre-vmware/bin/updatemgr
+        export PATH="/usr/java/jre-vmware/bin:$PATH"
+        exec /usr/java/jre-vmware/bin/updatemgr &
+      fi
+      # Normal operation
+      echo "BRICKSTORM backdoor running normally"
+
+- name: Create systemd timer for BRICKSTORM self-watcher
+  copy:
+    dest: "/etc/systemd/system/bricks-watcher.timer"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=BRICKSTORM Self-Watcher Timer
+      [Timer]
+      OnBootSec=1min
+      OnUnitActiveSec=30s
+      Unit=bricks-watcher.service
+      [Install]
+      WantedBy=timers.target
+
+- name: Create systemd service for BRICKSTORM self-watcher
+  copy:
+    dest: "/etc/systemd/system/bricks-watcher.service"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=BRICKSTORM Self-Watcher
+      After=network-online.target
+      Wants=network-online.target
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/local/bin/bricks-watcher.sh
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Enable and start BRICKSTORM self-watcher timer
+  systemd:
+    name: bricks-watcher.timer
+    enabled: true
+    state: started
+    daemon_reload: true

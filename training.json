@@ -1,0 +1,145 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate a compromised system infected with the BRICKSTORM backdoor, identifying persistence mechanisms, C2 communication patterns, and lateral movement capabilities. The investigation should be conducted from the target system.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identification of backdoor persistence mechanisms",
+    "Analysis of C2 communication patterns",
+    "Detection of lateral movement activities"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "content": "This scenario involves investigating a compromised system infected with the BRICKSTORM backdoor. The backdoor is a Go-based malware that uses advanced evasion techniques including DoH, nested TLS encryption, and abuse of legitimate cloud services. It employs SOCKS proxying, multi-layered web service communication, and varied command execution to obscure its activities. The backdoor uses XOR cipher encryption to hide key strings and implements self-preservation mechanisms through environment variable checks and process reinstallation.\n\nThe malware has established persistence on the target system and is communicating with a Command and Control (C2) server. It also demonstrates lateral movement capabilities to a secondary target system. The investigation should focus on identifying the backdoor's presence, understanding its communication patterns, and determining how to contain and remove the threat. The compromise occurred through a phishing email that led to initial access, followed by exploitation of a vulnerable service to establish a foothold. The backdoor was installed through a staged payload delivered via the compromised service."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 2,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access to the target system is provided through SSH using the user `cyrano` with password `cyrano`. The target system has sudo privileges. The investigation should be conducted from the target system, with access to both the target and next-target systems for lateral movement analysis. The next-target system can be accessed via SSH using the user `cyrano` with password `cyrano`. The entry host for this scenario is the target system.",
+      "local_content": "Access to the target system is provided through SSH using the user `cyrano` with password `cyrano`. The target system has sudo privileges. The investigation should be conducted from the target system, with access to both the target and next-target systems for lateral movement analysis. The next-target system can be accessed via SSH using the user `cyrano` with password `cyrano`. The entry host for this scenario is the target system."
+    },
+    {
+      "title": "Identify suspicious service persistence mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "answer": "bricks.service",
+      "answer_variable_name": null,
+      "content": "Investigate running services on the target system to identify the service that maintains persistence for the BRICKSTORM backdoor. Look for services related to the BRICKSTORM backdoor and identify the service name that maintains persistence. The flag is the name of the systemd service.",
+      "solution": "The BRICKSTORM backdoor maintains persistence through a systemd service named `bricks.service`. This service is configured to start the backdoor binary at system boot and restart it if it fails. You can verify this by examining the systemd service configuration files in `/etc/systemd/system/` and looking for files related to `bricks.service`. The flag is the name of the systemd service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Look for services that start with 'bricks' in the systemd service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep bricks",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service \\| grep bricks",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify suspicious outbound communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bricks-doh.service",
+      "answer_variable_name": null,
+      "content": "Examine network connections and listening ports on the target system to identify outbound connections to the C2 server. Look for DoH communication mechanism used by the backdoor and identify the DoH server IP address used for C2 communication. The flag is the name of the systemd service.",
+      "solution": "The BRICKSTORM backdoor uses DoH (DNS over HTTPS) to communicate with its C2 server. The backdoor performs DNS queries to common DoH servers including 8.8.8.8. You can identify this by examining system logs for DNS queries to these servers or by monitoring network traffic for connections to these IPs. The service responsible for this communication is named `bricks-doh.service`. The flag is the name of the systemd service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Check for DNS queries to common DoH servers in the system logs.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_dns_queries",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep bricks-doh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service \\| grep bricks-doh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify file transfer between hosts for lateral movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate running services on the target system to identify the service responsible for lateral movement between the target and next-target systems. Look for services that perform file transfers between systems and identify the service name responsible for lateral movement. The flag is the name of the systemd service.",
+      "solution": "The BRICKSTORM backdoor facilitates lateral movement through a service named `payload-transfer.service`. This service is configured to periodically synchronize data between the target and next-target systems using rsync. You can identify this by examining the systemd service configuration files and looking for services related to payload transfer. The flag is the name of the systemd service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Look for services that perform periodic data synchronization between hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_lateral_movement",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep payload-transfer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service \\| grep payload-transfer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 37,
+  "variant_sandboxes": false
+}

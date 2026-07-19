@@ -1,0 +1,74 @@
+---
+- name: Install ncat
+  apt:
+    name: ncat
+    state: present
+    update_cache: yes
+
+- name: Create listener service
+  copy:
+    dest: "/etc/systemd/system/{{ listen_service_unit }}"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=Lab benign check-in listener
+      After=network.target
+
+      [Service]
+      Type=simple
+      ExecStart=/bin/sh -c '/usr/bin/ncat -lk {{ listen_port }} -c "cat {{ file_to_send }}" >> {{ listen_log }} 2>&1'
+      Restart=always
+      RestartSec=2
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Enable and start listener
+  systemd:
+    name: "{{ listen_service_unit }}"
+    enabled: yes
+    state: started
+    daemon_reload: yes
+
+- name: Create BRICKSTORM C2 listener script
+  copy:
+    dest: "/usr/local/bin/bricks-c2-listener.sh"
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/bash
+      # Simulate BRICKSTORM C2 listener
+      echo "BRICKSTORM C2 listener started"
+      echo "Listening on port {{ listen_port }}"
+      # Simulate C2 communication
+      sleep 30
+      echo "C2 communication completed"
+
+- name: Create systemd service for BRICKSTORM C2 listener
+  copy:
+    dest: "/etc/systemd/system/bricks-c2.service"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=BRICKSTORM C2 Listener
+      After=network-online.target
+      Wants=network-online.target
+      [Service]
+      Type=simple
+      ExecStart=/usr/local/bin/bricks-c2-listener.sh
+      Restart=always
+      RestartSec=5
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Enable and start BRICKSTORM C2 listener
+  systemd:
+    name: bricks-c2.service
+    enabled: true
+    state: started
+    daemon_reload: true
