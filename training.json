@@ -1,0 +1,181 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate the compromised environment, identify the persistence mechanisms, trace the C2 communication, and detect lateral movement to a secondary target.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The BRICKSTORM backdoor is a sophisticated 64-bit ELF executable written in Go, designed to evade detection through advanced techniques such as SOCKS proxying, multi-layered web service communication, and varied command execution. This backdoor has been observed using Domain Name System (DNS) over HTTPS (DoH), nested TLS encryption, and abusing legitimate cloud services to hide its activities. The malware exhibits command-and-control (C2) capabilities, lateral movement, data exfiltration, and persistence mechanisms.\n\nYour task is to investigate the compromised environment, identify the persistence mechanisms, trace the C2 communication, and detect lateral movement to a secondary target."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Instructions for accessing the sandbox in cloud. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Instructions for local sandbox usage. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify the suspicious service running on the target host that is responsible for C2 communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin-listener.service",
+      "answer_variable_name": null,
+      "content": "Investigate the running services on the `target` host. Identify the service that is listening on port 443 and is responsible for C2 communication. The flag is the name of the service.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd services can be listed using the systemctl command.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for services that might be related to C2 communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check services listening on port 443.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "updatemgr.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the persistence mechanism used by the BRICKSTORM backdoor",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "Examine the systemd services and timers on the `target` host. Identify the persistence mechanism that ensures the backdoor service runs continuously. The flag is the name of the timer.",
+      "solution": "systemctl list-timers",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd timers can be listed using the systemctl command.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for timers that might be related to the backdoor's persistence.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the systemd timers that run periodically.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "local-inventory.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Detect the lateral movement mechanism used by the BRICKSTORM backdoor",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the network connections and services on the `target` host. Identify the mechanism used for lateral movement to the `next-target` host. The flag is the name of the service.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd services can be listed using the systemctl command.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for services that might be transferring data to the `next-target` host.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for services that use rsync or SSH.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
