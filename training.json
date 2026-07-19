@@ -1,0 +1,183 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate the BRICKSTORM backdoor compromise on a Linux host, identify persistence mechanisms, trace C2 communication, and detect lateral movement.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify persistence mechanisms hidden in systemd services and timers",
+    "Detect active network listeners and outbound C2 connections",
+    "Trace lateral movement via SSH and rsync",
+    "Analyse shell scripts deployed as malware payloads",
+    "Correlate log evidence across multiple hosts"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target host has been compromised by the BRICKSTORM backdoor, a sophisticated malware family known for its persistence mechanisms and command-and-control (C2) communication capabilities. Your task is to investigate the compromise, identify the persistence mechanisms, trace the C2 communication, and understand the full attack chain, including the initial compromise and lateral movement."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. The target host is `192.168.50.5`. To proceed to the next level, enter the word 'start'.",
+      "local_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. The target host is `192.168.50.5`. To proceed to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Identify the Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin-listener.service",
+      "answer_variable_name": null,
+      "content": "Investigate the running services on the target host to identify any suspicious services that might be related to the BRICKSTORM backdoor. The flag you are looking for is the name of the suspicious service.",
+      "solution": "Check the systemd services and look for any unusual or unfamiliar services. The suspicious service is `lab-checkin-listener.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Systemd services are managed by the systemd system and service manager. Look for any unusual or unfamiliar services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second Hint",
+          "content": "Use the `systemctl` command to list all running services. Pay attention to services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third Hint",
+          "content": "The suspicious service name starts with 'lab-' and is related to a listener.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin-listener.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "Examine the persistence mechanisms used by the suspicious service to maintain its presence on the target host. The flag you are looking for is the name of the persistence mechanism.",
+      "solution": "Look for systemd timers or services that might be responsible for the persistence of the suspicious service. The persistence mechanism is `local-inventory.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Persistence mechanisms can include systemd timers or services that ensure the malicious service restarts after a reboot or crash.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second Hint",
+          "content": "Use the `systemctl` command to list all timers. Look for any unusual or unfamiliar timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third Hint",
+          "content": "The persistence mechanism name starts with 'local-' and is related to an inventory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "local-inventory.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Outbound C2 Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5:8080",
+      "answer_variable_name": null,
+      "content": "Trace the outbound network connections from the target host to identify any C2 communication with the attacker's server. The flag you are looking for is the IP address and port of the C2 server.",
+      "solution": "Check the network connections and look for any unusual or suspicious outbound connections. The C2 server is `192.168.40.5` on port `8080`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Outbound network connections can be checked using network utilities that display active connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second Hint",
+          "content": "Use the `ss` command to list all active network connections. Look for any unusual or suspicious outbound connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third Hint",
+          "content": "The C2 server IP address is in the range `192.168.40.x` and uses port `8080`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.40.5:8080",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
