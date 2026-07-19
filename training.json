@@ -1,0 +1,182 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "Investigate the Kobalos malware compromise, identify indicators of compromise (IOCs), and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Systemd service investigation",
+    "Network connection analysis",
+    "Firewall configuration"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Kobalos malware, a sophisticated Linux backdoor targeting high-performance computing clusters. Your task is to investigate the compromise, identify indicators of compromise (IOCs), and contain the threat. The malware is known to grant remote access, steal SSH credentials, and exfiltrate data. The suspicious service payload-transfer.service is a systemd service that should not be running on the target host. This service is known to establish C2 communication via port 7070 and exfiltrate data to 192.168.40.5:7070. The malware also creates malicious files that may be used for persistence or further exploitation. This scenario will guide you through the process of identifying and containing the threat, providing hands-on experience with systemd service investigation, network connection analysis, and firewall configuration. The scenario is designed to escalate in difficulty, starting with basic investigation tasks and progressing to more complex containment procedures."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials."
+    },
+    {
+      "title": "Identify and investigate the suspicious service running on the target host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "The target host is exhibiting unusual network activity. Investigate the running services and identify any suspicious activity. Look for services that should not be running or those that are consuming unusual amounts of resources. The flag is the name of the suspicious service (string).",
+      "solution": "Check the systemd services and look for any unfamiliar or recently created services. The suspicious service is payload-transfer.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint: Understand Systemd Services",
+          "content": "Systemd is the system and service manager for Linux operating systems. Services managed by systemd can be listed and inspected using systemctl commands.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint: List Systemd Services",
+          "content": "Use the systemctl command to list all running services. Look for any services that seem out of place or recently created.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint: Identify the Suspicious Service",
+          "content": "The suspicious service is named payload-transfer.service. This service should not be running on the target host.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the data exfiltration mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5:7070",
+      "answer_variable_name": null,
+      "content": "The Kobalos malware is known to exfiltrate data. Investigate the network connections and identify any suspicious outbound connections. Determine the destination IP address and port used for exfiltration. The flag is the destination IP address and port used for exfiltration (string).",
+      "solution": "Check the network connections and look for any unusual outbound connections. The destination IP address and port used for exfiltration is 192.168.40.5:7070.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint: Understand Network Connections",
+          "content": "Network connections can be inspected using commands like ss or netstat. These commands provide information about active connections and listening ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint: List Active Network Connections",
+          "content": "Use the ss command to list all active network connections. Look for any unusual outbound connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint: Identify the Exfiltration Port",
+          "content": "The exfiltration port is 7070. The destination IP address is 192.168.40.5.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.40.5:7070",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain the C2 communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "To prevent further data exfiltration, you need to contain the C2 communication. Identify the port used for C2 communication and block it using the firewall. The flag is the port number used for C2 communication (integer).",
+      "solution": "Use iptables to block the identified port. The port used for C2 communication is 7070.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint: Understand Firewall Rules",
+          "content": "Firewall rules can be managed using iptables. These rules allow or deny network traffic based on specific criteria.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint: Block a Port Using iptables",
+          "content": "Use the iptables command to block the identified port. The command should drop all incoming traffic on the specified port.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint: Block Port 7070",
+          "content": "The port used for C2 communication is 7070. Use the following command to block it: iptables -A INPUT -p tcp --dport 7070 -j DROP.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "iptables -A INPUT -p tcp --dport 7070 -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "iptables -A INPUT -p tcp --dport 7070 -j DROP",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 45,
+  "variant_sandboxes": false
+}
