@@ -1,0 +1,180 @@
+{
+  "title": "BRICKSTORM Backdoor Investigation",
+  "description": "Investigate unusual network behavior on a target system to determine the nature of unexpected outbound connections.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemd",
+    "Investigation of systemd services"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network behavior, including unexpected outbound connections to unknown destinations. Your task is to investigate and determine the nature of this activity. This scenario involves a backdoor that communicates with a command and control (C2) server. The malware family, known as BRICKSTORM, is notorious for its persistence mechanisms using systemd services. BRICKSTORM typically establishes a connection to a C2 server to receive commands and exfiltrate data, making it a significant threat to system integrity and data security. You will need to find flags such as service names and file paths to complete this investigation."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. To proceed to the next level, enter the word 'start'.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. To proceed to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Investigate Unusual Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.service",
+      "answer_variable_name": null,
+      "content": "Investigate the unusual network connections on the target system. What is the name of the systemd service (flag: service name) responsible for the unexpected outbound connections?",
+      "solution": "Check the systemd services and look for any that are not part of the standard system configuration. The service responsible for the unexpected outbound connections is the `lab-checkin.service` service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by checking the systemd services to identify any unusual or non-standard services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all active services and look for any that seem suspicious.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is likely named `lab-checkin.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/lab-checkin.service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service maintains persistence on the system. What is the path to the systemd service unit file (flag: file path) that ensures the suspicious service starts automatically?",
+      "solution": "Look for service unit files in the `/etc/systemd/system/` directory that are related to the suspicious service. The service unit file that ensures the suspicious service starts automatically is `lab-checkin.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Persistence mechanisms often involve service unit files in the `/etc/systemd/system/` directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the `/etc/systemd/system/` directory for any suspicious service unit files related to the `lab-checkin.service`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The service unit file you are looking for is located at `/etc/systemd/system/lab-checkin.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_service_unit_files",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/systemd/system/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Executable File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "Identify the executable or file associated with the suspicious activity. What is the path to the executable file (flag: file path) used by the suspicious service?",
+      "solution": "Check the service unit file for the suspicious service to find the path to the executable.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Review the service unit file to understand how the service is configured and what executable it uses.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` directive in the service unit file to find the path to the executable.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The executable file is located at `/usr/local/bin/lab-checkin.sh`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_executable_path",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/systemd/system/lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 75,
+  "variant_sandboxes": false
+}
