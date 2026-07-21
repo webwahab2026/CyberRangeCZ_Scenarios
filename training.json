@@ -1,0 +1,184 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's high-performance computing (HPC) environment. Kobalos is a sophisticated backdoor malware that targets HPC clusters and other high-profile systems. It provides remote access, terminal session capabilities, and credential stealing functionality. Your mission is to investigate the compromised systems, identify the malware's persistence mechanisms, and contain the threat. The malware exhibits unusual network traffic, maintains persistence through systemd services, and attempts lateral movement to other hosts in the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic knowledge of systemd services",
+    "Basic knowledge of SSH",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Usage of journalctl",
+    "Usage of rsync",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's high-performance computing (HPC) environment. Kobalos is a sophisticated backdoor malware that targets HPC clusters and other high-profile systems. It provides remote access, terminal session capabilities, and credential stealing functionality.\n\nYour mission is to investigate the compromised systems, identify the malware's persistence mechanisms, and contain the threat. The malware exhibits unusual network traffic, maintains persistence through systemd services, and attempts lateral movement to other hosts in the network.\n\nLearning Objective: Gain hands-on experience in investigating a sophisticated malware infection in an HPC environment, focusing on service discovery, persistence mechanisms, and lateral movement."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "While monitoring your organization's HPC environment, you noticed unusual network traffic originating from the target host. Your first task is to identify any unauthorized or suspicious services running on this host that might be responsible for this activity. You are looking for a specific service flag, such as payload-transfer.service.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by listing all running services on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for services that are not part of the standard system configuration.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check for services with unusual properties or those that you do not recognize.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Now that you've identified a suspicious service, you need to determine how it maintains persistence on the system. Investigate the system's startup mechanisms to find out how the service is automatically started after reboot. You are looking for a specific persistence flag, such as payload-transfer.service or its associated timer.",
+      "solution": "systemctl list-unit-files --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate how services are configured to start automatically on system boot.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check systemd service files and timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for any custom service files that might be responsible for maintaining persistence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "next-target",
+      "answer_variable_name": null,
+      "content": "Your investigation has revealed that the malware might be attempting to move laterally within your network. Examine the system for evidence of file transfers or remote execution used to move between hosts. Focus on any connections to the next-target host (IP: 192.168.50.6). You are looking for a specific lateral movement flag, such as next-target.",
+      "solution": "journalctl -u payload-transfer.service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Look for evidence of file transfers or remote execution that might indicate lateral movement.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check system logs for connections to other hosts.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Investigate the payload-transfer.service logs for evidence of lateral movement.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "journalctl -u payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 75,
+  "variant_sandboxes": false
+}
