@@ -1,0 +1,180 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's high-performance computing (HPC) environment. Kobalos is a sophisticated backdoor malware that targets HPC clusters and other high-profile systems. It provides remote access, terminal session capabilities, and credential stealing functionality. Your mission is to investigate the compromised systems, identify the malware's persistence mechanisms, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Usage of journalctl"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's high-performance computing (HPC) environment. Kobalos is a sophisticated backdoor malware that targets HPC clusters and other high-profile systems. It provides remote access, terminal session capabilities, and credential stealing functionality.\n\nYour mission is to investigate the compromised systems, identify the malware's persistence mechanisms, and contain the threat.\n\nKobalos typically establishes persistence through unauthorized services and cron jobs. It may also attempt lateral movement by transferring payloads to other hosts within the network."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. The username is 'analyst' and the password is 'K0b4l0s!nv3st1g4t10n'. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. The username is 'analyst' and the password is 'K0b4l0s!nv3st1g4t10n'. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious-service",
+      "answer_variable_name": null,
+      "content": "While monitoring your organization's HPC environment, you noticed unusual network traffic originating from the target host. Your first task is to identify any unauthorized or suspicious services running on this host that might be responsible for this activity. Look for a text flag named 'malicious-service'.",
+      "solution": "systemctl list-units --type=service | grep -i malicious-service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider how services are managed on a Linux system and how you might identify unauthorized ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use systemctl to list all running services and examine them for any that seem out of place.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service that might be named or related to 'malicious-service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep -i malicious-service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service | grep -i malicious-service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 20,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious-persistence",
+      "answer_variable_name": null,
+      "content": "Now that you've identified a suspicious service, you need to determine how it maintains persistence on the system. Investigate the system's startup mechanisms to find out how the service is automatically started after reboot. Look for a text flag named 'malicious-persistence'.",
+      "solution": "systemctl list-unit-files --type=service | grep -i malicious-persistence",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Think about how services can be configured to start automatically on a Linux system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the systemd unit files to see if any are enabling the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a unit file that might be named or related to 'malicious-persistence'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service | grep -i malicious-persistence",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service | grep -i malicious-persistence",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious-lateral-movement",
+      "answer_variable_name": null,
+      "content": "Your investigation has revealed that the malware might be attempting to move laterally within your network. Examine the system for evidence of file transfers or remote execution used to move between hosts. Focus on any connections to the next-target host (IP: 192.168.50.6). Look for a text flag named 'malicious-lateral-movement'.",
+      "solution": "journalctl -u payload-transfer.service | grep -i malicious-lateral-movement",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider how malware might transfer files or execute commands on other systems within a network.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Investigate the logs of any services that might be responsible for transferring payloads.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a log entry that might be named or related to 'malicious-lateral-movement'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "journalctl -u payload-transfer.service | grep -i malicious-lateral-movement",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u payload-transfer.service | grep -i malicious-lateral-movement",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
