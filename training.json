@@ -1,0 +1,164 @@
+{
+  "title": "Kobalos Incident Response Scenario",
+  "description": "A security incident has been detected on the network involving the Kobalos backdoor. Multiple hosts are exhibiting suspicious behavior including unauthorized services, unexpected network connections, and file transfers. The initial compromise occurred on the target host, which is now acting as a pivot point for lateral movement.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identification of suspicious services",
+    "Network traffic analysis",
+    "Lateral movement investigation",
+    "C2 communication detection"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "content": "A security incident has been detected on the network. Multiple hosts are exhibiting suspicious behavior, including unauthorized services, unexpected network connections, and file transfers. The initial compromise appears to have occurred on the target host, which is now acting as a pivot point for lateral movement. The security team suspects a multi-stage attack involving a backdoor that provides remote access, credential theft, and data exfiltration capabilities. The compromised system is running a service that communicates with an external command-and-control (C2) server, and evidence suggests the attacker has established persistence and moved laterally to another system."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 2,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access to the following systems is provided:\n- **target** (192.168.50.5): Primary compromised host\n- **next-target** (192.168.50.6): Lateral movement target\n- **c2-server** (192.168.40.5): External command-and-control server\n\nAll hosts are accessible via SSH using the user `cyrano` with password `cyrano`.",
+      "local_content": "Access to the following systems is provided:\n- **target** (192.168.50.5): Primary compromised host\n- **next-target** (192.168.50.6): Lateral movement target\n- **c2-server** (192.168.40.5): External command-and-control server\n\nAll hosts are accessible via SSH using the user `cyrano` with password `cyrano`."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "The security team has identified that the target host is running an unauthorized service that is consuming significant system resources. This service is not part of the standard system configuration and is likely associated with the compromise. Your task is to identify this suspicious service and determine its behavior. The suspicious service is a custom backdoor that runs as a systemd service and is responsible for maintaining persistence and communicating with the C2 server. The backdoor establishes communication with the C2 server on port 7070 and is designed to receive commands and exfiltrate data. The flag is a hash value that can be found in a file on the target host.",
+      "solution": "On the target host, use the `ps aux` command to list all running processes. Look for services that are not part of the standard Ubuntu installation and are consuming unusual resources. The suspicious service is 'kobalos.service'. To extract the flag, use the command: cat /home/cyrano/d51cb52136931af5ebd8628b64d6cd1327a99196b102d246f52d878ffb581983",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Use the `ps aux` command to list all running processes on the target host.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Hint 2",
+          "content": "Look for services that are not part of the standard Ubuntu installation and are consuming unusual resources.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 20,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "Network monitoring has revealed that the target host is communicating with an external server on a specific port. This communication pattern is consistent with command-and-control activity. Your task is to identify the port number used for this communication. The C2 communication is established on port 7070, which is configured in the C2 listener service. The backdoor uses this port to receive commands from the C2 server and to exfiltrate stolen data. The flag is a hash value that can be found in a file on the target host.",
+      "solution": "On the target host, use the `netstat -tuln` command to check for listening ports and network connections. The C2 communication is occurring on port 7070, which is configured in the C2 listener service. To extract the flag, use the command: cat /home/cyrano/d51cb52136931af5ebd8628b64d6cd1327a99196b102d246f52d878ffb581983",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Use the `netstat -tuln` command to check for listening ports on the target host.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Hint 2",
+          "content": "Check network connections using `netstat -an` to identify outbound connections to external hosts.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 20,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_port_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Evidence suggests that the attacker has moved laterally from the target host to the next-target host. This movement is likely accomplished through file transfers or remote execution. Your task is to identify the service or mechanism used for this lateral movement. The malicious files are transferred using the 'kobalos.service' which utilizes rsync to move data between the compromised hosts. This service is responsible for establishing persistence on the next-target host and maintaining communication with the C2 server. The flag is a hash value that can be found in a file on the target host.",
+      "solution": "On the target host, check for the 'kobalos.service' service using the `systemctl status kobalos.service` command. This service is responsible for the lateral movement. To extract the flag, use the command: cat /home/cyrano/d51cb52136931af5ebd8628b64d6cd1327a99196b102d246f52d878ffb581983",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Check for services running on the target host that might be responsible for file transfers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Hint 2",
+          "content": "Look for processes related to SSH or rsync that are active on the target host.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 20,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "systemctl status kobalos.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status kobalos.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
