@@ -1,0 +1,205 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's high-performance computing (HPC) environment. Kobalos is a sophisticated backdoor malware that targets HPC clusters and other high-profile systems. It provides remote access, terminal session capabilities, and credential stealing functionality. Your mission is to investigate the compromised systems, identify the malware's persistence mechanisms, and contain the threat throughout its lifecycle.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Investigation of systemd services",
+    "Analysis of system logs"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Kobalos malware infection in your organization's high-performance computing (HPC) environment. Kobalos is a sophisticated backdoor malware that targets HPC clusters and other high-profile systems, providing remote access, terminal session capabilities, and credential stealing functionality.\n\nYour mission is to investigate the compromised systems, identify the malware's persistence mechanisms, and contain the threat throughout its lifecycle.\n\nThe malware exhibits unusual network traffic, creates unauthorized services for persistence, and attempts lateral movement to other hosts within the network. It communicates with a command and control (C2) server, and leaves behind malicious files that need to be identified and analyzed."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious-service",
+      "answer_variable_name": null,
+      "content": "While monitoring your organization's HPC environment, you noticed unusual network traffic originating from the target host. Your first task is to identify any unauthorized or suspicious services running on this host that might be responsible for this activity. Look for a service flag named 'malicious-service' to confirm your findings.",
+      "solution": "Use standard Linux commands to list running services and check their legitimacy. Look for any services that are not part of the standard system configuration or that have unusual properties.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often creates unauthorized services to maintain its presence on a system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use systemctl commands to list and inspect running services. Pay attention to any services that are not part of the standard system configuration.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service named 'malicious-service' that might be responsible for the unusual activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "grep -r 'malicious-service' /etc/systemd/system/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r 'malicious-service' /etc/systemd/system/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious-persistence",
+      "answer_variable_name": null,
+      "content": "Now that you've identified a suspicious service, you need to determine how it maintains persistence on the system. Investigate the system's startup mechanisms to find out how the service is automatically started after reboot. Look for a persistence flag named 'malicious-persistence' to confirm your findings.",
+      "solution": "Check systemd services and timers, as well as cron jobs, to identify how the suspicious service maintains persistence on the system.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often uses system startup mechanisms to maintain persistence.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Inspect systemd services, timers, and cron jobs for unusual entries. Look for any entries that might be responsible for automatically starting the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a persistence mechanism named 'malicious-persistence' that might be responsible for the service's automatic startup.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "grep -r 'malicious-persistence' /etc/systemd/system/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r 'malicious-persistence' /etc/systemd/system/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 35,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious-lateral-movement",
+      "answer_variable_name": null,
+      "content": "Your investigation has revealed that the malware might be attempting to move laterally within your network. Examine the system for evidence of file transfers or remote execution used to move between hosts. Focus on any connections to the next-target host (IP: 192.168.50.6). Look for a lateral movement flag named 'malicious-lateral-movement' to confirm your findings.",
+      "solution": "Investigate systemd services, timers, and any scripts or binaries related to file transfers. Look for evidence of connections to the next-target host.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often attempts to move laterally within a network to infect additional systems.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Inspect systemd services, timers, and scripts for evidence of file transfers or remote execution. Pay attention to any connections to the next-target host (IP: 192.168.50.6).",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a lateral movement mechanism named 'malicious-lateral-movement' that might be responsible for the connections to the next-target host.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "journalctl -u payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u payload-transfer.service",
+          "optional": false
+        },
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "grep -r 'malicious-lateral-movement' /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r 'malicious-lateral-movement' /var/log/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 90,
+  "variant_sandboxes": false
+}
