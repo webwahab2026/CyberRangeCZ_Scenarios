@@ -1,0 +1,181 @@
+{
+  "title": "Kobalos Malware Investigation",
+  "description": "You are an incident responder tasked with investigating a potential Kobalos malware infection on a high-performance computing (HPC) cluster. Kobalos is a complex, multiplatform malware that targets HPC clusters and other high-profile systems. It grants remote access to the file system, provides the ability to spawn terminal sessions, and allows proxying connections to other Kobalos-infected servers. It also includes a credential stealer component that captures SSH credentials.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services running on a host.",
+    "Determine how the suspicious service is automatically started after reboot and understand its C2 communication behavior.",
+    "Locate the executable or file associated with the suspicious activity and analyze its behavior."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Kobalos malware infection on a high-performance computing (HPC) cluster. Kobalos is a complex, multiplatform malware that targets HPC clusters and other high-profile systems. It grants remote access to the file system, provides the ability to spawn terminal sessions, and allows proxying connections to other Kobalos-infected servers. It also includes a credential stealer component that captures SSH credentials. The learning objectives of this scenario include identifying and investigating suspicious services, determining persistence mechanisms, and analyzing malicious files to understand their role in the infection."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano.",
+      "local_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 15,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the target host, you notice unusual network activity. Investigate the running services on the target host to identify any unauthorized or suspicious services related to the Kobalos malware.",
+      "solution": "Use standard system commands to list running services and check their legitimacy. The suspicious service is named 'lab-checkin.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "System services can be listed using standard system commands. Focus on identifying any unauthorized or suspicious services related to the Kobalos malware.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the systemd services to identify any unauthorized or suspicious services related to the Kobalos malware.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service is named 'lab-checkin.service'. Use the command 'systemctl list-units --type=service' to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, determine how it is automatically started after reboot. This will help you understand the persistence mechanism used by the Kobalos malware. Additionally, investigate the C2 communication behavior associated with this service. The 'lab-checkin.timer' service is a systemd timer responsible for establishing periodic C2 communication by executing the associated script, which contacts the command and control server to receive instructions and exfiltrate data.",
+      "solution": "Check systemd services, cron jobs, and other common persistence mechanisms. The persistence mechanism is the systemd service named 'lab-checkin.timer'. This service is responsible for establishing C2 communication by periodically executing the associated script.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms can include systemd services, cron jobs, and other scheduled tasks. Focus on identifying how the suspicious service is automatically started after reboot.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check systemd services to determine how the suspicious service is automatically started after reboot.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for timers or services that might be responsible for the persistence of the suspicious service. The persistence mechanism is the systemd service named 'lab-checkin.timer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious File Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 25,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "Locate the executable or file associated with the suspicious service. This will help you gather more information about the Kobalos malware and its behavior. Analyze the behavior of the malicious files to understand their role in the infection. The '/usr/local/bin/lab-checkin.sh' script is a bash script responsible for establishing C2 communication, executing commands received from the attacker, and capturing SSH credentials.",
+      "solution": "Correlate processes with files on disk and identify malicious artifacts. The executable or file associated with the suspicious service is located at '/usr/local/bin/lab-checkin.sh'. This script is responsible for establishing C2 communication and executing commands received from the attacker.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malicious artifacts can be identified by correlating processes with files on disk. Focus on identifying the executable or file associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for suspicious files in common directories such as /usr/local/bin.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The executable or file associated with the suspicious service is located at '/usr/local/bin/lab-checkin.sh'. Use the command 'ps aux | grep lab-checkin.sh' to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_discovery",
+          "prereq_state": [],
+          "cmd": "ps aux | grep lab-checkin.sh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/usr/local/bin/lab-checkin.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 65,
+  "variant_sandboxes": false
+}
