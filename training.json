@@ -1,0 +1,180 @@
+{
+  "title": "BRICKSTORM_Backdoor_Investigation_e2f",
+  "description": "Investigate a potential BRICKSTORM backdoor infection using the provided sandbox environment.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity on its internal systems. Your team has been tasked with investigating a potential BRICKSTORM backdoor infection. This sophisticated malware uses SOCKS proxying, multi-layered web service communication, and varied command execution to obscure its activities. It combines several techniques including DoH, nested TLS encryption, and the abuse of legitimate cloud services to evade detection. You will need to identify services, ports, and lateral movement indicators as part of your investigation. By the end of this scenario, you will be able to identify suspicious services, determine C2 communication ports, and investigate lateral movement within a compromised network."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have access to the target system (192.168.50.5) as user 'cyrano' with password 'cyrano'. From this system, you can investigate potential lateral movement to next-target (192.168.50.6) using SSH. To proceed to the next level, enter the word 'start'.",
+      "local_content": "You have access to the target system (192.168.50.5) as user 'cyrano' with password 'cyrano'. From this system, you can investigate potential lateral movement to next-target (192.168.50.6) using SSH. To proceed to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "vnetd.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the target system, you've noticed unusual network connections. Investigate the running services on the target system to identify any unauthorized or suspicious service names.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Look for services that might be related to network communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'systemctl list-units --type=service' to list all running services and look for any unusual or unauthorized services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The service name 'lab-checkin.service' should be identified as suspicious.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "443",
+      "answer_variable_name": null,
+      "content": "Now that you've identified a suspicious service, determine which network port it's using for communication. This information is crucial for understanding the attack vector and planning containment measures. Specifically, you are looking for a port number.",
+      "solution": "ss -tulnp | grep lab-checkin.service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Identify the network port used by the suspicious service for communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'ss -tulnp | grep lab-checkin.service' to find the port number used by the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The port number '443' should be identified as the C2 communication port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep lab-checkin.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "443",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Examine the target system for evidence of lateral movement. The attacker might be using this system to pivot to other systems within the network. Specifically, you are looking for a service name.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Look for evidence of lateral movement such as scheduled tasks or cron jobs.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'systemctl list-units --type=service' to list all running services and look for any services related to lateral movement.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The service name 'payload-transfer.service' should be identified as part of the lateral movement.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
