@@ -1,0 +1,151 @@
+{
+  "title": "Mirai_Worm_Investigation_8ed",
+  "description": "Investigate a network compromised by a variant of the Mirai worm named Linux/Mirai.Y!tr.bdr. Identify the infection, understand its behavior, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Mirai worm is a well-known malware that targets Linux-based IoT devices. It scans for devices using default credentials and exploits them to create a botnet. In this scenario, you will investigate a network compromised by a variant of the Mirai worm named Linux/Mirai.Y!tr.bdr. Your goal is to identify the infection, understand its behavior, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the patient-zero host with the username `cyrano` and password `cyrano`. From there, you can investigate the network and other compromised hosts.",
+      "local_content": "You have SSH access to the patient-zero host with the username `cyrano` and password `cyrano`. From there, you can investigate the network and other compromised hosts."
+    },
+    {
+      "title": "Identify the suspicious scheduled task/timer created by the malware",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "The Mirai worm creates a scheduled task to maintain persistence. Investigate the systemd timers on the patient-zero host to find the suspicious timer.",
+      "solution": "The suspicious scheduled task/timer created by the malware is `sysnet-monitor.timer`. This timer is located in the `/etc/systemd/system/` directory and is used to maintain the persistence of the malware.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for timers in the `/etc/systemd/system/` directory.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/systemd/system/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "ls /etc/systemd/system/"
+      ],
+      "commands_required": true
+    },
+    {
+      "title": "Identify the hidden malware directory",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm",
+      "answer_variable_name": null,
+      "content": "The Mirai worm creates a hidden directory to store its files. Search the filesystem on the patient-zero host to find this directory.",
+      "solution": "The hidden malware directory created by the Mirai worm is `/opt/.worm`. This directory is used to store the malware's files and is typically hidden to avoid detection.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check directories that are not typically used by the system.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "find / -type d -name \".worm\" 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -type d -name \".worm\" 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "find / -type d -name \".worm\" 2>/dev/null"
+      ],
+      "commands_required": true
+    },
+    {
+      "title": "Identify the beaconing mechanism used by the malware",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm/beacon.sh",
+      "answer_variable_name": null,
+      "content": "The Mirai worm communicates with a command and control (C2) server. Investigate the scripts in the hidden malware directory to find the beaconing mechanism.",
+      "solution": "The beaconing mechanism used by the malware is `/opt/.worm/beacon.sh`. This script is responsible for communicating with the command and control (C2) server and is located in the hidden malware directory.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for scripts that make network connections to the attacker host.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls /opt/.worm/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /opt/.worm/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "ls /opt/.worm/"
+      ],
+      "commands_required": true
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
