@@ -1,0 +1,145 @@
+{
+  "title": "Coinminer_Incident_Response_5ce",
+  "description": "This scenario simulates an incident involving a Coinminer malware infection on Linux servers. The malware utilizes CPU and GPU resources to mine cryptocurrencies without authorization. Your task is to investigate, analyze, and respond to this security incident.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "This scenario simulates an incident involving a Coinminer malware infection on Linux servers. The malware utilizes CPU and GPU resources to mine cryptocurrencies without authorization. Your task is to investigate, analyze, and respond to this security incident. The specific Coinminer malware family in this scenario is known for its persistence mechanisms and high CPU usage. You will encounter various types of flags, including systemd service names and file paths."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox via the provided cloud environment. Use the following credentials to log in via SSH:\n\nHost: miner-host\nUsername: cyrano\nPassword: cyrano\n\nEnter the word 'start' to progress to the next level.",
+      "local_content": "Local sandbox access is not required for this scenario. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Identify the suspicious service causing abnormal CPU usage",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor.service",
+      "answer_variable_name": null,
+      "content": "Investigate the miner-host for any suspicious services that might be causing high CPU usage. Look for services that are not part of the standard system processes. The flag you are looking for is a systemd service name.",
+      "solution": "To identify the suspicious service, you can use the following commands:\n\n1. Check the systemd services:\n   `systemctl list-units --type=service --all`\n\n2. Look for any unusual service names or descriptions, such as `sys-monitor.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual service names or descriptions.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the malware dropper artifact",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/tmp/hsos",
+      "answer_variable_name": null,
+      "content": "Examine the miner-host for any suspicious files that might have been used to drop the malware. Look for scripts or binaries in unusual locations.",
+      "solution": "To identify the malware dropper artifact, you can use the following commands:\n\n1. Check the /tmp directory for any suspicious files:\n   `ls -la /tmp`\n\n2. Look for any unusual files, such as `/tmp/hsos`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the /tmp directory for any suspicious files.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_tmp_directory",
+          "prereq_state": [],
+          "cmd": "ls -la /tmp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /tmp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the persistence mechanism through a system service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor.service",
+      "answer_variable_name": null,
+      "content": "Investigate the miner-host for any persistence mechanisms that the malware might have implemented. Look for systemd services that are set to start automatically and might be related to the malware. The flag you are looking for is a systemd service name.",
+      "solution": "To identify the persistence mechanism, you can use the following commands:\n\n1. Check the systemd services and look for any services that are set to start automatically and might be related to the malware:\n   `systemctl list-unit-files --state=enabled`\n\n2. Look for any unusual services, such as `sys-monitor.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any services that are set to start automatically and might be related to the malware.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_enabled_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --state=enabled",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --state=enabled",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
