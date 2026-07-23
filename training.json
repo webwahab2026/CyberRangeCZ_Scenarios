@@ -1,0 +1,229 @@
+{
+  "title": "BRICKSTORM_Backdoor_Investigation_2e6",
+  "description": "Investigate unusual network activity on a target system to determine the nature of a BRICKSTORM Backdoor threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemd",
+    "Usage of netcat",
+    "Usage of rsync"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity, including unexpected outbound connections to an unknown server. Your task is to investigate and determine the nature of this activity. The BRICKSTORM Backdoor is a type of malware known for creating persistent backdoors on compromised systems. This malware family is often used to maintain unauthorized access to systems, allowing attackers to execute commands remotely and exfiltrate data. To achieve this objective, you will need to investigate suspicious network activity, identify the responsible process, and examine the persistence mechanism."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. Enter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5:443",
+      "answer_variable_name": null,
+      "content": "Investigate the unusual network activity on the target system. This level introduces basic network monitoring techniques. What is the destination IP address and port of the suspicious outbound connections? (IP address and port). The flag should be in the format 'IP:PORT'.",
+      "solution": "Use the following commands to check the system logs and network connections for unusual patterns:\n\n1. `journalctl -u lab-checkin.timer`\n2. `ss -tulnp`\n3. `netstat -tulnp`\n\nThe destination IP address and port of the suspicious outbound connections can be found in the system logs.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "System logs often contain valuable information about network activity. Start by examining them for any unusual patterns.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Network monitoring tools can help you identify active connections and their destinations. Use these tools to gather more information.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for connections to the c2-server at 192.168.40.5 on port 443. This is a common indicator of suspicious activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "journalctl -u lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u lab-checkin.timer",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Process Responsible",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Determine the process responsible for the suspicious network activity. This level builds on the previous one by introducing process enumeration techniques. What is the name of the process making the suspicious outbound connections? (process name). The flag should be the name of the systemd timer.",
+      "solution": "Use the following commands to identify running processes and their network activity:\n\n1. `systemctl list-timers`\n2. `ps aux`\n3. `ss -tulnp`\n\nThe name of the process making the suspicious outbound connections can be found using these tools.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Process enumeration is key to identifying suspicious activities. Start by listing all running processes and their network activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Systemd services and timers can provide insights into persistent processes. Check these components for any suspicious entries.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the systemd timer and service named 'lab-checkin.timer' and 'lab-checkin.service'. These are the components responsible for the suspicious activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the persistence mechanism used by the suspicious process. This level introduces advanced techniques for examining persistence mechanisms. How is the suspicious process automatically started after a system reboot? (persistence mechanism). The flag should be the name of the systemd timer.",
+      "solution": "Use the following commands to check systemd services, cron jobs, and other persistence mechanisms:\n\n1. `systemctl list-timers`\n2. `systemctl status lab-checkin.timer`\n3. `systemctl status lab-checkin.service`\n\nThe persistence mechanism can be found by examining these components.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Persistence mechanisms ensure that malicious processes restart after a system reboot. Examine systemd services and timers for these mechanisms.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Systemd timers and services are common persistence mechanisms. Check the status of these components to identify any suspicious entries.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The persistence mechanism is maintained by the systemd timer 'lab-checkin.timer' and the service 'lab-checkin.service'. These components ensure the malicious process restarts after a system reboot.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl status lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status lab-checkin.timer",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl status lab-checkin.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status lab-checkin.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
