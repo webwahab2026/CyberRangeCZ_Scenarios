@@ -1,0 +1,181 @@
+{
+  "title": "Coinminer_Incident_Response_5ba",
+  "description": "Investigate and respond to a coinminer malware infection on Linux servers.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identifying suspicious services",
+    "Locating malware configuration files",
+    "Analyzing persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The cyber range environment contains a compromised Linux server (miner-host) infected with a coinminer malware. The malware has spread to another host (second-host) within the network. Your task is to investigate, analyze, and respond to this incident. Look for service names, file paths, and configuration details as evidence of the malware's presence and persistence mechanisms."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox environment via the provided cloud interface. Enter the word 'start' to progress to the next level.",
+      "local_content": "Instructions for local sandbox usage. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Identify the suspicious service installed by the attacker",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor.service",
+      "answer_variable_name": null,
+      "content": "The attacker has installed a malicious service on the system. Investigate the system services and identify the suspicious service.",
+      "solution": "Check the systemd service files in the /etc/systemd/system directory. The suspicious service is named sys-monitor.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "System services in Linux are typically managed by systemd. Start by checking the service files in the /etc/systemd/system directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint",
+          "content": "Look for service files that have unusual names or were recently modified. The command 'ls -la /etc/systemd/system' can help you list all service files with their details.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint",
+          "content": "The suspicious service is likely to have a name that doesn't match standard system services. Check for any services named sys-monitor.service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/systemd/system",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the malware configuration file",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/.config/sys-monitor/config.json",
+      "answer_variable_name": null,
+      "content": "The malware uses a configuration file to operate. Locate and identify this configuration file.",
+      "solution": "Check the .config directory in the home folder of the user cyrano. The configuration file is located at /home/cyrano/.config/sys-monitor/config.json.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Malware often stores configuration files in user directories. Start by checking the .config directory in the home folder of the user cyrano.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint",
+          "content": "Configuration files are typically stored in subdirectories within the .config directory. Use the command 'ls /home/cyrano/.config' to list the subdirectories.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint",
+          "content": "Look for a subdirectory named sys-monitor within the .config directory. The configuration file is likely to be named config.json.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_config",
+          "prereq_state": [],
+          "cmd": "ls /home/cyrano/.config/sys-monitor",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /home/cyrano/.config/sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the persistence mechanism through a system service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/sys-monitor.service",
+      "answer_variable_name": null,
+      "content": "The malware has implemented a persistence mechanism using a system service. Identify the service responsible for this persistence.",
+      "solution": "Check the systemd service files in the /etc/systemd/system directory. The service responsible for persistence is named sys-monitor.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Persistence mechanisms in Linux often involve system services. Start by checking the service files in the /etc/systemd/system directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint",
+          "content": "Look for service files that have unusual names or were recently modified. The command 'ls -la /etc/systemd/system' can help you list all service files with their details.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint",
+          "content": "The persistence mechanism is likely to be implemented through a service named sys-monitor.service. Check the contents of this service file to understand how it ensures the malware runs persistently.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/systemd/system",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
