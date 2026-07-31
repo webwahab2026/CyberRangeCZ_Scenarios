@@ -1,0 +1,181 @@
+{
+  "title": "Sofacy_Fysbis_Backdoor_Investigation_675",
+  "description": "You are an incident responder tasked with investigating a potential compromise involving the Sofacy group's Fysbis backdoor on a Linux-based network. The Fysbis malware is known to be a modular Linux trojan/backdoor that implements plug-in and controller modules as distinct classes. Your goal is to identify and investigate the suspicious activity, determine the extent of the compromise, and take appropriate containment measures.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify suspicious services using systemctl",
+    "Investigate persistence mechanisms using systemd timers",
+    "Analyze network traffic for C2 communication using ss"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential compromise involving the Sofacy group's Fysbis backdoor on a Linux-based network. The Fysbis malware is known to be a modular Linux trojan/backdoor that implements plug-in and controller modules as distinct classes. It includes both 32-bit and 64-bit versions of ELF binaries and can install itself with or without root privileges.\n\nYour goal is to identify and investigate the suspicious activity, determine the extent of the compromise, and take appropriate containment measures. You will encounter service names, timer names, and port numbers as flags during this investigation."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials:\n\nHost: target\nUsername: cyrano\nPassword: cyrano",
+      "local_content": "Access the target host via SSH using the following credentials:\n\nHost: target\nUsername: cyrano\nPassword: cyrano"
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from the target host. Investigate the target host to identify any unauthorized or suspicious services running on the system.",
+      "solution": "To identify the suspicious service, you can use the following command:\n\n`systemctl list-units --type=service --all`\n\nLook for any services that seem out of place or have unusual configurations. The flag is the name of the suspicious service: `systemkernelservicedefender.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by understanding the concept of systemd services and how they are managed.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services that might be related to the suspicious activity you observed.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 30,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "You have identified a suspicious service running on the target host. Determine how this service is automatically started after reboot.",
+      "solution": "To determine the persistence mechanism, you can use the following command:\n\n`systemctl list-timers`\n\nLook for any timers that are associated with the suspicious service. The flag is the persistence mechanism: `systemd timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Consider how services can be configured to start automatically after a system reboot.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Systemd timers are often used to schedule tasks and maintain service persistence.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl list-timers` to list all timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 30,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "Investigate the network traffic associated with the suspicious service to determine which network port is used for the suspicious communication.",
+      "solution": "To investigate the network traffic, you can use the following command:\n\n`ss -tulnp`\n\nLook for any connections that are associated with the suspicious service. The flag is the network port used for the suspicious communication: `80`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Understand the concept of network sockets and how they are used for communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Network monitoring tools can help you capture and analyze traffic from the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ss -tulnp` to list all network connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 40,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
