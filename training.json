@@ -1,0 +1,164 @@
+{
+  "title": "Linux_P2P_Ransom_Botnet_Investigation_1c9",
+  "description": "Investigate and respond to a Linux P2P Ransom botnet incident.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic knowledge of systemd services",
+    "Basic knowledge of network diagnostics"
+  ],
+  "outcomes": [
+    "Usage of systemctl for service management",
+    "Usage of netstat for network diagnostics",
+    "Identifying systemd timers for persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and potential security incidents. Your task is to investigate and respond to these incidents. Learning objective: Identify and mitigate a Linux P2P Ransom botnet, a type of peer-to-peer malware that encrypts files and demands a ransom for decryption."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim machine with the following credentials:\n- Hostname: victim\n- Username: ubuntu\n- Password: ubuntu\n\nEnter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the victim machine with the following credentials:\n- Hostname: victim\n- Username: ubuntu\n- Password: ubuntu\n\nEnter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication. The flag type is a service name.\n\n**Question:** What is the name of the suspicious service responsible for periodic external communication?",
+      "solution": "Check running services and look for any unusual or unauthorized services that might be communicating externally. The suspicious service is likely the bot-beacon.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services using the command: systemctl list-units --type=service",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services that are not part of the standard system configuration and are communicating with external hosts. Use the command: systemctl status <service-name> to check the status and external communication of each service.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Abnormal Traffic Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.service",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic. The flag type is a service name.\n\n**Question:** What is the name of the service responsible for generating abnormal volumes of network traffic?",
+      "solution": "Investigate network connections and look for services that are generating excessive traffic. The service responsible for generating abnormal volumes of network traffic is likely the bot-flood.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate network connections using the command: netstat -tuln",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use tools like netstat or ss to identify services with high network activity. Look for services with high packet counts or unusual destinations. Use the command: netstat -tulnp | grep <service-name> to check the network activity of each service.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. The flag type is a timer name.\n\n**Question:** What is the persistence mechanism used by the suspicious service?",
+      "solution": "Check systemd timers and services to identify how the service is automatically started. The persistence mechanism is likely the system-update-checker.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check systemd timers using the command: systemctl list-timers",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for systemd timers and services that are not part of the standard system configuration. Use the command: systemctl cat <timer-name> to inspect the configuration of each timer.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_systemd_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
