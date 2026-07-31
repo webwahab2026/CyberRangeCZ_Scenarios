@@ -1,0 +1,145 @@
+{
+  "title": "Linux_NyaDrop_Incident_Response_Scenario_7fd",
+  "description": "Investigate and respond to a potential security incident involving the Linux/NyaDrop malware on a victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic knowledge of systemd services and timers"
+  ],
+  "outcomes": [
+    "Investigation of systemd services",
+    "Analysis of systemd timers",
+    "Identification of hidden directories in Linux systems"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected network connections and suspicious file modifications. Your task is to investigate and respond to this potential security incident. The NyaDrop malware family is known for creating hidden directories and scheduled tasks to execute malicious activities."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter the word 'start' to progress to the next level.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "nyadrop.service",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for unauthorized or suspicious services.\n\n**Question:** What is the name of the suspicious service running on the victim host?",
+      "solution": "To investigate suspicious services, you can use the `systemctl list-units --type=service` command to list all services. Look for any services that appear unusual or unauthorized. The suspicious service in this scenario is the `nyadrop.service` service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the status of all services and look for any that appear unusual or unauthorized.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Scheduled Tasks",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "nyadrop.timer",
+      "answer_variable_name": null,
+      "content": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity.\n\n**Question:** What is the name of the timer responsible for the suspicious activity?",
+      "solution": "To determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity, you can use the `systemctl list-timers` command to list all timers. Look for any timers that might be related to the suspicious service. The timer responsible for the suspicious activity in this scenario is the `nyadrop.timer` timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd timers and look for any that might be related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malicious Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/tmp/.session",
+      "answer_variable_name": null,
+      "content": "Locate files introduced onto the system by the malicious software.\n\n**Question:** What is the name of the directory created to conceal malicious files or payloads?",
+      "solution": "To locate files introduced onto the system by the malicious software, you can use the `find / -type d -name '*.session'` command to search for hidden or unusual directories that might contain suspicious files. The directory created to conceal malicious files or payloads in this scenario is the `/tmp/.session` directory.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Search for hidden or unusual directories that might contain suspicious files.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "find_directories",
+          "prereq_state": [],
+          "cmd": "find / -type d -name '*.session'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -type d -name '*.session'",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
