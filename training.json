@@ -1,0 +1,182 @@
+{
+  "title": "Umbreon_Rootkit_Investigation_abe",
+  "description": "Investigate and analyze a compromised system infected with the Umbreon rootkit.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of rootkit infections",
+    "Analysis of shared library injection",
+    "Detection of system-wide preload modifications",
+    "Identification of hidden files and directories"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a sophisticated Linux rootkit designed to hide its presence and provide backdoor access to attackers. It targets both Intel and ARM processors, allowing it to manipulate system processes and files, making detection and removal particularly challenging. The rootkit employs various techniques, including shared library injection, system-wide preload modifications, and the creation of hidden files and directories. This scenario focuses on investigating and analyzing a compromised system infected with the Umbreon rootkit. You will encounter various types of flags, including file paths and configuration files, during your investigation."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You are provided with SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.50.5\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Identify Evidence of Shared Library Injection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for signs of unauthorized shared library injection. Look for indicators that suggest malicious code has been loaded into system processes.",
+      "solution": "To identify evidence of shared library injection, you need to check the loaded libraries for each process. This involves using commands to list shared libraries and looking for any unusual or unexpected entries. Specifically, you are looking for the file path flag '/lib/x86_64-linux-gnu/libsysmon.so.1'. Use the command 'ldd' to list shared libraries for each process. This command helps you identify any unusual or unexpected entries.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Shared library injection can be detected by examining the libraries loaded by system processes. Start by understanding how shared libraries are typically loaded and how they can be manipulated.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'ldd' to list shared libraries for each process. This command helps you identify any unusual or unexpected entries.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for the specific flag '/lib/x86_64-linux-gnu/libsysmon.so.1' among the listed shared libraries.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ldd /path/to/process",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ldd /path/to/process",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine System-Wide Preload Modifications",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "Examine the system-wide preload configuration on the victim host. Look for any modifications that could allow unauthorized code to be executed.",
+      "solution": "To determine system-wide preload modifications, you need to check the contents of the preload configuration file. This involves verifying the integrity of the file and looking for any unauthorized modifications. Specifically, you are looking for the file path flag '/etc/ld.so.preload'. Use the command 'cat /etc/ld.so.preload' to view the contents of the preload configuration file. This command helps you identify any unauthorized modifications.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "System-wide preload modifications can be detected by examining the preload configuration file. Start by understanding the role of the preload configuration file in the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'cat /etc/ld.so.preload' to view the contents of the preload configuration file. This command helps you identify any unauthorized modifications.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for the specific flag '/etc/ld.so.preload' in the preload configuration file.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Hidden Files or Directories",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf/config",
+      "answer_variable_name": null,
+      "content": "Search the victim host for any hidden files or directories that are not visible through standard system utilities. These could be used to store malicious artifacts or configuration data.",
+      "solution": "To locate hidden files or directories, you need to use alternative methods to list files and directories, as standard utilities may be compromised. Specifically, you are looking for the hidden file path flag '/etc/.kit_conf/config'. Use the command 'ls -la /etc/' to list all files and directories, including hidden ones. This command helps you identify any hidden files or directories.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Hidden files or directories can be detected by using alternative methods to list files and directories. Start by understanding how hidden files and directories are typically created and hidden.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'ls -la /etc/' to list all files and directories, including hidden ones. This command helps you identify any hidden files or directories.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for the specific hidden file '/etc/.kit_conf/config' among the listed files and directories.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /etc/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /etc/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
