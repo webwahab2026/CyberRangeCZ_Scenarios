@@ -1,0 +1,828 @@
+{
+  "generated_at_utc": "2026-07-31T19:38:38.233846+00:00",
+  "user_inputs": {
+    "scenario_type": "Exercise",
+    "difficulty_level": "Intermediate",
+    "cybersecurity_approach": "Defence-oriented",
+    "nice_role": "Incident Response",
+    "number_of_tasks": 3,
+    "question_response": "true",
+    "hints": "true",
+    "threat_name": "OSINT - MMD-0033-2015 - Linux/XorDDoS infection incident report (CNC: HOSTASA.ORG)",
+    "mitre_attack_techniques": [],
+    "environment_constraints": null,
+    "hybrid_sandbox": false,
+    "evaluate": true
+  },
+  "agent_1": {
+    "model_used": "",
+    "query_generated": "OSINT - MMD-0033-2015 - Linux/XorDDoS infection incident report (CNC: HOSTASA.ORG)"
+  },
+  "retrieval": {
+    "retrieved_events": {
+      "event_uuid": "5845344a-80bc-4c94-9ea8-4f39950d210f",
+      "event_id": "501",
+      "event_info": "OSINT - MMD-0033-2015 - Linux/XorDDoS infection incident report (CNC: HOSTASA.ORG)",
+      "galaxies": [],
+      "tags": [
+        "type:OSINT",
+        "tlp:white"
+      ],
+      "event_attributes": [
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "http://blog.malwaremustdie.org/2015/06/mmd-0033-2015-linuxxorddos-infection_23.html"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "comment",
+          "value": "Background\r\nThis post is an actual malware infection incident of the\"Linux/XOR.DDoS\" malware (please see previous post as reference-->[LINK]) and malware was in attempt to infect a real Linux server.\r\n\r\nIncident details:\r\n\r\nSource of attack:\r\nAn attack was coming from 107.182.141.40 with the below GeoIP details:\r\nThe attacker was compromising a Linux host via ssh password bruting to then executing a one liner shell (sh) command line and then the malware initiation commands was executed on the compromised system:"
+        },
+        {
+          "category": "Network activity",
+          "comment": "On port 41625",
+          "type": "ip-dst",
+          "value": "107.182.141.40"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "44ro4.cn"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "198.15.234.66"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "103.240.140.152"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "103.240.141.54"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "192.126.126.64"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "23.234.60.143"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "hostname",
+          "value": "aa.hostasa.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "hostname",
+          "value": "ns4.hostasa.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "hostname",
+          "value": "ns3.hostasa.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "hostname",
+          "value": "ns2.hostasa.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "filename|md5",
+          "value": "a06.zip|3c49b5160b981f06bd5242662f8d0a54"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "filename|md5",
+          "value": "a07.zip|bcb6b83a4e6e20ffe0ce3c750360ddf5"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "filename|md5",
+          "value": "a08.zip|a99c10cb9713770b9e7dda376cddee3a"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "filename|md5",
+          "value": "a09.zip|d1b5b4b4b5a118e384c7ff487e14ac3f"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "filename|md5",
+          "value": "a10.zip|83eea5625ca2affd3e841d3b374e88eb"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "c50933e1f8a194e608049839707d8d698dd5caa5"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "3c49b5160b981f06bd5242662f8d0a54"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "c394440c56fdcda9739fbb966e9ac2eab9e11e2eeff0720eb4c850a05b33eefc"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/c394440c56fdcda9739fbb966e9ac2eab9e11e2eeff0720eb4c850a05b33eefc/analysis/1495044102/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "41/55"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2017-05-17T18:01:42.000000+0000"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "038b7e9406fe5cb0a0be8f95ac935923c6d83c28"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "d1b5b4b4b5a118e384c7ff487e14ac3f"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "0a312a4154dcec2bc6ce1d3b51c037b122ace5848ec99c2b861ab6124addae9b"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/0a312a4154dcec2bc6ce1d3b51c037b122ace5848ec99c2b861ab6124addae9b/analysis/1494973480/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "39/56"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2017-05-16T22:24:40.000000+0000"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "dca946f677a1be95fb3ef6adc950730b4736a405"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "83eea5625ca2affd3e841d3b374e88eb"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "fd6060b963d1b5ca7a07b5a283ad99105298a6708e44d286440a506738a17e34"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/fd6060b963d1b5ca7a07b5a283ad99105298a6708e44d286440a506738a17e34/analysis/1495062664/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "42/57"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2017-05-17T23:11:04.000000+0000"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "1f1dd4d74eba8949fb1d2316c13f77b3ffa96f98"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "a99c10cb9713770b9e7dda376cddee3a"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "92a260d856e00056469fb26f5305a37f6ab443d735d1476281b053b10b3c4f86"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/92a260d856e00056469fb26f5305a37f6ab443d735d1476281b053b10b3c4f86/analysis/1495027397/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "40/57"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2017-05-17T13:23:17.000000+0000"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "d88755b78834e87418aa3cb3bfee5de5c378bd2f"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "bcb6b83a4e6e20ffe0ce3c750360ddf5"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "61b0107a7a06ecbb8cc1d323967291d15450df7e8bab5d96c822a98c9399a521"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/61b0107a7a06ecbb8cc1d323967291d15450df7e8bab5d96c822a98c9399a521/analysis/1495007597/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2017-05-17T07:53:17.000000+0000"
+        }
+      ],
+      "objects": [
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/fd6060b963d1b5ca7a07b5a283ad99105298a6708e44d286440a506738a17e34/analysis/1495062664/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/fd6060b963d1b5ca7a07b5a283ad99105298a6708e44d286440a506738a17e34/analysis/1495062664/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "fd6060b963d1b5ca7a07b5a283ad99105298a6708e44d286440a506738a17e34",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "fd6060b963d1b5ca7a07b5a283ad99105298a6708e44d286440a506738a17e34",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "83eea5625ca2affd3e841d3b374e88eb",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "83eea5625ca2affd3e841d3b374e88eb",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "dca946f677a1be95fb3ef6adc950730b4736a405",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "dca946f677a1be95fb3ef6adc950730b4736a405",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2017-05-16T22:24:40.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2017-05-16T22:24:40.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "39/56",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "39/56",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/0a312a4154dcec2bc6ce1d3b51c037b122ace5848ec99c2b861ab6124addae9b/analysis/1494973480/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/0a312a4154dcec2bc6ce1d3b51c037b122ace5848ec99c2b861ab6124addae9b/analysis/1494973480/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "0a312a4154dcec2bc6ce1d3b51c037b122ace5848ec99c2b861ab6124addae9b",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "0a312a4154dcec2bc6ce1d3b51c037b122ace5848ec99c2b861ab6124addae9b",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "d1b5b4b4b5a118e384c7ff487e14ac3f",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "d1b5b4b4b5a118e384c7ff487e14ac3f",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "038b7e9406fe5cb0a0be8f95ac935923c6d83c28",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "038b7e9406fe5cb0a0be8f95ac935923c6d83c28",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2017-05-17T18:01:42.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2017-05-17T18:01:42.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "41/55",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "41/55",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/c394440c56fdcda9739fbb966e9ac2eab9e11e2eeff0720eb4c850a05b33eefc/analysis/1495044102/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/c394440c56fdcda9739fbb966e9ac2eab9e11e2eeff0720eb4c850a05b33eefc/analysis/1495044102/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "c394440c56fdcda9739fbb966e9ac2eab9e11e2eeff0720eb4c850a05b33eefc",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "c394440c56fdcda9739fbb966e9ac2eab9e11e2eeff0720eb4c850a05b33eefc",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "3c49b5160b981f06bd5242662f8d0a54",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "3c49b5160b981f06bd5242662f8d0a54",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "c50933e1f8a194e608049839707d8d698dd5caa5",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "c50933e1f8a194e608049839707d8d698dd5caa5",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2017-05-17T07:53:17.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2017-05-17T07:53:17.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "42/57",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "42/57",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/61b0107a7a06ecbb8cc1d323967291d15450df7e8bab5d96c822a98c9399a521/analysis/1495007597/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/61b0107a7a06ecbb8cc1d323967291d15450df7e8bab5d96c822a98c9399a521/analysis/1495007597/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "61b0107a7a06ecbb8cc1d323967291d15450df7e8bab5d96c822a98c9399a521",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "61b0107a7a06ecbb8cc1d323967291d15450df7e8bab5d96c822a98c9399a521",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "bcb6b83a4e6e20ffe0ce3c750360ddf5",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "bcb6b83a4e6e20ffe0ce3c750360ddf5",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "d88755b78834e87418aa3cb3bfee5de5c378bd2f",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "d88755b78834e87418aa3cb3bfee5de5c378bd2f",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2017-05-17T13:23:17.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2017-05-17T13:23:17.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "40/57",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "40/57",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/92a260d856e00056469fb26f5305a37f6ab443d735d1476281b053b10b3c4f86/analysis/1495027397/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/92a260d856e00056469fb26f5305a37f6ab443d735d1476281b053b10b3c4f86/analysis/1495027397/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "92a260d856e00056469fb26f5305a37f6ab443d735d1476281b053b10b3c4f86",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "92a260d856e00056469fb26f5305a37f6ab443d735d1476281b053b10b3c4f86",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "a99c10cb9713770b9e7dda376cddee3a",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "a99c10cb9713770b9e7dda376cddee3a",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "1f1dd4d74eba8949fb1d2316c13f77b3ffa96f98",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "1f1dd4d74eba8949fb1d2316c13f77b3ffa96f98",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2017-05-17T23:11:04.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2017-05-17T23:11:04.000000+0000",
+              "comment": ""
+            }
+          ]
+        }
+      ],
+      "reports": []
+    }
+  },
+  "agent_2": {
+    "model_used": "mistral-small3.2:latest",
+    "retrieved_nice_information": "nice_info",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent2 file)'"
+    }
+  },
+  "agent_3": {
+    "model_used": "mistral-small3.2:latest",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent3 file)'"
+    }
+  }
+}
