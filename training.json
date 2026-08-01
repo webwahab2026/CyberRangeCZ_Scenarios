@@ -1,0 +1,163 @@
+{
+  "title": "BlackTech_PLEAD_Backdoor_Investigation_7b7",
+  "description": "Investigate and respond to a BlackTech threat group PLEAD backdoor malware incident.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of suspicious services",
+    "Analysis of persistence mechanisms",
+    "Identification of malicious executables"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the BlackTech threat group using their PLEAD backdoor malware. Your task is to investigate and respond to this incident. You will need to identify suspicious services, determine persistence mechanisms, and locate malicious executables. This scenario provides a realistic environment to practice incident response techniques. The learning objective is to achieve a comprehensive understanding of incident response procedures within a controlled sandbox environment."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised system and any connected hosts. To proceed, enter the word 'start' in the input field below.",
+      "local_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised system and any connected hosts. To proceed, enter the word 'start' in the input field below."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for suspicious services or processes that might indicate malware activity.",
+      "solution": "Check running services and processes for anything unusual or unauthorized. Use the command `systemctl list-units --type=service` to list all services. Then, use `ps aux | grep -i lab-checkin.sh` to identify the suspicious process. The process name associated with the suspicious activity is `lab-checkin.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and processes for anything unusual or unauthorized. Use the command `systemctl list-units --type=service` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for processes that are not part of the standard system configuration. Use the command `ps aux | grep -i lab-checkin.sh` to identify the suspicious process.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "ps aux | grep -i lab-checkin.sh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot.",
+      "solution": "Investigate systemd services and timers for any unusual configurations. Use the command `systemctl list-timers` to list all systemd timers. Then, use `systemctl status lab-checkin.timer` to check the status of the suspicious timer. The persistence mechanism used for automatic startup is `lab-checkin.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate systemd services and timers for any unusual configurations. Use the command `systemctl list-timers` to list all systemd timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers that are set to start automatically on boot. Use the command `systemctl status lab-checkin.timer` to check the status of the suspicious timer.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl status lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malicious Executable",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "Locate the executable or file associated with the suspicious activity.",
+      "solution": "Correlate the suspicious service with files on disk to identify the malicious artifact. Use the command `find / -name 'lab-checkin.sh' 2>/dev/null` to locate the malicious script. The filename or file path of the malicious executable is `/usr/local/bin/lab-checkin.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Correlate the suspicious service with files on disk to identify the malicious artifact. Use the command `ps aux | grep lab-checkin.sh` to find processes related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for files that are associated with the suspicious service. Use the command `find / -name 'lab-checkin.sh' 2>/dev/null` to locate the malicious script.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "locate_executable",
+          "prereq_state": [],
+          "cmd": "find / -name 'lab-checkin.sh' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/usr/local/bin/lab-checkin.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
