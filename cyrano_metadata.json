@@ -1,0 +1,2164 @@
+{
+  "generated_at_utc": "2026-08-01T07:04:55.704368+00:00",
+  "user_inputs": {
+    "scenario_type": "Exercise",
+    "difficulty_level": "Intermediate",
+    "cybersecurity_approach": "Defence-oriented",
+    "nice_role": "Incident Response",
+    "number_of_tasks": 3,
+    "question_response": "true",
+    "hints": "true",
+    "threat_name": "An Analysis of Linux.Ngioweb Botnet",
+    "mitre_attack_techniques": [],
+    "environment_constraints": null,
+    "hybrid_sandbox": false,
+    "evaluate": true
+  },
+  "agent_1": {
+    "model_used": "",
+    "query_generated": "An Analysis of Linux.Ngioweb Botnet"
+  },
+  "retrieval": {
+    "retrieved_events": {
+      "event_uuid": "5d13ce08-14f8-414c-a7d2-4cee02de0b81",
+      "event_id": "1107",
+      "event_info": "An Analysis of Linux.Ngioweb Botnet",
+      "galaxies": [],
+      "tags": [
+        "type:OSINT",
+        "tlp:white",
+        "malware_classification:malware-category=\"Botnet\"",
+        "osint:lifetime=\"perpetual\"",
+        "osint:certainty=\"50\"",
+        "misp-galaxy:malpedia=\"Ngioweb\"",
+        "ms-caro-malware-full:malware-platform=\"Linux\""
+      ],
+      "event_attributes": [
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exaraxexese-macrobacaward-exafosuness.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "enutofish-pronadimoful-multihitision.org"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "comment",
+          "value": "On May 27, 2019, Our Unknown Threat Detect System highlighted a suspicious ELF file, and till this day, the detection rate on VT is still only one with a very generic name. We determined that this is a Proxy Botnet, and it is a Linux version variant of the Win32.Ngioweb[1] malware. We named it Linux.Ngioweb. It shares a lot of code with Win32.Ngioweb, except that it has DGA features. We registered one of the DGA C2 domain names (enutofish-pronadimoful-multihitision.org) and was able to observe the Bot connections.\r\n\r\nIn addition, we have observed that Linux.Ngioweb malware has been implanted into a large number of WordPress Web servers.\r\n\r\nAlthough the Bot program is loaded with the privilege of the user group corresponding to the Web container, it still works and runs as Rotating Proxy node[2].\r\n\r\nWe don\u00e2\u20ac\u2122t know why the attacker runs this proxy botnet, but it is possible that everything goes through the proxy is being recorded by the attacker."
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emuvufehood.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "demigelike.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "nonafudazage.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inogepicor-prorarurument.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "subolukobese.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "antizerolant-monogevudom.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "imunolance-postodinenetn-antifipuketn.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overahudulize-unazibezize-overuzozerish.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inoxodusor-misehupukism.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "subogonance.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "transavecaful-transinenation-transikaduhern.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "eniguzeless-inecimanable.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "devikoviward-semibazegily-copaxugage.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inudiduty-dezaviness.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "colozosion-antigobunaful.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "subilebesion-irogipate.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ultrapadupize.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ilenudavous-monoxoxapal-semimihupution.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "irelizaring-enipulical-monovuxehossion.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "transivesudom-macropimuship.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "covategal-dezakedify-enebugassion.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "coxumumage-dexolalite.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "macrolutoxous-overefimety.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "rezolezation-transapupirify-seminecation.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "nonecuzuking-enekopofen-imakozity.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "copubuloness-misumusal-disokozian.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "cotexafical-postirutuvian-emimimous.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "cosazalike-antifoxirer-subudikic.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "dezohipal-ultrazebebive.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emuzixucize.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overugiror.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "underotutilism-monoceraretion-underosociful.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "microlasokadom-ultralarumous.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "decehoward-microhikodely-overokerezant.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "disicevament-desizigasion-recadihuful.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "profusonuty.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "minixecision-iruzaxuhood.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "postavutetn-emedarevous.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "antiseramoment.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multifipakency-conovofy-prorakikate.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overogobity-imivocurify-disovizution.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "prodipamament.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inolugoty-inidiverible.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "nonesolafy.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "decozaness-antihazation-overetalovical.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "seminamatity-enogibely.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interiragocern-micropuxotion-transogorion.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unihatosancy.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "transirirenern-semizafunic-nonivubed.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exofifure-postirexument.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inosebovion.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "macrohuseded-multipazaseship.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "enegizize-microtizobity.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multizesumefy-emebefion.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "microlulition-macrokiguxable.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "imefihured-macrohixuhood.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "decotusion-exexavihood-exevozebant.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "dezuvazen.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "underebelassion-postizoziless.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inuviging-antizoluly.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "disuzepuly.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inidozadom.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "predepussion.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multisotiren-ilazufist.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multiruxuth.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "cozuheming.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interikuhaful.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "mononoredom.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monozogeced.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monohatodom-cohotiship.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "prebekokian-misadepepive-transilogify.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "postarubixage-monocinamety-overogefesal.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exemidexous-underiposapite-unegatature.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unahodoness-emevuzeward-emuzeduness.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exebasusion.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monokifomancy-misagefism-macrobepoth.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interocugopist-misugexadic-ilobipegency.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multikezusion.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "relutodom-comakitize.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "antizekussion-minipusaral-copofuxoship.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "recepatission.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "semitegopish.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emopumical-enohecical.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "seminitotuful.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inoluvary.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ultrapapiten.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "subefehity-iledutession.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interanubing-emelulotal-transugotuzern.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "imirotiship-microhopulive-emotomeship.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "transisigern.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "transuvarusish-prozumoxety.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "enevifaking.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "presefavution.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emakanuward.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overazadudom-deliromohood.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "misidogive-coxecovor-dexefoxan.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multihadekite.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ultrasesebible.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emitohage-overasuhorure-antitipenoless.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "postobagoly-detovaward-unixohible.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "iluvused-iravoxish.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "dedunuguhood.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "imovaman-multimihivoship-imeduxian.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "underasusogen.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "misoxomelical-iluxubism.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "underehugavish.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "prevukition.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overurohely-overadolure-iruraluness.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "microcolacoful-postabitition.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "imukokuship.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unitucihern-postadagen-imupuduth.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unurodable-dekipuhic-postuxufous.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "irofetufy.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monofugition-underefogukic.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "prenubocetion-ultrahahohood.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "presifament.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "irobigelike.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inorofizian.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "enuvopan-imixesoward-irarupipary.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overetigution.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monokacofudom-inuvinable.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exofosehance-minimezazofy.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monopadecotion-multicecihood-imuzicasion.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "semiledoduly.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emisucosion-prohosexite-imorekusion.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "cofexasish-inodehed.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "subebodency.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multivapufy-promumuly-enonuben.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exunaxian.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "misebonure-iluborize-rezericify.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unutexupify-conofubusion.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "dedaliward-imipusen-inacaliver.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "colanizity-postosecive-nonuresible.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "transalavudom-multilavezuhood.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monokuvission-transodigical-semihehamussion.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "refusovize.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "minipihagaship.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unisimor.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exusizeward.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multixizitufy-microtomuly-multixoleward.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "recusigetion-transubeviful.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "preginaxodom.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "macrokunith-proxobivive.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "microxulodish-semibahoty.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inucasazing-microhesunian-semidikokement.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "prefinazuly.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "transimapeful-cotalision.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unehihify-antimepavable-nonubovafy.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "disitirotion-transekarenate.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "postozokipetn-microdomobaly.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "enogosudom-macrogekabive.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "misunotelike-nonugidant.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "prosihamish-noneguhaness.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "microhinoler.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interunavission-ininibecist.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "iletegifage.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "preberekous-microkagibant-imemahal.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "nonikofucable-postelihuzism-rexecigism.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overokigoty-ilecavish.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emikuraran.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "misasugegify-underazosuzish-exuvexezical.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "minirabupeness-nonitefuward.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "imixifure.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "nonohacutancy-postuxikitan-microseditoless.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multipocihood-monomuhunible.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "disepadely-disuzirovor.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overulurotion.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overasobament.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inunatogite-imoboraness.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "enikobadom-postolixement.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "repetepian-irelucify.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monohiloless-demodefy.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "irimarefy.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "semicasinaty-ilibaholy.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multivunuhance-inabiber.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "previbetian-misunohigate.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multibibetefy.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "debapesetn-underisaxufical-imukugamism.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "transupovetn-monozeruduless.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interanulish-imazekalike-unisukugate.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exanonish.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "profobekify-subebobefy-exozufous.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monofipuly-underubihal.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inokevidage.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monosumuly-ilenusuty-dedabaness.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "demeficiward-retitisily-macromuvaward.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "macrovetecuship-emebudemical-underaxakament.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "microhobament-postevofafity.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exapofaran-postulusadify.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interazution-irudegufy-antinefoly.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unafacigage-transihicical-prebokity.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "rebezusaly-overidirity-ultrahiseness.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overupazadity-irativorical.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "derirepous-cosideship-semibiseless.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "minizecidish-macrolafukish-depovased.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "nonesocern-macrotocipity.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "coseviness-nonikunant-macrorasihood.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "sububesebism-ultrabutath.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inicinic-misuluzan-ultrakuxuness.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interuzoputy.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "macrozigahood-monosulopancy.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exuxuburan-miniravuhood-exosoxen.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "misacireship.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "macrozixaward-semivanimoly-underekutoty.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unegoping-detunusion-antimuruseful.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "cobemesion-redacocoful.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "microtonagament.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ultratipuxian-inosilission-multiridith.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emegamilike-imupogazance-ultrapanacesion.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "dekacify.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "disicogure-seminedasoly.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "irodetolike-imisocatite-inecolafian.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unocelibable-underelatucance.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "transisomuless.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "semiralety-macrorobinant-ultrapixutency.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "antikuzucen-irokarance-transitupikible.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "nonixigefy-protisumiless.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "profebarable.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ilebigument-macroripakesion.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "pretuvution-disafatutical-irehopuvese.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "corahicohood.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "overipugoful-interizihing.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "coguvilaship-recakubodom.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "miniregath-anticesuty-postudagily.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "macromosoriship.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interupefity-semigiduly.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "imipadaness-iralikoward-semitolicoly.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "subuluhic-disomokate.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "antigizepist.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "prolapuzern-progobutiful-dehifasion.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "underedofobate.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "irunucudor-macrogocudern-comoxizish.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "rehofocese.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unogoxeness-semixocapency.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "irucasian-macrofevasion.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "subihefahood-subenopure-ultramoherihood.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exebutian-interomifenism.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "enodenission-overucelancy-microvitasission.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exasavate-minidevilefy-subanevous.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "nonezogeward.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "prenedelission-interugefable-repekosossion.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interinipoly-minimorovor-debininess.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ultrafakitesion-misesuzahical-transanafetion.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unozolasion.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "postifozible-irololuship.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "iloletible-imakeben.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "cofukosable.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unobelaness-prepifavety.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unufepaness-misedepugance.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "minikisision-monobavunism-micronepavage.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ultraronupity.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "semifolofic-unaraxal.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inafolage.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "cosuzuness-prepurizor-unasulal.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monobocution.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "enerivosism-imenufanist-macrovonahood.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "defizalike-unodatage-inarabevous.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "covogidish-iletinassion.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inopivic-antimaporary-subavocobive.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ireninenish-multicemath-prezucetussion.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unuvirisern-interusalosize-misucakiness.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "multidafadite-postagoker.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "iramilahood-antirotuxary-misobegesion.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interodekive.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "postugihucency-emademify.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emixuvidite-ilofikency-subolubify.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monobagehance.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "enikavely-inosifuty-postaviraly.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "cotefehood-imocakitency.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "unehumugage-ultraburosion.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interitebure.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "transabusossion.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emefimafible.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "subifefer-devufoward-probelalance.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "subutavahen-inuhabish.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "postemivaxage.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ilibefudom.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "semibugegetn-monohifutuly.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inuxazodom-macrodexaxahood.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monofudumossion.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interozecifist-antipinukity-multifekemath.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emosacekant-cokebohood-nonetakive.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "macromohazaship-subonohion-disonixucing.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ultraxekevohood-nonizerosion-exovigant.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "refedomous-antifaliless.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monocalacaless.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "semipulimian.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "interarogous-unuculuhood.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ultraporader-conapefy-prolobeziless.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "cosituxath-misuxunor.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "disevolikency-retipegation.biz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "reletohite-misosulahood-antitedudom.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "ilucasure.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "inohufohese-imufilahood-antifidupite.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "monorifutaless-ilocamussion.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "minivucilous-inafafomism.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "163.172.201.184"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "exotacible-denitokolike.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (DGA)",
+          "type": "domain",
+          "value": "emegemaxed-transigifuty-multitumolith.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "5.135.35.160"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "163.172.202.116"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "5.135.58.123"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "5.135.58.121"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "5.135.58.119"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "51.254.57.83"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "5.196.194.209"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "5.135.58.124"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "54.36.244.85"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "54.36.244.84"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "91.121.236.219"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "91.121.36.212"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "54.36.244.91"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "145.239.108.241"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "92.222.151.63"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "91.134.157.11"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "178.33.101.177"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "178.33.101.176"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "188.165.5.123"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "178.33.101.182"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "178.33.101.178"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (Hardcoded IP)",
+          "type": "ip-dst",
+          "value": "169.239.128.166"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "193.70.73.115"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-2 C2",
+          "type": "ip-dst",
+          "value": "188.165.163.20"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sample",
+          "type": "md5",
+          "value": "827ecf99001fa66de513fe5281ce064d"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Stage-1 C2 (Hardcoded IP)",
+          "type": "ip-dst",
+          "value": "185.244.149.73"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sample",
+          "type": "sha1",
+          "value": "a92299b76c99a5915760e91f9bf52429415f4fb9"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://blog.netlab.360.com/an-analysis-of-linux-ngioweb-botnet-en/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sample",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/0b213e1f92a2613f7cebff82e8ffbdae985e3446960bf4bd365b5751efa08b53/analysis/1561514947/"
+        },
+        {
+          "category": "Other",
+          "comment": "Sample",
+          "type": "datetime",
+          "value": "2019-06-26T02:09:07.000000+0000"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sample",
+          "type": "sha256",
+          "value": "0b213e1f92a2613f7cebff82e8ffbdae985e3446960bf4bd365b5751efa08b53"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sample",
+          "type": "text",
+          "value": "10/54"
+        }
+      ],
+      "objects": [
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "Sample",
+          "attribute_type": "datetime",
+          "attribute_value": "2019-06-26T02:09:07.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2019-06-26T02:09:07.000000+0000",
+              "comment": "Sample"
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "Sample",
+          "attribute_type": "sha256",
+          "attribute_value": "0b213e1f92a2613f7cebff82e8ffbdae985e3446960bf4bd365b5751efa08b53",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "0b213e1f92a2613f7cebff82e8ffbdae985e3446960bf4bd365b5751efa08b53",
+              "comment": "Sample"
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "Sample",
+          "attribute_type": "sha1",
+          "attribute_value": "a92299b76c99a5915760e91f9bf52429415f4fb9",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "a92299b76c99a5915760e91f9bf52429415f4fb9",
+              "comment": "Sample"
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "Sample",
+          "attribute_type": "md5",
+          "attribute_value": "827ecf99001fa66de513fe5281ce064d",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "827ecf99001fa66de513fe5281ce064d",
+              "comment": "Sample"
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "Sample",
+          "attribute_type": "text",
+          "attribute_value": "10/54",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Payload delivery",
+              "value": "10/54",
+              "comment": "Sample"
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "Sample",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/0b213e1f92a2613f7cebff82e8ffbdae985e3446960bf4bd365b5751efa08b53/analysis/1561514947/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "Payload delivery",
+              "value": "https://www.virustotal.com/file/0b213e1f92a2613f7cebff82e8ffbdae985e3446960bf4bd365b5751efa08b53/analysis/1561514947/",
+              "comment": "Sample"
+            }
+          ]
+        }
+      ],
+      "reports": []
+    }
+  },
+  "agent_2": {
+    "model_used": "mistral-small3.2:latest",
+    "retrieved_nice_information": "nice_info",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent2 file)'"
+    }
+  },
+  "agent_3": {
+    "model_used": "mistral-small3.2:latest",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent3 file)'"
+    }
+  }
+}
