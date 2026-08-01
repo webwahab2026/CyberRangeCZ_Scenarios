@@ -1,0 +1,229 @@
+{
+  "title": "Fancy_Bear_Incident_Response_7cb",
+  "description": "You are an incident responder tasked with investigating and responding to a potential Fancy Bear intrusion. The Fancy Bear group is known for sophisticated cyber espionage activities, leveraging various malware tools to gain unauthorized access to systems and exfiltrate sensitive information.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating and responding to a potential Fancy Bear intrusion. The Fancy Bear group, also known as APT28, is a sophisticated cyber espionage group believed to be based in Russia. They are known for their use of malware tools such as Sofacy, X-Agent, and X-Tunnel to gain unauthorized access to systems and exfiltrate sensitive information.\n\n**Learning Objectives:**\n- Identify and investigate suspicious services and processes within the sandbox environment\n- Analyze network connections for command-and-control (C2) communication using available tools\n- Investigate lateral movement techniques by examining system logs and services\n- Collect and analyze forensic evidence from the compromised host\n- Implement containment and eradication measures using system commands"
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you've noticed unusual outbound connections from the target host. Investigate this activity to determine if it's related to command-and-control communication.\n\n**Hint:** Check the system logs and network connections for suspicious patterns. The flag you are looking for is the port number used for the suspicious outbound connections.\n\n**Question:** What port is being used for the suspicious outbound connections?",
+      "solution": "To investigate the suspicious network activity, start by understanding the context of command-and-control (C2) communication. This typically involves identifying unusual network patterns that indicate a compromised system is communicating with an attacker's server.\n\n1. Begin by checking the system logs for any suspicious connections. This can help you identify the timing and nature of the suspicious activity.\n2. Next, use network analysis tools to identify active connections and their associated ports. This step is crucial for pinpointing the specific port used for C2 communication.\n3. Finally, examine the systemd service responsible for the connections to understand its behavior and confirm its role in the suspicious activity.\n\nThe flag you are looking for is the port number used for the suspicious outbound connections, which is 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Command-and-control (C2) communication often involves unusual outbound connections. Start by understanding the context of such communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Check the system logs for suspicious connections using: grep -i 'connection' /var/log/syslog. This can help you identify the timing and nature of the suspicious activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use netstat to identify active connections: netstat -tuln. Look for the port number used for the suspicious outbound connections. The flag you are looking for is the port number.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_logs",
+          "prereq_state": [],
+          "cmd": "grep -i 'connection' /var/log/syslog",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -i 'connection' /var/log/syslog",
+          "optional": false
+        },
+        {
+          "state_name": "check_connections",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        },
+        {
+          "state_name": "check_service",
+          "prereq_state": [],
+          "cmd": "systemctl status bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "You've identified a suspicious service running on the target host. Investigate this service to understand its behavior and determine if it's related to the Fancy Bear malware.\n\n**Hint:** Examine the service configuration and process details. The flag you are looking for is the name of the suspicious service.\n\n**Question:** What is the name of the suspicious service?",
+      "solution": "To analyze the suspicious service, begin by understanding the role of services in system operations. Suspicious services often exhibit unusual behavior or configurations that can indicate malicious activity.\n\n1. Start by checking the status of the service to understand its current state and recent activity.\n2. Next, inspect the service configuration file to identify any unusual settings or commands that the service might be executing.\n3. Finally, check the process details to understand the service's behavior and confirm its role in the suspicious activity.\n\nThe flag you are looking for is the name of the suspicious service, which is bkd.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Services in a Unix/Linux system can be malicious if they exhibit unusual behavior or configurations. Start by understanding the role of services in system operations.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Check the status of the service: systemctl status bkd.service. This can help you understand its current state and recent activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Inspect the service configuration file: cat /etc/systemd/system/bkd.service. The flag you are looking for is the name of the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_service_status",
+          "prereq_state": [],
+          "cmd": "systemctl status bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bkd.service",
+          "optional": false
+        },
+        {
+          "state_name": "inspect_service_config",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/systemd/system/bkd.service",
+          "optional": false
+        },
+        {
+          "state_name": "check_process_details",
+          "prereq_state": [],
+          "cmd": "ps aux | grep bkd",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux | grep bkd",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Evidence suggests that the attacker may have moved laterally from the target host to another system. Investigate this activity to determine the extent of the compromise.\n\n**Hint:** Check for file transfers and remote execution activities. The flag you are looking for is the name of the service responsible for lateral movement.\n\n**Question:** What is the name of the service responsible for lateral movement?",
+      "solution": "To investigate lateral movement, begin by understanding the techniques attackers use to move within a network. This often involves identifying services that facilitate file transfers or remote execution.\n\n1. Start by checking the status of the payload-transfer service to understand its current state and recent activity.\n2. Next, inspect the service configuration file to identify any unusual settings or commands that the service might be executing.\n3. Finally, check the process details to understand the service's behavior and confirm its role in facilitating lateral movement.\n\nThe flag you are looking for is the name of the service responsible for lateral movement, which is payload-transfer.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement often involves services that facilitate file transfers or remote execution. Start by understanding the techniques attackers use to move within a network.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Check the status of the payload-transfer service: systemctl status payload-transfer.service. This can help you understand its current state and recent activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Inspect the service configuration file: cat /etc/systemd/system/payload-transfer.service. The flag you are looking for is the name of the service responsible for lateral movement.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_service_status",
+          "prereq_state": [],
+          "cmd": "systemctl status payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status payload-transfer.service",
+          "optional": false
+        },
+        {
+          "state_name": "inspect_service_config",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/systemd/system/payload-transfer.service",
+          "optional": false
+        },
+        {
+          "state_name": "check_process_details",
+          "prereq_state": [],
+          "cmd": "ps aux | grep payload-transfer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux | grep payload-transfer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
