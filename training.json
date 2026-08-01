@@ -1,0 +1,205 @@
+{
+  "title": "CrossRAT_Investigation_Scenario_dbc",
+  "description": "Investigate and respond to a CrossRAT malware compromise in the target network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of suspicious services",
+    "Identification of persistence mechanisms",
+    "Analysis of file transfers"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by CrossRAT malware. Your task is to investigate and respond to this incident. CrossRAT is a backdoor tool capable of remote access and control, data exfiltration, and maintaining persistence on infected systems. It targets multiple platforms including Windows, OSX, and Linux. CrossRAT employs techniques such as systemd service persistence, port-based communication, and script-based file transfers to maintain its presence and exfiltrate data. Specifically, CrossRAT uses systemd services and timers for persistence, and scripts for file transfers."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nTo proceed, enter the word 'start'.",
+      "local_content": "Local sandbox access is not required for this scenario.\n\nTo proceed, enter the word 'start'."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target system for suspicious services or processes.\n\n**Question:** What is the name of the suspicious service running on port 2223? (The flag is the name of a systemd service.)",
+      "solution": "To identify the suspicious service running on port 2223, use the following commands:\n\n1. Check running services:\n   ```bash\n   sudo systemctl list-units --type=service\n   ```\n\n2. Check network connections:\n   ```bash\n   sudo ss -tulnp\n   ```\n\n3. Look for services running on specific ports:\n   ```bash\n   sudo ss -tulnp | grep 2223\n   ```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by identifying all running services and network connections. Use the command `sudo systemctl list-units --type=service` to list all services and `sudo ss -tulnp` to list network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use systemctl to list all services and ss to list network connections. To find the service running on port 2223, use the command `sudo ss -tulnp | grep 2223`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for services running on non-standard ports, especially port 2223. The suspicious service is named `bkd.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "sudo systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "sudo ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service maintains persistence on the system.\n\n**Question:** What is the persistence mechanism used by the suspicious service? (The flag is the name of a systemd timer.)",
+      "solution": "To determine the persistence mechanism used by the suspicious service, use the following commands:\n\n1. Examine systemd services:\n   ```bash\n   sudo systemctl list-unit-files --type=service\n   ```\n\n2. Examine systemd timers:\n   ```bash\n   sudo systemctl list-timers\n   ```\n\n3. Check the service file for persistence details:\n   ```bash\n   sudo cat /etc/systemd/system/bkd.service\n   ```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms often involve systemd services or timers. Use the command `sudo systemctl list-unit-files --type=service` to list all systemd services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use systemctl to list all unit files and timers. To find the persistence mechanism, use the command `sudo systemctl list-timers`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a timer named `bkd.timer` in the systemd timers. Use the command `sudo systemctl list-timers` to check the timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "examine_systemd_services",
+          "prereq_state": [],
+          "cmd": "sudo systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo systemctl list-unit-files --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "examine_systemd_timers",
+          "prereq_state": [],
+          "cmd": "sudo systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate File Transfers",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "Investigate the file transfers between the target and next-target systems.\n\n**Question:** What is the name of the script responsible for transferring files from the target to next-target? (The flag is the path to a script.)",
+      "solution": "To investigate the file transfers between the target and next-target systems, use the following commands:\n\n1. Look for scripts in the /usr/local/bin directory:\n   ```bash\n   ls -la /usr/local/bin/\n   ```\n\n2. Examine systemd services:\n   ```bash\n   sudo systemctl list-unit-files --type=service\n   ```\n\n3. Check the contents of the script:\n   ```bash\n   sudo cat /usr/local/bin/payload-transfer.sh\n   ```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "File transfers often involve scripts in common directories like /usr/local/bin. Use the command `ls -la /usr/local/bin/` to list the contents of the directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "List the contents of /usr/local/bin and examine systemd services. Use the command `ls -la /usr/local/bin/` to list the contents of the directory and `sudo systemctl list-unit-files --type=service` to list systemd services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a script named `payload-transfer.sh` in the /usr/local/bin directory. Use the command `sudo cat /usr/local/bin/payload-transfer.sh` to check the contents of the script.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "look_for_scripts",
+          "prereq_state": [],
+          "cmd": "ls -la /usr/local/bin/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /usr/local/bin/",
+          "optional": false
+        },
+        {
+          "state_name": "examine_systemd_services",
+          "prereq_state": [],
+          "cmd": "sudo systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo systemctl list-unit-files --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
