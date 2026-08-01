@@ -1,0 +1,93 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "issues": [
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Suspicious Network Activity",
+      "description": "The flag 'bkd.service' is not explicitly mentioned in the task description.",
+      "fix": "Update the task description to explicitly mention the flag 'bkd.service'."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Analyze Persistence Mechanism",
+      "description": "The flag 'bkd.timer' is not explicitly mentioned in the task description.",
+      "fix": "Update the task description to explicitly mention the flag 'bkd.timer'."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Lateral Movement",
+      "description": "The flag 'payload-transfer.timer' is not explicitly mentioned in the task description.",
+      "fix": "Update the task description to explicitly mention the flag 'payload-transfer.timer'."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each level does not mention the flag.",
+      "fix": "Update the 'solution' for each level to mention the flag."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each level includes only commands and does not provide methodology.",
+      "fix": "Update the 'solution' for each level to include methodology and commands."
+    },
+    {
+      "severity": "minor",
+      "component": "narrative",
+      "level": "global",
+      "description": "The 'INFO_LEVEL' does not provide a clear learning objective.",
+      "fix": "Update the 'INFO_LEVEL' to include a clear learning objective."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Network Activity",
+      "current_flag": "bkd.service",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze Persistence Mechanism",
+      "current_flag": "bkd.timer",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "current_flag": "payload-transfer.timer",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The topology and provisioning files are aligned with the scenario design."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "adequate",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Investigate Suspicious Network Activity",
+      "revised_flag": "bkd.service"
+    },
+    {
+      "level": "Analyze Persistence Mechanism",
+      "revised_flag": "bkd.timer"
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "revised_flag": "payload-transfer.timer"
+    }
+  ],
+  "summary": "The scenario is well-structured and aligned with the topology and provisioning files. However, there are some minor issues with flag coherence and training quality that need to be addressed. The narrative could be strengthened with a clearer learning objective in the INFO_LEVEL."
+}

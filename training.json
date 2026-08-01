@@ -1,0 +1,181 @@
+{
+  "title": "Supreme_Backdoor_Factory_Investigation_d4c",
+  "description": "Investigate and respond to a potential security incident involving the Supreme Backdoor malware family.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of systemd commands",
+    "Log analysis techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity originating from the target host. Your task is to investigate and respond to this potential security incident involving the Supreme Backdoor malware family."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "You have observed unusual outbound network connections from the target host. Identify the service or process responsible for this activity. Look for the service named `bkd.service` in the output.",
+      "solution": "Use the command `netstat -tuln` to list all active network connections and services. Look for the service named `bkd.service` in the output.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Network services can be identified using the `netstat` command. This command lists all active network connections and the services associated with them.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `netstat -tuln` to list all active network connections and services. Look for any suspicious services in the output.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service you are looking for is named `bkd.service`. Use the `netstat -tuln` command to confirm its presence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service maintains persistence on the target host. Identify the method used to ensure the service starts automatically after a reboot. Look for the timer named `bkd.timer` in the output.",
+      "solution": "Use the command `systemctl list-timers` to list all active timers. Look for the timer named `bkd.timer` in the output.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd timers are used to schedule services to run at specific intervals or after certain events. They can be listed using the `systemctl list-timers` command.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `systemctl list-timers` to list all active timers. Look for any suspicious timers in the output.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious timer you are looking for is named `bkd.timer`. Use the `systemctl list-timers` command to confirm its presence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "Examine the target host for evidence of lateral movement to other hosts in the network. Identify any file transfers or remote execution activities. Look for the timer named `payload-transfer.timer` in the output.",
+      "solution": "Use the command `grep rsync /var/log/syslog` to search for evidence of file transfers in the system logs. Look for the timer named `payload-transfer.timer` in the output.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement can often be identified by examining system logs for file transfers or remote execution activities. The `rsync` command is commonly used for file transfers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `grep rsync /var/log/syslog` to search for evidence of file transfers in the system logs. Look for any suspicious timers in the output.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious timer you are looking for is named `payload-transfer.timer`. Use the `grep rsync /var/log/syslog` command to confirm its presence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "grep rsync /var/log/syslog",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep rsync /var/log/syslog",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
