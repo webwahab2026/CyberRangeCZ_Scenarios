@@ -1,0 +1,181 @@
+{
+  "title": "Linux.Bew_Backdoor_Investigation_3dd",
+  "description": "Investigate and contain a potential backdoor infection on a Linux host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of netstat",
+    "Usage of systemctl",
+    "Systemd service analysis"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has detected unusual outbound connections from a Linux host. Initial analysis suggests a potential backdoor infection. Your task is to investigate and contain the threat. You will need to identify services, persistence mechanisms, and malicious artifacts. This training will help you learn how to use netstat, systemctl, and analyze systemd services to investigate and contain potential backdoor infections on Linux hosts."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. The target host IP is `192.168.50.5`. To progress to the next level, enter the word `start`.",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Investigate Suspicious Outbound Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "The service responsible for the suspicious connections is `lab-checkin.service` running on port 443.",
+      "answer_variable_name": null,
+      "content": "The target host has been making unusual outbound connections. Identify the service or process responsible for these connections.",
+      "solution": "Check the network connections and running services on the target host. The service name or process responsible for the suspicious connections is `lab-checkin.service` running on port 443.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the network connections and running services on the target host.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `netstat`, `ss`, or `ps` to identify the service or process responsible for the suspicious connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run `netstat -tuln` to list all network connections and identify the service running on port 443.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "The persistence mechanism is the systemd timer `lab-checkin.timer`.",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be persistent across reboots. Identify how it maintains persistence.",
+      "solution": "Examine systemd services and timers. The persistence mechanism is the systemd timer `lab-checkin.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine systemd services and timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-timers` or `systemctl list-units --type=service` to identify the persistence mechanism.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run `systemctl list-timers` to list all systemd timers and identify the `lab-checkin.timer`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Malicious Artifact",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "The executable or file associated with the suspicious service is `/usr/local/bin/lab-checkin.sh`.",
+      "answer_variable_name": null,
+      "content": "Locate the executable or file associated with the suspicious service.",
+      "solution": "Check the service configuration and related files. The filename or path of the malicious artifact is `/usr/local/bin/lab-checkin.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the service configuration and related files.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `cat /etc/systemd/system/lab-checkin.timer` or `cat /etc/systemd/system/lab-checkin.service` to identify the malicious artifact.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run `cat /etc/systemd/system/lab-checkin.timer` to view the timer configuration and identify the associated script.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/systemd/system/lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
