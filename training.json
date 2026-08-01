@@ -1,0 +1,181 @@
+{
+  "title": "Hajime_Botnet_Investigation_314",
+  "description": "Investigate and identify malicious activity in a network experiencing unusual traffic patterns.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Systemd service and timer investigation",
+    "Network traffic analysis"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and potential security incidents. Your task is to investigate and identify any malicious activity related to the Hajime botnet family, a known IoT malware that spreads via exploitation of default credentials and establishes persistence through systemd timers. Determine its scope and recommend containment measures. This training will guide you through the process of identifying suspicious services, excessive network traffic, and persistence mechanisms."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host `victim` with the username `ubuntu` and password `ubuntu`. From there, you can investigate the network and connected devices. Enter the word 'start' to progress to the next level.",
+      "local_content": "You have SSH access to the victim host `victim` with the username `ubuntu` and password `ubuntu`. From there, you can investigate the network and connected devices. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication.\n\n**Question:** What is the name of the suspicious service that is beaconing to an external host?",
+      "solution": "Check running services and look for any unusual network connections or periodic activities. The suspicious service is likely named `bot-beacon.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Start by understanding the typical behavior of malicious services in a botnet context. Malicious services often communicate periodically with external hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Look for services that are scheduled to run periodically using systemd timers. Use the command `systemctl list-timers --all` to identify these services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `systemctl list-timers --all` to identify services that are scheduled to run periodically. Look for any unusual or unfamiliar service names.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Excessive Traffic Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.service",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic.\n\n**Question:** What is the name of the service generating excessive network traffic?",
+      "solution": "Examine network connections and look for services that are sending a high volume of packets to a specific destination. The service generating excessive network traffic is likely named `bot-flood.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Consider how botnets typically generate excessive network traffic to overwhelm targets. Look for services with high network activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Use network monitoring tools to identify services with high network activity. Commands like `netstat -tuln` or `ss -tuln` can help you identify these services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `netstat -tuln` or `ss -tuln` to identify services with high network activity. Look for services with a high number of connections or data transfer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot.\n\n**Question:** What is the persistence mechanism used by the suspicious service?",
+      "solution": "Investigate systemd services and timers to find how the service is scheduled to run periodically. The persistence mechanism is likely a systemd timer named `bot-beacon.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Understand how malware often uses systemd timers to maintain persistence. Look for timers that trigger the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Look for systemd timers that trigger the suspicious service. Use the command `systemctl list-timers --all` to identify these timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `systemctl list-timers --all` to look for systemd timers that trigger the suspicious service. Look for any unusual or unfamiliar timer names.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_systemd_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
