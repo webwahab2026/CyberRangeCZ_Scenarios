@@ -1,0 +1,200 @@
+{
+  "title": "Tsunami_Kaiten_Incident_Response_cd3",
+  "description": "You are an incident responder tasked with investigating and responding to a Tsunami/Kaiten.c backdoor infection on a Linux server. This malware functions as an IRC bot with flooder and backdoor capabilities, exploiting web admin panel abuse to gain root access via crontab UID. Your goal is to identify, contain, and eradicate the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Identifying suspicious services",
+    "Analyzing persistence mechanisms",
+    "Discovering command-and-control (C2) communication"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating and responding to a Tsunami/Kaiten.c backdoor infection on a Linux server. This malware functions as an IRC bot with flooder and backdoor capabilities, exploiting web admin panel abuse to gain root access via crontab UID. Your goal is to identify, contain, and eradicate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the provided credentials. Enter the word `start` to proceed to the next level.",
+      "local_content": "Access the target host via SSH using the provided credentials. Enter the word `start` to proceed to the next level."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "kaiten.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the target server, you notice unusual network activity. Investigate the running services on the target host to identify any unauthorized or suspicious services. The flag you are looking for is the name of a suspicious service.",
+      "solution": "To identify suspicious services, you can use the command `systemctl list-units --type=service` to list all running services. Look for any services that seem out of place or unfamiliar. The flag you are looking for is the name of a suspicious service, specifically `kaiten.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding that suspicious services can often be identified by their unusual or unfamiliar names.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Use system monitoring tools to list all running services and look for any that seem out of place.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service is likely named `kaiten.service`.",
+          "hint_penalty": 3,
+          "order": 3
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemd service",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, determine how it is automatically started after a system reboot. This will help you understand the persistence mechanism used by the malware. The flag you are looking for is the type of persistence mechanism.",
+      "solution": "To determine the persistence mechanism, you can use the command `systemctl list-unit-files` to list all systemd service files. Look for any services that are enabled and might be responsible for starting the suspicious service. The flag you are looking for is the type of persistence mechanism, specifically `systemd service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms can include systemd services, cron jobs, or other scheduled tasks.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Look for systemd services, cron jobs, or other scheduled tasks that might be responsible for starting the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `systemctl list-unit-files` to list all systemd service files.",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The persistence mechanism is likely a systemd service named `kaiten.service`.",
+          "hint_penalty": 3,
+          "order": 3
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "Investigate the network traffic associated with the suspicious service to determine which port is used for command-and-control (C2) communication. This information is crucial for containing the threat. The flag you are looking for is the port number used for C2 communication.",
+      "solution": "To investigate the network traffic, you can use the command `ss -tulnp` to list all open ports and active connections. Look for any ports that are associated with the suspicious service. The flag you are looking for is the port number used for C2 communication, specifically `4444`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Command-and-control (C2) communication often involves specific ports that are used for malicious activities.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Use network monitoring tools to inspect open ports and active connections related to the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `ss -tulnp` to list all open ports and active connections.",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The port number used for C2 communication is 4444.",
+          "hint_penalty": 3,
+          "order": 3
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
