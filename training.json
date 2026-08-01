@@ -1,0 +1,146 @@
+{
+  "title": "Xbash_Ransomware_Incident_Response_Scenario_bdf",
+  "description": "Investigate the Xbash ransomware incident, identify indicators of compromise, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques",
+    "Identify indicators of compromise (IOCs) such as IP addresses, network ports, and exfiltrated files."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has been compromised by the Xbash ransomware. This malware combines ransomware, coinmining, and self-propagation capabilities, targeting both Linux and Windows systems. Your task is to investigate the incident, identify the indicators of compromise, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter the word 'start' to begin the scenario.",
+      "local_content": "Local sandbox access is not required for this scenario.\n\nEnter the word 'start' to begin the scenario."
+    },
+    {
+      "title": "Identify the External Host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.5",
+      "answer_variable_name": null,
+      "content": "Identify the external host communicating with the compromised system.\n\nQuestion: What is the IP address of the command-and-control server that the ransomware is communicating with?",
+      "solution": "Investigate network connections and logs to find suspicious outbound connections. The IP address of the command-and-control server is 192.168.90.5. This is an IP address flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate network connections and logs to find suspicious outbound connections. Useful commands include: netstat -tuln, ss -tulnp, lsof -i -P -n | grep ESTABLISHED.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4443",
+      "answer_variable_name": null,
+      "content": "Determine which network port is used for suspicious command-and-control communication.\n\nQuestion: What network port is the ransomware using to communicate with the command-and-control server?",
+      "solution": "Examine network traffic and service logs to identify unusual port usage. The network port used is 4443. This is a port number flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine network traffic and service logs to identify unusual port usage. Useful commands include: netstat -tuln, ss -tulnp, lsof -i -P -n | grep ESTABLISHED.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Exfiltrated Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/quarterly_report.txt, /home/cyrano/employee_data.csv, /home/cyrano/passwords.txt",
+      "answer_variable_name": null,
+      "content": "Identify files or datasets that were transferred outside the environment before encryption.\n\nQuestion: What files were exfiltrated from the victim host to an external server?",
+      "solution": "Analyze logs and network traffic to determine what data was sent out of the network. The files exfiltrated are quarterly_report.txt, employee_data.csv, and passwords.txt. These are file path flags.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Analyze logs and network traffic to determine what data was sent out of the network. Useful commands include: grep -r 'exfil' /var/log/, journalctl -xe, tcpdump -i any -w exfil.pcap.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "grep -r 'exfil' /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r 'exfil' /var/log/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
