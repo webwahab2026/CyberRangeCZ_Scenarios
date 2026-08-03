@@ -1,0 +1,163 @@
+{
+  "title": "Kinsing_Cryptominer_Incident_Response_Scenario_2e1",
+  "description": "Investigate a compromised network where Kinsing malware has infected multiple hosts.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of suspicious services",
+    "Identification of malicious processes",
+    "Locating malware executables"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Kinsing malware family is known to target Linux systems with cryptominers and rootkits. It exploits vulnerabilities to achieve remote code execution and maintains persistence through various mechanisms. In this scenario, you will investigate a compromised network where Kinsing has infected multiple hosts."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the `miner-host` system with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nFrom this host, you can investigate the local system and potentially reach other compromised hosts in the network.\n\nTo progress to the next level, enter the word 'start'.",
+      "local_content": "Instructions for local sandbox usage.\n\nTo progress to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Investigate the suspicious service running on the system",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor",
+      "answer_variable_name": null,
+      "content": "While monitoring system performance, you noticed unusually high CPU usage on `miner-host`. Investigate the running services to identify any unauthorized or suspicious services that might be responsible for this activity.",
+      "solution": "The service name is `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the status of all running services using the command `systemctl list-units --type=service` and look for any that appear unusual or unauthorized.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with names that do not match standard system services or applications you have installed.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_investigation",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the process responsible for the abnormal CPU usage",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "kinsing",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine which process is consuming the most CPU resources and investigate its characteristics.",
+      "solution": "The process name is `kinsing`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `top -b -n 1 | head -n 10` to identify the top CPU-consuming processes and examine their properties.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for processes with high CPU usage percentages and unfamiliar names.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "process_identification",
+          "prereq_state": [],
+          "cmd": "top -b -n 1 | head -n 10",
+          "cmd_type": "bash-command",
+          "cmd_regex": "kinsing",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate the executable or file associated with the suspicious activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/sbin/kinsing",
+      "answer_variable_name": null,
+      "content": "With the suspicious process identified, locate the executable or file responsible for this malicious activity. This will help you understand how the malware is operating on the system.",
+      "solution": "The filename is `/usr/local/sbin/kinsing`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the file system for any unusual or recently modified files.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for files in directories commonly used by malware, such as `/usr/local/sbin/`.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_location",
+          "prereq_state": [],
+          "cmd": "ps aux | grep kinsing",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/usr/local/sbin/kinsing",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
