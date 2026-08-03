@@ -1,0 +1,182 @@
+{
+  "title": "Mirai_Worm_Investigation_b8b",
+  "description": "Investigate and contain a Mirai worm infection on a network with multiple compromised systems.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux command line operations",
+    "Basic understanding of systemd service management",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identifying suspicious services using systemctl",
+    "Investigating systemd timers for persistence mechanisms",
+    "Locating hidden malware components using file search commands"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual activity, with multiple systems exhibiting suspicious behavior. Your task is to investigate and contain the threat. You will learn to identify suspicious services, determine scheduled tasks responsible for malware persistence, and locate hidden malware components.\n\nThis scenario focuses on the Mirai worm, a well-known malware family that targets IoT devices and Linux systems to create botnets for distributed denial-of-service (DDS) attacks. The Mirai worm has had a significant impact on IoT devices, exploiting vulnerabilities to create large-scale botnets capable of disrupting internet services."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the following systems with the username `cyrano` and password `cyrano`:\n- patient-zero (192.168.90.5)\n- host-a (192.168.90.10)\n- host-b (192.168.90.20)\n- attacker (192.168.90.30)\n\nTo proceed to the next level, enter the word 'start'.",
+      "local_content": "Local sandbox access is not required for this scenario.\n\nTo proceed to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Investigate Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.service",
+      "answer_variable_name": null,
+      "content": "Investigate the suspicious service running on patient-zero that is consuming excessive network resources.\n\n**Hint:** Start by examining the system's services to identify any unusual or unauthorized processes.\n\n**Question:** What is the name of the suspicious service? (The flag is the name of the service.)",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Begin by checking the running services on the system. Consider what commands you would use to list all active services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for unusual processes that might indicate a suspicious service. Think about commands that list processes running on the system.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services. This will help you identify any suspicious services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Scheduled Task",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "Determine if there is a scheduled task or timer responsible for automatically executing the worm on patient-zero.\n\n**Hint:** Investigate the systemd timers to find any suspicious scheduled tasks.\n\n**Question:** What is the name of the timer or task responsible for the worm's persistence? (The flag is the name of the timer.)",
+      "solution": "systemctl list-timers",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by considering how scheduled tasks are managed on Linux systems. What commands might list these tasks?",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers that might be responsible for the worm's persistence. Think about commands that can display detailed information about a specific timer.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl list-timers` to list all systemd timers. This will help you identify any suspicious scheduled tasks.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "determine_scheduled_task",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Worm Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm",
+      "answer_variable_name": null,
+      "content": "Locate the files installed by the worm on patient-zero.\n\n**Hint:** Search for unusual directories and files, especially those in non-standard locations.\n\n**Question:** What is the name of the directory used to conceal worm components? (The flag is the path to the directory.)",
+      "solution": "find / -type d -name '.worm' 2>/dev/null",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Begin by thinking about how malware might hide its components. What commands can help you search for hidden directories?",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for directories that might be used to conceal worm components. Consider commands that can display the contents of a directory in detail.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `find / -type d -name '.worm' 2>/dev/null` to search for unusual directories. This will help you locate the hidden worm components.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "locate_worm_files",
+          "prereq_state": [],
+          "cmd": "find / -type d -name '.worm' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -type d -name '.worm' 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
