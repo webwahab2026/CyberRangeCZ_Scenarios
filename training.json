@@ -1,0 +1,181 @@
+{
+  "title": "TeamTNT_Hildegard_Incident_Response_Scenario_b08",
+  "description": "Investigate and respond to a TeamTNT Hildegard malware compromise using standard incident response procedures.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identifying suspicious processes",
+    "Analyzing persistence mechanisms",
+    "Investigating lateral movement"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the TeamTNT malware family, specifically the Hildegard backdoor. This malware is known to establish command and control (C2) connections using tmate reverse shells and Internet Relay Chat (IRC) channels. It disguises itself using legitimate Linux process names and employs library injection techniques.\n\nKey Indicators of Compromise (IOCs) for Hildegard include:\n- Unusual process activity involving the `bioset` process\n- Suspicious systemd services such as `bioset.service` and `payload-transfer.service`\n- Lateral movement via SSH connections to other hosts\n\nYour task is to investigate and respond to this incident, following standard incident response procedures to contain and eradicate the threat. The learning objective is to identify and mitigate the Hildegard malware compromise."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Hostname: target\n- Username: cyrano\n- Password: cyrano\n\nFrom this host, you can investigate the compromise and take appropriate response actions.",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Investigate Suspicious Process Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bioset",
+      "answer_variable_name": null,
+      "content": "While monitoring system logs, you noticed unusual process activity on the target host. Investigate the running processes to identify any suspicious or unauthorized activity.\n\nObjective:\nIdentify the suspicious process associated with the Hildegard malware.\n\nHint:\nLook for processes that don't match typical system processes or those with unusual command lines.",
+      "solution": "To identify the suspicious process, use the `ps aux` command to list all running processes. Look for any processes that are unusual or do not match typical system processes. The Hildegard malware disguises itself using the legitimate Linux process name `bioset`.\n\nThe hidden flag is the name of the suspicious process: `bioset`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the typical processes that run on a Linux system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for processes that don't match typical system processes or those with unusual command lines.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The Hildegard malware disguises itself using the legitimate Linux process name `bioset`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "process_investigation",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bioset.service",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious process, determine how it maintains persistence on the system. Investigate the system's startup mechanisms to find how the malicious process is automatically started after reboot.\n\nObjective:\nIdentify the persistence mechanism used by the Hildegard malware.\n\nHint:\nCheck systemd services, cron jobs, and other common persistence locations.",
+      "solution": "To analyze the persistence mechanism, check systemd services, cron jobs, and other common persistence locations. The Hildegard malware typically uses systemd services to maintain persistence.\n\nUse the following commands to investigate:\n\n1. `systemctl list-unit-files --type=service` to list all systemd services.\n2. `cat /etc/systemd/system/<service-name>.service` to inspect the service file.\n\nThe hidden flag is the name of the persistence mechanism or identifier: `bioset.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that malware often uses system startup mechanisms to maintain persistence.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check systemd services, cron jobs, and other common persistence locations.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The Hildegard malware typically uses systemd services to maintain persistence, specifically `bioset.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_analysis",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "With the persistence mechanism identified, investigate whether the malware has attempted to move laterally within the network. Look for evidence of file transfers or remote execution to other hosts.\n\nObjective:\nIdentify any lateral movement activity initiated by the Hildegard malware.\n\nHint:\nCheck for SSH connections, file transfers, or remote command execution to other hosts in the network.",
+      "solution": "To investigate lateral movement, check for SSH connections, file transfers, or remote command execution to other hosts in the network. The Hildegard malware may use SSH for lateral movement.\n\nUse the following commands to investigate:\n\n1. `last` to view recent SSH connections.\n2. `grep 'ssh' /var/log/auth.log` to check SSH-related logs.\n\nThe hidden flag is the destination host or service name used for lateral movement: `payload-transfer.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that lateral movement often involves SSH connections or remote command execution.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check for SSH connections, file transfers, or remote command execution to other hosts in the network.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The Hildegard malware may use SSH for lateral movement, specifically targeting `payload-transfer.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "last",
+          "cmd_type": "bash-command",
+          "cmd_regex": "last",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
