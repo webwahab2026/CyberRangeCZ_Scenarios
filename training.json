@@ -1,0 +1,250 @@
+{
+  "title": "Earth_Lusca_Incident_Response_a78",
+  "description": "Investigate and respond to a potential Earth Lusca malware compromise involving the KTLVdoor backdoor.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of netstat",
+    "Usage of systemctl",
+    "Investigation of systemd services and configuration files"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity potentially related to the Earth Lusca malware family, specifically the KTLVdoor backdoor. Your team has been tasked with investigating and responding to this potential compromise. During this investigation, you will encounter various types of flags, including port numbers and file paths."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nTo proceed to the next level, enter the word 'start'.",
+      "local_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nTo proceed to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "443 (port number)",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you've noticed unusual outbound connections from the target host. Investigate this activity to identify any suspicious services or processes that might be responsible. The suspicious service is running on port 443 (port number).",
+      "solution": "Check running services and network connections to identify any unusual activity. Use commands like netstat -tuln, ss -tuln, or lsof -i to identify the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the types of network connections that are established from the host.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Use network monitoring tools to list all active network connections and listening ports.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Try using the command 'netstat -tuln' to list all active network connections and listening ports.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tuln",
+          "optional": true
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "lsof -i",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lsof -i",
+          "optional": true
+        }
+      ],
+      "expected_commands": [
+        "netstat -tuln",
+        "ss -tuln",
+        "lsof -i"
+      ],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/bkd.service (file path)",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it maintains persistence on the system. Investigate startup mechanisms and configuration files to understand how the service is automatically started. The systemd service unit file responsible for the suspicious service's persistence is located at /etc/systemd/system/bkd.service (file path).",
+      "solution": "Examine systemd services and configuration files to find persistence mechanisms. Use commands like systemctl list-unit-files --type=service, ls /etc/systemd/system, and cat /etc/systemd/system/bkd.service to investigate the persistence mechanism.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand how services can be configured to start automatically on a Linux system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Look for systemd service unit files that define how services are started and managed.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command 'systemctl list-unit-files --type=service' to list all systemd service unit files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/systemd/system",
+          "optional": true
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/systemd/system/bkd.service",
+          "optional": true
+        }
+      ],
+      "expected_commands": [
+        "systemctl list-unit-files --type=service",
+        "ls /etc/systemd/system",
+        "cat /etc/systemd/system/bkd.service"
+      ],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/payload-transfer.service (file path)",
+      "answer_variable_name": null,
+      "content": "Examine the target host for evidence of lateral movement. Look for any file transfers, remote command execution, or other indicators that the attacker might be moving to other systems within the network. The payload-transfer service and its associated timer, which are used for lateral movement, are located at /etc/systemd/system/payload-transfer.service (file path) and /etc/systemd/system/payload-transfer.timer.",
+      "solution": "Check for any scheduled tasks, cron jobs, or other mechanisms that might facilitate lateral movement. Use commands like systemctl list-timers, ls /etc/systemd/system, cat /etc/systemd/system/payload-transfer.service, and cat /etc/systemd/system/payload-transfer.timer to investigate lateral movement.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand how attackers can move laterally within a network using scheduled tasks or timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Look for systemd timers and services that might be used to schedule tasks or transfer files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command 'systemctl list-timers' to list all systemd timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/systemd/system",
+          "optional": true
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/systemd/system/payload-transfer.service",
+          "optional": true
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/payload-transfer.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/systemd/system/payload-transfer.timer",
+          "optional": true
+        }
+      ],
+      "expected_commands": [
+        "systemctl list-timers",
+        "ls /etc/systemd/system",
+        "cat /etc/systemd/system/payload-transfer.service",
+        "cat /etc/systemd/system/payload-transfer.timer"
+      ],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
