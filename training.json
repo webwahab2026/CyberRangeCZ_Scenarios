@@ -1,0 +1,163 @@
+{
+  "title": "UPSTYLE_Backdoor_Investigation_1c5",
+  "description": "Your organization has detected suspicious activity on one of its Linux servers. Initial analysis suggests the presence of a backdoor named UPSTYLE. Your task is to investigate, analyze, and respond to this cybersecurity incident.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Your organization has detected suspicious activity on one of its Linux servers. Initial analysis suggests the presence of a backdoor named UPSTYLE. Your task is to investigate, analyze, and respond to this cybersecurity incident.\n\n**Learning Objectives:**\n- Identify and investigate unauthorized or suspicious services running on a host.\n- Determine how the suspicious service is automatically started after reboot.\n- Locate the executable or file associated with the suspicious activity."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials:\n\nHost: target\nUsername: cyrano\nPassword: cyrano",
+      "local_content": "Access the target host via SSH using the following credentials:\n\nHost: target\nUsername: cyrano\nPassword: cyrano"
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from the target host. Investigate the running services on the target host to identify any unauthorized or suspicious services.\n\n**Hint:**\nCheck the list of running services and look for any that seem out of place or unfamiliar.\n\n**Question:**\nWhat is the name of the suspicious service running on the target host?",
+      "solution": "To identify the suspicious service, you can use the `systemctl list-units --type=service` command to list all running services. Look for any services that seem out of place or unfamiliar. The suspicious service in this case is `bkd.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the list of running services and look for any that seem out of place or unfamiliar.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-units --type=service` command to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, determine how it is automatically started after a system reboot. This will help you understand the persistence mechanism used by the attacker.\n\n**Hint:**\nInvestigate the systemd service files and timers to find how the service is scheduled to run.\n\n**Question:**\nWhat is the name of the systemd timer responsible for starting the suspicious service?",
+      "solution": "To determine how the suspicious service is automatically started after a system reboot, you can use the `systemctl list-timers` command to list all systemd timers. Look for any timers that seem out of place or unfamiliar. The systemd timer responsible for starting the suspicious service in this case is `lab-checkin.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd service files and timers to find how the service is scheduled to run.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-timers` command to list all systemd timers.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious File Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "Locate the executable or file associated with the suspicious service. This will help you gather more information about the backdoor and its behavior.\n\n**Hint:**\nCheck the service unit file to find the path of the executable or script being run.\n\n**Question:**\nWhat is the path of the executable or script associated with the suspicious service?",
+      "solution": "To locate the executable or file associated with the suspicious service, you can use the `systemctl cat bkd.service` command to view the service unit file. Look for the `ExecStart` line to find the path of the executable or script being run. The path of the executable or script associated with the suspicious service in this case is `/usr/local/bin/lab-checkin.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the service unit file to find the path of the executable or script being run.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl cat bkd.service` command to view the service unit file.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl cat bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

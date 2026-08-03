@@ -1,0 +1,88 @@
+{
+  "coherence_score": 8,
+  "verdict": "approved",
+  "issues": [
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'outcomes' section lists 'Usage of nmap' and 'Usage of metasploit', but these tools are not used in the scenario.",
+      "fix": "Update the 'outcomes' section to reflect the tools actually used in the scenario."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'prerequisites' section lists 'Password cracking techniques', but this technique is not used in the scenario.",
+      "fix": "Update the 'prerequisites' section to reflect the techniques actually required for the scenario."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "Suspicious Service Discovery",
+      "description": "The 'hints' section uses generic titles ('First hint title', 'Second hint title').",
+      "fix": "Provide more descriptive titles for the hints."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "Persistence Discovery",
+      "description": "The 'hints' section uses generic titles ('First hint title', 'Second hint title').",
+      "fix": "Provide more descriptive titles for the hints."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "Suspicious File Discovery",
+      "description": "The 'hints' section uses generic titles ('First hint title', 'Second hint title').",
+      "fix": "Provide more descriptive titles for the hints."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "bkd.service",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "lab-checkin.timer",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious File Discovery",
+      "current_flag": "/usr/local/bin/lab-checkin.sh",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The topology and provisioning files correctly configure the target host with the necessary services and files.",
+      "The c2-service role correctly sets up the lab-checkin.timer and lab-checkin.service.",
+      "The c2-listener role correctly sets up the bkd.service."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Suspicious Service Discovery",
+      "revised_flag": "bkd.service"
+    },
+    {
+      "level": "Persistence Discovery",
+      "revised_flag": "lab-checkin.timer"
+    },
+    {
+      "level": "Suspicious File Discovery",
+      "revised_flag": "/usr/local/bin/lab-checkin.sh"
+    }
+  ],
+  "summary": "The scenario is well-designed and aligns with the provided topology and provisioning files. The flags are correctly placed and reachable with the described steps. Minor improvements can be made to the training JSON, such as updating the prerequisites and outcomes sections and providing more descriptive hint titles."
+}
