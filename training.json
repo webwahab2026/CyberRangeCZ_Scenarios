@@ -1,0 +1,145 @@
+{
+  "title": "BRICKSTORM_Backdoor_Investigation_391",
+  "description": "Investigate and respond to the BRICKSTORM backdoor malware on a compromised Linux server.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl for service inspection",
+    "Usage of ss for network connection inspection",
+    "Understanding of Linux service persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity on one of its Linux servers. Your task is to investigate the compromised host, identify the malicious BRICKSTORM backdoor malware activity, and contain the threat. This training will guide you through the process of identifying suspicious services, determining their persistence mechanisms, and analyzing their network communication."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Enter the word 'start' to progress to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Investigate the Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr",
+      "answer_variable_name": null,
+      "content": "While monitoring the target host, you noticed an unusual service consuming network resources. Investigate this service to determine if it's malicious. The flag you are looking for is the name of the suspicious service.",
+      "solution": "Check the running services using the command `systemctl list-units --type=service`. Look for any services that seem out of place. The suspicious service is named 'updatemgr'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Check the running services using the command `systemctl list-units --type=service` and look for any that seem out of place.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr.service",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, investigate how it maintains persistence on the system. The flag you are looking for is the name of the persistence mechanism.",
+      "solution": "Check the systemd services using the command `systemctl list-unit-files`. Look for any services related to the suspicious service. The persistence mechanism is the systemd service file 'updatemgr.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Check the systemd services using the command `systemctl list-unit-files` and look for any related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify C2 Communication Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be communicating with an external server. Identify the network port used for this communication. The flag you are looking for is the port number.",
+      "solution": "Check the network connections using the command `ss -tulnp`. Look for any connections related to the suspicious service. The C2 port number is '4444'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Check the network connections using the command `ss -tulnp` and look for any related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_check",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
