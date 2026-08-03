@@ -1,0 +1,229 @@
+{
+  "title": "Kobalos_Malware_Investigation_27c",
+  "description": "Investigate and respond to a potential Kobalos malware compromise on an HPC cluster.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of suspicious network activity",
+    "Identification of malicious services",
+    "Detection of lateral movement"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity on its high-performance computing (HPC) cluster. Initial analysis suggests a potential compromise by the Kobalos malware, which is known to target HPC systems. Kobalos is a family of malware designed to exploit high-performance computing environments for cryptocurrency mining and other malicious activities. Your task is to investigate and respond to this incident. You will encounter various types of flags, including port numbers and service names. This training will guide you through the process of identifying and mitigating the Kobalos malware."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host (192.168.50.5) with the username `cyrano` and password `cyrano`. From this host, you can investigate the compromise and access other systems as needed. Enter the word 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the target host (192.168.50.5) with the username `cyrano` and password `cyrano`. From this host, you can investigate the compromise and access other systems as needed. Enter the word 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you noticed unusual outbound connections from the target host (192.168.50.5) to an unknown IP address. Investigate this activity and determine if it's related to the Kobalos malware.",
+      "solution": "Check the system logs and network connections for suspicious activity. Look for connections to port 7070. The flag is '7070'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the nature of suspicious network activity in the context of malware investigations.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Review system logs and network connections to identify any unusual patterns or destinations. Use commands like `netstat -tuln` or `ss -tuln` to list active connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Technical Hint",
+          "content": "Look for connections to port 7070, which is known to be associated with the Kobalos malware. Use the command `netstat -tuln | grep 7070` to filter connections to this port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln | grep 7070",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln | grep 7070",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tuln | grep 7070",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tuln | grep 7070",
+          "optional": true
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "lsof -i :7070",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lsof -i :7070",
+          "optional": true
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Malicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "OpenSSHserver.service",
+      "answer_variable_name": null,
+      "content": "During your investigation, you found evidence of a suspicious service running on the target host. Identify this service and determine if it's related to the Kobalos malware.",
+      "solution": "Look for services that are not part of the standard system configuration. Identify the malicious service (OpenSSHserver.service). The flag is 'OpenSSHserver.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that malware often installs or modifies services to maintain persistence on a system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "List all services running on the system and compare them against the standard system configuration. Use commands like `systemctl list-units --type=service` to list services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Technical Hint",
+          "content": "Identify the malicious service named 'OpenSSHserver.service', which is not part of the standard system configuration. Use the command `systemctl list-units --type=service | grep OpenSSHserver.service` to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep OpenSSHserver.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service | grep OpenSSHserver.service",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "service --status-all | grep OpenSSHserver.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "service --status-all | grep OpenSSHserver.service",
+          "optional": true
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "chkconfig --list | grep OpenSSHserver.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "chkconfig --list | grep OpenSSHserver.service",
+          "optional": true
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "You suspect that the attacker might be attempting to move laterally within the network. Investigate the target host (192.168.50.5) for any evidence of lateral movement to other systems, specifically the next-target host (192.168.50.6).",
+      "solution": "Check for any scheduled tasks or services that transfer data to other hosts. Identify the payload-transfer.service that is transferring data to the next-target host. The flag is 'payload-transfer.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement often involves transferring data or commands to other systems within the network.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Review scheduled tasks and services to identify any that are transferring data to other hosts. Use commands like `systemctl list-units --type=service` or `crontab -l` to list scheduled tasks.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Technical Hint",
+          "content": "Identify the payload-transfer.service that is transferring data to the next-target host (192.168.50.6). Use the command `systemctl list-units --type=service | grep payload-transfer.service` to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service | grep payload-transfer.service",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "crontab -l | grep payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "crontab -l | grep payload-transfer.service",
+          "optional": true
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls /etc/cron* | xargs grep payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/cron* | xargs grep payload-transfer.service",
+          "optional": true
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
