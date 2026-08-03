@@ -1,0 +1,180 @@
+{
+  "title": "Sandworm_Incident_Response_Exercise_e14",
+  "description": "Investigate and respond to a Sandworm intrusion set compromising the Centreon IT infrastructure using the P.A.S. webshell malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemd commands",
+    "Usage of cron job investigation techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Centreon IT infrastructure has been compromised by the Sandworm intrusion set. Your team has detected unusual network activity and needs to investigate and respond to this security incident. The P.A.S. webshell malware has been identified as the threat actor's tool of choice. You will need to identify service names, process IDs, and unique characteristics of files to complete this scenario."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target server with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "Local sandbox access is not required for this scenario. Enter the word 'start' to begin."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd",
+      "answer_variable_name": null,
+      "content": "Your network monitoring tools have detected unusual outbound connections from the target server. Investigate this activity to identify any suspicious services or processes that might be responsible. Look for the flag 'bkd' in the service details running on port 4444.",
+      "solution": "Use the command 'ss -tulnp | grep 4444' to identify the suspicious service and find the flag 'bkd'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the types of services that might cause unusual network activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use network-related commands to investigate running services and their connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'ss -tulnp | grep 4444' to identify the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep 4444",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp | grep 4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it maintains persistence on the system. Investigate the system's startup mechanisms to find any unauthorized configurations. Look for the flag 'bkd' in the systemd service unit file details.",
+      "solution": "Use the command 'systemctl list-unit-files | grep bkd' to find the suspicious systemd service unit file and the flag 'bkd'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand the different mechanisms that can be used for maintaining persistence on a Linux system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Investigate systemd services and cron jobs as potential persistence mechanisms.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-unit-files | grep bkd' to find the suspicious systemd service unit file.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files | grep bkd",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files | grep bkd",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer",
+      "answer_variable_name": null,
+      "content": "The attacker might be using this server as a foothold to move laterally within the network. Investigate any evidence of file transfers or remote execution that could indicate lateral movement to other hosts. Look for the flag 'payload-transfer' in the systemd timer details.",
+      "solution": "Use the command 'systemctl list-timers | grep payload-transfer' to find the suspicious systemd timer and the flag 'payload-transfer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand the methods attackers use for lateral movement within a network.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Investigate scheduled tasks and systemd timers as potential indicators of lateral movement.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-timers | grep payload-transfer' to find the suspicious systemd timer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_lateral_movement",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers | grep payload-transfer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers | grep payload-transfer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
