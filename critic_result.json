@@ -1,0 +1,88 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "issues": [
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "description": "The flag 'sys-monitor' is not consistent with the provisioning files. The actual service name should be 'sys-monitor.service' as per the miner-dropper role.",
+      "fix": "Update the flag to 'sys-monitor.service' to match the actual service name in the provisioning files."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate the suspicious process responsible for high CPU usage",
+      "description": "The flag 'dash' is not consistent with the provisioning files. The actual process name should be 'sys-monitor' as per the miner-worker role.",
+      "fix": "Update the flag to 'sys-monitor' to match the actual process name in the provisioning files."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify the malicious artifact responsible for the cryptomining activity",
+      "description": "The flag '/usr/local/sbin/dash' is not consistent with the provisioning files. The actual binary name should be '/usr/local/sbin/sys-monitor' as per the miner-dropper role.",
+      "fix": "Update the flag to '/usr/local/sbin/sys-monitor' to match the actual binary name in the provisioning files."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The hints could be more progressive. The first hints in each level are too specific and should be more conceptual.",
+      "fix": "Revise the hints to start with more conceptual guidance and progressively provide more specific directions."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The solutions do not explicitly mention the type of the flags.",
+      "fix": "Update the solutions to explicitly mention the type of the flags (e.g., service name, process name, filename)."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "current_flag": "sys-monitor",
+      "recommendation": "sys-monitor.service"
+    },
+    {
+      "level": "Investigate the suspicious process responsible for high CPU usage",
+      "current_flag": "dash",
+      "recommendation": "sys-monitor"
+    },
+    {
+      "level": "Identify the malicious artifact responsible for the cryptomining activity",
+      "current_flag": "/usr/local/sbin/dash",
+      "recommendation": "/usr/local/sbin/sys-monitor"
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "miner-host with SSH access for user 'cyrano'",
+      "provisioning of miner-dropper, miner-worker, and miner-spreader roles",
+      "provisioning of pool-server and second-host"
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "revised_flag": "sys-monitor.service"
+    },
+    {
+      "level": "Investigate the suspicious process responsible for high CPU usage",
+      "revised_flag": "sys-monitor"
+    },
+    {
+      "level": "Identify the malicious artifact responsible for the cryptomining activity",
+      "revised_flag": "/usr/local/sbin/sys-monitor"
+    }
+  ],
+  "summary": "The scenario is well-designed with a coherent narrative and accurate technical details. However, there are inconsistencies between the flags and the provisioning files that need to be addressed. The hints and solutions could also be improved for better progression and clarity."
+}

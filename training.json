@@ -1,0 +1,181 @@
+{
+  "title": "XMrig_Cryptominer_Investigation_9e7",
+  "description": "Investigate unusual CPU and network activity caused by a cryptominer on the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identifying unauthorized services",
+    "Investigating suspicious processes",
+    "Locating malicious artifacts"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual CPU and network activity. Your task is to investigate and identify the source of this activity, determine if it's malicious, and take appropriate action. The learning objective is to identify and mitigate unauthorized cryptomining activity on the network by finding service names, process names, and filenames."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the miner-host system with the username `cyrano` and password `cyrano`. From this system, you can investigate the host and potentially other connected systems. Enter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the miner-host system with the username `cyrano` and password `cyrano`. From this system, you can investigate the host and potentially other connected systems. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate the unusual CPU usage on miner-host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor.service",
+      "answer_variable_name": null,
+      "content": "The system administrator has noticed consistently high CPU usage on miner-host. Investigate this host to identify any unauthorized or suspicious services that might be causing this issue.",
+      "solution": "Check running services and processes to identify any unusual activity. The flag is the service name `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Systemd services are managed by the systemd system and service manager. You can list all services using systemd commands.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all services and look for any that are not part of the standard system services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl status sys-monitor.service` to check the status of the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate the suspicious process responsible for high CPU usage",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor",
+      "answer_variable_name": null,
+      "content": "You've identified a suspicious service running on miner-host. Now, investigate the process associated with this service to understand its behavior and resource consumption.",
+      "solution": "Examine running processes and their resource usage to identify the malicious process. The flag is the process name `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Processes are running instances of programs. You can list all processes using various commands.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ps aux` to list all processes and look for any that are consuming high CPU resources.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `top` to monitor the system's resource usage and identify the process consuming high CPU.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_processes",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the malicious artifact responsible for the cryptomining activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/sbin/sys-monitor",
+      "answer_variable_name": null,
+      "content": "You've identified a suspicious process running on miner-host. Now, locate the executable or file associated with this process to understand how it was deployed and maintained.",
+      "solution": "Search for unusual files in system directories and investigate their properties. The flag is the filename `/usr/local/sbin/sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Executables are files that can be run as programs. You can list files in directories using various commands.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ls -la /usr/local/sbin/` to list files in the directory and look for any that are not part of the standard system files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `file /usr/local/sbin/sys-monitor` to check the type of the suspicious file.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_files",
+          "prereq_state": [],
+          "cmd": "ls -la /usr/local/sbin/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /usr/local/sbin/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
