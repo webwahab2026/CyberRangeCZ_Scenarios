@@ -1,0 +1,181 @@
+{
+  "title": "Sandworm_Exaramel_Backdoor_Investigation_876",
+  "description": "Investigate and respond to a potential compromise involving the Exaramel backdoor trojan associated with the Sandworm threat group.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of netstat",
+    "Usage of ps",
+    "Usage of systemctl"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity, including unexpected outbound connections to an unknown server. Initial analysis suggests the presence of a backdoor trojan known as Exaramel, associated with the Sandworm threat group. Your task is to investigate and respond to this potential compromise. Learning objective: Identify and mitigate the Exaramel backdoor trojan associated with the Sandworm threat group."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and has the IP address `192.168.50.5`. You also have access to the next-target system with the same credentials. Enter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and has the IP address `192.168.50.5`. You also have access to the next-target system with the same credentials. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Unusual Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5:4444",
+      "answer_variable_name": null,
+      "content": "Investigate the unusual network activity on the target system. What is the destination IP address and port of the suspicious outbound connections?",
+      "solution": "To identify the destination IP address and port of the suspicious outbound connections, use the command `netstat -tulnp` to list all active network connections. Look for any unusual or unexpected connections. The flag is 192.168.40.5:4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the nature of the unusual network activity. Consider what tools you can use to monitor network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use network monitoring tools to inspect active connections. Think about commands that can list all network connections and their details.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command `netstat -tulnp` to list all active network connections. Look for any suspicious or unexpected connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Process Responsible for the Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "Identify the process responsible for the suspicious network activity. What is the name of the process making the suspicious outbound connections?",
+      "solution": "To identify the process responsible for the suspicious network activity, use process monitoring tools to correlate network activity with running processes. First, use the command `netstat -tulnp` to find the Process ID (PID) of the suspicious connection. Then, use the command `ps aux | grep <PID>` to inspect the process. The flag is lab-checkin.sh.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that network activity is often linked to specific processes. Consider how you can correlate network connections with running processes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use process monitoring tools to inspect running processes. Think about commands that can list processes and their details.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command `ps aux | grep <PID>` to inspect the process responsible for the suspicious network activity. Replace <PID> with the Process ID found using `netstat -tulnp`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ps aux | grep <PID>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux | grep <PID>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the malicious process maintains persistence on the system. What is the persistence mechanism used by the malicious process?",
+      "solution": "To determine the persistence mechanism, check systemd services, cron jobs, and other scheduled tasks for any unusual entries. Use the command `systemctl list-timers` to list all systemd timers and look for any suspicious or unexpected entries. The flag is lab-checkin.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider how malicious processes maintain persistence on a system. Think about systemd services, cron jobs, and other scheduled tasks.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Inspect systemd services and timers for any unusual entries. Think about commands that can list systemd timers and services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command `systemctl list-timers` to list all systemd timers. Look for any suspicious or unexpected entries.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

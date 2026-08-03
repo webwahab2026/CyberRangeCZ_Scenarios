@@ -1,0 +1,19 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: centreon_module_linux_app64
+  content: "centreon_module_linux_app64\n"
+- name: ebe98d5e1ab6966ec1e292fafbd5ef21c2b15bd7c7bb871d8e756971b8b6877a
+  content: "ebe98d5e1ab6966ec1e292fafbd5ef21c2b15bd7c7bb871d8e756971b8b6877a\n"
+- name: configtx.json
+  content: "configtx.json\n"
+- name: .applock
+  content: ".applock\n"
+packages_to_install:
+- openssh-server
