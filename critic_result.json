@@ -1,0 +1,86 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "issues": [
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Suspicious Service Discovery",
+      "description": "The flag for the suspicious service is not specified in the training_json. It should be updated to match the actual service name running on the target host as per the provisioning files.",
+      "fix": "Update the flag in the training_json to match the actual service name running on the target host as per the provisioning files."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Persistence Discovery",
+      "description": "The flag for the persistence mechanism is not specified in the training_json. It should be updated to match the actual persistence mechanism running on the target host as per the provisioning files.",
+      "fix": "Update the flag in the training_json to match the actual persistence mechanism running on the target host as per the provisioning files."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "C2 Communication Discovery (Port)",
+      "description": "The flag for the C2 port is not specified in the training_json. It should be updated to match the actual C2 port used for communication as per the provisioning files.",
+      "fix": "Update the flag in the training_json to match the actual C2 port used for communication as per the provisioning files."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each TRAINING_LEVEL does not explicitly mention the type of the flag.",
+      "fix": "Update the 'solution' for each TRAINING_LEVEL to explicitly mention the type of the flag."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each TRAINING_LEVEL does not include only commands; it also includes some explanatory text.",
+      "fix": "Update the 'solution' for each TRAINING_LEVEL to include only commands."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "Update the flag to match the actual service name running on the target host as per the provisioning files.",
+      "recommendation": "Update the flag to match the actual service name running on the target host as per the provisioning files."
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "Update the flag to match the actual persistence mechanism running on the target host as per the provisioning files.",
+      "recommendation": "Update the flag to match the actual persistence mechanism running on the target host as per the provisioning files."
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "Update the flag to match the actual C2 port used for communication as per the provisioning files.",
+      "recommendation": "Update the flag to match the actual C2 port used for communication as per the provisioning files."
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The topology and provisioning files are aligned with the scenario design."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Suspicious Service Discovery",
+      "revised_flag": "Update the flag to match the actual service name running on the target host as per the provisioning files."
+    },
+    {
+      "level": "Persistence Discovery",
+      "revised_flag": "Update the flag to match the actual persistence mechanism running on the target host as per the provisioning files."
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "revised_flag": "Update the flag to match the actual C2 port used for communication as per the provisioning files."
+    }
+  ],
+  "summary": "The scenario is well-designed and aligned with the provided topology and provisioning files. However, the flags for each TRAINING_LEVEL need to be updated to match the actual artifacts running on the target host as per the provisioning files. Additionally, the 'solution' for each TRAINING_LEVEL should be updated to explicitly mention the type of the flag and include only commands."
+}
