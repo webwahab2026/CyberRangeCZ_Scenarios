@@ -1,0 +1,183 @@
+{
+  "title": "Mirai_Botnet_Investigation_294",
+  "description": "You are an incident responder tasked with investigating a compromised network where devices have been turned into bots for DDoS attacks. The malware in question is Linux/Mirai-Hilix, which targets Realtek & Huawei routers and transforms them into remotely controlled bots. Your goal is to identify and mitigate the botnet activity.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify unauthorized or suspicious services responsible for periodic external communication.",
+    "Determine the external host communicating with the compromised system.",
+    "Investigate network connections and identify the command-and-control server.",
+    "Analyze network flows to determine the victim of the flooding activity.",
+    "Collect forensic evidence supporting the identified botnet activity."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised network where devices have been turned into bots for DDoS attacks. The malware in question is Linux/Mirai-Hilix, which targets Realtek & Huawei routers and transforms them into remotely controlled bots. Your goal is to identify and mitigate the botnet activity. You will need to find specific flags such as service names, IP addresses, and other indicators of compromise."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox via the provided link. Use the following credentials to log in via SSH: Username: cyrano, Password: cyrano. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Instructions for local sandbox usage. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify Unauthorized Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-Hilix.x86.elf.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from `bot1`. Your task is to identify the service responsible for this behavior. The flag you are looking for is the name of the unauthorized service.",
+      "solution": "Run the command `systemctl list-units --type=service` to find the service name `bot-beacon-Hilix.x86.elf.service`. The flag is the service name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider what types of services might be responsible for unusual outbound connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for services that are not part of the standard system configuration.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the running services and system logs for any unusual activity. The service name is `bot-beacon-Hilix.x86.elf.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon-Hilix.x86.elf.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine External Host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.70.5",
+      "answer_variable_name": null,
+      "content": "You need to identify the command-and-control (C2) server that the compromised host is communicating with. This will help in understanding the scope of the botnet. The flag you are looking for is the IP address of the C2 server.",
+      "solution": "Run the command `ss -tulnp | grep -E 'ESTABLISHED|TIME_WAIT'` to find the IP address `192.168.70.5`. The flag is the IP address.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Think about how command-and-control servers typically communicate with compromised hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for established or time-wait connections to external IP addresses.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `ss -tulnp | grep -E 'ESTABLISHED|TIME_WAIT'` to find the external IP address. The C2 IP address is `192.168.70.5`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_identification",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep -E 'ESTABLISHED|TIME_WAIT'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.70.5",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Flooding Target",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.80.100",
+      "answer_variable_name": null,
+      "content": "Analyze the network flows to determine which system is the target of the flooding activity. This will help in mitigating the attack. The flag you are looking for is the IP address of the victim system.",
+      "solution": "Run the command `grep -E 'sent|recv' /var/lib/.botcache/flood.log` to find the IP address `192.168.80.100`. The flag is the IP address.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider what types of logs might contain information about network flooding activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for logs that show sent and received data packets.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `grep -E 'sent|recv' /var/lib/.botcache/flood.log` to find the destination IP address. The victim IP address is `192.168.80.100`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "flood_target_identification",
+          "prereq_state": [],
+          "cmd": "grep -E 'sent|recv' /var/lib/.botcache/flood.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.80.100",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
