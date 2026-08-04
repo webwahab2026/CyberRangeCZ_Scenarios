@@ -1,0 +1,95 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "issues": [
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Suspicious Network Connections",
+      "description": "The flag '4444' is correct but the validation description in the scenario design does not match the training_json answer.",
+      "fix": "Update the validation description in the scenario design to match the training_json answer."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Analyze Systemd Services",
+      "description": "The flag '-bash.service' in the scenario design does not match the training_json answer 'tsunami-kaiten-c2.service'.",
+      "fix": "Update the flag in the scenario design to match the training_json answer."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate File Transfers",
+      "description": "The flag 'payload-transfer.service' in the scenario design does not match the training_json answer 'tsunami-kaiten-file-transfer.service'.",
+      "fix": "Update the flag in the scenario design to match the training_json answer."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The hints in the training levels could be more progressive, starting with conceptual hints and moving towards near-spoiler hints.",
+      "fix": "Review and adjust the hints to ensure they are progressive and helpful."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The solutions in the training levels do not explicitly mention the type of the flags.",
+      "fix": "Update the solutions to explicitly mention the type of the flags."
+    },
+    {
+      "severity": "minor",
+      "component": "narrative",
+      "level": "global",
+      "description": "The learning objective is not explicitly stated in the INFO_LEVEL content.",
+      "fix": "Add a clear statement of the learning objective in the INFO_LEVEL content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Network Connections",
+      "current_flag": "4444",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze Systemd Services",
+      "current_flag": "tsunami-kaiten-c2.service",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate File Transfers",
+      "current_flag": "tsunami-kaiten-file-transfer.service",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "SSH access to the target system with the username `cyrano` and password `cyrano`",
+      "Systemd services and network connections are correctly configured",
+      "File transfer service is correctly configured"
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "adequate",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Investigate Suspicious Network Connections",
+      "revised_flag": "4444"
+    },
+    {
+      "level": "Analyze Systemd Services",
+      "revised_flag": "tsunami-kaiten-c2.service"
+    },
+    {
+      "level": "Investigate File Transfers",
+      "revised_flag": "tsunami-kaiten-file-transfer.service"
+    }
+  ],
+  "summary": "The scenario is well-structured and aligns with the provided topology and provisioning files. However, there are discrepancies between the scenario design and the training_json answers that need to be addressed. The hints and solutions could be improved for better progression and clarity. The learning objective should be explicitly stated in the INFO_LEVEL content."
+}
