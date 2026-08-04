@@ -1,0 +1,183 @@
+{
+  "title": "Linux.Ngioweb_Botnet_Investigation_00d",
+  "description": "Investigate and identify malicious activity in a network experiencing unusual traffic patterns and potential security incidents.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge",
+    "Basic knowledge of systemd services",
+    "Basic knowledge of log analysis"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Analyzing network logs",
+    "Identifying suspicious services"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and potential security incidents. Your task is to investigate and identify any malicious activity, determine its scope, and recommend containment measures. The investigation focuses on the Linux.Ngioweb botnet, known for its periodic external communication and flood attack capabilities."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the bot1 host with the following credentials:\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "You have SSH access to the bot1 host with the following credentials:\n- Username: cyrano\n- Password: cyrano"
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication.\n\n**Question:** What is the name of the suspicious service that communicates with an external host?",
+      "solution": "Check the systemd services using the command `systemctl list-units --type=service` and look for any unusual or recently created services. The suspicious service is likely named `bot-beacon.service`. This is a string flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Start by understanding the context of the investigation. You are looking for a service that communicates periodically with an external host.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Systemd services can be listed using the `systemctl` command. Focus on services that have been recently created or modified.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all services and look for any unusual or recently created services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Command-and-Control Server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.70.5",
+      "answer_variable_name": null,
+      "content": "Determine the external host communicating with the compromised system.\n\n**Question:** What is the IP address of the command-and-control server?",
+      "solution": "Investigate the network connections and logs of the suspicious service identified in the previous task. The command-and-control server IP address is `192.168.70.5`. This is an IP flag. Check the logs in `/var/lib/.botcache/beacon.log` for connections to external hosts.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "The command-and-control server is the external host that the suspicious service communicates with. Focus on network connections and logs.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Network connections and logs can provide information about external hosts. Look for logs related to the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `cat /var/lib/.botcache/beacon.log` to check the logs for connections to external hosts.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_logs",
+          "prereq_state": [],
+          "cmd": "cat /var/lib/.botcache/beacon.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.70.5",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Flood Attack Target",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.80.100",
+      "answer_variable_name": null,
+      "content": "Identify the system receiving the abnormal volume of network traffic generated by the compromised host.\n\n**Question:** What is the IP address of the system being targeted by the flood attack?",
+      "solution": "Analyze the network traffic and logs to determine the destination of the flood attack. The target IP address is `192.168.80.100`. This is an IP flag. Check the logs in `/var/lib/.botcache/flood.log` for the target IP address.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "The flood attack target is the system receiving an abnormal volume of network traffic. Focus on network traffic analysis and logs.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Network traffic and logs can provide information about the destination of the flood attack. Look for logs related to the flood attack.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `cat /var/lib/.botcache/flood.log` to check the logs for the target IP address.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_flood_logs",
+          "prereq_state": [],
+          "cmd": "cat /var/lib/.botcache/flood.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.80.100",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
