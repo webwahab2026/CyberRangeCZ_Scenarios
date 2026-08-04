@@ -1,0 +1,182 @@
+{
+  "title": "VoIP_Platform_Incident_Response_877",
+  "description": "You are an incident responder tasked with investigating and responding to a security incident involving a compromised VoIP platform. The platform is running on Linux servers and has been targeted by the CDRThief malware, which exfiltrates call detail records (CDR) from the compromised softswitch. Your mission is to investigate the incident, identify the malicious activity, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate suspicious services and processes on Linux systems",
+    "Analyze network traffic for signs of command-and-control (C2) communication",
+    "Identify and contain lateral movement within the network",
+    "Gather forensic evidence to support incident response activities"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating and responding to a security incident involving a compromised VoIP platform. The platform is running on Linux servers and has been targeted by the CDRThief malware, which exfiltrates call detail records (CDR) from the compromised softswitch. CDRThief is known to establish persistent command-and-control (C2) channels, exfiltrate sensitive call detail records, and facilitate lateral movement within the network. Your mission is to investigate the incident, identify the malicious activity, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) using SSH with the username 'cyrano' and password 'cyrano'.",
+      "local_content": "Access the target host (IP: 192.168.50.5) using SSH with the username 'cyrano' and password 'cyrano'."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "callservice",
+      "answer_variable_name": null,
+      "content": "While monitoring the target VoIP platform, you noticed unusual network activity. Investigate the running services on the target host to identify any unauthorized or suspicious services. The name of the suspicious service running on the target host is a text flag.",
+      "solution": "Use standard Linux commands to list running services and check their status. Look for any services that appear out of place or have unusual configurations. The suspicious service running on the target host is 'callservice'. This is the text flag you need to find.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the normal services that should be running on a VoIP platform.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use standard Linux commands to list running services and check their status.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service named 'callservice' which might be suspicious.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "callservice",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, investigate its network activity. Determine which network port is used for the suspicious communication. The network port used for the suspicious communication is a numeric flag.",
+      "solution": "Use network monitoring tools to inspect the service's network connections. Look for any unusual ports that the service might be using. The network port used for the suspicious communication is '80'. This is the numeric flag you need to find.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that command-and-control (C2) communication often uses specific network ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use network monitoring tools to inspect the service's network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a network port '80' which might be used for suspicious communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep callservice",
+          "cmd_type": "bash-command",
+          "cmd_regex": "80",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer",
+      "answer_variable_name": null,
+      "content": "Analyze the target host for signs of lateral movement. Identify any file transfers or remote execution used to move between hosts within the network. The name of the service responsible for lateral movement is a text flag.",
+      "solution": "Check for any scheduled tasks, cron jobs, or systemd timers that might facilitate lateral movement. Look for any services or processes that appear to be transferring files or executing commands remotely. The service responsible for lateral movement is 'payload-transfer'. This is the text flag you need to find.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that lateral movement often involves scheduled tasks or remote execution.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check for any scheduled tasks, cron jobs, or systemd timers that might facilitate lateral movement.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service named 'payload-transfer' which might be responsible for lateral movement.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
