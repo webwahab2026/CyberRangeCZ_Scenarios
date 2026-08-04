@@ -1,0 +1,163 @@
+{
+  "title": "Gafgyt_Botnet_Investigation_8ba",
+  "description": "Investigate and mitigate the Gafgyt botnet activity within the sandbox environment.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Usage of grep",
+    "Analyzing network logs"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and performance degradation. Your task is to investigate and identify the source of these issues. Learning objective: Understand the basics of botnet investigation and the tools required to identify and mitigate botnet activity."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the bot1 host with the following credentials: Username: cyrano, Password: cyrano. Enter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the bot1 host with the following credentials: Username: cyrano, Password: cyrano. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood-busybox.service",
+      "answer_variable_name": null,
+      "content": "Investigate the system for unauthorized or suspicious services that might be responsible for periodic external communication. Identify the service name flag.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and system logs for unusual network activity. Use the command `systemctl list-units --type=service`.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the service named `bot-flood-busybox.service`. Use the command `systemctl status bot-flood-busybox.service`.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Command-and-Control Server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.70.5",
+      "answer_variable_name": null,
+      "content": "Determine the external host that the compromised system is communicating with. Identify the C2 server IP address flag.",
+      "solution": "grep -i 'c2-server' /var/lib/.botcache/beacon.log",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine network connections and logs to identify the command-and-control server. Use the command `grep -i 'c2-server' /var/lib/.botcache/beacon.log`.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the beacon logs for the C2 server IP address. Use the command `cat /var/lib/.botcache/beacon.log | grep -i 'c2-server'`.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_check",
+          "prereq_state": [],
+          "cmd": "grep -i 'c2-server' /var/lib/.botcache/beacon.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -i 'c2-server' /var/lib/.botcache/beacon.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Flooding Target",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.80.100",
+      "answer_variable_name": null,
+      "content": "Identify the system receiving the abnormal volume of network traffic generated by the compromised host. Identify the target IP address flag.",
+      "solution": "grep -i 'flood_target_host' /usr/local/lib/.botcache/flood.sh",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Analyze network flows to determine the victim of the flooding activity. Use the command `grep -i 'flood_target_host' /usr/local/lib/.botcache/flood.sh`.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the flood logs for the target IP address. Use the command `cat /usr/local/lib/.botcache/flood.sh | grep -i 'flood_target_host'`.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "flood_check",
+          "prereq_state": [],
+          "cmd": "grep -i 'flood_target_host' /usr/local/lib/.botcache/flood.sh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -i 'flood_target_host' /usr/local/lib/.botcache/flood.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
