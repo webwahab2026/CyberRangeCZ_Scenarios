@@ -1,0 +1,217 @@
+{
+  "title": "Linux.Mirai_Incident_Response_fe1",
+  "description": "Investigate and respond to a potential compromise involving the Linux.Mirai trojan on a victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Usage of find command",
+    "Identifying suspicious services and scheduled tasks"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected outbound network connections and suspicious scheduled tasks. Your task is to investigate and respond to this potential compromise involving the Linux.Mirai trojan. You will need to identify suspicious services, scheduled tasks, and locate suspicious files. The learning objective of this training is to equip you with the skills to investigate and respond to a potential compromise involving the Linux.Mirai trojan on a victim host."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano\n\nEnter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano\n\nEnter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for unauthorized or suspicious services running on the system. Enumerate running services and identify any that appear unauthorized or suspicious.",
+      "solution": "Use systemctl to list all services and check for any that are not part of the standard system configuration. Look for services related to network diagnostics or unusual scheduled tasks. The flag you are looking for is the timer 'network-diagnostics.timer'. To find it, use the command 'systemctl list-units --type=service' and examine the output for any suspicious entries.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the types of services that should normally run on a Linux system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use systemctl to list all services. The command is 'systemctl list-units --type=service'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Analysis Hint",
+          "content": "Look for services related to network diagnostics or unusual scheduled tasks.",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Advanced Command Hint",
+          "content": "To filter the output and make it easier to analyze, you can use 'systemctl list-units --type=service | grep -i network'.",
+          "hint_penalty": 3,
+          "order": 3
+        },
+        {
+          "title": "Specific Command Hint",
+          "content": "To specifically look for the flag, use 'systemctl list-units --type=timer | grep network-diagnostics.timer'.",
+          "hint_penalty": 4,
+          "order": 4
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_enumeration",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Scheduled Tasks",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "Determine if any scheduled tasks or timers are responsible for automatically executing unauthorized processes. Identify scheduled execution persistence mechanisms that might be used to maintain unauthorized access.",
+      "solution": "Examine the systemd timers and services to find any that are not part of the standard system configuration. Look for timers related to network diagnostics or unusual scheduled tasks. The flag you are looking for is the timer 'network-diagnostics.timer'. To find it, use the command 'systemctl list-timers' and examine the output for any suspicious entries.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that scheduled tasks in Linux are often managed by systemd timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "List all systemd timers using the command 'systemctl list-timers'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Analysis Hint",
+          "content": "Look for timers related to network diagnostics or unusual scheduled tasks.",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Advanced Command Hint",
+          "content": "To filter the output and make it easier to analyze, you can use 'systemctl list-timers | grep -i network'.",
+          "hint_penalty": 3,
+          "order": 3
+        },
+        {
+          "title": "Specific Command Hint",
+          "content": "To specifically look for the flag, use 'systemctl list-timers | grep network-diagnostics.timer'.",
+          "hint_penalty": 4,
+          "order": 4
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_enumeration",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Suspicious Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/lib/.netd/install.log",
+      "answer_variable_name": null,
+      "content": "Locate files installed by the unauthorized processes on the compromised host. Correlate suspicious activity with files introduced by the unauthorized processes.",
+      "solution": "Search for files in unusual or hidden directories that might be related to the suspicious services or scheduled tasks. Look for files in directories like /usr/local/lib/.netd or /var/lib/.netd. The flag you are looking for is the file '/usr/local/lib/.netd/install.log'. To find it, use the command 'find / -name '*.sh' 2>/dev/null' and examine the output for any suspicious entries.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often hides files in unusual or hidden directories.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the find command to search for files. For example, 'find / -name '*.sh' 2>/dev/null'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Analysis Hint",
+          "content": "Look for files in directories like /usr/local/lib/.netd or /var/lib/.netd.",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Advanced Command Hint",
+          "content": "To narrow down your search, you can use 'find /usr/local/lib/ -name '*.log' 2>/dev/null'.",
+          "hint_penalty": 3,
+          "order": 3
+        },
+        {
+          "title": "Specific Command Hint",
+          "content": "To specifically look for the flag, use 'find /usr/local/lib/.netd/ -name install.log'.",
+          "hint_penalty": 4,
+          "order": 4
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_search",
+          "prereq_state": [],
+          "cmd": "find / -name '*.sh' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -name '*.sh' 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
