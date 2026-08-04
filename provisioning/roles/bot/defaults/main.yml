@@ -1,0 +1,14 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.70.5", name: "c2-server"}
+- {ip: "192.168.70.10", name: "bot1"}
+- {ip: "192.168.70.11", name: "bot2"}
+packages_to_install:
+- openssh-server
+- netcat-openbsd
+files_to_copy: []
+files_to_create:
+- name: a4a4d892d04f516261c2fa4c56de3ff21afd2812
+  content: "a4a4d892d04f516261c2fa4c56de3ff21afd2812"

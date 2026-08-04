@@ -1,0 +1,3382 @@
+{
+  "generated_at_utc": "2026-08-04T20:49:01.498140+00:00",
+  "user_inputs": {
+    "scenario_type": "Exercise",
+    "difficulty_level": "Intermediate",
+    "cybersecurity_approach": "Defence-oriented",
+    "nice_role": "Incident Response",
+    "number_of_tasks": 3,
+    "question_response": "true",
+    "hints": "true",
+    "threat_name": "OSINT - Multi-exploit IoT/Linux Botnets Mirai and Gafgyt Target Apache Struts, SonicWall",
+    "mitre_attack_techniques": [],
+    "environment_constraints": null,
+    "hybrid_sandbox": false,
+    "evaluate": true
+  },
+  "agent_1": {
+    "model_used": "",
+    "query_generated": "OSINT - Multi-exploit IoT/Linux Botnets Mirai and Gafgyt Target Apache Struts, SonicWall"
+  },
+  "retrieval": {
+    "retrieved_events": {
+      "event_uuid": "5b991442-a9f0-4b5b-bc56-445f950d210f",
+      "event_id": "992",
+      "event_info": "OSINT - Multi-exploit IoT/Linux Botnets Mirai and Gafgyt Target Apache Struts, SonicWall",
+      "galaxies": [
+        {
+          "cluster_description": "Mirai (Japanese for \"the future\", \u672a\u6765) is a malware that turns networked devices running Linux into remotely controlled \"bots\" that can be used as part of a botnet in large-scale network attacks. It primarily targets online consumer devices such as IP cameras and home routers. The Mirai botnet was first found in August 2016 by MalwareMustDie, a whitehat malware research group, and has been used in some of the largest and most disruptive distributed denial of service (DDoS) attacks, including an attack on 20 September 2016 on computer security journalist Brian Krebs's web site, an attack on French web host OVH, and the October 2016 Dyn cyberattack.",
+          "cluster_value": "Mirai",
+          "description": "Botnet galaxy.",
+          "name": "Botnet",
+          "type": "botnet"
+        },
+        {
+          "cluster_description": "Exploitation of a software vulnerability occurs when an adversary takes advantage of a programming error in a program, service, or within the operating system software or kernel itself to execute adversary-controlled code. Security constructs such as permission levels will often hinder access to information and use of certain techniques, so adversaries will likely need to perform Privilege Escalation to include use of software exploitation to circumvent those restrictions.\n\nWhen initially gaining access to a system, an adversary may be operating within a lower privileged process which will prevent them from accessing certain resources on the system. Vulnerabilities may exist, usually in operating system components and software commonly running at higher permissions, that can be exploited to gain higher levels of access on the system. This could enable someone to move from unprivileged or user level permissions to SYSTEM or root permissions depending on the component that is vulnerable. This may be a necessary step for an adversary compromising a endpoint system that has been properly configured and limits other privilege escalation methods.\n\nDetection: Detecting software exploitation may be difficult depending on the tools available. Software exploits may not always succeed or may cause the exploited process to become unstable or crash. Also look for behavior on the endpoint system that might indicate successful compromise, such as abnormal behavior of the processes. This could include suspicious files written to disk, evidence of Process Injection for attempts to hide execution or evidence of Discovery.\n\nHigher privileges are often necessary to perform additional actions such as some methods of Credential Dumping. Look for additional activity that may indicate an adversary has gained higher privileges.\n\nPlatforms: Linux, macOS, Windows\n\nData Sources: Windows Error Reporting, Process monitoring, Application Logs\n\nEffective Permissions: User\n\nPermissions Required: User\n\nSystem Requirements: In the case of privilege escalation, the adversary likely already has user permissions on the target system.",
+          "cluster_value": "Exploitation for Privilege Escalation - T1068:Exploitation for Privilege Escalation",
+          "description": "ATT&CK Tactic",
+          "name": "Enterprise Attack - Attack Pattern",
+          "type": "mitre-enterprise-attack-attack-pattern"
+        },
+        {
+          "cluster_description": "A connection proxy is used to direct network traffic between systems or act as an intermediary for network communications. Many tools exist that enable traffic redirection through proxies or port redirection, including HTRAN, ZXProxy, and ZXPortMap. (Citation: Trend Micro APT Attack Tools)\n\nThe definition of a proxy can also be expanded out to encompass trust relationships between networks in peer-to-peer, mesh, or trusted connections between networks consisting of hosts or systems that regularly communicate with each other.\n\nThe network may be within a single organization or across organizations with trust relationships. Adversaries could use these types of relationships to manage command and control communications, to reduce the number of simultaneous outbound network connections, to provide resiliency in the face of connection loss, or to ride over existing trusted communications paths between victims to avoid suspicion.\n\nDetection: Processes utilizing the network that do not normally have network communication or have never been seen before are suspicious. Network activities disassociated from user-driven actions from processes that normally require user direction are suspicious.\n\nAnalyze network data for uncommon data flows (e.g., a client sending significantly more data than it receives from a server or between clients that should not or often do not communicate with one another). Processes utilizing the network that do not normally have network communication or have never been seen before are suspicious. Analyze packet contents to detect communications that do not follow the expected protocol behavior for the port that is being used. (Citation: University of Birmingham C2)\n\nPlatforms: Linux, macOS, Windows\n\nData Sources: Process use of network, Process monitoring, Netflow/Enclave netflow, Packet capture\n\nRequires Network: Yes\n\nContributors: Walker Johnson",
+          "cluster_value": "Connection Proxy - T1090:Proxy",
+          "description": "ATT&CK Tactic",
+          "name": "Enterprise Attack - Attack Pattern",
+          "type": "mitre-enterprise-attack-attack-pattern"
+        },
+        {
+          "cluster_description": "Vulnerabilities can exist in software due to unsecure coding practices that can lead to unanticipated behavior. Adversaries can take advantage of certain vulnerabilities through targeted exploitation for the purpose of arbitrary code execution. Oftentimes the most valuable exploits to an offensive toolkit are those that can be used to obtain code execution on a remote system because they can be used to gain access to that system. Users will expect to see files related to the applications they commonly used to do work, so they are a useful target for exploit research and development because of their high utility.\n\nSeveral types exist:\n\n===Browser-based Exploitation===\n\nWeb browsers are a common target through Drive-by Compromise and Spearphishing Link. Endpoint systems may be compromised through normal web browsing or from certain users being targeted by links in spearphishing emails to adversary controlled sites used to exploit the web browser. These often do not require an action by the user for the exploit to be executed.\n\n===Office Applications===\n\nCommon office and productivity applications such as Microsoft Office are also targeted through Spearphishing Attachment, Spearphishing Link, and Spearphishing via Service. Malicious files will be transmitted directly as attachments or through links to download them. These require the user to open the document or file for the exploit to run.\n\n===Common Third-party Applications===\n\nOther applications that are commonly seen or are part of the software deployed in a target network may also be used for exploitation. Applications such as Adobe Reader and Flash, which are common in enterprise environments, have been routinely targeted by adversaries attempting to gain access to systems. Depending on the software and nature of the vulnerability, some may be exploited in the browser or require the user to open a file. For instance, some Flash exploits have been delivered as objects within Microsoft Office documents.\n\nDetection: Detecting software exploitation may be difficult depending on the tools available. Also look for behavior on the endpoint system that might indicate successful compromise, such as abnormal behavior of the browser or Office processes. This could include suspicious files written to disk, evidence of Process Injection for attempts to hide execution, evidence of Discovery, or other unusual network traffic that may indicate additional tools transferred to the system.\n\nPlatforms: Linux, Windows, macOS\n\nData Sources: Anti-virus, System calls, Process Monitoring\n\nSystem Requirements: Remote exploitation for execution requires a remotely accessible service reachable over the network or other vector of access such as spearphishing or drive-by compromise.\n\nRemote Support: Yes",
+          "cluster_value": "Exploitation for Client Execution - T1203:Exploitation for Client Execution",
+          "description": "ATT&CK Tactic",
+          "name": "Enterprise Attack - Attack Pattern",
+          "type": "mitre-enterprise-attack-attack-pattern"
+        },
+        {
+          "cluster_description": "Adversaries may communicate using OSI application layer protocols to avoid detection/network filtering by blending in with existing traffic. Commands to the remote system, and often the results of those commands, will be embedded within the protocol traffic between the client and server. \n\nAdversaries may utilize many different protocols, including those used for web browsing, transferring files, electronic mail, DNS, or publishing/subscribing. For connections that occur internally within an enclave (such as those between a proxy or pivot node and other nodes), commonly used protocols are SMB, SSH, or RDP.(Citation: Mandiant APT29 Eye Spy Email Nov 22) ",
+          "cluster_value": "Application Layer Protocol - T1071:Application Layer Protocol",
+          "description": "ATT&CK Tactic",
+          "name": "Enterprise Attack - Attack Pattern",
+          "type": "mitre-enterprise-attack-attack-pattern"
+        },
+        {
+          "cluster_description": "Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network. The weakness in the system can be a software bug, a temporary glitch, or a misconfiguration.\n\nExploited applications are often websites/web servers, but can also include databases (like SQL), standard services (like SMB or SSH), network device administration and management protocols (like SNMP and Smart Install), and any other system with Internet-accessible open sockets.(Citation: NVD CVE-2016-6662)(Citation: CIS Multiple SMB Vulnerabilities)(Citation: US-CERT TA18-106A Network Infrastructure Devices 2018)(Citation: Cisco Blog Legacy Device Attacks)(Citation: NVD CVE-2014-7169) On ESXi infrastructure, adversaries may exploit exposed OpenSLP services; they may alternatively exploit exposed VMware vCenter servers.(Citation: Recorded Future ESXiArgs Ransomware 2023)(Citation: Ars Technica VMWare Code Execution Vulnerability 2021) Depending on the flaw being exploited, this may also involve [Exploitation for Defense Evasion](https://attack.mitre.org/techniques/T1211:Exploitation for Defense Evasion) or [Exploitation for Client Execution](https://attack.mitre.org/techniques/T1203:Exploitation for Client Execution).\n\nIf an application is hosted on cloud-based infrastructure and/or is containerized, then exploiting it may lead to compromise of the underlying instance or container. This can allow an adversary a path to access the cloud or container APIs (e.g., via the [Cloud Instance Metadata API](https://attack.mitre.org/techniques/T1552:Unsecured Credentials/005)), exploit container host access via [Escape to Host](https://attack.mitre.org/techniques/T1611:Escape to Host), or take advantage of weak identity and access management policies.\n\nAdversaries may also exploit edge network infrastructure and related appliances, specifically targeting devices that do not support robust host-based defenses.(Citation: Mandiant Fortinet Zero Day)(Citation: Wired Russia Cyberwar)\n\nFor websites and databases, the OWASP top 10 and CWE top 25 highlight the most common web-based vulnerabilities.(Citation: OWASP Top 10)(Citation: CWE top 25)",
+          "cluster_value": "Exploit Public-Facing Application - T1190:Exploit Public-Facing Application",
+          "description": "ATT&CK Tactic",
+          "name": "Enterprise Attack - Attack Pattern",
+          "type": "mitre-enterprise-attack-attack-pattern"
+        },
+        {
+          "cluster_description": "Sensitive data can be collected from local system sources, such as the file system or databases of information residing on the system prior to Exfiltration.\n\nAdversaries will often search the file system on computers they have compromised to find files of interest. They may do this using a Command-Line Interface, such as cmd, which has functionality to interact with the file system to gather information. Some adversaries may also use Automated Collection on the local system.\n\nDetection: Monitor processes and command-line arguments for actions that could be taken to collect files from a system. Remote access tools with built-in features may interact directly with the Windows API to gather data. Data may also be acquired through Windows system management tools such as Windows Management Instrumentation and PowerShell.\n\nPlatforms: Linux, macOS, Windows\n\nData Sources: File monitoring, Process monitoring, Process command-line parameters\n\nSystem Requirements: Privileges to access certain files and directories",
+          "cluster_value": "Data from Local System - T1005:Data from Local System",
+          "description": "ATT&CK Tactic",
+          "name": "Enterprise Attack - Attack Pattern",
+          "type": "mitre-enterprise-attack-attack-pattern"
+        },
+        {
+          "cluster_description": "METASPLOIT is a penetration testing framework whose features include vulnerability testing, network enumeration, payload generation and execution, and defense evasion. Availability: Public",
+          "cluster_value": "metasploit",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "Cobalt Strike is a post-exploitation framework.",
+          "cluster_value": "Cobalt Strike",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "Monero-mining malware",
+          "cluster_value": "CoinMiner",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "Xbash is a malware family that is targeting Linux and Microsoft Windows servers. We can tie this malware, which we have named Xbash, to the Iron Group, a threat actor group known for previous ransomware attacks. Xbash was developed using Python and converted into self-contained Linux ELF executables by abusing the legitimate tool PyInstaller for distribution. Xbash aimed on discovering unprotected services, deleting victim\u2019s MySQL, PostgreSQL and MongoDB databases, and ransom for Bitcoins. Linux based systems are targeted for ransomware and botnet capabilities. The ransomware targets and deletes linux databases and there is no evidence of any functionality that makes recovery even possible by payment the ransom. Where as, windows based systems are targeted for coinmining & self-propagating capabilities. Xbash spreads by attacking weak passwords and unpatched vulnerabilities.",
+          "cluster_value": "Xbash",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "",
+          "cluster_value": "Gafgyt",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "According to a report Li shared with Bleeping Computer today, the Mirai Satori variant is quite different from all previous pure Mirai variants.Previous Mirai versions infected IoT devices and then downloaded a Telnet scanner component that attempted to find other victims and infect them with the Mirai bot.The Satori variant does not use a scanner but uses two embedded exploits that will try to connect to remote devices on ports 37215 and 52869.Effectively, this makes Satori an IoT worm, being able to spread by itself without the need for separate components.",
+          "cluster_value": "Satori",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "CowerSnail was compiled using Qt and linked with various libraries. This framework provides benefits such as cross-platform capability and transferability of the source code between different operating systems. ",
+          "cluster_value": "CowerSnail",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "Family of related sophisticated backdoor software - Name comes from Microsoft detection signature \u2013 anagram of Ultra (Ultra3) was a name of the fake driver). A macOS version exists but appears incomplete and lacking features...for now!",
+          "cluster_value": "Turla",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "Mirai (Japanese for \"the future\") is malware that turns computer systems running Linux into remotely controlled \"bots\", that can be used as part of a botnet in large-scale network attacks. It primarily targets online consumer devices such as remote cameras and home routers. The Mirai botnet has been used in some of the largest and most disruptive distributed denial of service (DDoS) attacks, including an attack on 20 September 2016 on computer security journalist Brian Krebs's web site, an attack on French web host OVH and the October 2016 Dyn cyberattack.",
+          "cluster_value": "Mirai",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "Linux.Gafgyt is a Trojan horse that opens a back door on the compromised computer and steals information.  The new Gafgyt version targets a newly disclosed vulnerability affecting older, unsupported versions of SonicWall\u2019s Global Management System (GMS).",
+          "cluster_value": "Gafgyt",
+          "description": "Botnet galaxy.",
+          "name": "Botnet",
+          "type": "botnet"
+        }
+      ],
+      "tags": [
+        "tlp:white",
+        "misp-galaxy:tool=\"Mirai\"",
+        "malware_classification:malware-category=\"Botnet\"",
+        "misp-galaxy:mitre-enterprise-attack-attack-pattern=\"Exploit Public-Facing Application - T1190:Exploit Public-Facing Application\"",
+        "misp-galaxy:botnet=\"Mirai\"",
+        "misp-galaxy:tool=\"Gafgyt\"",
+        "misp-galaxy:botnet=\"Gafgyt\""
+      ],
+      "event_attributes": [
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://researchcenter.paloaltonetworks.com/2018/09/unit42-multi-exploit-iotlinux-botnets-mirai-gafgyt-target-apache-struts-sonicwall/"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "text",
+          "value": "Unit 42 has uncovered new variants of the well-known IoT botnets Mirai and Gafgyt. These are the IoT botnets associated with unprecedented Distributed Denial of Service attacks in November 2016 and since.\r\n\r\nThese variants are notable for two reasons:\r\n\r\n    The new Mirai version targets the same Apache Struts vulnerability associated with the Equifax data breach in 2017.\r\n    The new Gafgyt version targets a newly disclosed vulnerability affecting older, unsupported versions of SonicWall\u00e2\u20ac\u2122s Global Management System (GMS).\r\n\r\nThese developments suggest these IOT botnets are increasingly targeting enterprise devices with outdated versions.\r\n\r\nAll organizations should ensure they keep not only their systems up-to-date and patched, but also their IoT devices. For Palo Alto Networks customers, WidlFire detects all related samples with malicious verdicts. Additional protections are noted in the conclusion below."
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "hostname",
+          "value": "l.ocalhost.host"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "185.10.68.213"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "185.10.68.127"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "d6648a36f55d6b8ffd034df7d04156d31411719ce9bc28e6d30c8427feacb397"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "Malicious"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "710d56a90b5f61c7ae82fcf305d23d48476e4f237ffff9d68b961171f168f255"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "52274c46933c20aaf64fd4c11557143fcfdc76eef192743fafd1b3a8bed3f4d2"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "078eef70d754e9b64bc783f085846a2e8ae419653a79ed2386c4ade86fde68cb"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "ef090093496ccdab506848166a07554bfa74eb98a0546171b84fc73861f67c79"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "49cdb537f5e4081362545532a623f597212c8cea847cf9f2b2f1fe1f3cd0ec2f"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "99c22a0c0e252ab123fb3167f49d94dc12960b79565ca6dfd28f2ff5b0346348"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "ae2354a5d8b84fb6ea6fc4b9ca3060959d5c0c77684cd2100731df2a3c7a204e"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "1913cf8e65114136cc309e72c384b717f0aeaaeae0c040188648c4afebce1669"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "1814c010f5e7391c7ea38850f9caf0771866e315f8d0c58c563818e71d30c208"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "29540468514cd48b6c2571722018dffb49d12f99c95b248a44a1455fff01acfb"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "39891a1c13e4e6ec9de410201f697d23c05e83a29ec0010c6c62c6829386e6a6"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "596270e91ccee3ec04a552bafde586af127ecac7141852edb9707ac6c4779a99"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "68b27935c7d064478339f7d95b57ff06ffa1efbd81009b4a2870c5cf3e0b0b35"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "92a4c6ae034c3a03c21b74bdc00264192e60a85deedd90b99a3e350758eb85c1"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "aab0ec600cdf57f28f9480ff3a9d3547f699af005c015b74c5c9e39a992570b6"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "d8fbf6d68993045b4840729c788665ab10c50c42b27246a290031664f3b956eb"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "dafe1b513183902692c8ba8b2a95fede7c13937e49bf21294de448df05edff18"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "f89d742c4d3312ac9bd707a9135235482c554e369cb646dcd97f6a14b4210136"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha256",
+          "value": "fab034d705b3ad7a10101858daf5da93a88f8bfd509dee9b8072678b27290ed3"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "float",
+          "value": "10"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://cve.circl.lu/cve/CVE-2017-5638"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "http://blog.talosintelligence.com/2017/03/apache-0-day-exploited.html"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "http://blog.trendmicro.com/trendlabs-security-intelligence/cve-2017-5638-apache-struts-vulnerability-remote-code-execution/"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "http://www.arubanetworks.com/assets/alert/ARUBA-PSA-2017-002.txt"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "http://www.eweek.com/security/apache-struts-vulnerability-under-attack.html"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "http://www.oracle.com/technetwork/security-advisory/cpujul2017-3236622.html"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "Published"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2017-10-03T21:59:00.000000+0000"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "The Jakarta Multipart parser in Apache Struts 2 2.3.x before 2.3.32 and 2.5.x before 2.5.10.1 has incorrect exception handling and error-message generation during file-upload attempts, which allows remote attackers to execute arbitrary commands via a crafted Content-Type, Content-Disposition, or Content-Length HTTP header, as exploited in the wild in March 2017 with a Content-Type header containing a #cmd= string."
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-03-03T21:29:00.000000+0000"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "CVE-2017-5638"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-03-08T16:29:00.000000+0000"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "A vulnerability in lack of validation of user-supplied parameters pass to XML-RPC calls on SonicWall Global Management System (GMS) virtual appliance's, allow remote user to execute arbitrary code. This vulnerability affected GMS version 8.1 and earlier."
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "CVE-2018-9866"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "float",
+          "value": "9"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2017-06-04T13:59:00.000000+0000"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "A command injection vulnerability was discovered on the Zyxel EMG2926 home router with firmware V1.00(AAQT.4)b8. The vulnerability is located in the diagnostic tools, specifically the nslookup function. A malicious user may exploit numerous vectors to execute arbitrary commands on the router, such as the ping_ip parameter to the expert/maintenance/diagnostic/nslookup URI."
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "CVE-2017-6884"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "float",
+          "value": "6.5"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-03-20T11:29:00.000000+0000"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "Huawei HG532 with some customized versions has a remote code execution vulnerability. An authenticated attacker could send malicious packets to port 37215 to launch attacks. Successful exploit could lead to the remote execution of arbitrary code."
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-04-19T11:04:00.000000+0000"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "CVE-2017-17215"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "e0b32c133cedca69b05dd3a9dd6e1910"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "ff7c182fb460d62195d1bae8c394b2e81182defe"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-13T01:25:45.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/710d56a90b5f61c7ae82fcf305d23d48476e4f237ffff9d68b961171f168f255/analysis/1536801945/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "25/58"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "6a77f21e15a0a4763e86d166763dbd05"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "a4a4d892d04f516261c2fa4c56de3ff21afd2812"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-13T01:25:59.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/29540468514cd48b6c2571722018dffb49d12f99c95b248a44a1455fff01acfb/analysis/1536801959/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "23/58"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "1998b2f489c4da5ecafe7fb5cc790575"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "13c72eb4c783b74046aeb53f50173eccfb64c7ca"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-11T06:12:03.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/ef090093496ccdab506848166a07554bfa74eb98a0546171b84fc73861f67c79/analysis/1536646323/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "23/59"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "218821892d5d5e460101d6914cfe2a3d"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "1da48a03224df6397f2215cd6b79308dbda7cf86"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-10T14:18:14.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/dafe1b513183902692c8ba8b2a95fede7c13937e49bf21294de448df05edff18/analysis/1536589094/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "16/59"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "3df581337af37f4e66be5026062dcfb2"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "61116e2b1614cebeed29b489d699f4bbcf217fa3"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-13T07:59:15.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/52274c46933c20aaf64fd4c11557143fcfdc76eef192743fafd1b3a8bed3f4d2/analysis/1536825555/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "20/57"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "9387e4ce5b53ee19af2dafcf8c5aedd1"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "8588546bc5ca10137fc6d2268085a2173a7638c8"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-10T14:15:40.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/ae2354a5d8b84fb6ea6fc4b9ca3060959d5c0c77684cd2100731df2a3c7a204e/analysis/1536588940/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "18/57"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "75cbd3709696219b94d1355349348e84"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "3a9a06a2f2efdf1fed10793fa7220730bc315af1"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-13T01:26:10.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/49cdb537f5e4081362545532a623f597212c8cea847cf9f2b2f1fe1f3cd0ec2f/analysis/1536801970/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "22/57"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "af525f736a3d31837e16575136752d2b"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "adde5df82821d40c8821452f38704dc70f378eb9"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-11T06:00:17.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/68b27935c7d064478339f7d95b57ff06ffa1efbd81009b4a2870c5cf3e0b0b35/analysis/1536645617/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "25/59"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "6a6307b57a6baf33f9bf148b3fecd9a4"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "a6a3190afc1c87c98c3ba6b8c82c230b11a02565"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-10T14:19:02.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/f89d742c4d3312ac9bd707a9135235482c554e369cb646dcd97f6a14b4210136/analysis/1536589142/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "9bcf535899fe77d4f3c78f3bd9810e10"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "0baafb0dc6ecefdda5c131e8128aa6ac698b7c1f"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-11T06:10:07.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/d8fbf6d68993045b4840729c788665ab10c50c42b27246a290031664f3b956eb/analysis/1536646207/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "e407843bffcf913dfd4fa816b067c33c"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "b73865efa77e07a75eb3bdd24d95a92b301a0a74"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-12T10:59:31.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/078eef70d754e9b64bc783f085846a2e8ae419653a79ed2386c4ade86fde68cb/analysis/1536749971/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "b324726c2a526fd98b06145b557408f0"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "95e7b1213aa808678cd04cd1befdebba8b37ebf7"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-11T07:55:29.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/99c22a0c0e252ab123fb3167f49d94dc12960b79565ca6dfd28f2ff5b0346348/analysis/1536652529/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "6b33b5c8d7e57e3c1c674eb1ffaf2cb2"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "8606fd59486682c5fe32e3b1d1df622922e734e8"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-10T09:43:09.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/aab0ec600cdf57f28f9480ff3a9d3547f699af005c015b74c5c9e39a992570b6/analysis/1536572589/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "24/58"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "d26bf0c4bef27196aae4b0b533877f16"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "96575a020408a67d03d0058735090d601df2e1a8"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-10T13:23:05.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/d6648a36f55d6b8ffd034df7d04156d31411719ce9bc28e6d30c8427feacb397/analysis/1536585785/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "19/60"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "f8e0ec8a7c6629c2f206c2b8860ded3f"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "9d00562ca754411b4158d4e0e953e486cc4b3886"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-11T05:10:56.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/596270e91ccee3ec04a552bafde586af127ecac7141852edb9707ac6c4779a99/analysis/1536642656/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "22/58"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "d1dffadb8f075c8d4fe822fa81a3ddb1"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "c90535a54d0494b981c6a4f09b331762cebbfcc9"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-11T05:09:31.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/fab034d705b3ad7a10101858daf5da93a88f8bfd509dee9b8072678b27290ed3/analysis/1536642571/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "24/60"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "943aa993dd600b3c8080e7a064cf5568"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "9828898850d3e69d16b8ff312635e95ecf4478e9"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-11T05:54:54.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/39891a1c13e4e6ec9de410201f697d23c05e83a29ec0010c6c62c6829386e6a6/analysis/1536645294/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "dd0d4d4196735db691a77ad2201fcb2a"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "2e9676699462fbb3b36ad205a8189e93fd68599e"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-11T05:50:49.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/1814c010f5e7391c7ea38850f9caf0771866e315f8d0c58c563818e71d30c208/analysis/1536645049/"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "text",
+          "value": "21/59"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "f6388e1650573bac1f933011acda71f2"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "86e7114c21dfdbcefd90f61426b9ce88d2698b12"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-11T05:50:55.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/1913cf8e65114136cc309e72c384b717f0aeaaeae0c040188648c4afebce1669/analysis/1536645055/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "md5",
+          "value": "2b0919caab591515af6ff99fb76896e8"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "sha1",
+          "value": "99ff9c25bc2e0a874ca4090abb6c612ea984c30c"
+        },
+        {
+          "category": "Other",
+          "comment": "",
+          "type": "datetime",
+          "value": "2018-09-12T01:40:46.000000+0000"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/92a4c6ae034c3a03c21b74bdc00264192e60a85deedd90b99a3e350758eb85c1/analysis/1536716446/"
+        }
+      ],
+      "objects": [
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "d6648a36f55d6b8ffd034df7d04156d31411719ce9bc28e6d30c8427feacb397",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "d6648a36f55d6b8ffd034df7d04156d31411719ce9bc28e6d30c8427feacb397",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "Malicious",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "Malicious",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "710d56a90b5f61c7ae82fcf305d23d48476e4f237ffff9d68b961171f168f255",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "710d56a90b5f61c7ae82fcf305d23d48476e4f237ffff9d68b961171f168f255",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "52274c46933c20aaf64fd4c11557143fcfdc76eef192743fafd1b3a8bed3f4d2",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "52274c46933c20aaf64fd4c11557143fcfdc76eef192743fafd1b3a8bed3f4d2",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "078eef70d754e9b64bc783f085846a2e8ae419653a79ed2386c4ade86fde68cb",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "078eef70d754e9b64bc783f085846a2e8ae419653a79ed2386c4ade86fde68cb",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "ef090093496ccdab506848166a07554bfa74eb98a0546171b84fc73861f67c79",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "ef090093496ccdab506848166a07554bfa74eb98a0546171b84fc73861f67c79",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "49cdb537f5e4081362545532a623f597212c8cea847cf9f2b2f1fe1f3cd0ec2f",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "49cdb537f5e4081362545532a623f597212c8cea847cf9f2b2f1fe1f3cd0ec2f",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "99c22a0c0e252ab123fb3167f49d94dc12960b79565ca6dfd28f2ff5b0346348",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "99c22a0c0e252ab123fb3167f49d94dc12960b79565ca6dfd28f2ff5b0346348",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "ae2354a5d8b84fb6ea6fc4b9ca3060959d5c0c77684cd2100731df2a3c7a204e",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "ae2354a5d8b84fb6ea6fc4b9ca3060959d5c0c77684cd2100731df2a3c7a204e",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "1913cf8e65114136cc309e72c384b717f0aeaaeae0c040188648c4afebce1669",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "1913cf8e65114136cc309e72c384b717f0aeaaeae0c040188648c4afebce1669",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "1814c010f5e7391c7ea38850f9caf0771866e315f8d0c58c563818e71d30c208",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "1814c010f5e7391c7ea38850f9caf0771866e315f8d0c58c563818e71d30c208",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "29540468514cd48b6c2571722018dffb49d12f99c95b248a44a1455fff01acfb",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "29540468514cd48b6c2571722018dffb49d12f99c95b248a44a1455fff01acfb",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "39891a1c13e4e6ec9de410201f697d23c05e83a29ec0010c6c62c6829386e6a6",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "39891a1c13e4e6ec9de410201f697d23c05e83a29ec0010c6c62c6829386e6a6",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "596270e91ccee3ec04a552bafde586af127ecac7141852edb9707ac6c4779a99",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "596270e91ccee3ec04a552bafde586af127ecac7141852edb9707ac6c4779a99",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "68b27935c7d064478339f7d95b57ff06ffa1efbd81009b4a2870c5cf3e0b0b35",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "68b27935c7d064478339f7d95b57ff06ffa1efbd81009b4a2870c5cf3e0b0b35",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "92a4c6ae034c3a03c21b74bdc00264192e60a85deedd90b99a3e350758eb85c1",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "92a4c6ae034c3a03c21b74bdc00264192e60a85deedd90b99a3e350758eb85c1",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "aab0ec600cdf57f28f9480ff3a9d3547f699af005c015b74c5c9e39a992570b6",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "aab0ec600cdf57f28f9480ff3a9d3547f699af005c015b74c5c9e39a992570b6",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "d8fbf6d68993045b4840729c788665ab10c50c42b27246a290031664f3b956eb",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "d8fbf6d68993045b4840729c788665ab10c50c42b27246a290031664f3b956eb",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "dafe1b513183902692c8ba8b2a95fede7c13937e49bf21294de448df05edff18",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "dafe1b513183902692c8ba8b2a95fede7c13937e49bf21294de448df05edff18",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "f89d742c4d3312ac9bd707a9135235482c554e369cb646dcd97f6a14b4210136",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "f89d742c4d3312ac9bd707a9135235482c554e369cb646dcd97f6a14b4210136",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha256",
+          "attribute_value": "fab034d705b3ad7a10101858daf5da93a88f8bfd509dee9b8072678b27290ed3",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha256",
+              "category": "Payload delivery",
+              "value": "fab034d705b3ad7a10101858daf5da93a88f8bfd509dee9b8072678b27290ed3",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "float",
+          "attribute_value": "10",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "float",
+              "category": "Other",
+              "value": "10",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://cve.circl.lu/cve/CVE-2017-5638",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://cve.circl.lu/cve/CVE-2017-5638",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "http://blog.talosintelligence.com/2017/03/apache-0-day-exploited.html",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "http://blog.talosintelligence.com/2017/03/apache-0-day-exploited.html",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "http://blog.trendmicro.com/trendlabs-security-intelligence/cve-2017-5638-apache-struts-vulnerability-remote-code-execution/",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "http://blog.trendmicro.com/trendlabs-security-intelligence/cve-2017-5638-apache-struts-vulnerability-remote-code-execution/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "http://www.arubanetworks.com/assets/alert/ARUBA-PSA-2017-002.txt",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "http://www.arubanetworks.com/assets/alert/ARUBA-PSA-2017-002.txt",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "http://www.eweek.com/security/apache-struts-vulnerability-under-attack.html",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "http://www.eweek.com/security/apache-struts-vulnerability-under-attack.html",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "http://www.oracle.com/technetwork/security-advisory/cpujul2017-3236622.html",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "http://www.oracle.com/technetwork/security-advisory/cpujul2017-3236622.html",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "Published",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "Published",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2017-10-03T21:59:00.000000+0000",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2017-10-03T21:59:00.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "The Jakarta Multipart parser in Apache Struts 2 2.3.x before 2.3.32 and 2.5.x before 2.5.10.1 has incorrect exception handling and error-message generation during file-upload attempts, which allows remote attackers to execute arbitrary commands via a crafted Content-Type, Content-Disposition, or Content-Length HTTP header, as exploited in the wild in March 2017 with a Content-Type header containing a #cmd= string.",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "The Jakarta Multipart parser in Apache Struts 2 2.3.x before 2.3.32 and 2.5.x before 2.5.10.1 has incorrect exception handling and error-message generation during file-upload attempts, which allows remote attackers to execute arbitrary commands via a crafted Content-Type, Content-Disposition, or Content-Length HTTP header, as exploited in the wild in March 2017 with a Content-Type header containing a #cmd= string.",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-03-03T21:29:00.000000+0000",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-03-03T21:29:00.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "CVE-2017-5638",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "CVE-2017-5638",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-03-08T16:29:00.000000+0000",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-03-08T16:29:00.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "A vulnerability in lack of validation of user-supplied parameters pass to XML-RPC calls on SonicWall Global Management System (GMS) virtual appliance's, allow remote user to execute arbitrary code. This vulnerability affected GMS version 8.1 and earlier.",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "A vulnerability in lack of validation of user-supplied parameters pass to XML-RPC calls on SonicWall Global Management System (GMS) virtual appliance's, allow remote user to execute arbitrary code. This vulnerability affected GMS version 8.1 and earlier.",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "CVE-2018-9866",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "CVE-2018-9866",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "float",
+          "attribute_value": "9",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "float",
+              "category": "Other",
+              "value": "9",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2017-06-04T13:59:00.000000+0000",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2017-06-04T13:59:00.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "A command injection vulnerability was discovered on the Zyxel EMG2926 home router with firmware V1.00(AAQT.4)b8. The vulnerability is located in the diagnostic tools, specifically the nslookup function. A malicious user may exploit numerous vectors to execute arbitrary commands on the router, such as the ping_ip parameter to the expert/maintenance/diagnostic/nslookup URI.",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "A command injection vulnerability was discovered on the Zyxel EMG2926 home router with firmware V1.00(AAQT.4)b8. The vulnerability is located in the diagnostic tools, specifically the nslookup function. A malicious user may exploit numerous vectors to execute arbitrary commands on the router, such as the ping_ip parameter to the expert/maintenance/diagnostic/nslookup URI.",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "CVE-2017-6884",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "CVE-2017-6884",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "float",
+          "attribute_value": "6.5",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "float",
+              "category": "Other",
+              "value": "6.5",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-03-20T11:29:00.000000+0000",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-03-20T11:29:00.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "Huawei HG532 with some customized versions has a remote code execution vulnerability. An authenticated attacker could send malicious packets to port 37215 to launch attacks. Successful exploit could lead to the remote execution of arbitrary code.",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "Huawei HG532 with some customized versions has a remote code execution vulnerability. An authenticated attacker could send malicious packets to port 37215 to launch attacks. Successful exploit could lead to the remote execution of arbitrary code.",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-04-19T11:04:00.000000+0000",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-04-19T11:04:00.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "CVE-2017-17215",
+          "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
+          "meta_category": "vulnerability",
+          "name": "vulnerability",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "CVE-2017-17215",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "e0b32c133cedca69b05dd3a9dd6e1910",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "e0b32c133cedca69b05dd3a9dd6e1910",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "ff7c182fb460d62195d1bae8c394b2e81182defe",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "ff7c182fb460d62195d1bae8c394b2e81182defe",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-13T01:25:45.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-13T01:25:45.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/710d56a90b5f61c7ae82fcf305d23d48476e4f237ffff9d68b961171f168f255/analysis/1536801945/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/710d56a90b5f61c7ae82fcf305d23d48476e4f237ffff9d68b961171f168f255/analysis/1536801945/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "25/58",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "25/58",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "6a77f21e15a0a4763e86d166763dbd05",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "6a77f21e15a0a4763e86d166763dbd05",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "a4a4d892d04f516261c2fa4c56de3ff21afd2812",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "a4a4d892d04f516261c2fa4c56de3ff21afd2812",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-13T01:25:59.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-13T01:25:59.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/29540468514cd48b6c2571722018dffb49d12f99c95b248a44a1455fff01acfb/analysis/1536801959/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/29540468514cd48b6c2571722018dffb49d12f99c95b248a44a1455fff01acfb/analysis/1536801959/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "23/58",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "23/58",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "1998b2f489c4da5ecafe7fb5cc790575",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "1998b2f489c4da5ecafe7fb5cc790575",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "13c72eb4c783b74046aeb53f50173eccfb64c7ca",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "13c72eb4c783b74046aeb53f50173eccfb64c7ca",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-11T06:12:03.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-11T06:12:03.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/ef090093496ccdab506848166a07554bfa74eb98a0546171b84fc73861f67c79/analysis/1536646323/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/ef090093496ccdab506848166a07554bfa74eb98a0546171b84fc73861f67c79/analysis/1536646323/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "23/59",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "23/59",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "218821892d5d5e460101d6914cfe2a3d",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "218821892d5d5e460101d6914cfe2a3d",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "1da48a03224df6397f2215cd6b79308dbda7cf86",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "1da48a03224df6397f2215cd6b79308dbda7cf86",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-10T14:18:14.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-10T14:18:14.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/dafe1b513183902692c8ba8b2a95fede7c13937e49bf21294de448df05edff18/analysis/1536589094/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/dafe1b513183902692c8ba8b2a95fede7c13937e49bf21294de448df05edff18/analysis/1536589094/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "16/59",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "16/59",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "3df581337af37f4e66be5026062dcfb2",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "3df581337af37f4e66be5026062dcfb2",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "61116e2b1614cebeed29b489d699f4bbcf217fa3",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "61116e2b1614cebeed29b489d699f4bbcf217fa3",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-13T07:59:15.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-13T07:59:15.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/52274c46933c20aaf64fd4c11557143fcfdc76eef192743fafd1b3a8bed3f4d2/analysis/1536825555/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/52274c46933c20aaf64fd4c11557143fcfdc76eef192743fafd1b3a8bed3f4d2/analysis/1536825555/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "20/57",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "20/57",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "9387e4ce5b53ee19af2dafcf8c5aedd1",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "9387e4ce5b53ee19af2dafcf8c5aedd1",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "8588546bc5ca10137fc6d2268085a2173a7638c8",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "8588546bc5ca10137fc6d2268085a2173a7638c8",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-10T14:15:40.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-10T14:15:40.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/ae2354a5d8b84fb6ea6fc4b9ca3060959d5c0c77684cd2100731df2a3c7a204e/analysis/1536588940/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/ae2354a5d8b84fb6ea6fc4b9ca3060959d5c0c77684cd2100731df2a3c7a204e/analysis/1536588940/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "18/57",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "18/57",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "75cbd3709696219b94d1355349348e84",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "75cbd3709696219b94d1355349348e84",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "3a9a06a2f2efdf1fed10793fa7220730bc315af1",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "3a9a06a2f2efdf1fed10793fa7220730bc315af1",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-13T01:26:10.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-13T01:26:10.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/49cdb537f5e4081362545532a623f597212c8cea847cf9f2b2f1fe1f3cd0ec2f/analysis/1536801970/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/49cdb537f5e4081362545532a623f597212c8cea847cf9f2b2f1fe1f3cd0ec2f/analysis/1536801970/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "22/57",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "22/57",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "af525f736a3d31837e16575136752d2b",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "af525f736a3d31837e16575136752d2b",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "adde5df82821d40c8821452f38704dc70f378eb9",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "adde5df82821d40c8821452f38704dc70f378eb9",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-11T06:00:17.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-11T06:00:17.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/68b27935c7d064478339f7d95b57ff06ffa1efbd81009b4a2870c5cf3e0b0b35/analysis/1536645617/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/68b27935c7d064478339f7d95b57ff06ffa1efbd81009b4a2870c5cf3e0b0b35/analysis/1536645617/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "25/59",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "25/59",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "6a6307b57a6baf33f9bf148b3fecd9a4",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "6a6307b57a6baf33f9bf148b3fecd9a4",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "a6a3190afc1c87c98c3ba6b8c82c230b11a02565",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "a6a3190afc1c87c98c3ba6b8c82c230b11a02565",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-10T14:19:02.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-10T14:19:02.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/f89d742c4d3312ac9bd707a9135235482c554e369cb646dcd97f6a14b4210136/analysis/1536589142/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/f89d742c4d3312ac9bd707a9135235482c554e369cb646dcd97f6a14b4210136/analysis/1536589142/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "9bcf535899fe77d4f3c78f3bd9810e10",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "9bcf535899fe77d4f3c78f3bd9810e10",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "0baafb0dc6ecefdda5c131e8128aa6ac698b7c1f",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "0baafb0dc6ecefdda5c131e8128aa6ac698b7c1f",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-11T06:10:07.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-11T06:10:07.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/d8fbf6d68993045b4840729c788665ab10c50c42b27246a290031664f3b956eb/analysis/1536646207/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/d8fbf6d68993045b4840729c788665ab10c50c42b27246a290031664f3b956eb/analysis/1536646207/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "e407843bffcf913dfd4fa816b067c33c",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "e407843bffcf913dfd4fa816b067c33c",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "b73865efa77e07a75eb3bdd24d95a92b301a0a74",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "b73865efa77e07a75eb3bdd24d95a92b301a0a74",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-12T10:59:31.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-12T10:59:31.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/078eef70d754e9b64bc783f085846a2e8ae419653a79ed2386c4ade86fde68cb/analysis/1536749971/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/078eef70d754e9b64bc783f085846a2e8ae419653a79ed2386c4ade86fde68cb/analysis/1536749971/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "b324726c2a526fd98b06145b557408f0",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "b324726c2a526fd98b06145b557408f0",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "95e7b1213aa808678cd04cd1befdebba8b37ebf7",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "95e7b1213aa808678cd04cd1befdebba8b37ebf7",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-11T07:55:29.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-11T07:55:29.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/99c22a0c0e252ab123fb3167f49d94dc12960b79565ca6dfd28f2ff5b0346348/analysis/1536652529/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/99c22a0c0e252ab123fb3167f49d94dc12960b79565ca6dfd28f2ff5b0346348/analysis/1536652529/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "6b33b5c8d7e57e3c1c674eb1ffaf2cb2",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "6b33b5c8d7e57e3c1c674eb1ffaf2cb2",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "8606fd59486682c5fe32e3b1d1df622922e734e8",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "8606fd59486682c5fe32e3b1d1df622922e734e8",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-10T09:43:09.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-10T09:43:09.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/aab0ec600cdf57f28f9480ff3a9d3547f699af005c015b74c5c9e39a992570b6/analysis/1536572589/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/aab0ec600cdf57f28f9480ff3a9d3547f699af005c015b74c5c9e39a992570b6/analysis/1536572589/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "24/58",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "24/58",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "d26bf0c4bef27196aae4b0b533877f16",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "d26bf0c4bef27196aae4b0b533877f16",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "96575a020408a67d03d0058735090d601df2e1a8",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "96575a020408a67d03d0058735090d601df2e1a8",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-10T13:23:05.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-10T13:23:05.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/d6648a36f55d6b8ffd034df7d04156d31411719ce9bc28e6d30c8427feacb397/analysis/1536585785/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/d6648a36f55d6b8ffd034df7d04156d31411719ce9bc28e6d30c8427feacb397/analysis/1536585785/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "19/60",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "19/60",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "f8e0ec8a7c6629c2f206c2b8860ded3f",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "f8e0ec8a7c6629c2f206c2b8860ded3f",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "9d00562ca754411b4158d4e0e953e486cc4b3886",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "9d00562ca754411b4158d4e0e953e486cc4b3886",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-11T05:10:56.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-11T05:10:56.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/596270e91ccee3ec04a552bafde586af127ecac7141852edb9707ac6c4779a99/analysis/1536642656/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/596270e91ccee3ec04a552bafde586af127ecac7141852edb9707ac6c4779a99/analysis/1536642656/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "22/58",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "22/58",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "d1dffadb8f075c8d4fe822fa81a3ddb1",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "d1dffadb8f075c8d4fe822fa81a3ddb1",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "c90535a54d0494b981c6a4f09b331762cebbfcc9",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "c90535a54d0494b981c6a4f09b331762cebbfcc9",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-11T05:09:31.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-11T05:09:31.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/fab034d705b3ad7a10101858daf5da93a88f8bfd509dee9b8072678b27290ed3/analysis/1536642571/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/fab034d705b3ad7a10101858daf5da93a88f8bfd509dee9b8072678b27290ed3/analysis/1536642571/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "24/60",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "24/60",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "943aa993dd600b3c8080e7a064cf5568",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "943aa993dd600b3c8080e7a064cf5568",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "9828898850d3e69d16b8ff312635e95ecf4478e9",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "9828898850d3e69d16b8ff312635e95ecf4478e9",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-11T05:54:54.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-11T05:54:54.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/39891a1c13e4e6ec9de410201f697d23c05e83a29ec0010c6c62c6829386e6a6/analysis/1536645294/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/39891a1c13e4e6ec9de410201f697d23c05e83a29ec0010c6c62c6829386e6a6/analysis/1536645294/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "dd0d4d4196735db691a77ad2201fcb2a",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "dd0d4d4196735db691a77ad2201fcb2a",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "2e9676699462fbb3b36ad205a8189e93fd68599e",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "2e9676699462fbb3b36ad205a8189e93fd68599e",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-11T05:50:49.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-11T05:50:49.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/1814c010f5e7391c7ea38850f9caf0771866e315f8d0c58c563818e71d30c208/analysis/1536645049/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/1814c010f5e7391c7ea38850f9caf0771866e315f8d0c58c563818e71d30c208/analysis/1536645049/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "text",
+          "attribute_value": "21/59",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "text",
+              "category": "Other",
+              "value": "21/59",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "f6388e1650573bac1f933011acda71f2",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "f6388e1650573bac1f933011acda71f2",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "86e7114c21dfdbcefd90f61426b9ce88d2698b12",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "86e7114c21dfdbcefd90f61426b9ce88d2698b12",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-11T05:50:55.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-11T05:50:55.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/1913cf8e65114136cc309e72c384b717f0aeaaeae0c040188648c4afebce1669/analysis/1536645055/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/1913cf8e65114136cc309e72c384b717f0aeaaeae0c040188648c4afebce1669/analysis/1536645055/",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "md5",
+          "attribute_value": "2b0919caab591515af6ff99fb76896e8",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "md5",
+              "category": "Payload delivery",
+              "value": "2b0919caab591515af6ff99fb76896e8",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Payload delivery",
+          "attribute_comment": "",
+          "attribute_type": "sha1",
+          "attribute_value": "99ff9c25bc2e0a874ca4090abb6c612ea984c30c",
+          "description": "File object describing a file with meta-information",
+          "meta_category": "file",
+          "name": "file",
+          "attributes": [
+            {
+              "type": "sha1",
+              "category": "Payload delivery",
+              "value": "99ff9c25bc2e0a874ca4090abb6c612ea984c30c",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "Other",
+          "attribute_comment": "",
+          "attribute_type": "datetime",
+          "attribute_value": "2018-09-12T01:40:46.000000+0000",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "datetime",
+              "category": "Other",
+              "value": "2018-09-12T01:40:46.000000+0000",
+              "comment": ""
+            }
+          ]
+        },
+        {
+          "attribute_category": "External analysis",
+          "attribute_comment": "",
+          "attribute_type": "link",
+          "attribute_value": "https://www.virustotal.com/file/92a4c6ae034c3a03c21b74bdc00264192e60a85deedd90b99a3e350758eb85c1/analysis/1536716446/",
+          "description": "VirusTotal report",
+          "meta_category": "misc",
+          "name": "virustotal-report",
+          "attributes": [
+            {
+              "type": "link",
+              "category": "External analysis",
+              "value": "https://www.virustotal.com/file/92a4c6ae034c3a03c21b74bdc00264192e60a85deedd90b99a3e350758eb85c1/analysis/1536716446/",
+              "comment": ""
+            }
+          ]
+        }
+      ],
+      "reports": []
+    }
+  },
+  "agent_2": {
+    "model_used": "mistral-small3.2:latest",
+    "retrieved_nice_information": "nice_info",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent2 file)'"
+    }
+  },
+  "agent_3": {
+    "model_used": "mistral-small3.2:latest",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent3 file)'"
+    }
+  }
+}
