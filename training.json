@@ -1,0 +1,198 @@
+{
+  "title": "TeamTNT_Hildegard_Incident_Response_Scenario_4c0",
+  "description": "Investigate and respond to a TeamTNT Hildegard malware compromise in a Kubernetes cluster.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge",
+    "Understanding of Kubernetes concepts"
+  ],
+  "outcomes": [
+    "Investigate malware activity in Kubernetes environments",
+    "Identify persistence mechanisms",
+    "Analyze lateral movement techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target Kubernetes cluster has been compromised by the TeamTNT Hildegard malware. This backdoor targets Kubernetes clusters, exploiting misconfigured kubelets for initial access. It spreads across containers, establishes C2 connections via tmate reverse shell and IRC channels, and performs cryptojacking operations using xmrig. The malware also searches for cloud credentials and exfiltrates them to C2 servers.\n\nYour task is to investigate and respond to this incident, following the Incident Response profile responsibilities. During this investigation, you will encounter various types of flags, including service names and timer names."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nFrom this host, you can SSH to the next-target host (192.168.50.6) using the same credentials.\n\nTo progress to the next level, enter the word 'start'.",
+      "local_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nFrom this host, you can SSH to the next-target host (192.168.50.6) using the same credentials.\n\nTo progress to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "xmrig.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for suspicious services or processes that might indicate malware activity.\n\nQuestion: What is the name of the suspicious service running on the target host that appears to be related to the Hildegard malware? The flag type is a service name.",
+      "solution": "To identify the suspicious service, start by listing all running services using the command 'systemctl list-units --type=service'. Look for services that are unrelated to normal Kubernetes operations and appear suspicious. The Hildegard malware is known to create a service related to cryptojacking operations. By examining the running services, you can identify the suspicious service 'xmrig.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often creates services that are unrelated to normal system operations. Look for services that seem out of place.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Focus on services that might be related to cryptojacking or other malicious activities. The Hildegard malware is known to use such services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service is likely named 'xmrig.service'. Check the running services to confirm its presence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "xmrig.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is maintaining persistence on the target host.\n\nQuestion: What is the persistence mechanism used by the suspicious service? The flag type is a timer name.",
+      "solution": "To determine the persistence mechanism, start by listing all systemd unit files using the command 'systemctl list-unit-files --type=service'. Then, list all systemd timers using the command 'systemctl list-timers'. Look for timers that are associated with the suspicious service identified in the previous task. These will provide clues about the persistence mechanism. The Hildegard malware typically uses a systemd timer to ensure the service runs periodically. The persistence mechanism is 'xmrig.timer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often uses systemd services and timers to maintain persistence. Examine these components to identify the persistence mechanism.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Look for services and timers that are associated with the suspicious service identified in the previous task. These will provide clues about the persistence mechanism.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The persistence mechanism is likely related to the 'xmrig.timer'. Check the systemd timers to confirm its presence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "rsync.service",
+      "answer_variable_name": null,
+      "content": "Investigate the lateral movement capabilities of the malware between the target and next-target hosts.\n\nQuestion: What is the name of the service or process responsible for transferring files between the target and next-target hosts? The flag type is a service name.",
+      "solution": "To investigate lateral movement, start by listing all running services using the command 'systemctl list-units --type=service'. Look for services that are transferring files or establishing connections. The Hildegard malware typically uses a service named 'rsync.service' for this purpose. Additionally, examine the log file '/home/cyrano/payload-transfer.log' for evidence of file transfers. By examining these components, you can identify the service responsible for lateral movement.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often uses services to transfer files and establish connections between hosts. Look for services that are transferring files or establishing connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Focus on services that might be related to file transfers. The Hildegard malware is known to use such services for lateral movement.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The service responsible for lateral movement is likely named 'rsync.service'. Check the running services to confirm its presence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_lateral_movement",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "check_logs",
+          "prereq_state": [],
+          "cmd": "cat /home/cyrano/payload-transfer.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /home/cyrano/payload-transfer.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
