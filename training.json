@@ -1,0 +1,164 @@
+{
+  "title": "ELF_IMEIJ_Incident_Response_Scenario_eda",
+  "description": "Investigate and respond to the ELF_IMEIJ.A backdoor malware compromising AVTech devices in your network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge",
+    "Basic knowledge of systemd services"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Usage of journalctl",
+    "Basic knowledge of persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The AVTech devices in your network have been compromised by the ELF_IMEIJ.A backdoor malware. This malware is known to exploit vulnerabilities in AVTech devices to execute command injection and download malicious files. It gathers system information, executes shell commands, initiates DDoS attacks, and can terminate itself. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Hostname: target\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "Local sandbox access is not required for this scenario. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious-service.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for unauthorized or suspicious services running on the system. Enumerate running services and distinguish legitimate from suspicious services. The flag you are looking for is a systemd service named 'malicious-service.service'.",
+      "solution": "To identify suspicious services, use the command 'systemctl list-units --type=service' to list all running services. Look for any unusual or unfamiliar services. The suspicious service is named 'malicious-service.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or unfamiliar services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'systemctl list-units --type=service' to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "persistence-config",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service 'malicious-service.service' is automatically started after reboot. Identify persistence mechanisms (e.g., systemd, cron, scheduled task). The flag you are looking for is the persistence configuration within 'malicious-service.service'.",
+      "solution": "To determine the persistence mechanism, use the command 'systemctl cat malicious-service.service' to examine the service file. Look for any suspicious configurations that indicate how the service is set to start automatically.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd service files and timers to find any suspicious configurations.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'systemctl cat malicious-service.service' to examine the service file.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl cat malicious-service.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat malicious-service.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Identify file transfers or remote execution used to move between hosts. Correlate events across hosts to identify attacker lateral movement. The flag you are looking for is the systemd service named 'payload-transfer.service'.",
+      "solution": "To identify lateral movement, use the command 'journalctl -u payload-transfer.service' to check the logs for any evidence of file transfers or remote execution. The service 'payload-transfer.service' is responsible for transferring files between hosts.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the logs and systemd timers for any evidence of file transfers or remote execution.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'journalctl -u payload-transfer.service' to check the logs for any evidence of file transfers or remote execution.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_lateral_movement",
+          "prereq_state": [],
+          "cmd": "journalctl -u payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
