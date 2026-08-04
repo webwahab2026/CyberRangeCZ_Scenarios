@@ -1,0 +1,182 @@
+{
+  "title": "Umbreon_Rootkit_Investigation_680",
+  "description": "Investigate and respond to a security incident involving the Umbreon rootkit on a Linux system.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of Linux rootkits",
+    "Detection of shared library injection",
+    "Analysis of system-wide preload configuration",
+    "Identification of concealed files and directories"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a sophisticated Linux rootkit designed to hide its presence and manipulate system processes. It targets both Intel and ARM processors and is capable of intercepting and modifying system calls. This rootkit has been detected in your network environment, and your task is to investigate and respond to this security incident. The Umbreon rootkit is part of the Pok\u00e9mon-themed malware family, known for its stealth capabilities and ability to evade detection. During this investigation, you will be looking for file paths as flags. The Umbreon rootkit is known for its ability to inject shared libraries into system processes, manipulate system-wide preload configurations, and create hidden files or directories to store its components or configuration data."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host is part of a network that includes an attacker host and another victim host. You can use standard Linux commands and forensic tools to investigate the compromise. Enter the word `start` to begin the investigation and progress to the next level.",
+      "local_content": "Enter the word `start` to begin the investigation and progress to the next level."
+    },
+    {
+      "title": "Identify Evidence of Shared Library Injection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "The Umbreon rootkit is known to inject a shared library into system processes to manipulate their behavior. Your task is to investigate the loaded libraries in system processes and identify the path to the injected shared library. The flag you are looking for is a file path.",
+      "solution": "Examine the libraries loaded by system processes using tools like `ldd`, `lsof`, or `strace`. Look for any libraries that appear suspicious or out of place. The flag you are looking for is `/lib/x86_64-linux-gnu/libsysmon.so.1`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "The Umbreon rootkit manipulates system processes by injecting a shared library. You need to identify this library.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use tools like `ldd`, `lsof`, or `strace` to examine the libraries loaded by system processes.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the `/lib/x86_64-linux-gnu/` directory for any unusual or hidden files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ldd /path/to/system/process",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ldd /path/to/system/process",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine System-Wide Preload Configuration Modification",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "The Umbreon rootkit may modify the system-wide preload configuration to ensure that its shared library is loaded by all processes. Your task is to investigate the preload configuration and identify the path to the modified preload file. The flag you are looking for is a file path.",
+      "solution": "Examine the contents of `/etc/ld.so.preload` and look for any paths that appear suspicious or out of place. The flag you are looking for is `/etc/ld.so.preload`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "The Umbreon rootkit modifies the system-wide preload configuration to load its shared library. You need to identify this configuration file.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Examine the contents of `/etc/ld.so.preload` and look for any paths that appear suspicious or out of place.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check for any unusual entries in the `/etc/ld.so.preload` file.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Concealed Files or Directories",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf/config",
+      "answer_variable_name": null,
+      "content": "The Umbreon rootkit may create hidden files or directories to store its components or configuration data. Your task is to investigate the filesystem and identify the path to the concealed configuration file. The flag you are looking for is a file path.",
+      "solution": "Use tools like `find`, `ls`, or `stat` to examine the filesystem. Look for any files or directories that are hidden or have unusual permissions. The flag you are looking for is `/etc/.kit_conf/config`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "The Umbreon rootkit creates hidden files or directories to store its components or configuration data. You need to identify these hidden paths.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use tools like `find`, `ls`, or `stat` to examine the filesystem. Look for any files or directories that are hidden or have unusual permissions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check for hidden files or directories in the `/etc/` and `/home/` directories.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "find / -name '.*' -type f",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -name '.*' -type f",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
