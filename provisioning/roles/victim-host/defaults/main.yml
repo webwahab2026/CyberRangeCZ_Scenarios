@@ -1,0 +1,21 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.60.5", name: "dist-server"}
+- {ip: "192.168.60.10", name: "victim"}
+- {ip: "192.168.60.20", name: "c2-server"}
+packages_to_install:
+- openssh-server
+- netcat-openbsd
+- curl
+- wget
+files_to_copy:
+- readme.txt
+files_to_create:
+- name: 3fc826ce8eb9e69b3c384b84351b7af63f558f774dc547fccc23d2f9788ebab4
+  content: "3fc826ce8eb9e69b3c384b84351b7af63f558f774dc547fccc23d2f9788ebab4"
+- name: project_notes.txt
+  content: "Internal project notes — do not share\n"
+- name: config_backup.txt
+  content: "db_host=localhost\ndb_user=admin\ndb_pass=s3cr3t\n"

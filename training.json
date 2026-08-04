@@ -1,0 +1,181 @@
+{
+  "title": "Adwind_jRAT_Incident_Response_Scenario_2e9",
+  "description": "Investigate and respond to a potential Adwind/jRAT compromise on a victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Usage of ls",
+    "Service and timer enumeration"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected network connections and suspicious process activity. Your task is to investigate and respond to this potential Adwind/jRAT compromise. Adwind/jRAT is a cross-platform Java-based Remote Access Trojan (RAT) known for its persistence mechanisms and data exfiltration capabilities."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter the word 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter the word 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.service",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for unauthorized or suspicious services. Enumerate running services and identify any that appear unauthorized or suspicious. Look for a suspicious service name.",
+      "solution": "To identify suspicious services, start by listing all active services and systemd timers. Use the command 'systemctl list-units --type=service --all' to list all services. Look for the service name 'network-diagnostics.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the systemd service management system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'systemctl list-units --type=service --all' to list all services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for the service name 'network-diagnostics.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_enumeration",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Scheduled Tasks",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious processes. Identify scheduled execution persistence mechanisms that might be used to maintain malware activity. Look for a suspicious timer name.",
+      "solution": "To identify scheduled tasks, list all timers and filter for those that might trigger suspicious services or scripts. Use the command 'systemctl list-timers --all | grep network-diagnostics.timer' to specifically identify the timer name 'network-diagnostics.timer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand how systemd timers can be used to schedule tasks.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'systemctl list-timers --all | grep network-diagnostics.timer' to list all timers and filter for specific ones.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for the timer name 'network-diagnostics.timer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_enumeration",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all | grep network-diagnostics.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all | grep network-diagnostics.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malware Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/net-diag",
+      "answer_variable_name": null,
+      "content": "Locate files installed by the malware on the compromised host. Correlate suspicious activity with files introduced by the trojan. Look for a suspicious file path.",
+      "solution": "To locate malware files, investigate unusual directories and files, especially those with recent modification times. Use the command 'ls -la /usr/local/bin/net-diag' to list the file. Look for the filename '/usr/local/bin/net-diag'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand how malware often places files in unusual directories.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'ls -la /usr/local/bin/net-diag' to investigate directories and files with recent modification times.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for the filename '/usr/local/bin/net-diag'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_enumeration",
+          "prereq_state": [],
+          "cmd": "ls -la /usr/local/bin/net-diag",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /usr/local/bin/net-diag",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
