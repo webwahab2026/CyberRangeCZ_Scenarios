@@ -1,0 +1,181 @@
+{
+  "title": "Fancy_Bear_C2_Investigation_91d",
+  "description": "Investigate and respond to a Fancy Bear malware incident in the target network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of suspicious network connections",
+    "Analysis of suspicious services",
+    "Detection of lateral movement"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Fancy Bear malware family, also known as APT29. This group is known for its sophisticated cyber espionage operations, typically targeting government, diplomatic, think-tank, and private-sector organizations. The malware is known to use blogspot domains for command and control (C2) purposes. The malware exhibits lateral movement capabilities and exfiltrates data. Fancy Bear typically uses spear-phishing emails, watering hole attacks, and exploits known vulnerabilities to gain initial access. Once inside the network, they use custom malware for C2 communications and lateral movement. This malware family is particularly dangerous due to its persistence mechanisms and ability to evade detection."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter the word 'start' to progress to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5:4444",
+      "answer_variable_name": null,
+      "content": "While monitoring the target host, you notice unusual outbound network connections. Investigate these connections to identify any suspicious activity.",
+      "solution": "Use the command `ss -tulnp` to list all network connections. Look for connections to the C2 server (192.168.40.5) on port 4444. This connection is suspicious due to the unusual destination and port. The flag is the destination IP and port combination: 192.168.40.5:4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding what constitutes a suspicious network connection. Look for connections to unusual IPs or ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `ss -tulnp` to list all network connections. This command will help you identify active connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Analysis Hint",
+          "content": "Look for connections to the C2 server (192.168.40.5) on port 4444. This is a known indicator of compromise for this malware family.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_connections",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service:C2",
+      "answer_variable_name": null,
+      "content": "You've identified a suspicious network connection. Now, investigate the service responsible for this connection. Determine how it's started and what files are associated with it.",
+      "solution": "Use the command `systemctl list-units --type=service` to list all services. Look for the service named 'bkd.service'. Use the command `systemctl cat bkd.service` to view the service configuration. The service is started using systemd and is associated with C2 communications. The flag is the service name and its purpose: bkd.service:C2.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Identify services that might be responsible for the suspicious network connection. Look for services that are not part of the standard system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all services. This will help you identify any unusual services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Analysis Hint",
+          "content": "Look for the service named 'bkd.service' and investigate its configuration. This service is known to be associated with C2 communications.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_analysis",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service:192.168.50.6",
+      "answer_variable_name": null,
+      "content": "The malware is known to exhibit lateral movement capabilities. Investigate if the malware has moved laterally to other hosts in the network.",
+      "solution": "Use the command `systemctl list-units --type=service` to list all services. Look for the service named 'payload-transfer.service'. Use the command `systemctl cat payload-transfer.service` to view the service configuration. The service transfers files to the next-target host (192.168.50.6). This is evidence of lateral movement. The flag is the service name and the target host: payload-transfer.service:192.168.50.6.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Check for any file transfers or remote execution between hosts. Look for services that might be transferring files or executing commands on other hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all services. This will help you identify any unusual services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Analysis Hint",
+          "content": "Look for the service named 'payload-transfer.service' and investigate its configuration. This service is known to transfer files to other hosts.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

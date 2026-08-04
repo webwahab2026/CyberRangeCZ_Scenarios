@@ -1,0 +1,817 @@
+{
+  "generated_at_utc": "2026-08-04T20:37:59.661244+00:00",
+  "user_inputs": {
+    "scenario_type": "Exercise",
+    "difficulty_level": "Intermediate",
+    "cybersecurity_approach": "Defence-oriented",
+    "nice_role": "Incident Response",
+    "number_of_tasks": 3,
+    "question_response": "true",
+    "hints": "true",
+    "threat_name": "OSINT Fancy Bear Pens the Worst Blog Posts Ever by ThreatConnect",
+    "mitre_attack_techniques": [],
+    "environment_constraints": null,
+    "hybrid_sandbox": false,
+    "evaluate": true
+  },
+  "agent_1": {
+    "model_used": "",
+    "query_generated": "OSINT Fancy Bear Pens the Worst Blog Posts Ever by ThreatConnect"
+  },
+  "retrieval": {
+    "retrieved_events": {
+      "event_uuid": "5a5deec2-afe0-4036-a218-49c3950d210f",
+      "event_id": "861",
+      "event_info": "OSINT Fancy Bear Pens the Worst Blog Posts Ever by ThreatConnect",
+      "galaxies": [],
+      "tags": [
+        "tlp:white",
+        "APT",
+        "misp-galaxy:threat-actor=\"Sofacy\"",
+        "osint:source-type=\"blog-post\"",
+        "Threat:Sofacy/APT28"
+      ],
+      "event_attributes": [
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "57567547454.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "45645647.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "cdncloudflare.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "opecmember.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "cc-yahoo-inc.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "luminate-yahoo.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "uzbekistan-mfa.com"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.verfassungsschutz.de/embed/broschuere-2016-03-bfv-cyber-brief-2016-01.pdf"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "smtprelayhost.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "95.153.32.52"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "securitymail.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "hostname",
+          "value": "accounts.google.com.securitymail.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "80.255.12.231"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "hostname",
+          "value": "google.com.account-password.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "url",
+          "value": "https://google.com.account-password.ga/security/signinoptions/password"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://www.threatconnect.com/blog/fancy-bear-leverages-blogspot/"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "fastcontech.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "kenlynton.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "syslowwindows.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "terms-google.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "windowschecker.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "windowsdefenderupdater.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "securitysls.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "wincodec.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "mozillaplagins.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "mozilla-plugins.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "securityupdatereport.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "autoupdater.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "highcomission.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "intelsupportcenter.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "intelsupportcenter.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "ciscohelpcenter.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "filestore.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "account-verify-comfirmation-info-login.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "restore-login-account.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "fileshelpprotut.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "account-activity-verification-login.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "reset-password-com.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "fileshelpprotut.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "access-apple-login-account.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "adawareblock.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "servicetransferemail.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "privatenewstoday.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "live-settings.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "android-soft.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "645547657668787.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "web-privacy-guardian.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "mslinux-update.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "secure-mobile-login1.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "login-bancochile-cl.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "apple-realertlogin.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "secure-management-login-account-index-webpass.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "locked-service-security.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "alert-new-login-com.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "secure-login-helpid-locked.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "jp-login.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "accountverify-disableinfo-login.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "secure-bankofamerica--login-com.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "info-apple-login-security.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "accountlogin-inc.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "secure-bankofamerica--login-com.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "goldsecurity.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "account-verify-comfirmation-info-login.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "review-quilogin.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "change-password.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "security-login-information.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "login-unlock-account.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "browsersecurity.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "secure5647login-com.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "login-secure1-mobile.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "appleidcustomer-servicess-com-loginaccount.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "secure1-login-apps.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "login-sec-apple-secure-account-updated.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "appleidcustomer-servicess-com-loginaccount.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "secure1-client-login.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "login-recovery.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "appleid-manageaccountloginupdated.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "secure1-client-login.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "login-pap-web-access.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "appleid-login-appleid.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "manage-logins.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "com-supportlogin-adminverification.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "servicelogin-access-failed.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "manage-login.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "com-recoverylogin.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "service-login-apple-verify-account-locked.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "loginservice-maintanceserversecurity.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "clientareasecurity4.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "service-autoreset-password-youraccount.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "loginpaypaas-securityuserid.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "clientareasecurity1.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "service-account-home-login.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "loginapps-info.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "cleantarea-customerlogin-com.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "securitycenter.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "login-update-unlock.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "summary-loginconfirmation.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "ns-secures-login-accountjp-updates-community.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "documentshandler.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "statement-login-update-info.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "newfiles.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "documentation.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "srilankadocuments.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "newaction-loginactivituresource.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "dns-webapps-login-account-secure-servers.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "signin-login-php.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "mydocuments.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "dns-sec-login-apple-invoice-confirmations.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "sharefiles.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "mod-files.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "darksecurity.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "services-loginaccount.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "www-logined-apple-authsecure.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "recoverylogin-access.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "fileshelp.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "welcome-apple-protectyourpassword.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "protector-files.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "fileshelp.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "verify-login-account-iinformation.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "pdf-document.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "failure-login.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "verify-login-account-iinformation.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "ourfiles.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "facebook-login-page.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "unsecured-login-attempt.ga"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "nursingdocumentation.gq"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "domain",
+          "value": "emailloginerror.gq"
+        }
+      ],
+      "objects": [],
+      "reports": []
+    }
+  },
+  "agent_2": {
+    "model_used": "mistral-small3.2:latest",
+    "retrieved_nice_information": "nice_info",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent2 file)'"
+    }
+  },
+  "agent_3": {
+    "model_used": "mistral-small3.2:latest",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent3 file)'"
+    }
+  }
+}
