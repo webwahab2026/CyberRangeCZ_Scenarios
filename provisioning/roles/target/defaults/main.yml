@@ -1,0 +1,17 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: hmar6.jar
+  content: "hmar6.jar\n"
+- name: 15af5bbf3c8d5e5db41fd7c3d722e8b247b40f2da747d5c334f7fd80b715a649
+  content: "15af5bbf3c8d5e5db41fd7c3d722e8b247b40f2da747d5c334f7fd80b715a649\n"
+- name: k.class
+  content: "k.class\n"
+packages_to_install:
+- openssh-server

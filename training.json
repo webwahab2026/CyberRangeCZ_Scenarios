@@ -1,0 +1,183 @@
+{
+  "title": "CrossRAT_Investigation_428",
+  "description": "You are an incident responder tasked with investigating a potential CrossRAT infection on a target system. CrossRAT is a backdoor malware capable of remote access and control, data exfiltration, and maintaining persistence on infected systems. Your goal is to identify and mitigate the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify suspicious services and processes.",
+    "Investigate persistence mechanisms.",
+    "Analyze network communication for command-and-control (C2) activity.",
+    "Collect forensic evidence.",
+    "Contain and eradicate the threat."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential CrossRAT infection on a target system. CrossRAT is a backdoor malware capable of remote access and control, data exfiltration, and maintaining persistence on infected systems. Your goal is to identify and mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target system via SSH using the provided credentials.",
+      "local_content": "Access the target system via SSH using the provided credentials."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "hmar6.jar.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the target system, you notice unusual network activity. Investigate the running services on the target system to identify any unauthorized or suspicious services. The flag type is a service name.",
+      "solution": "Use the command `systemctl list-units --type=service` to list all running services. The flag is the name of the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the list of running services and look for any that seem out of place or unfamiliar.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service name is a systemd service file. Look for files ending in .service in the /etc/systemd/system directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "hmar6.jar.timer",
+      "answer_variable_name": null,
+      "content": "Now that you have identified a suspicious service, determine how it is automatically started after a system reboot. This will help you understand the persistence mechanism used by the malware. The flag type is a timer name.",
+      "solution": "Use the command `systemctl list-timers` to list all systemd timers. The flag is the name of the timer associated with the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate systemd services and timers to find any related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-timers` to list all systemd timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The persistence mechanism is a systemd timer file. Look for files ending in .timer in the /etc/systemd/system directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2223",
+      "answer_variable_name": null,
+      "content": "Analyze the network traffic associated with the suspicious service to determine which port is used for command-and-control (C2) communication. This information is crucial for containing the threat. The flag type is a port number.",
+      "solution": "Use the command `ss -tulnp` to list all listening ports. The flag is the port number used for C2 communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use network monitoring tools to inspect the traffic and identify the suspicious port.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ss -tulnp` to list all listening ports.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for a port that is not commonly used by standard services. The suspicious port is likely to be a high-numbered port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
