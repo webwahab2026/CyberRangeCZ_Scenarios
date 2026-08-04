@@ -1,0 +1,174 @@
+{
+  "title": "Linux_P2P_Ransom_Botnet_Investigation_5ec",
+  "description": "Investigate a compromised system infected with the Linux P2P Ransom botnet ransomware, identify indicators of compromise, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of netstat",
+    "Log analysis techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has been compromised by the Linux P2P Ransom botnet ransomware. This malware combines ransomware capabilities with botnet functionality, targeting Linux systems. It uses a peer-to-peer (P2P) network for communication and command and control (C2) purposes, making it resilient to traditional takedown methods.\n\nYour task is to investigate the compromised system, identify the indicators of compromise, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano"
+    },
+    {
+      "title": "Identify the Command-and-Control Server IP Address",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.5",
+      "answer_variable_name": null,
+      "content": "Identify the command-and-control server IP address used by the ransomware. The flag type is a single IP address.\n\nHint: Check network connections and logs for suspicious outbound connections. Use the commands `netstat -tuln`, `ss -tuln`, or `lsof -i` to list all active network connections.\n\nQuestion: What is the IP address of the command-and-control server?",
+      "solution": "To identify the command-and-control server IP address, you can check network connections and logs for suspicious outbound connections. Look for connections to the IP address 192.168.90.5, which is the C2 server in the topology. You can use the commands `netstat -tuln`, `ss -tuln`, or `lsof -i` to list all active network connections. The flag is 192.168.90.5.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check network connections and logs for suspicious outbound connections. Use the commands `netstat -tuln`, `ss -tuln`, or `lsof -i` to list all active network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for connections to the IP address 192.168.90.5, which is the C2 server in the topology.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "netstat -tuln",
+        "ss -tuln",
+        "lsof -i"
+      ],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4443",
+      "answer_variable_name": null,
+      "content": "Determine which network port is used for suspicious command-and-control communication. The flag type is a single port number.\n\nHint: Investigate network traffic to identify unusual ports used by the ransomware. Use the commands `netstat -tuln | grep 192.168.90.5`, `ss -tuln | grep 192.168.90.5`, or `lsof -i | grep 192.168.90.5` to filter connections to the C2 server.\n\nQuestion: What is the port number used for command-and-control communication?",
+      "solution": "To determine the network port used for suspicious command-and-control communication, investigate network traffic to identify unusual ports used by the ransomware. The port number used for command-and-control communication is 4443. You can use the commands `netstat -tuln | grep 192.168.90.5`, `ss -tuln | grep 192.168.90.5`, or `lsof -i | grep 192.168.90.5` to filter connections to the C2 server. The flag is 4443.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate network traffic to identify unusual ports used by the ransomware. Use the commands `netstat -tuln | grep 192.168.90.5`, `ss -tuln | grep 192.168.90.5`, or `lsof -i | grep 192.168.90.5` to filter connections to the C2 server.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "The port number used for command-and-control communication is 4443.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln | grep 192.168.90.5",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln | grep 192.168.90.5",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "netstat -tuln | grep 192.168.90.5",
+        "ss -tuln | grep 192.168.90.5",
+        "lsof -i | grep 192.168.90.5"
+      ],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Exfiltrated Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "quarterly_report.txt, employee_data.csv, passwords.txt",
+      "answer_variable_name": null,
+      "content": "Identify files or datasets that were transferred outside the environment before encryption. The flag type is a comma-separated list of filenames.\n\nHint: Analyze logs, file access records, and network activity to determine what data was exfiltrated. Use the commands `grep -r '192.168.90.5' /var/log/`, `cat /var/log/syslog | grep '192.168.90.5'`, or `journalctl | grep '192.168.90.5'` to search for exfiltrated data in logs.\n\nQuestion: What are the names of the exfiltrated files?",
+      "solution": "To identify files or datasets that were transferred outside the environment before encryption, analyze logs, file access records, and network activity to determine what data was exfiltrated. The names of the exfiltrated files are quarterly_report.txt, employee_data.csv, and passwords.txt. You can use the commands `grep -r '192.168.90.5' /var/log/`, `cat /var/log/syslog | grep '192.168.90.5'`, or `journalctl | grep '192.168.90.5'` to search for exfiltrated data in logs. The flags are quarterly_report.txt, employee_data.csv, and passwords.txt.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Analyze logs, file access records, and network activity to determine what data was exfiltrated. Use the commands `grep -r '192.168.90.5' /var/log/`, `cat /var/log/syslog | grep '192.168.90.5'`, or `journalctl | grep '192.168.90.5'` to search for exfiltrated data in logs.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "The names of the exfiltrated files are quarterly_report.txt, employee_data.csv, and passwords.txt.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "grep -r '192.168.90.5' /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r '192.168.90.5' /var/log/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "grep -r '192.168.90.5' /var/log/",
+        "cat /var/log/syslog | grep '192.168.90.5'",
+        "journalctl | grep '192.168.90.5'"
+      ],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
