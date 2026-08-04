@@ -1,0 +1,199 @@
+{
+  "title": "Sednit_Backdoor_Investigation_829",
+  "description": "Investigate a compromised host exhibiting signs of Sednit backdoor activity.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Learn to identify suspicious services using systemd service management",
+    "Learn to determine persistence mechanisms using systemd timers",
+    "Learn to identify suspicious processes using process monitoring tools"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Sednit group is known for using sophisticated malware to compromise networks. In this scenario, you will investigate a compromised host that exhibits signs of Sednit backdoor activity. Your goal is to identify and mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can investigate the host and perform necessary actions to contain and eradicate the threat. Enter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can investigate the host and perform necessary actions to contain and eradicate the threat. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "scroll.dll",
+      "answer_variable_name": null,
+      "content": "Investigate the `target` host and identify the suspicious service running on the system.",
+      "solution": "Run `systemctl list-units --type=service` to list all services and look for the suspicious service named `scroll.dll`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by listing all services running on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services that seem out of place or have unusual configurations.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service has an unusual name.",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Fourth hint title",
+          "content": "Use the command `systemctl list-units --type=service` to find the service.",
+          "hint_penalty": 3,
+          "order": 3
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service.*scroll.dll",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory",
+      "answer_variable_name": null,
+      "content": "Determine the timer responsible for the persistence of the suspicious service.",
+      "solution": "Run `systemctl list-timers` to list all timers and look for the timer named `local-inventory`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by listing all timers running on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers that seem out of place or have unusual configurations.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The timer responsible for the persistence has an unusual name.",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Fourth hint title",
+          "content": "Use the command `systemctl list-timers` to find the timer.",
+          "hint_penalty": 3,
+          "order": 3
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers.*local-inventory",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Suspicious Process",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "ncat",
+      "answer_variable_name": null,
+      "content": "Identify the process responsible for suspicious activity on the host.",
+      "solution": "Run `ps aux` to list all processes and look for the process named `ncat`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by listing all processes running on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for processes that seem out of place or have unusual configurations.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The process responsible for the suspicious activity has an unusual name.",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Fourth hint title",
+          "content": "Use the command `ps aux` to find the process.",
+          "hint_penalty": 3,
+          "order": 3
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "process_identification",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux.*ncat",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
