@@ -1,0 +1,183 @@
+{
+  "title": "Sofacy_Fysbis_Backdoor_Investigation_146",
+  "description": "Investigate and respond to a Sofacy group Fysbis Linux backdoor compromise in the target network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services including 'bkd.service'",
+    "Determine persistence mechanisms such as 'payload-transfer.timer'",
+    "Analyze network communications for command-and-control activity on port 80",
+    "Collect forensic evidence",
+    "Contain and eradicate the threat"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Sofacy group using their Fysbis Linux backdoor. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "Local sandbox access is not required for this scenario. Enter the word 'start' to begin."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for suspicious services or processes.\n\n**Question:** What is the name of the suspicious service running on the target host? Look for the service named 'bkd.service'.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Check running services and look for anything unusual or unauthorized.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestions",
+          "content": "Use commands like `systemctl list-units --type=service` or `ps aux` to list all running services and processes.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service named 'bkd.service' which appears to be suspicious.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service maintains persistence on the target host.\n\n**Question:** What is the persistence mechanism used by the suspicious service? Look for the timer named 'payload-transfer.timer'.",
+      "solution": "systemctl list-unit-files",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Investigate systemd services and timers that might be responsible for starting the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestions",
+          "content": "Use commands like `systemctl list-unit-files` and `systemctl list-timers` to investigate persistence mechanisms.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a timer named 'payload-transfer.timer' which is used for persistence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Network Communications",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "Analyze the network communications of the suspicious service to identify command-and-control activity.\n\n**Question:** What network port is used for the suspicious communication? Look for connections on port 80.",
+      "solution": "ss -tulnp",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Examine network connections and look for unusual outbound traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestions",
+          "content": "Use commands like `ss -tulnp` or `netstat -tulnp` to examine network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for connections on port 80 which is used for suspicious communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
