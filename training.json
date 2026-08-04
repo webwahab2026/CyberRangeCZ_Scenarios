@@ -1,0 +1,182 @@
+{
+  "title": "NyaDrop_Incident_Response_Scenario_71c",
+  "description": "Investigate and respond to a Linux/NyaDrop backdoor malware incident.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemd commands",
+    "Identifying suspicious services",
+    "Determining persistence mechanisms",
+    "Identifying associated malicious files"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Linux/NyaDrop backdoor malware. This malware targets MIPS-based IoT devices and opens an internet socket to remotely connect to a remote host for receiving data of any Linux executable stream intended to infect the compromised machine. The received data is saved as 'nya' ELF malware file and then executed by Linux/NyaDrop with its permission privilege on the targeted MIPS CPU architecture device. The 'nya' dropped file is deleted every time the next new attacks are successfully logged in to the MIPS machine and then updating the previously saved 'nya' malware.\n\nThe malware uses systemd services and timers for persistence and executes a malicious file named 'nya'.\n\nYour task is to investigate and respond to this incident. You will need to identify suspicious services, determine persistence mechanisms, and identify associated malicious files. The flags you need to find are text strings."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Hostname: target\n- Username: cyrano\n- Password: cyrano\n\nFrom the target host, you can SSH to the next-target host using the same credentials.",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for any suspicious services or processes.\n\nQuestion: What is the name of the suspicious service running on the target host? The flag is a text string.",
+      "solution": "The flag is `payload-transfer.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd services can be checked to identify any suspicious or unfamiliar services running on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for services that are unfamiliar or do not belong to standard system services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot.\n\nQuestion: What is the persistence mechanism used by the suspicious service? The flag is a text string.",
+      "solution": "The flag is `payload-transfer.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms can often be found in systemd timers that trigger services periodically.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `systemctl list-timers` to list all systemd timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for timers that are associated with the suspicious service identified in the previous step.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Associated File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "nya",
+      "answer_variable_name": null,
+      "content": "Identify the file associated with the suspicious activity.\n\nQuestion: What is the name of the file associated with the suspicious service? The flag is a text string.",
+      "solution": "The flag is `nya`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malicious files are often found in the home directory of the user running the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `ls -la /home/cyrano` to list files in the user's home directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for files with unusual names or permissions that might indicate malicious activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_files",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano",
+          "cmd_type": "bash-command",
+          "cmd_regex": "nya",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
