@@ -1,0 +1,163 @@
+{
+  "title": "Linux.Proxy.10_Incident_Response_Scenario_ceb",
+  "description": "Investigate and respond to a potential compromise on a victim host exhibiting unusual behavior.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemd timers and services",
+    "Analyzing network connections",
+    "Locating hidden directories and unusual file paths"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected network connections and suspicious scheduled tasks. Your task is to investigate and respond to this potential compromise."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano"
+    },
+    {
+      "title": "Investigate Suspicious Scheduled Tasks",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the suspicious scheduled tasks on the victim host. Identify and analyze any unauthorized or suspicious scheduled tasks that may be related to the malware.",
+      "solution": "Check the systemd timers and services that are running on the system. Look for any suspicious or unauthorized tasks, such as those related to the trojan. The flag is network-diagnostics.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Check the systemd timers and services that are running on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second Hint",
+          "content": "Look for any suspicious or unauthorized tasks, such as those related to the trojan.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_scheduled_tasks",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Files Installed by the Malware",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/lib/.netd/install.log",
+      "answer_variable_name": null,
+      "content": "Locate files installed by the malware on the compromised host. Find any files that were introduced by the trojan and analyze their contents.",
+      "solution": "Look for hidden directories and unusual file paths that may contain malware components. Check directories like /usr/local/lib/.netd and /var/lib/.netd. The flag is /var/lib/.netd/install.log.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Look for hidden directories and unusual file paths that may contain malware components.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second Hint",
+          "content": "Check directories like /usr/local/lib/.netd and /var/lib/.netd.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "locate_malware_files",
+          "prereq_state": [],
+          "cmd": "ls -la /usr/local/lib/.netd",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /usr/local/lib/.netd",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the External Host Communicating with the Compromised System",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.60.20",
+      "answer_variable_name": null,
+      "content": "Determine the external host communicating with the compromised system. Analyze network connections to identify the command-and-control server.",
+      "solution": "Check the network connections and logs to find any suspicious outbound connections. Look for connections to the C2 server at 192.168.60.20 on ports 18902 and 5555. The flag is 192.168.60.20.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First Hint",
+          "content": "Check the network connections and logs to find any suspicious outbound connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second Hint",
+          "content": "Look for connections to the C2 server at 192.168.60.20 on ports 18902 and 5555.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "analyze_network_connections",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
