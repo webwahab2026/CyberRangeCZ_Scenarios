@@ -1,0 +1,95 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "issues": [
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Suspicious Network Activity",
+      "description": "The flag 'bkd.service' is not explicitly mentioned in the task description.",
+      "fix": "Update the task description to explicitly mention the flag type and expected format."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Analyze Suspicious Service",
+      "description": "The flag 'systemd timer' is not explicitly mentioned in the task description.",
+      "fix": "Update the task description to explicitly mention the flag type and expected format."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Lateral Movement",
+      "description": "The flag 'rsync next-target' is not explicitly mentioned in the task description.",
+      "fix": "Update the task description to explicitly mention the flag type and expected format."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each level does not mention the flag explicitly.",
+      "fix": "Update the 'solution' for each level to explicitly mention the flag."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each level includes only commands and does not provide methodology.",
+      "fix": "Update the 'solution' for each level to include methodology and commands."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'hints' do not include helpful commands.",
+      "fix": "Update the 'hints' to include helpful commands."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Network Activity",
+      "current_flag": "bkd.service",
+      "recommendation": "Explicitly mention the flag type and expected format in the task description."
+    },
+    {
+      "level": "Analyze Suspicious Service",
+      "current_flag": "systemd timer",
+      "recommendation": "Explicitly mention the flag type and expected format in the task description."
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "current_flag": "rsync next-target",
+      "recommendation": "Explicitly mention the flag type and expected format in the task description."
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "Hosts and networks are correctly configured.",
+      "SSH access is properly set up between hosts.",
+      "Services and timers are correctly configured."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Investigate Suspicious Network Activity",
+      "revised_flag": "bkd.service"
+    },
+    {
+      "level": "Analyze Suspicious Service",
+      "revised_flag": "systemd timer"
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "revised_flag": "rsync next-target"
+    }
+  ],
+  "summary": "The scenario is well-designed and aligns with the provided topology and provisioning files. However, there are some minor issues with flag coherence and training quality that need to be addressed. The scenario covers the attack chain completely and accurately, with a strong narrative and correct difficulty progression."
+}

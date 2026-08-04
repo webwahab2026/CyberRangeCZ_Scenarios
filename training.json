@@ -1,0 +1,181 @@
+{
+  "title": "BlackTech_PLEAD_Backdoor_Investigation_0f2",
+  "description": "Investigate and respond to a potential compromise by the BlackTech group using the PLEAD backdoor malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity originating from the target host. Initial analysis suggests a potential compromise by the BlackTech group using the PLEAD backdoor malware. Your task is to investigate and respond to this incident. This training will guide you through the process of identifying and mitigating the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) in the cloud sandbox. Enter the word 'start' to progress to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) in the local sandbox. Username: cyrano, Password: cyrano. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Users have reported slow network performance. Investigate the target host for any suspicious network activity that could be causing this issue. Identify the exact service name running on port 4444.",
+      "solution": "Run 'netstat -tulnp | grep 4444' to identify the service name running on port 4444. The flag is the service name, which is 'bkd.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the nature of network services and how they can impact performance.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Check the network connections and running services on the target host using the command 'netstat -tulnp'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Specific Port Hint",
+          "content": "Look for any unusual services running on the target host, specifically on port 4444.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tulnp | grep 4444",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tulnp | grep 4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemd timer",
+      "answer_variable_name": null,
+      "content": "A suspicious service has been identified. Analyze this service to determine its purpose and potential impact on the system. Identify the exact persistence mechanism of the service.",
+      "solution": "Run 'systemctl cat bkd.service' to identify the persistence mechanism of the service. The flag is the persistence mechanism, which is 'systemd timer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand the importance of service persistence mechanisms in maintaining access to compromised systems.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Examine the service configuration and logs using the command 'systemctl cat bkd.service'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Specific Mechanism Hint",
+          "content": "Look for any persistence mechanisms used by the service, such as systemd timers or cron jobs.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "rsync next-target",
+      "answer_variable_name": null,
+      "content": "Evidence suggests that the attacker may have moved laterally to another host. Investigate the target host for any signs of lateral movement. Identify the exact destination host of the lateral movement command.",
+      "solution": "Run 'ps aux | grep rsync' to identify the destination host of the lateral movement command. The flag is the destination host, which is 'rsync next-target'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand the methods attackers use to move laterally within a network, such as file transfers and remote execution.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Check for any file transfers or remote execution commands using the command 'ps aux | grep rsync'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Specific Command Hint",
+          "content": "Look for any commands that indicate lateral movement, such as rsync or scp commands.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ps aux | grep rsync",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux | grep rsync",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
