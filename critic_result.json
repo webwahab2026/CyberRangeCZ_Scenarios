@@ -1,0 +1,67 @@
+{
+  "coherence_score": 8,
+  "verdict": "approved",
+  "issues": [
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The difficulty progression is correct, but the hints could be more progressive.",
+      "fix": "Ensure hints escalate from conceptual to near-spoiler more gradually."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The solutions do not explicitly mention the flag type.",
+      "fix": "Update solutions to include the flag type."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "bot-beacon.service",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Abnormal Network Traffic Service",
+      "current_flag": "bot-flood.service",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Service Persistence",
+      "current_flag": "bot-beacon.timer",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "bot-beacon.service",
+      "bot-flood.service",
+      "bot-beacon.timer"
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Identify Suspicious Service",
+      "revised_flag": "bot-beacon.service"
+    },
+    {
+      "level": "Identify Abnormal Network Traffic Service",
+      "revised_flag": "bot-flood.service"
+    },
+    {
+      "level": "Determine Service Persistence",
+      "revised_flag": "bot-beacon.timer"
+    }
+  ],
+  "summary": "The scenario is well-designed with coherent flags, accurate training levels, and a strong narrative. Minor improvements can be made to the hints and solutions for better clarity and progression."
+}
