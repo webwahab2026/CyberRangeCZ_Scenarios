@@ -1,0 +1,181 @@
+{
+  "title": "KAITEN_Botnet_Incident_Response_Scenario_82f",
+  "description": "Investigate and respond to a KAITEN botnet incident on the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and potential security incidents related to the KAITEN botnet family. Your task is to investigate and respond to these incidents. This scenario will help you develop skills in identifying suspicious services, abnormal traffic, and persistence mechanisms."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim machine with the following credentials:\n- Host: victim\n- Username: ubuntu\n- Password: ubuntu\n\nEnter the word 'start' to progress to the next level.",
+      "local_content": "You have SSH access to the victim machine with the following credentials:\n- Host: victim\n- Username: ubuntu\n- Password: ubuntu\n\nEnter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication.\n\n**Question:** What is the name of the suspicious systemd timer responsible for periodic external communication?",
+      "solution": "Check running services and look for unusual network connections. The suspicious service is likely responsible for periodic external communication. Use the command `systemctl list-timers` to list all systemd timers and identify the suspicious service. The flag type is the name of the timer.\n\n**Answer:** system-update-checker.timer",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Start by understanding the types of services that might be responsible for periodic external communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestions",
+          "content": "Use `systemctl list-timers` to list all systemd timers and investigate them for unusual behavior.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for systemd timers making periodic outbound connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "system-update-checker.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Abnormal Traffic Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.timer",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic.\n\n**Question:** What is the name of the systemd timer generating abnormal volumes of network traffic?",
+      "solution": "Investigate network connections and look for services making excessive outbound requests. The service generating abnormal traffic is likely responsible for generating abnormal volumes of network traffic. Use the command `ss -tulnp` to list all network connections and identify the suspicious service. The flag type is the name of the timer.\n\n**Answer:** bot-flood.timer",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Understand the types of services that might generate abnormal volumes of network traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestions",
+          "content": "Use `ss -tulnp` to list all network connections and investigate them for unusual behavior.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check for systemd timers making frequent outbound connections to the victim machine.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-flood.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot.\n\n**Question:** What is the name of the systemd timer used as the persistence mechanism by the suspicious service?",
+      "solution": "Check systemd timers and services for clues about how the service is started automatically. The persistence mechanism is likely a systemd timer used for persistence. Use the command `systemctl list-timers` to list all systemd timers and identify the persistence mechanism. The flag type is the name of the timer.\n\n**Answer:** system-update-checker.timer",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Understand the different methods that services can use to persist after a reboot.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestions",
+          "content": "Use `systemctl list-timers` to investigate timers and services for persistence mechanisms.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for systemd timers that trigger the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "system-update-checker.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
