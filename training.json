@@ -1,0 +1,163 @@
+{
+  "title": "Linux_P2P_Ransom_Botnet_Investigation_2bb",
+  "description": "Investigate a compromised system infected with the Linux P2P Ransom botnet ransomware, identify indicators of compromise, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of netstat",
+    "Usage of ss",
+    "Log analysis techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has been compromised by the Linux P2P Ransom botnet ransomware. This malware combines ransomware capabilities with botnet functionality, targeting Linux systems. It uses a peer-to-peer (P2P) network for communication and command and control (C2) purposes, making it resilient to traditional takedown methods.\n\nYour task is to investigate the compromised system, identify the indicators of compromise, and contain the threat. The flags you will need to find include IP addresses, port numbers, and filenames."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano"
+    },
+    {
+      "title": "Identify the Command-and-Control Server IP Address",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.5",
+      "answer_variable_name": null,
+      "content": "Identify the command-and-control server IP address used by the ransomware.\n\nHint: Examine network connections and logs on the victim host to find suspicious outbound connections.\n\nQuestion: What is the IP address of the command-and-control server?",
+      "solution": "To identify the command-and-control server IP address, examine network connections and logs on the victim host. Look for suspicious outbound connections to external IP addresses. Use the command `netstat -tuln | grep ESTABLISHED` to identify the IP address.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `netstat -tuln` to examine network connections and look for suspicious outbound connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for suspicious outbound connections to external IP addresses using the command `ss -tulnp`.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln | grep ESTABLISHED",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln | grep ESTABLISHED",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Command-and-Control Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4443",
+      "answer_variable_name": null,
+      "content": "Determine which network port is used for suspicious command-and-control communication.\n\nHint: Investigate network traffic and process information to identify the port used by the ransomware for C2 communication.\n\nQuestion: What is the port number used for command-and-control communication?",
+      "solution": "To determine the network port used for suspicious command-and-control communication, investigate network traffic and process information. Use the command `netstat -tuln | grep 4443` to identify the port.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `netstat -tuln` to investigate network traffic and identify the port used by the ransomware for C2 communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for suspicious network traffic on specific ports using the command `ss -tulnp`.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln | grep 4443",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln | grep 4443",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Exfiltrated Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "quarterly_report.txt",
+      "answer_variable_name": null,
+      "content": "Identify a file or dataset that was transferred outside the environment before encryption.\n\nHint: Analyze logs, file access records, and network activity to determine what data was exfiltrated.\n\nQuestion: What is the name of an exfiltrated file?",
+      "solution": "To identify a file or dataset that was transferred outside the environment before encryption, analyze logs, file access records, and network activity. Use the command `grep -r 'quarterly_report.txt' /var/log/` to identify the exfiltrated file.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `grep -r 'quarterly_report.txt' /var/log/` to analyze logs and file access records.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for files that were transferred to the exfil-server using the command `grep -r 'exfil-server' /var/log/`.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "grep -r 'quarterly_report.txt' /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r 'quarterly_report.txt' /var/log/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
