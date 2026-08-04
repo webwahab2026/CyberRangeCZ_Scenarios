@@ -1,0 +1,16 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.70.5", name: "c2-server"}
+- {ip: "192.168.70.10", name: "bot1"}
+- {ip: "192.168.70.11", name: "bot2"}
+packages_to_install:
+- openssh-server
+- netcat-openbsd
+files_to_copy: []
+files_to_create:
+- name: AirDropBot binary
+  content: "AirDropBot binary"
+- name: 9c66fbe776a97a8613bfa983c7dca149
+  content: "9c66fbe776a97a8613bfa983c7dca149"

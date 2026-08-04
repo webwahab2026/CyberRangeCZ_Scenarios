@@ -1,0 +1,228 @@
+{
+  "title": "Linux_AirDropBot_Botnet_Investigation_74e",
+  "description": "Investigate and respond to unusual traffic patterns and potential security incidents caused by the Linux/AirDropBot botnet.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Usage of netstat"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and potential security incidents. Your task is to investigate and respond to these issues. The Linux/AirDropBot botnet is known for creating periodic beaconing traffic and generating abnormal volumes of network traffic. It typically maintains persistence using systemd timers and services. The botnet is designed to evade detection by mimicking legitimate system activities and using encrypted communication channels. It often targets Linux-based systems with exposed services and weak credentials. In this training, you will identify suspicious services, investigate abnormal traffic, and determine the persistence mechanisms used by the botnet."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: ubuntu\n- Password: ubuntu\n\nEnter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: ubuntu\n- Password: ubuntu\n\nEnter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication.\n\n**Question:** What is the name of the suspicious service responsible for periodic external communication?",
+      "solution": "Check running services and look for unusual network connections. The suspicious service is likely the systemd service named 'bot-beacon.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd services can be listed and inspected to identify unusual or unauthorized services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the 'systemctl list-units --type=service' command to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service named 'bot-beacon.service' that might be responsible for periodic external communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl status bot-beacon.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bot-beacon.service",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tulnp | grep bot-beacon",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tulnp | grep bot-beacon",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Abnormal Traffic Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.service",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic.\n\n**Question:** What is the name of the service generating abnormal volumes of network traffic?",
+      "solution": "Investigate systemd services and check for unusual network activity. The service generating abnormal traffic is likely the systemd service named 'bot-flood.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd timers can be used to schedule services to run periodically, which might generate abnormal network traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the 'systemctl list-timers' command to list all systemd timers and their associated services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service named 'bot-flood.service' that might be responsible for generating abnormal volumes of network traffic.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl status bot-flood.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bot-flood.service",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tulnp | grep bot-flood",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tulnp | grep bot-flood",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot.\n\n**Question:** What is the persistence mechanism used by the suspicious service?",
+      "solution": "Examine systemd timers and services. The persistence mechanism is likely a systemd timer named 'bot-beacon.timer' that starts the service periodically.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms can include systemd timers that start services periodically, ensuring they run even after a system reboot.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the 'systemctl list-timers --all' command to list all systemd timers and their associated services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a timer named 'bot-beacon.timer' that might be responsible for starting the suspicious service periodically.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl status bot-beacon.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bot-beacon.timer",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat bot-beacon.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bot-beacon.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
