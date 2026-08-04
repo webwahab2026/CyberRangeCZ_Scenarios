@@ -1,0 +1,181 @@
+{
+  "title": "Linux_Remaiten_Botnet_Investigation_f1b",
+  "description": "Investigate a potential botnet infection, identify compromised systems, determine command-and-control infrastructure, and implement containment measures.",
+  "prerequisites": [
+    "Basic knowledge of Linux system administration",
+    "Basic knowledge of network security analysis"
+  ],
+  "outcomes": [
+    "Usage of systemctl for service management",
+    "Usage of ss for network connection analysis",
+    "Usage of tcpdump for network traffic analysis"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and performance degradation. Initial investigations suggest a potential botnet infection. Your task is to identify and analyze the compromised systems, determine the command-and-control infrastructure, and implement containment measures. The specific malware family under investigation is Linux/Remaiten, known for its periodic external communication and flooding capabilities. Linux/Remaiten typically uses a persistent service to maintain its presence and communicates with a command-and-control server to receive instructions and exfiltrate data."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the bot1 host with the following credentials:\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication.\n\n**Question:** What is the name of the suspicious service that communicates with an external host? (Flag type: service name)",
+      "solution": "Check running services and look for unusual network connections. The suspicious service is named `bot-beacon.service`. The flag type is a service name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider checking the running services on the system to identify any unusual or unauthorized services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for services that are not part of the standard system services. The suspicious service is named `bot-beacon.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Command-and-Control Server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.70.5",
+      "answer_variable_name": null,
+      "content": "Determine the external host communicating with the compromised system.\n\n**Question:** What is the IP address of the command-and-control server? (Flag type: IP address)",
+      "solution": "Investigate network connections and look for unusual destinations. The command-and-control server is at IP address `192.168.70.5`. The flag type is an IP address.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate the network connections to identify any unusual or unauthorized external communications.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `ss -tulnp` to investigate network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for connections to the IP address `192.168.70.5`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_check",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.70.5",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Target of Flood Attack",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.80.100",
+      "answer_variable_name": null,
+      "content": "Identify the system receiving the abnormal volume of network traffic generated by the compromised host.\n\n**Question:** What is the IP address of the system being targeted by the flood attack? (Flag type: IP address)",
+      "solution": "Analyze network flows to determine the victim of the flooding activity. The target system is at IP address `192.168.80.100`. The flag type is an IP address.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Analyze the network flows to identify any systems receiving an abnormal volume of traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `tcpdump -i any` to analyze network flows.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for traffic directed to the IP address `192.168.80.100`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_analysis",
+          "prereq_state": [],
+          "cmd": "tcpdump -i any",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.80.100",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
