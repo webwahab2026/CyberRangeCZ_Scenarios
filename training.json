@@ -1,0 +1,181 @@
+{
+  "title": "Hajime_Botnet_Investigation_b78",
+  "description": "Investigate and identify malicious activity in the network, determine its scope, and recommend containment measures.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemd services",
+    "Investigation of network traffic",
+    "Analysis of persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and potential security incidents. Your task is to investigate and identify any malicious activity related to the Hajime botnet family, determine its scope, and recommend containment measures."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host `victim` with the username `ubuntu` and password `ubuntu`. From there, you can investigate the network and connected devices. Enter the word `start` to proceed to the next level.",
+      "local_content": "You have SSH access to the victim host `victim` with the username `ubuntu` and password `ubuntu`. From there, you can investigate the network and connected devices. Enter the word `start` to proceed to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication. The correct answer is the service name `bot-beacon.service`.",
+      "solution": "To identify the suspicious service, start by listing all systemd services using the command `systemctl list-units --type=service`. Look for any unusual or recently created services. The service name you are looking for is `bot-beacon.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Start by understanding the systemd services and how they are managed. Look for any services that seem out of place or recently created.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestions",
+          "content": "Use the command `systemctl list-units --type=service` to list all services. This will help you identify any unusual or recently created services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The service you are looking for is named `bot-beacon.service`. Use the command `systemctl list-units --type=service | grep bot-beacon.service` to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep bot-beacon.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service | grep bot-beacon.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Abnormal Traffic Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.service",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic. The correct answer is the service name `bot-flood.service`.",
+      "solution": "To identify the abnormal traffic service, list all systemd services using the command `systemctl list-units --type=service`. Look for services that are not standard system services and check their configuration files. The service name you are looking for is `bot-flood.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Focus on services that are not standard system services. These might be responsible for generating abnormal network traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestions",
+          "content": "Use the command `systemctl list-units --type=service` to list all services. Then, inspect the configuration files of any suspicious services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The service you are looking for is named `bot-flood.service`. Use the command `systemctl list-units --type=service | grep bot-flood.service` to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep bot-flood.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service | grep bot-flood.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. The correct answer is the timer name `system-update-checker.timer`.",
+      "solution": "To determine the persistence mechanism, investigate the systemd timers and services. Use the command `systemctl list-timers` to list all timers. Look for any timers that are scheduled to run the suspicious services. The timer name you are looking for is `system-update-checker.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Understand how systemd timers and services work together to schedule tasks. Look for timers that might be responsible for starting the suspicious services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestions",
+          "content": "Use the command `systemctl list-timers` to list all timers. This will help you identify any timers that are scheduled to run the suspicious services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The timer you are looking for is named `system-update-checker.timer`. Use the command `systemctl list-timers | grep system-update-checker.timer` to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers | grep system-update-checker.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers | grep system-update-checker.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
