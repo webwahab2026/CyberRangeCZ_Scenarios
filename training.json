@@ -1,0 +1,181 @@
+{
+  "title": "Kinsing_Cryptominer_Investigation_68d",
+  "description": "Investigate a compromised network where Kinsing cryptominer has been detected.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identifying suspicious services",
+    "Analyzing process activity",
+    "Locating malicious executables"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Kinsing malware family is known to target Linux systems with cryptominers and rootkits. It exploits vulnerabilities to infect systems and establishes persistence mechanisms, such as modifying system configurations and creating backdoor accounts. In this scenario, you will investigate a compromised network where Kinsing has been detected."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the `miner-host` with the username `cyrano` and password `cyrano`. From this host, you can investigate the local system and potentially other connected hosts. Enter the word `start` to begin the scenario.",
+      "local_content": "Local sandbox access is not required for this scenario. Enter the word `start` to begin the scenario."
+    },
+    {
+      "title": "Investigate the suspicious service running on the host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor.service",
+      "answer_variable_name": null,
+      "content": "While monitoring system performance, you noticed unusually high CPU usage on `miner-host`. Investigate the running services to identify any unauthorized or suspicious services that might be responsible for this activity.",
+      "solution": "The flag is the service name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by checking the status of all running services and look for any that appear unusual or unauthorized.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for a service named `sys-monitor` in the list of running services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the process responsible for the abnormal CPU usage",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "kinsing",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, determine which process is responsible for the high CPU usage. This will help you understand the nature of the malicious activity.",
+      "solution": "The flag is the process name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Begin by using process monitoring tools to identify the process consuming the most CPU resources.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `top` or `htop` to monitor process activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command `top -b -n 1 | head -n 10` to see the top CPU-consuming processes.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "process_check",
+          "prereq_state": [],
+          "cmd": "top -b -n 1 | head -n 10",
+          "cmd_type": "bash-command",
+          "cmd_regex": "kinsing",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate the executable or file associated with the suspicious activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/sbin/sys-monitor",
+      "answer_variable_name": null,
+      "content": "With the suspicious process identified, locate the executable or file associated with this process. This will help you understand how the malware is being executed and where it is stored on the system.",
+      "solution": "The flag is the binary path.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by checking the paths and binaries associated with the suspicious process.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ps` command to find the path of the suspicious process.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command `ps aux | grep kinsing` to find the path of the suspicious process.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_check",
+          "prereq_state": [],
+          "cmd": "ps aux | grep kinsing",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/usr/local/sbin/kinsing",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
