@@ -1,0 +1,181 @@
+{
+  "title": "BRICKSTORM_Backdoor_Investigation_4fe",
+  "description": "Investigate the target system for suspicious activity and identify the source of unusual network behavior.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemd",
+    "Usage of systemctl",
+    "Service investigation techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network behavior, including unexpected outbound connections to unknown destinations. Your task is to investigate and identify the source of this suspicious activity. The system appears to be infected with a backdoor malware family known as BRICKSTORM. The learning objective is to use systemd and systemctl to investigate suspicious services and determine persistence mechanisms."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. Enter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious-backdoor.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target system for any unauthorized or suspicious services running on the host. Look specifically for a service named `malicious-backdoor.service`.",
+      "solution": "Use `systemctl list-units --type=service` to examine the list of running services and identify `malicious-backdoor.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd is the standard service manager on modern Linux systems. Use `systemctl` to list all running services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Examine the list of running services for any that appear unusual or unauthorized. Focus on services related to network connections or unusual processes.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "malicious-backdoor.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious-backdoor.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. Look specifically for a timer named `malicious-backdoor.timer`.",
+      "solution": "Use `systemctl list-timers` to examine the list of timers and identify `malicious-backdoor.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd timers are used to trigger services at specific intervals or after system events.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Examine the list of timers to identify any that are related to the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `systemctl list-timers` to list all timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "malicious-backdoor.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lateral-movement.service",
+      "answer_variable_name": null,
+      "content": "Identify file transfers or remote execution used to move between hosts. Look specifically for a service named `lateral-movement.service`.",
+      "solution": "Use `systemctl list-units --type=service` to examine the list of running services and identify `lateral-movement.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Attackers often use file transfers and remote execution services to move between hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodological Hint",
+          "content": "Examine the list of running services for any that are related to file transfers or remote execution.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_lateral_movement",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lateral-movement.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

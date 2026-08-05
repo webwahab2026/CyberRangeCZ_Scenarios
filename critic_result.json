@@ -1,0 +1,66 @@
+{
+  "coherence_score": 8,
+  "verdict": "approved",
+  "issues": [
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The scenario does not explicitly mention the type of flags in the training levels.",
+      "fix": "Explicitly mention the type of flags in the training levels."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each level does not mention the flag.",
+      "fix": "Include the flag in the 'solution' for each level."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "malicious-backdoor.service",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "malicious-backdoor.timer",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Lateral Movement",
+      "current_flag": "lateral-movement.service",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The topology and provisioning files correctly configure the target system with the required services and users.",
+      "The SSH access between the target and next-target systems is correctly set up."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Investigate Suspicious Services",
+      "revised_flag": "malicious-backdoor.service"
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "revised_flag": "malicious-backdoor.timer"
+    },
+    {
+      "level": "Identify Lateral Movement",
+      "revised_flag": "lateral-movement.service"
+    }
+  ],
+  "summary": "The scenario is well-designed with a coherent narrative and training levels that escalate in difficulty. The flags are correctly placed and reachable with the described steps. Minor improvements can be made by explicitly mentioning the type of flags and including the flags in the solutions."
+}

@@ -1,0 +1,17 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: vmsrc
+  content: "vmsrc\n"
+- name: 82bf31e7d768e6d4d3bc7c8c8ef2b358
+  content: "82bf31e7d768e6d4d3bc7c8c8ef2b358\n"
+- name: vmware-sphere
+  content: "vmware-sphere\n"
+packages_to_install:
+- openssh-server
