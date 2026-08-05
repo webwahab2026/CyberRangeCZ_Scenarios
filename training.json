@@ -1,0 +1,188 @@
+{
+  "title": "BiBi-Linux_Wiper_Incident_Response_071",
+  "description": "Investigate and respond to a BiBi-Linux Wiper malware incident affecting the corporate network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "File system analysis",
+    "Malware persistence mechanisms",
+    "Incident response procedures"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The corporate network has experienced a security incident involving data destruction. Investigate the affected systems to identify the cause and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the workstation host with the username `cyrano` and password `cyrano`. Enter the word `start` to proceed.",
+      "local_content": "You have SSH access to the workstation host with the username `cyrano` and password `cyrano`. Enter the word `start` to proceed."
+    },
+    {
+      "title": "Identify Evidence of File Destruction",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/data/company_files/[a-f0-9]{12}",
+      "answer_variable_name": null,
+      "content": "Investigate the workstation host to find evidence of file destruction. The hidden flag is the name of a file with a random hex name in the `/data/company_files` directory that has been intentionally destroyed or rendered unusable. Look for unusual file modifications, missing files, or files with suspicious names.",
+      "solution": "ls -la /data/company_files\nThe flag is the name of a file with a random hex name in the `/data/company_files` directory.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by examining the `/data/company_files` directory for anomalies.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ls -la /data/company_files` to list files in the directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Search for files with suspicious names using the command `find /data/company_files -type f -name '*.hex'`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /data/company_files",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /data/company_files",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "ls -la /data/company_files",
+        "find /data/company_files -type f -name '*.hex'"
+      ],
+      "commands_required": false
+    },
+    {
+      "title": "Locate the Malware Binary",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/sbin/disk-maintenance",
+      "answer_variable_name": null,
+      "content": "Search the workstation host for suspicious executables or binaries that might be responsible for the file destruction. The hidden flag is the path to the malware binary. Look for recently modified or created files in system directories, temporary directories, or user directories.",
+      "solution": "ls -la /usr/local/sbin\nThe flag is the path to the malware binary `/usr/local/sbin/disk-maintenance`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Begin by examining system directories for suspicious files.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ls -la /usr/local/sbin` to list files in the directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The malware binary is located at `/usr/local/sbin/disk-maintenance`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /usr/local/sbin",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /usr/local/sbin",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "ls -la /usr/local/sbin"
+      ],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "disk-maintenance.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the workstation host to find persistence mechanisms that allow the malware to execute automatically. The hidden flag is the name of the systemd timer responsible for executing the malware. Look for scheduled tasks, services, or startup scripts that might be related to the malware.",
+      "solution": "systemctl list-timers\nThe flag is the name of the systemd timer `disk-maintenance.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by examining systemd services and timers for suspicious entries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-timers` to list all systemd timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The persistence mechanism is the systemd timer `disk-maintenance.timer`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "systemctl list-timers"
+      ],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
