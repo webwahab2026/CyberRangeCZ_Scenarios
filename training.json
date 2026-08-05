@@ -1,0 +1,181 @@
+{
+  "title": "BiBi-Linux_Wiper_Incident_Response_68d",
+  "description": "Investigate and respond to a BiBi-Linux Wiper malware incident on a corporate network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Incident response techniques",
+    "Malware analysis",
+    "System investigation"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The corporate network has experienced a security incident involving data destruction. As an incident responder, your task is to investigate the affected systems, identify the cause of the incident, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the workstation (192.168.50.5) as user 'cyrano' with password 'cyrano'. From there, you can investigate the system and access other network resources as needed. Enter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the workstation (192.168.50.5) as user 'cyrano' with password 'cyrano'. From there, you can investigate the system and access other network resources as needed. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify Evidence of File Destruction",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "The name of a randomly renamed file in the /data/company_files directory.",
+      "answer_variable_name": null,
+      "content": "Investigate the workstation for signs of file destruction. Look for unusual file modifications, missing files, or other indicators that files have been intentionally destroyed.",
+      "solution": "Check the contents of the /data/company_files directory and look for unusual file names or modifications. The malware renames files to random hex strings. The flag is a randomly renamed file in the /data/company_files directory.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider how a wiper malware might alter file names to hide its activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Examine the /data/company_files directory for any files with unusual names.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The malware renames files to random hex strings in the /data/company_files directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_destruction_evidence",
+          "prereq_state": [],
+          "cmd": "ls -la /data/company_files",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /data/company_files",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate the Malware Binary",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/sbin/disk-maintenance",
+      "answer_variable_name": null,
+      "content": "Search the workstation for suspicious executables or binaries that might be responsible for the file destruction. Pay attention to unusual file locations, permissions, or timestamps.",
+      "solution": "Check the /usr/local/sbin directory for suspicious files. The malware binary is named 'disk-maintenance'. The flag is located at /usr/local/sbin/disk-maintenance.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Think about where malware authors might place their binaries to avoid detection.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Investigate the /usr/local/sbin directory for any suspicious files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The malware binary is named 'disk-maintenance' and is located in /usr/local/sbin.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "malware_binary_location",
+          "prereq_state": [],
+          "cmd": "ls -la /usr/local/sbin",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /usr/local/sbin",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "disk-maintenance.service",
+      "answer_variable_name": null,
+      "content": "Investigate the workstation for persistence mechanisms that might be used to automatically execute the malware. Look for scheduled tasks, services, or other methods of ensuring the malware runs automatically.",
+      "solution": "Check the contents of the /etc/systemd/system directory for suspicious service or timer files. The malware uses a systemd service named 'disk-maintenance.service' and a timer named 'disk-maintenance.timer'. The flag is 'disk-maintenance.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider how malware might maintain persistence on a Linux system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Examine the /etc/systemd/system directory for any suspicious service or timer files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The malware uses a systemd service named 'disk-maintenance.service' and a timer named 'disk-maintenance.timer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "ls -la /etc/systemd/system",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /etc/systemd/system",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
