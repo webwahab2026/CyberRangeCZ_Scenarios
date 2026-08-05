@@ -1,0 +1,183 @@
+{
+  "title": "UPSTYLE_Backdoor_Investigation_f2b",
+  "description": "Your organization has detected suspicious activity on one of its Linux servers. Initial analysis suggests the presence of a backdoor named UPSTYLE. Your task is to investigate, analyze, and respond to this cybersecurity incident.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services and processes.",
+    "Determine persistence mechanisms.",
+    "Analyze network traffic for command-and-control (C2) communication.",
+    "Collect forensic evidence.",
+    "Contain and eradicate the threat."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Your organization has detected suspicious activity on one of its Linux servers. Initial analysis suggests the presence of a backdoor named UPSTYLE. Your task is to investigate, analyze, and respond to this cybersecurity incident. Learning objectives include identifying suspicious services, determining persistence mechanisms, analyzing network traffic for command-and-control communication, collecting forensic evidence, and containing and eradicating the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the provided credentials. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the target host via SSH using the provided credentials. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "update.py.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the server, you noticed an unusual service running. Investigate the running services on the target host and identify any suspicious or unauthorized services. The flag is the name of the suspicious service.",
+      "solution": "Check the systemd services and look for any services that seem out of place. The suspicious service is named update.py.service. The flag is update.py.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd services are managed by the systemd init system. Suspicious services might have unusual names or configurations.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the systemctl command to list and inspect services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-units --type=service' to list all services. Look for any services that seem out of place.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "update.py.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "update.py.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after a reboot. Identify the persistence mechanism used by the service. The flag is the name of the timer.",
+      "solution": "Examine the systemd unit files and timers. The persistence mechanism is the timer named update.py.timer. The flag is update.py.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms ensure that a service starts automatically after a reboot. Timers are often used for this purpose.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the systemctl command to list and inspect timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-timers' to list all timers. Look for any timers that seem out of place.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "update.py.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "443",
+      "answer_variable_name": null,
+      "content": "Investigate the network traffic to determine which port is used for the suspicious communication. Identify the port used by the suspicious service to communicate with an external command-and-control server. The flag is the port number.",
+      "solution": "Check the network connections and listen ports. The port used for the suspicious communication is 443. The flag is 443.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Command-and-control (C2) communication often uses specific ports to exfiltrate data or receive commands. Common ports include 80, 443, and 8080.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use network utility commands to list listening ports and active connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'ss -tulnp' to list all listening ports. Look for any ports that seem out of place.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "443",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
