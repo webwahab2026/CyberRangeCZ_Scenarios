@@ -1,0 +1,181 @@
+{
+  "title": "ELF_IMEIJ.A_Backdoor_Investigation_8fb",
+  "description": "Investigate and mitigate the ELF_IMEIJ.A backdoor malware that exploits a vulnerability in AVTech devices.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Investigation of systemd services",
+    "Identification of malicious artifacts"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the ELF_IMEIJ.A backdoor malware. This malware exploits a vulnerability in AVTech devices to execute a command injection that triggers the malware download. It gathers system information and network activity data, executes shell commands from the malicious actor, initiates DDoS attacks, and can terminate itself. Your task is to investigate and mitigate this threat. This scenario will guide you through identifying suspicious services, determining persistence mechanisms, and locating malicious artifacts."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised system and take necessary actions. To progress to the next level, enter the word `start`.",
+      "local_content": "To progress to the next level, enter the word `start`. Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "Arm1.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the target host. Enumerate running services and distinguish legitimate from suspicious services. The flag is the name of the suspicious service.",
+      "solution": "To identify the suspicious service, you need to enumerate all running services on the system. Use the command `systemctl list-units --type=service` to list all running services. Look for any unusual or unauthorized services in the output. The flag is `Arm1.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding how services are managed in a Linux system. Systemd is the system and service manager for most modern Linux distributions.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use systemctl commands to list and investigate services. Focus on identifying any services that appear unusual or unauthorized.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services and look for any unusual or unauthorized services. The flag is `Arm1.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "Arm1.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "Arm1.service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. Identify persistence mechanisms (e.g., systemd, cron, scheduled task). The flag is the name of the suspicious service.",
+      "solution": "To determine the persistence mechanism, you need to investigate how the suspicious service is configured to start automatically. Use the command `systemctl list-timers` to list all systemd timers and look for any associated with the suspicious service. The flag is `Arm1.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms are methods used by malware to ensure it starts automatically after a system reboot. Common mechanisms include systemd services and timers, cron jobs, and scheduled tasks.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Investigate systemd timers to determine how the suspicious service is configured to start automatically. Use systemctl commands to list and investigate timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `systemctl list-timers` to investigate the systemd service configuration files and timers. Look for any timers associated with the suspicious service. The flag is `Arm1.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "Arm1.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malicious Artifact",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "Arm1",
+      "answer_variable_name": null,
+      "content": "Locate the executable or file associated with the suspicious activity. Correlate processes with files on disk and identify malicious artifacts. The flag is the name of the malicious artifact.",
+      "solution": "To locate the malicious artifact, you need to correlate processes with files on disk. Use the command `ls -la /home/cyrano/` to list all files in the directory and look for any associated with the suspicious service. The flag is `Arm1`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malicious artifacts are files or executables associated with suspicious activity. These can often be found in directories related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use file listing commands to investigate directories related to the suspicious service. Look for any unusual or unauthorized files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `ls -la /home/cyrano/` to check the logs and configuration files related to the suspicious service. Look for any files associated with the suspicious service. The flag is `Arm1`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "malicious_artifact",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "Arm1",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
