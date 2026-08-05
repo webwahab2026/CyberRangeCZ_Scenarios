@@ -1,0 +1,180 @@
+{
+  "title": "Pulse_Secure_VPN_Compromise_Investigation_213",
+  "description": "Investigate and respond to a potential compromise involving the PULSECHECK malware family.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of ss command",
+    "Usage of systemctl command"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity potentially related to the PULSECHECK malware family, a known threat that establishes persistent access and enables lateral movement within compromised networks. Your task is to investigate and respond to this potential compromise. The PULSECHECK malware is particularly dangerous as it can lead to data breaches, unauthorized access, and significant operational disruptions."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is at IP address 192.168.50.5. Enter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is at IP address 192.168.50.5. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you've noticed unusual outbound connections from the target system on port 4444. Investigate these connections to determine if they're malicious.",
+      "solution": "Check active network connections and listen ports on the target system. The suspicious port number is 4444. The flag type is a port number.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the nature of network connections and how they can be investigated.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for commands that can display active network connections and listening ports.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `ss -tulnp` to check active network connections and listen ports.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "You've identified a suspicious service named `bkd.service` running on the target system. Analyze this service to understand its behavior and determine if it's related to the PULSECHECK malware.",
+      "solution": "Examine the service configuration files and process details. The service name is `bkd.service`. The flag type is a service name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand what service configuration files and process details can tell you about a service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for commands that can display the status and details of a service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `systemctl status bkd.service` to check the status of the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "analyze_service",
+          "prereq_state": [],
+          "cmd": "systemctl status bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Evidence suggests that the attacker may be moving laterally within the network using a service named `payload-transfer.service`. Investigate the target system to find evidence of lateral movement.",
+      "solution": "Check for file transfers and remote execution commands. The service name is `payload-transfer.service`. The flag type is a service name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand what file transfers and remote execution commands can indicate about lateral movement.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for commands that can display the status and details of a service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `systemctl status payload-transfer.service` to check the status of the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "systemctl status payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
