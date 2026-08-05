@@ -1,0 +1,89 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "issues": [
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "description": "The flag 'sys-monitor' is correct but the solution does not mention the flag type.",
+      "fix": "Update the solution to explicitly mention the flag type (process name)."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Locate the executable associated with the suspicious process",
+      "description": "The flag '/usr/local/sbin/sys-monitor' is correct but the solution does not mention the flag type.",
+      "fix": "Update the solution to explicitly mention the flag type (file path)."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify the external communication destination",
+      "description": "The flag 'pool-server:3333' is correct but the solution does not mention the flag type.",
+      "fix": "Update the solution to explicitly mention the flag type (destination address and port)."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The difficulty escalation across levels is appropriate, but the hints could be more progressive.",
+      "fix": "Ensure hints follow a clear progression from conceptual to directional to near-spoiler."
+    },
+    {
+      "severity": "minor",
+      "component": "narrative",
+      "level": "Get Access",
+      "description": "The ACCESS_LEVEL does not explicitly instruct the trainee to enter the word 'start' before progressing to the next level in both `cloud_content` and `local_content`.",
+      "fix": "Update the ACCESS_LEVEL to explicitly instruct the trainee to enter the word 'start' in both `cloud_content` and `local_content`."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "current_flag": "sys-monitor",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate the executable associated with the suspicious process",
+      "current_flag": "/usr/local/sbin/sys-monitor",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify the external communication destination",
+      "current_flag": "pool-server:3333",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "miner-host with SSH access credentials (cyrano:cyrano)",
+      "pool-server with the mining pool listener on port 3333",
+      "miner-worker service running on miner-host",
+      "miner-spreader service configured to target second-host"
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "revised_flag": "sys-monitor"
+    },
+    {
+      "level": "Locate the executable associated with the suspicious process",
+      "revised_flag": "/usr/local/sbin/sys-monitor"
+    },
+    {
+      "level": "Identify the external communication destination",
+      "revised_flag": "pool-server:3333"
+    }
+  ],
+  "summary": "The scenario is well-designed with a coherent narrative and appropriate difficulty progression. The flags are correctly placed and reachable, but the solutions need to explicitly mention the flag types. The hints could be made more progressive. The sandbox configuration aligns well with the scenario requirements."
+}

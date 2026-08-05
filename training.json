@@ -1,0 +1,181 @@
+{
+  "title": "XMRig_Cryptominer_Investigation_db4",
+  "description": "Investigate and contain a cryptocurrency mining threat on Linux hosts.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identifying suspicious processes",
+    "Locating malicious executables",
+    "Analyzing network connections"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The cybersecurity team has detected unusual CPU usage patterns on several Linux hosts in the network. Initial analysis suggests potential XMRig cryptocurrency mining activity. Your task is to investigate and contain this threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the miner-host system with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nTo proceed to the next level, enter the word 'start'.",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Investigate the unusual CPU usage on miner-host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor",
+      "answer_variable_name": null,
+      "content": "The system administrator has reported consistently high CPU usage on miner-host. Your task is to identify the process responsible for this abnormal resource consumption. The flag is the name of the suspicious process.",
+      "solution": "To identify the suspicious process, follow these steps:\n1. Use the command `top` or `htop` to view running processes and their resource utilization.\n2. Look for processes consuming unusually high CPU resources.\n3. The flag is the name of the suspicious process, which is `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by checking the running processes on the system to identify any unusual activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Use commands like `top` or `htop` to view the processes and their resource utilization.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a process named `sys-monitor` which might be the suspicious process.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "process_check",
+          "prereq_state": [],
+          "cmd": "top",
+          "cmd_type": "bash-command",
+          "cmd_regex": "top",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate the executable associated with the suspicious process",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/sbin/sys-monitor",
+      "answer_variable_name": null,
+      "content": "After identifying the suspicious process, locate the executable file responsible for this activity. This will help you understand how the malware is operating on the system. The flag is the full path to the executable.",
+      "solution": "To locate the executable file, follow these steps:\n1. Use the command `which sys-monitor` to find the full path to the executable.\n2. The flag is the full path to the executable, which is `/usr/local/sbin/sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Once you have identified the suspicious process, the next step is to locate its executable file.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Use the `which` command followed by the process name to find the executable.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command `which sys-monitor` to get the full path to the executable.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "executable_location",
+          "prereq_state": [],
+          "cmd": "which sys-monitor",
+          "cmd_type": "bash-command",
+          "cmd_regex": "which sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the external communication destination",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "pool-server:3333",
+      "answer_variable_name": null,
+      "content": "Determine where the suspicious process is sending network traffic. This will help you understand the command and control infrastructure supporting this cryptomining activity. The flag is the destination address and port in the format 'hostname:port'.",
+      "solution": "To identify the external communication destination, follow these steps:\n1. Use the command `netstat -tulnp | grep sys-monitor` to examine active network connections.\n2. Look for connections involving the suspicious process.\n3. The flag is the destination address and port in the format 'hostname:port', which is `pool-server:3333`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate the network connections to determine where the suspicious process is communicating.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Use the `netstat` command to list active network connections and filter for the suspicious process.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command `netstat -tulnp | grep sys-monitor` to find the destination address and port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_connections",
+          "prereq_state": [],
+          "cmd": "netstat -tulnp | grep sys-monitor",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tulnp | grep sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
