@@ -1,0 +1,205 @@
+{
+  "title": "Kinsing_Rootkit_Investigation_301",
+  "description": "Investigate and contain the Kinsing rootkit in your organization's Linux environment.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of shared library injection",
+    "Detection of preload-based persistence",
+    "Forensic techniques for hidden artifacts"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Kinsing rootkit has been detected in your organization's Linux environment. This rootkit is known to exploit CVE-2023-46604 in Apache ActiveMQ to infect systems with cryptominers and establish persistence. Your task is to investigate and contain this threat. You will need to identify evidence of shared library injection, determine preload configuration modifications, and locate hidden filesystem artifacts. The Kinsing rootkit can cause significant damage to your organization, including unauthorized access, data theft, and system compromise. It can also lead to severe performance degradation and potential loss of sensitive data."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nYou also have SSH access to the attacker host with the same credentials:\n- Hostname: attacker (192.168.40.5)\n\nTo proceed, enter the word `start`.",
+      "local_content": "Local sandbox access is not required for this scenario.\n\nTo proceed, enter the word `start`."
+    },
+    {
+      "title": "Identify Evidence of Shared Library Injection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Identify evidence that a shared library has been injected into system processes.\n\n**Objective:** Investigate loaded libraries and detect unauthorized code injection.\n\n**Hint:** Start by understanding the concept of shared library injection.",
+      "solution": "To identify evidence of shared library injection, look for the shared library flag `/lib/x86_64-linux-gnu/libsysmon.so.1`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Shared library injection involves loading unauthorized libraries into system processes. This can be used to execute malicious code.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the `ldd` command to list the shared libraries used by a process. This command will help you identify any unusual or unexpected libraries.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Specific Hint",
+          "content": "Look for the `/lib/x86_64-linux-gnu/libsysmon.so.1` library in the output of the `ldd` command. This library is an indicator of unauthorized code injection.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ldd /path/to/binary",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ldd /path/to/binary",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "grep -r '/lib/x86_64-linux-gnu/libsysmon.so.1' /proc/*/maps",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r '/lib/x86_64-linux-gnu/libsysmon.so.1' /proc/*/maps",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Preload Configuration Modification",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "Determine whether a system-wide preload configuration has been modified to execute unauthorized code.\n\n**Objective:** Identify preload-based persistence and code injection mechanisms.\n\n**Hint:** Start by understanding the purpose of the library preload configuration.",
+      "solution": "To determine if the system-wide preload configuration has been modified, look for the preload configuration flag `/etc/ld.so.preload`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "The library preload configuration allows the dynamic linker to load specific libraries automatically. This can be exploited to execute unauthorized code.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the `cat` command to view the contents of the `/etc/ld.so.preload` file. This file contains the paths to shared libraries that are to be loaded automatically by the dynamic linker.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Specific Hint",
+          "content": "Look for the `/etc/ld.so.preload` path in the output of the `cat` command. This path is an indicator of unauthorized code injection.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "grep -r '/etc/ld.so.preload' /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r '/etc/ld.so.preload' /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Hidden Filesystem Artifacts",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf/config",
+      "answer_variable_name": null,
+      "content": "Locate files or directories concealed from normal system utilities.\n\n**Objective:** Apply forensic techniques to identify hidden filesystem artifacts.\n\n**Hint:** Start by understanding the concept of hidden files and directories.",
+      "solution": "To locate hidden filesystem artifacts, look for the hidden file flag `/etc/.kit_conf/config`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Hidden files and directories are not displayed by standard system utilities. These can be used to conceal malicious artifacts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the `ls` command with the `-a` option to list all files, including hidden ones. You can also use the `find` command to search for files and directories by name or other attributes.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Specific Hint",
+          "content": "Look for the `/etc/.kit_conf/config` file in the output of the `ls -a` command. This file is an indicator of hidden filesystem artifacts.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -a /path/to/directory",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -a /path/to/directory",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "find / -name '.kit_conf' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -name '.kit_conf' 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
