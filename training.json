@@ -1,0 +1,181 @@
+{
+  "title": "Mirai_Worm_Investigation_9b1",
+  "description": "Investigate a Mirai worm infection across multiple hosts in a network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl to identify unauthorized services",
+    "Usage of find to locate malware artifacts",
+    "Investigation of systemd timers for scheduled task persistence"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual activity, with multiple systems exhibiting signs of compromise. Your task is to investigate the incident, identify the affected systems, and determine the scope of the compromise. The malware in question is the Mirai worm, a well-known malware family that turns networked devices into remotely controlled bots that can be used as part of a botnet in large-scale network attacks. This training will guide you through the process of identifying unauthorized services, determining scheduled tasks, and locating malware artifacts associated with the Mirai worm."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the following systems with the username `cyrano` and password `cyrano`:\n- **patient-zero** (192.168.90.5)\n- **host-a** (192.168.90.10)\n- **host-b** (192.168.90.20)\n- **attacker** (192.168.90.30)\n\nTo proceed to the next level, enter the word 'start'.",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Identify Unauthorized Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the compromised host **patient-zero**. Enumerate running services and distinguish legitimate services from worm-related services.",
+      "solution": "Check the status of all services and look for any that seem unusual or out of place. The service name must be identified and reported.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "System services can be managed using systemctl. Start by listing all running services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `systemctl list-units --type=service --all` to enumerate all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service named `sysnet-monitor.service` in the list of running services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sysnet-monitor.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Scheduled Task",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.task",
+      "answer_variable_name": null,
+      "content": "Determine whether a scheduled task or timer is responsible for automatically executing the worm on **host-a**. Identify scheduled execution persistence mechanisms (e.g., cron, systemd timers, Windows Scheduled Tasks).",
+      "solution": "Investigate the systemd timers and services to find any that might be related to the worm. The timer name must be identified and reported.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd timers can be used to schedule tasks. Start by listing all active timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the commands `crontab -l` and `systemctl list-timers` to enumerate all active timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a timer named `sysnet-monitor.task` in the list of active timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sysnet-monitor.task",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Worm Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "worm.log",
+      "answer_variable_name": null,
+      "content": "Locate files installed by the worm on the compromised host **host-b**. Correlate suspicious activity with malware artifacts stored on disk.",
+      "solution": "Search for hidden directories or unusual files that might be related to the worm. The filename must be identified and reported.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often hides in unusual directories. Start by searching for hidden directories.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command `find / -name \"*worm*\"` to search for files related to the worm.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a file named `worm.log` in the search results.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_identification",
+          "prereq_state": [],
+          "cmd": "find / -name \"*worm*\"",
+          "cmd_type": "bash-command",
+          "cmd_regex": "worm.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
