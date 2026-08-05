@@ -1,0 +1,181 @@
+{
+  "title": "Whirlpool_Malware_Investigation_086",
+  "description": "Investigate and respond to a potential security incident involving the WHIRLPOOL malware variant Linux/WhirlPool.A on a Barracuda Email Security Gateway (ESG) device.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate suspicious services and processes",
+    "Analyze persistence mechanisms",
+    "Identify and analyze suspicious files"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Barracuda Email Security Gateway (ESG) device in your network has exhibited unusual behavior. Initial analysis suggests the presence of the WHIRLPOOL malware variant Linux/WhirlPool.A, a Linux ELF reverse shell. Your task is to investigate and respond to this potential security incident. Learning Objective: Investigate and analyze a potential malware infection on a Barracuda Email Security Gateway device."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the following credentials:\n- Hostname: target\n- Username: cyrano\n- Password: cyrano\n\nTo proceed to the next level, enter the word 'start'.",
+      "local_content": "Local sandbox access is not required for this scenario.\n\nTo proceed to the next level, enter the word 'start'."
+    },
+    {
+      "title": "Investigate Suspicious Services or Processes",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "cyrano    12345  0.0  0.1   9568  4568 pts/0    S+   12:34   0:00 ssld",
+      "answer_variable_name": null,
+      "content": "Investigate the target system for suspicious services or processes.\n\n**Question:** What service or process appears suspicious on the target system?",
+      "solution": "The flag is the output of the command 'ps aux | grep -i 'ssld''.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Check running services and processes, looking for anything unusual or unexpected.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'ps aux' to list all running processes and then filter the output to find the suspicious process.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'ps aux | grep -i 'ssld'' to find the suspicious process.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "ps aux | grep -i 'ssld'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux.*ssld",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "ssld.service loaded active running SSLD Service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot.\n\n**Question:** What persistence mechanism is being used by the suspicious service?",
+      "solution": "The flag is the output of the command 'systemctl list-units --type=service | grep -i 'ssld''.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate systemd services and timers that might be responsible for starting the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'systemctl list-units --type=service' to list all systemd services and then filter the output to find the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-units --type=service | grep -i 'ssld'' to find the persistence mechanism.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_systemd",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep -i 'ssld'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units.*ssld",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify and Analyze Suspicious File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "-rw-r--r-- 1 cyrano cyrano 9568 Jan 1 12:34 ssld",
+      "answer_variable_name": null,
+      "content": "Identify the file associated with the suspicious activity and analyze its contents.\n\n**Question:** What is the name and path of the file associated with the suspicious activity, and what does it contain?",
+      "solution": "The flag is the output of the command 'ls -la /home/cyrano/ | grep -i 'ssld''.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Look for unusual files in the home directory of the user and analyze their contents.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'ls -la /home/cyrano/' to list all files in the user's home directory and then filter the output to find the suspicious file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'ls -la /home/cyrano/ | grep -i 'ssld'' to find the suspicious file.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_files",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/ | grep -i 'ssld'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /home/cyrano/.*ssld",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
