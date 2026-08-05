@@ -1,0 +1,181 @@
+{
+  "title": "Sandworm_Intrusion_Set_Investigation_52d",
+  "description": "You are an incident responder tasked with investigating a potential compromise involving the Sandworm intrusion set. The P.A.S. webshell has been detected in your environment, which is known to be used for remote access and control. Your mission is to investigate the compromised systems, identify the malicious activity, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services using systemctl",
+    "Discover network ports used by malicious services using ss",
+    "Detect lateral movement techniques by analyzing service configurations"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential compromise involving the Sandworm intrusion set. The P.A.S. webshell has been detected in your environment, which is known to be used for remote access and control. Your mission is to investigate the compromised systems, identify the malicious activity, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the username 'cyrano' and password 'cyrano'.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the username 'cyrano' and password 'cyrano'."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "While monitoring your network, you noticed unusual outbound connections from the target host. Investigate the target host to identify any unauthorized or suspicious services that might be responsible for this activity. Specifically, look for the service name 'bkd.service' as the flag.",
+      "solution": "To identify the suspicious service, you need to list all running services on the target host. The flag you are looking for is the service name 'bkd.service'. Use the following command:\n```bash\nsystemctl list-units --type=service --state=running\n```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Start by understanding the types of services that might be running on the system and how they could be misused.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the running services on the system to identify any suspicious or unauthorized services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command 'systemctl list-units --type=service --state=running' to list all running services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "Now that you've identified a suspicious service, investigate its network activity. Determine which network port is being used for the suspicious communication. Specifically, look for the port number '4444' as the flag.",
+      "solution": "To identify the network port used by the suspicious service, you need to examine the service's network connections. The flag you are looking for is the port number '4444'. Use the following command:\n```bash\nss -tulnp | grep bkd.service\n```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Understand how services communicate over the network and how to identify suspicious network activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Examine the network connections associated with the suspicious service to identify the port being used.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command 'ss -tulnp | grep bkd.service' to identify the port used by the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate if the compromised host is being used to move laterally within your network. Identify any file transfers or remote execution techniques used to move between hosts. Specifically, look for the service name 'payload-transfer.service' as the flag.",
+      "solution": "To identify any services that might facilitate lateral movement, you need to list all running services on the target host. The flag you are looking for is the service name 'payload-transfer.service'. Use the following command:\n```bash\nsystemctl list-units --type=service --state=running\n```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Understand the techniques attackers use to move laterally within a network, such as file transfers and remote execution.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check for services that might facilitate lateral movement, such as file transfer services or remote execution services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command 'systemctl list-units --type=service --state=running' to list all running services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
