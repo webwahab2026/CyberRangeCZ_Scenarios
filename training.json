@@ -1,0 +1,181 @@
+{
+  "title": "Sofacy_Fysbis_Backdoor_Investigation_01e",
+  "description": "Investigate and respond to a potential security incident involving the Sofacy group's Fysbis backdoor malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of netstat",
+    "Usage of systemctl",
+    "Usage of ss"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity. Your task is to investigate and respond to this potential security incident involving the Sofacy group's Fysbis backdoor malware. The Sofacy group, also known as APT29, is a sophisticated cyber espionage group known for its use of custom malware, including the Fysbis backdoor. Their tactics, techniques, and procedures (TTPs) often involve spear-phishing campaigns, lateral movement through compromised networks, and data exfiltration."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. Enter the word 'start' to progress to the next level.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Investigate Unusual Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "Investigate the unusual network activity on the target system. Identify and investigate an unauthorized or suspicious service running on the target system. The flag is the name of the suspicious service.",
+      "solution": "Use the command 'netstat -tuln' to list all running services and their associated ports. Look for the service named 'systemkernelservicedefender' running on port 80. This command helps you identify unauthorized or suspicious services by displaying all active network connections and listening ports.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Unusual network activity often involves unauthorized services running on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the running services and network connections on the target system using the command 'netstat -tuln'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'netstat -tuln' to list all running services and their associated ports. Look for the service named 'systemkernelservicedefender'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. Identify persistence mechanisms (e.g., systemd, cron, scheduled task). The flag is the name of the systemd timer responsible for the suspicious activity.",
+      "solution": "Use the command 'systemctl list-timers' to list all systemd timers. Look for the timer named 'lab-checkin.timer' responsible for the suspicious activity. This command helps you identify persistence mechanisms by displaying all active systemd timers.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms ensure that malware runs automatically after a system reboot.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Examine the systemd services and timers on the target system using the command 'systemctl list-timers'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-timers' to list all systemd timers. Look for the timer named 'lab-checkin.timer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Identify file transfers or remote execution used to move between hosts. Correlate events across hosts to identify attacker lateral movement. The flag is the name of the service used for lateral movement.",
+      "solution": "Use the command 'ss -tulnp' to list all active network connections and listening ports. Look for the service named 'payload-transfer.service' used for lateral movement. This command helps you identify lateral movement by displaying all active network connections and listening ports.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement involves attackers moving from one system to another within a network.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Investigate the logs and network connections between the target and next-target systems using the command 'ss -tulnp'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'ss -tulnp' to list all active network connections and listening ports. Look for the service named 'payload-transfer.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
