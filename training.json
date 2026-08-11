@@ -1,0 +1,145 @@
+{
+  "title": "Investigation_of_Sofacy_Malware_Activity_774",
+  "description": "In this exercise, participants will investigate a suspected Sofacy malware infection on a target host. The malware is known to be a backdoor that can install itself with or without root privileges. Participants will analyze the system for signs of compromise, focusing on service discovery, persistence mechanisms, and suspicious files. This investigation will enhance your understanding of malware behavior and improve your skills in identifying and mitigating security threats.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Understand the behavior of Sofacy malware and its implications for system security.",
+    "Develop skills in identifying and investigating suspicious services and files.",
+    "Gain experience in collecting evidence and analyzing system logs."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Markdown content for the introduction."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Instructions for accessing the sandbox in cloud. Username: user, Password: pass",
+      "local_content": "Instructions for local sandbox usage. Username: user, Password: pass"
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "unusual_service_abc.service",
+      "answer_variable_name": null,
+      "content": "You have been alerted to potential malicious activity on the target host. Your first task is to identify any unauthorized or suspicious services running on the system. Use the appropriate commands to enumerate the running services and determine if any of them are unusual. Pay attention to services that may not have recognizable names or that seem out of place.",
+      "solution": "Identify the suspicious service running on the target host: unusual_service_abc.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Check for services with uncommon names such as 'malicious_service', 'backdoor_service', or other unusual entries. You can use the command `systemctl list-units --type=service` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "suspicious_service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "(.*)",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "specific_persistence_identifier",
+      "answer_variable_name": null,
+      "content": "After identifying a suspicious service, your next step is to determine how this service is configured to start automatically after a reboot. Investigate the system for any persistence mechanisms that may be in place.",
+      "solution": "Check for systemd service files in /etc/systemd/system/ or any scheduled tasks.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Look for systemd service files in `/etc/systemd/system/`, such as 'malicious_service.service', or check for scheduled tasks like cron jobs that may indicate persistence mechanisms, such as entries in `/etc/crontab`.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "(.*)",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious File Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "specific_malicious_file_path",
+      "answer_variable_name": null,
+      "content": "You suspect that the suspicious service is associated with a malicious file. Your task is to locate the executable or file related to the suspicious activity. Investigate the file system and correlate processes with files on disk to identify any malicious artifacts.",
+      "solution": "Review the contents of /home/cyrano/ and check for any unusual files that may have been created recently.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint",
+          "content": "Review the contents of `/home/cyrano/` and check for any unusual files, such as files with unexpected extensions like '.exe' or '.tmp', or recent modification dates, that may indicate malicious activity.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "suspicious_file_discovery",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "(.*)",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
