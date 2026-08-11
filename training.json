@@ -1,0 +1,210 @@
+{
+  "title": "Linux_Remaiten_Botnet_Investigation_942",
+  "description": "Investigate and respond to a Linux/Remaiten botnet infection, focusing on identifying suspicious services, command-and-control communication, and flood attack targets.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and potential security incidents. Your task is to investigate and respond to these issues. The Linux/Remaiten botnet is known for its periodic beaconing to command-and-control servers and its ability to launch flood attacks against targeted systems."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: ubuntu\n- Password: ubuntu\n\nEnter the word 'start' to proceed to the next level.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: ubuntu\n- Password: ubuntu\n\nEnter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication.\n\n**Question:** What is the name of the suspicious service that is beaconing to an external host?",
+      "solution": "Check running services and look for unusual network connections. The suspicious service is named 'bot-beacon.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Start by understanding the types of services that might be running on a Linux system and how they can be malicious.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestion",
+          "content": "Use the command 'systemctl list-units --type=service' to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a service named 'bot-beacon.service' in the list of running services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [
+            "check_services"
+          ],
+          "cmd": "systemctl status bot-beacon.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bot-beacon.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Command-and-Control Server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.70.5",
+      "answer_variable_name": null,
+      "content": "Determine the external host communicating with the compromised system.\n\n**Question:** What is the IP address of the command-and-control server?",
+      "solution": "Investigate network connections and logs for external communication. The command-and-control server is at IP address 192.168.70.5.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Understand that command-and-control servers typically communicate with compromised systems over the network.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestion",
+          "content": "Use the command 'ss -tulnp' to list all network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a connection to the IP address 192.168.70.5 in the network connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        },
+        {
+          "state_name": "identify_command_and_control",
+          "prereq_state": [
+            "check_network_connections"
+          ],
+          "cmd": "ss -tulnp | grep 192.168.70.5",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp | grep 192.168.70.5",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Flood Attack Target",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.80.100",
+      "answer_variable_name": null,
+      "content": "Identify the system receiving the abnormal volume of network traffic generated by the compromised host.\n\n**Question:** What is the IP address of the system being targeted by the flood attack?",
+      "solution": "Analyze network traffic to identify the victim of the flooding activity. The target system is at IP address 192.168.80.100.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Flood attacks typically involve sending a large volume of network traffic to a target system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Command Suggestion",
+          "content": "Use the command 'tcpdump -i any' to capture and analyze network traffic.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for a high volume of traffic being sent to the IP address 192.168.80.100 in the network traffic.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "analyze_network_traffic",
+          "prereq_state": [],
+          "cmd": "tcpdump -i any",
+          "cmd_type": "bash-command",
+          "cmd_regex": "tcpdump -i any",
+          "optional": false
+        },
+        {
+          "state_name": "identify_flood_target",
+          "prereq_state": [
+            "analyze_network_traffic"
+          ],
+          "cmd": "tcpdump -i any | grep 192.168.80.100",
+          "cmd_type": "bash-command",
+          "cmd_regex": "tcpdump -i any | grep 192.168.80.100",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
