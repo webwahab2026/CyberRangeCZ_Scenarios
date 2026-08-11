@@ -1,0 +1,181 @@
+{
+  "title": "Fysbis_Linux_Backdoor_Incident_Response_16c",
+  "description": "A suspicious activity has been detected within your organization's Linux environment. As a member of the incident response team, your task is to investigate, analyze, and respond to the incident using the available infrastructure. The environment consists of several Ubuntu Linux hosts, including a suspected compromised machine. Your investigation should focus on identifying unauthorized services, persistence mechanisms, and malicious artifacts, all while following best practices for incident response. This scenario simulates a Fysbis-like backdoor using benign artifacts for training purposes. The environment contains a suspicious service that represents the simulated Fysbis-like artifact.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Service enumeration and analysis",
+    "Systemd persistence investigation",
+    "Malicious file identification"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are part of the incident response team investigating suspicious activity on a Linux host. The organization has observed unusual network connections and possible persistence mechanisms. Your goal is to identify the root cause, determine how the threat maintains access, and locate any malicious files or artifacts. Use your skills in service enumeration, process analysis, and file system investigation to uncover the details.\n\n**Objectives:**\n- Enumerate running services and identify any unauthorized or suspicious activity.\n- Investigate how the suspicious activity persists after reboot.\n- Locate and analyze any files or executables associated with the suspicious activity.\n\n**Environment:**\n- Hosts: target (Ubuntu, user: cyrano/cyrano), next-target (Ubuntu, user: cyrano/cyrano), c2-server (Ubuntu, user: cyrano/cyrano)\n- The \"target\" host is the primary point of investigation.\n- SSH access is available to \"target\" as user \"cyrano\" with sudo privileges.\n\n**Rules of Engagement:**\n- Do not modify or remove system files unless instructed.\n- Document your findings for each step.\n- Focus your investigation on the \"target\" host unless otherwise specified.\n\n**Note:** This scenario uses simulated, benign artifacts to represent Fysbis-like malware behaviors. The environment contains a suspicious service that represents the simulated Fysbis-like artifact."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Connect to the \"target\" host via SSH using the following credentials:\n- Host: target\n- Username: cyrano\n- Password: cyrano\n\nYou have full sudo privileges to perform your analysis. Begin your investigation here.\n\nType the word start to continue to the next level.",
+      "local_content": "Connect to the \"target\" host using the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nYou have full sudo privileges to perform your analysis. Type the word start to continue to the next level."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemserviced-busnotifier.service",
+      "answer_variable_name": null,
+      "content": "The security operations center has reported unusual network activity originating from the \"target\" host. Your first task is to enumerate all running services and identify any that appear unauthorized or suspicious. Focus on services that are not part of a standard Ubuntu installation or that you do not recognize as part of normal operations. In this simulation, there is a suspiciously named service responsible for the unusual activity. Your goal is to identify this service.\n\n**Task:**\n- List all active systemd services and running processes.\n- Identify the name of the suspicious service responsible for the unusual activity.\n\n**Validation:**\n- Submit the exact name of the suspicious service as your answer.",
+      "solution": "Enumerate all running services on the target host using `systemctl list-units --type=service` and `ps aux`. Look for services that are not standard or have unusual names. The suspicious service is named `systemserviced-busnotifier.service`, which is not a standard Ubuntu service and is responsible for the unusual activity. This service simulates a Fysbis-like backdoor for training purposes. The flag is the service name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Enumerate Services",
+          "content": "Consider how attackers might persist on a Linux system and how you would enumerate running services. Think about what makes a service appear suspicious.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Check for Unusual Names",
+          "content": "Pay attention to services with names that seem out of place or overly complex. Compare with a default Ubuntu installation if needed. Use commands like 'systemctl list-units --type=service' or 'ps aux' to help identify suspicious services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Use Service Enumeration Commands",
+          "content": "Run 'systemctl list-units --type=service' to see all active services. Look for any service that does not belong to a standard Ubuntu installation.",
+          "hint_penalty": 1,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovered",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep systemserviced-busnotifier",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemserviced-busnotifier\\.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Mechanism Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/systemserviced-busnotifier.service",
+      "answer_variable_name": null,
+      "content": "After identifying the suspicious service, your next step is to determine how it achieves persistence on the \"target\" host. Investigate the system to find out how this service is configured to start automatically after a reboot.\n\n**Task:**\n- Investigate the persistence mechanism used by the suspicious service.\n- Identify the specific system component (e.g., systemd unit, cron job) responsible for persistence.\n- Provide the full path to the artifact that enables persistence.\n\n**Validation:**\n- Submit the full path to the persistence mechanism (e.g., the systemd unit file) as your answer.",
+      "solution": "Check the `/etc/systemd/system/` directory and use `systemctl status` on the suspicious service to confirm how the service is started. The persistence mechanism is the systemd unit file `/etc/systemd/system/systemserviced-busnotifier.service`, which ensures the service starts automatically after reboot. This simulates a common persistence technique used by Linux malware such as Fysbis. The flag is the full path to the unit file.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Check systemd Units",
+          "content": "Think about common persistence mechanisms on Linux, such as systemd units or cron jobs. Consider how services are configured to start automatically.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Persistence via systemd",
+          "content": "Malware often uses systemd unit files for persistence. Identify the unit file associated with the suspicious service. Use commands like 'systemctl status <service>' to investigate.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "List systemd Unit Files",
+          "content": "Run 'ls /etc/systemd/system/' to list custom unit files. Look for a unit file related to the suspicious service.",
+          "hint_penalty": 1,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_mechanism_found",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system/ | grep systemserviced-busnotifier.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemserviced-busnotifier\\.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious File Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/systemserviced-busnotifier.service",
+      "answer_variable_name": null,
+      "content": "To complete your investigation, identify the unique artifact that enables the suspicious service to run. Rather than focusing on a standard system binary, your task is to locate the systemd unit file that defines and launches the suspicious service. This file is the key indicator of compromise in this scenario.\n\n**Task:**\n- Correlate the suspicious service with its systemd unit file.\n- Identify the full path to the systemd unit file that enables the suspicious service to run.\n\n**Validation:**\n- Submit the full file path of the systemd unit file as your answer.",
+      "solution": "Use `systemctl status systemserviced-busnotifier.service` to find the path to the unit file, or inspect the `/etc/systemd/system/` directory for the file named `systemserviced-busnotifier.service`. The suspicious artifact is the systemd unit file `/etc/systemd/system/systemserviced-busnotifier.service`, which is responsible for launching the unauthorized service. This file is the unique indicator of compromise in this scenario. The flag is the full path to the unit file.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Check Unit File Location",
+          "content": "Consider where custom systemd unit files are stored on Linux systems. Look for a file with the same name as the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Correlate Service and Unit File",
+          "content": "The suspicious service is defined by a systemd unit file. Use 'systemctl status <service>' or check '/etc/systemd/system/' for the relevant file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "List Custom Unit Files",
+          "content": "Run 'ls /etc/systemd/system/' and look for 'systemserviced-busnotifier.service'. This file defines the suspicious service.",
+          "hint_penalty": 1,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "suspicious_file_found",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system/ | grep systemserviced-busnotifier.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemserviced-busnotifier\\.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
