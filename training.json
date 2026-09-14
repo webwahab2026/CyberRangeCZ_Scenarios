@@ -1,0 +1,181 @@
+{
+  "title": "Sofacy_Fysbis_Investigation_5c5",
+  "description": "Investigate and respond to a potential compromise by the Sofacy group's Fysbis malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate suspicious network activity",
+    "Analyze persistence mechanisms",
+    "Examine potential lateral movement"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity potentially related to the Sofacy group's Fysbis malware. Sofacy, also known as APT29, is a Russian cyber espionage group known for targeting government, diplomatic, think-tank, and private-sector organizations. Fysbis is a sophisticated malware used by Sofacy for data exfiltration and command-and-control communication. Your task is to investigate and respond to this potential compromise. This training will guide you through identifying suspicious network activity, analyzing persistence mechanisms, and examining potential lateral movement."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nTo proceed, enter the word 'start' in the answer field below.",
+      "local_content": "Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious_web_server",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you noticed unusual outbound connections from the target host to port 80. Investigate this activity and identify the service responsible for these connections.",
+      "solution": "Check running services and their network connections. The service name should be identified. The flag is the name of the service: malicious_web_server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding the types of services that typically listen on port 80.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'ss -tulnp' to list all services and their network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for services that are listening on port 80. The service name should be 'malicious_web_server'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious_service_timer",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it maintains persistence on the system. Investigate the system's startup mechanisms to find how this service is automatically started.",
+      "solution": "Check systemd services and timers. The persistence mechanism (service name or timer) should be identified. The flag is the name of the service or timer: malicious_service_timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that persistence mechanisms often involve system startup configurations.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check systemd services and timers. Use the command 'systemctl list-unit-files --type=service' to list all systemd services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for services that are enabled and active. The persistence mechanism should be 'malicious_service_timer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious_file_transfer",
+      "answer_variable_name": null,
+      "content": "Examine the target host for evidence of lateral movement. Determine if the suspicious service is transferring files to other hosts in the network.",
+      "solution": "Check for file transfer services and their logs. The service name, filename, or destination host should be identified. The flag is the name of the service or logs: malicious_file_transfer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider that lateral movement often involves file transfer services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check for file transfer services and their logs. Use the command 'grep -r 'rsync' /var/log/' to search for rsync commands in log files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for services that are transferring files to other hosts. The service name should be 'malicious_file_transfer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_check",
+          "prereq_state": [],
+          "cmd": "grep -r 'rsync' /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r 'rsync' /var/log/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
