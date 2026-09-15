@@ -1,0 +1,181 @@
+{
+  "title": "Sofacy_Fysbis_Backdoor_Investigation_8f2",
+  "description": "Investigate and respond to a Sofacy Fysbis Linux backdoor compromise in the target network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of suspicious services and processes",
+    "Identification of persistence mechanisms",
+    "Detection of lateral movement"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Sofacy group using their Fysbis Linux backdoor. Your task is to investigate and respond to this incident. The Sofacy group, also known as APT29, is known for using sophisticated backdoors and living-off-the-land techniques to maintain persistence and move laterally within compromised networks. During this investigation, you will encounter flags related to suspicious services, persistence mechanisms, and lateral movement indicators."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. From there, you can access other hosts in the network. To begin, enter the word 'start' in the provided input field.",
+      "local_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. From there, you can access other hosts in the network. To begin, enter the word 'start' in the provided input field."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the target host, you noticed unusual network activity. Investigate the host to identify any suspicious services or processes that might be responsible for this activity. Look for a service named `bkd.service` which is known to be suspicious.",
+      "solution": "Use `ps aux | grep -i bkd` to find the suspicious service named `bkd.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding what constitutes a suspicious service or process in a Linux environment.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use commands to list running services and processes, then filter for anything that looks unusual or unauthorized. Look specifically for a service named `bkd.service`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service is named `bkd.service`. Use `ps aux | grep -i bkd` to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_services",
+          "prereq_state": [],
+          "cmd": "ps aux | grep -i suspicious",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux.*suspicious",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it maintains persistence on the system. This will help you understand how the attacker ensures the service continues to run even after reboots. Look for a persistence mechanism named `payload-transfer.timer`.",
+      "solution": "Use `systemctl list-unit-files | grep -i payload-transfer` to find the persistence mechanism named `payload-transfer.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms in Linux often involve system startup configurations or scheduled tasks.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use commands to list system startup configurations and scheduled tasks, then filter for anything that looks unusual or unauthorized. Look specifically for a mechanism named `payload-transfer.timer`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The persistence mechanism is named `payload-transfer.timer`. Use `systemctl list-unit-files | grep -i payload-transfer` to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files | grep -i suspicious",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files.*suspicious",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Examine the target host for evidence of lateral movement to other hosts in the network. Identify any file transfers or remote execution that might indicate the attacker is moving laterally. Look for a service named `payload-transfer.service` which is known to be used for lateral movement.",
+      "solution": "Use `crontab -l | grep -i payload-transfer` to find the service named `payload-transfer.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement in Linux often involves scheduled file transfers or remote execution tasks.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use commands to list scheduled tasks, then filter for anything that looks unusual or unauthorized. Look specifically for a service named `payload-transfer.service`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The service used for lateral movement is named `payload-transfer.service`. Use `crontab -l | grep -i payload-transfer` to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "crontab -l | grep -i transfer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "crontab -l.*transfer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
