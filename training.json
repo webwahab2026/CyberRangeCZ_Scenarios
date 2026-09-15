@@ -1,0 +1,184 @@
+{
+  "title": "Sofacy_Backdoor_Investigation_9b2",
+  "description": "You are an incident responder tasked with investigating a potential compromise involving the Sofacy group's Fysbis backdoor on a Linux-based network. The Fysbis backdoor is known for its modular capabilities, including command-and-control (C2) communication, lateral movement, and data exfiltration. Your mission is to identify, analyze, and mitigate the threat.",
+  "prerequisites": [
+    "Basic knowledge of Linux command line.",
+    "Familiarity with network protocols and services.",
+    "Understanding of incident response procedures."
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services and processes.",
+    "Analyze network traffic for signs of C2 communication.",
+    "Investigate lateral movement techniques.",
+    "Collect and analyze forensic evidence.",
+    "Implement containment and eradication measures."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential compromise involving the Sofacy group's Fysbis backdoor on a Linux-based network. The Fysbis backdoor is known for its modular capabilities, including command-and-control (C2) communication, lateral movement, and data exfiltration. Your mission is to identify, analyze, and mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the `target` host via SSH using the provided credentials. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Access the `target` host via SSH using the provided credentials. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "fysbis-listener.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual activity on the `target` host. Your task is to identify and investigate any unauthorized or suspicious services running on this host.\n\nSteps:\n1. Log in to the `target` host using the provided credentials.\n2. Enumerate all running services and processes.\n3. Identify any services or processes that appear suspicious or unauthorized.\n4. Document the name of the suspicious service flag, which is `fysbis-listener.service`.",
+      "solution": "To identify the suspicious service flag, use commands like `systemctl list-units --type=service` to list all services. The suspicious service flag is `fysbis-listener.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by understanding that the Fysbis backdoor typically runs as a systemd service. Look for services that are not part of the standard system configuration or have unusual names.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use commands like `systemctl list-units --type=service`, `ps aux`, and `netstat -tuln` to enumerate services and processes.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service flag is named `fysbis-listener.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "fysbis-listener.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "You have identified a suspicious service on the `target` host. Your next task is to determine which network port is used for the suspicious communication.\n\nSteps:\n1. Investigate the network connections associated with the suspicious service.\n2. Identify the port used for communication.\n3. Document the port number flag, which is `80`.",
+      "solution": "To identify the port number flag used for communication, use commands like `ss -tulnp` or `lsof -i` to identify network connections. The port number flag used for C2 communication is `80`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that the Fysbis backdoor typically communicates over common ports to blend in with normal traffic. Look for connections to external IPs or unusual ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use commands like `ss -tulnp` or `lsof -i` to identify network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The port number flag used for C2 communication is `80`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "80",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "You suspect that the attacker may have moved laterally within the network. Your task is to identify any file transfers or remote execution used to move between hosts.\n\nSteps:\n1. Investigate the `target` host for any signs of lateral movement.\n2. Look for evidence of file transfers or remote execution.\n3. Document the service name, filename, or destination host involved in the lateral movement flag, which is `payload-transfer.service`.",
+      "solution": "To identify the lateral movement flag, use commands like `grep -r 'payload-transfer' /var/log/` to search through logs for relevant information. The service name involved in the lateral movement flag is `payload-transfer.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that the Fysbis backdoor typically uses services for lateral movement. Look for evidence of file transfers or remote execution in system logs.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check system logs for any unusual file transfers or remote commands.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use commands like `grep -r 'payload-transfer' /var/log/` to search through logs for relevant information. The service name involved in the lateral movement flag is `payload-transfer.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement",
+          "prereq_state": [],
+          "cmd": "grep -r 'payload-transfer' /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
