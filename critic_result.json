@@ -1,0 +1,95 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "issues": [
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Suspicious Service Discovery",
+      "description": "The flag 'c2-listener.service' is not explicitly mentioned in the training level content.",
+      "fix": "Add the flag 'c2-listener.service' to the content of the 'Suspicious Service Discovery' level."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "C2 Communication Discovery (Port)",
+      "description": "The flag '80' is not explicitly mentioned in the training level content.",
+      "fix": "Add the flag '80' to the content of the 'C2 Communication Discovery (Port)' level."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Lateral Movement Investigation",
+      "description": "The flag 'payload-transfer.service' is not explicitly mentioned in the training level content.",
+      "fix": "Add the flag 'payload-transfer.service' to the content of the 'Lateral Movement Investigation' level."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each level does not explicitly mention the flag.",
+      "fix": "Update the 'solution' for each level to explicitly mention the flag."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each level includes only commands and does not provide methodology.",
+      "fix": "Update the 'solution' for each level to include methodology and commands."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each level does not mention the type of the flags.",
+      "fix": "Update the 'solution' for each level to mention the type of the flags."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "c2-listener.service",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "80",
+      "recommendation": ""
+    },
+    {
+      "level": "Lateral Movement Investigation",
+      "current_flag": "payload-transfer.service",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "c2-listener.service on target host",
+      "payload-transfer.service on target host",
+      "SSH access configured between target and next-target hosts"
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Suspicious Service Discovery",
+      "revised_flag": "c2-listener.service"
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "revised_flag": "80"
+    },
+    {
+      "level": "Lateral Movement Investigation",
+      "revised_flag": "payload-transfer.service"
+    }
+  ],
+  "summary": "The scenario is well-designed and aligns with the provided topology and provisioning files. The flags are correctly placed and reachable. However, the training levels need to explicitly mention the flags, and the solutions should include methodology and mention the type of the flags. These minor adjustments will enhance the overall quality and coherence of the scenario."
+}
