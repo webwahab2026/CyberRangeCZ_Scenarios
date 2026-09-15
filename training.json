@@ -1,0 +1,145 @@
+{
+  "title": "Sednit_Dropper_Investigation_9f6",
+  "description": "Investigate the compromise of a victim host by the Sednit dropper malware, identify its persistence mechanisms, and uncover its artifacts.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate unauthorized services",
+    "Identify scheduled tasks",
+    "Locate malicious files"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited suspicious behavior. Your task is to investigate the compromise, identify the malware, and determine the extent of the intrusion."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano"
+    },
+    {
+      "title": "Investigate Unauthorized Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for unauthorized or suspicious services running on the system. What is the name of the suspicious service responsible for maintaining unauthorized access to the system?",
+      "solution": "Check the status of all services and look for any that appear unusual or unauthorized. The suspicious service is session-mgr.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the status of all services and look for any that appear unusual or unauthorized.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "session-mgr.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Scheduled Task",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.timer",
+      "answer_variable_name": null,
+      "content": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity. What is the name of the timer responsible for the periodic execution of the suspicious service?",
+      "solution": "Examine the systemd timers to identify any that might be related to the suspicious service. The timer responsible is session-mgr.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd timers to identify any that might be related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "session-mgr.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malicious Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/tmp/.session",
+      "answer_variable_name": null,
+      "content": "Locate files introduced onto the system by the malicious software. What is the name of the directory created to conceal malicious files or payloads?",
+      "solution": "Investigate unusual or hidden directories that might contain suspicious files. The directory created to conceal malicious files is /tmp/.session.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate unusual or hidden directories that might contain suspicious files.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "directory_check",
+          "prereq_state": [],
+          "cmd": "ls -la /tmp/.session",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/tmp/.session",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
