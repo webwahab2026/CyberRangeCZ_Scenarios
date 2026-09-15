@@ -1,0 +1,202 @@
+{
+  "title": "Sednit_Dropper_Investigation_93a",
+  "description": "Investigate a compromised host to identify malware artifacts and determine the extent of the compromise associated with the Sednit group.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl for service and timer investigation",
+    "File system investigation techniques",
+    "Identifying suspicious system artifacts"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected suspicious activity on one of its internal servers. Initial analysis suggests a potential compromise involving a dropper associated with the Sednit group. Your task is to investigate the compromised host, identify the malware artifacts, and determine the extent of the compromise."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host is part of a network that includes a staging server and a command-and-control (C2) server. You can use standard Linux commands and tools to investigate the system.",
+      "local_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host is part of a network that includes a staging server and a command-and-control (C2) server. You can use standard Linux commands and tools to investigate the system."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.service",
+      "answer_variable_name": null,
+      "content": "While reviewing the system services, you notice an unusual service that was not part of the standard configuration. Investigate this service to determine if it is related to the suspected compromise. The flag is the name of the suspicious service.",
+      "solution": "To identify the suspicious service, start by checking the list of running services using the command `systemctl list-units --type=service`. Look for any services that seem out of place or have unusual descriptions. The suspicious service is `session-mgr.service`. The flag is the name of the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "System services can be managed and inspected using the `systemctl` command. Focus on identifying services that do not belong to standard system configurations.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `systemctl list-units --type=service` command to list all running services. Look for any services that appear suspicious or out of place.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service you are looking for is named `session-mgr.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "ssh_access",
+          "prereq_state": [],
+          "cmd": "ssh cyrano@<victim_host_ip>",
+          "cmd_type": "bash-command",
+          "optional": false
+        },
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "session-mgr.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Scheduled Task",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.timer",
+      "answer_variable_name": null,
+      "content": "The system logs indicate that certain activities are occurring at regular intervals. Investigate the scheduled tasks or timers to identify any that might be related to the malware. The flag is the name of the suspicious timer.",
+      "solution": "To investigate scheduled tasks, use the command `systemctl list-timers` to list all active timers. Look for timers that are set to run frequently and check their associated scripts or commands. The suspicious timer is `session-mgr.timer`. The flag is the name of the suspicious timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Scheduled tasks or timers can be managed and inspected using the `systemctl` command. Focus on identifying timers that are set to run frequently and may be associated with malicious activities.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `systemctl list-timers` command to list all active timers. Look for timers that appear suspicious or are set to run frequently.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious timer you are looking for is named `session-mgr.timer`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "ssh_access",
+          "prereq_state": [],
+          "cmd": "ssh cyrano@<victim_host_ip>",
+          "cmd_type": "bash-command",
+          "optional": false
+        },
+        {
+          "state_name": "timer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "session-mgr.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malicious Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/tmp/.session/rat.sh",
+      "answer_variable_name": null,
+      "content": "The malware is known to drop several files onto the system. Investigate the file system to identify any suspicious files that were created around the time of the suspected compromise. The flag is the path to the suspicious file.",
+      "solution": "To locate malicious files, use the `find` command to search for files with unusual names or permissions. Focus on directories that are not typically used for legitimate system files. The suspicious file is `/tmp/.session/rat.sh`. The flag is the path to the suspicious file.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Guidance",
+          "content": "Malicious files often reside in directories that are not typically used for legitimate system files. Use the `find` command to search for files with unusual names or permissions.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `find / -name 'rat.sh' 2>/dev/null` command to search for files named `rat.sh` across the file system. Look for files in directories that are not typically used for legitimate system files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious file you are looking for is located at `/tmp/.session/rat.sh`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "ssh_access",
+          "prereq_state": [],
+          "cmd": "ssh cyrano@<victim_host_ip>",
+          "cmd_type": "bash-command",
+          "optional": false
+        },
+        {
+          "state_name": "file_check",
+          "prereq_state": [],
+          "cmd": "find / -name 'rat.sh' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/tmp/.session/rat.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

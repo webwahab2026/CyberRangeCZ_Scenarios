@@ -1,0 +1,3268 @@
+{
+  "generated_at_utc": "2026-09-15T10:14:48.360972+00:00",
+  "user_inputs": {
+    "scenario_type": "Exercise",
+    "difficulty_level": "Intermediate",
+    "cybersecurity_approach": "Defence-oriented",
+    "nice_role": "Incident Response",
+    "number_of_tasks": 3,
+    "question_response": "true",
+    "hints": "true",
+    "threat_name": "OSINT - Lifting the lid on Sednit: A closer look at the software it uses",
+    "mitre_attack_techniques": [],
+    "environment_constraints": null,
+    "hybrid_sandbox": false,
+    "evaluate": true
+  },
+  "agent_1": {
+    "model_used": "",
+    "query_generated": "OSINT - Lifting the lid on Sednit: A closer look at the software it uses"
+  },
+  "retrieval": {
+    "retrieved_events": {
+      "event_uuid": "580f62f3-271c-4ba1-8b07-4c0d950d210f",
+      "event_id": "475",
+      "event_info": "OSINT - Lifting the lid on Sednit: A closer look at the software it uses",
+      "galaxies": [],
+      "tags": [
+        "tlp:white",
+        "osint:source-type=\"technical-report\""
+      ],
+      "event_attributes": [
+        {
+          "category": "Artifacts dropped",
+          "comment": "Email Attachments",
+          "type": "filename",
+          "value": "Ukraine.rtf"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Email Attachments",
+          "type": "filename",
+          "value": "Statement by the Spokesperson of European Union on the latest developments in eastern"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Email Attachments",
+          "type": "filename",
+          "value": "Putin_Is_Being_Pushed_to_Prepare_for_War.rtf"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Email Attachments",
+          "type": "filename",
+          "value": "Iran_nuclear_talks.rtf"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Email Attachments",
+          "type": "filename",
+          "value": "Exercise_Noble_Partner_16.rtf"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win32/Exploit.CVE-2015-2424.A"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win32/Exploit.CVE-2015-1641.H"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments",
+          "type": "sha1",
+          "value": "ef755f3fa59960838fa2b37b7dedce83ce41f05c"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments",
+          "type": "sha1",
+          "value": "e7f7f6caaede6cc29c2e7e4888019f2d1be37cef"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments",
+          "type": "sha1",
+          "value": "9b276a0f5fd824c3dff638c5c127567c65222230"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments",
+          "type": "sha1",
+          "value": "76053b58643d0630b39d8c9d3080d7db5d017020"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Part 1",
+          "type": "comment",
+          "value": "The Sednit group \r\n\u00e2\u20ac\u201d  also known as \r\nAPT28,    Fancy Bear and Sofacy \r\n\u00e2\u20ac\u201d  is a group of attackers \r\noperating since 2004 if not earlier and whose main objective is to steal confidential information \r\nfrom specific targets.\r\nThis is the first part of our whitepaper \r\n\u00e2\u20ac\u0153En Route with Sednit\u00e2\u20ac\u009d,\r\n which covers the Sednit\u00e2\u20ac\u2122s group \r\nactivities since 2014.\r\n Here,   we focus on the methods used by the group to attack its targets,\r\nand on who these targets are.\r\nThe key points described in this first installment are the following:\r\n\u00e2\u20ac\u00a2  During the Sednit phishing campaigns more than 1,000 high-profile individuals involved \r\nin Eastern European politics were attacked,\r\n including some Ukrainian leaders,\r\n NATO officials,\r\nand Russian political dissidents\r\n\u00e2\u20ac\u00a2  The Sednit operators launched their phishing attacks on weekdays,\r\n and at times \r\ncorresponding to office hours in the time zone UTC+3\r\n\u00e2\u20ac\u00a2  The Sednit group developed its own exploit kit \r\n\u00e2\u20ac\u201d  a first for an espionage group \u00e2\u20ac\u201d deploying \r\na surprisingly high number of 0-day exploits\r\n\u00e2\u20ac\u00a2  The Sednit group developed particular first-stage malware in order to bypass network \r\nsecurity measures implemented by compromised organizations"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "comment",
+          "value": "The Sednit group \r\n\u00e2\u20ac\u201d  also known as \r\nAPT28,    Fancy Bear and Sofacy \r\n\u00e2\u20ac\u201d  is a group of attackers \r\noperating\r\n since 2004 if not earlier and whose main objective is to steal confidential information\r\nfrom specific targets.\r\nThis is the second part of our whitepaper \r\n\u00e2\u20ac\u0153En Route with Sednit\u00e2\u20ac\u009d,\r\n which covers the Sednit\u00e2\u20ac\u2122s group \r\nactivities since 2014.\r\n Here,   we focus on Sednit\u00e2\u20ac\u2122s espionage toolkit,\r\n which is deployed on targets \r\ndeemed interesting after a reconnaissance phase (described in the first part of the whitepaper).\r\nThe key points described in this second installment are the following:\r\n\u00e2\u20ac\u00a2  The Sednit group developed two different spying backdoors for long term monitoring,\r\nnamed \r\nSedreco\r\n and \r\nXagent\r\n,\r\n in order to maximize the chance of avoiding detection\r\n\u00e2\u20ac\u00a2 \r\nThe \r\nXagent\r\n backdoor can communicate with its C&C server over email with a custom \r\nprotocol,\r\n which in some cases is based on Georgian words\r\n\u00e2\u20ac\u00a2  The Sednit group developed a network proxy tool,\r\n named \r\nXtunnel\r\n,\r\n to effectively transform \r\na compromised computer into a network pivot,\r\n in order to contact machines that are normally\r\nunreachable from the Internet\r\n\u00e2\u20ac\u00a2 \r\nThe \r\nXagent\r\n source code,\r\n the \r\nXagent\r\n C&C server configuration,\r\n and the \r\nXtunnel\r\n binaries \r\nall contain traces of Russian,\r\n strongly reinforcing the hypothesis that this is the language \r\nemployed by the Sednit group\u00e2\u20ac\u2122s members"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "http://www.welivesecurity.com/wp-content/uploads/2016/10/eset-sednit-part-2.pdf"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "http://www.welivesecurity.com/wp-content/uploads/2016/10/eset-sednit-part1.pdf"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "http://www.welivesecurity.com/2016/10/25/lifting-lid-sednit-closer-look-software-uses/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "nato-hq.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "militaryobserver.net"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "militaryadviser.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "military-info.eu"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "kg-news.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "euroreport24.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "euronews24.info"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "diplomatnews.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "defencereview.eu"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "defenceiq.us"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "dailypoliticsnews.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "dailyforeignnews.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "cnnpolitics.eu"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "bbc-press.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "ausameetings.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "aljazeera-news.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "unitednationsnews.eu"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "unian-news.info"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "trend-news.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "theguardiannews.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "thediplomat-press.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "stratforglobal.net"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "shurl.biz"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "reuters-press.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "politicsinform.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "politicalreview.eu"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "pakistan-mofa.net"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "osce-press.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "osce-info.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "natopress.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "natoint.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "nato-news.com"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Sednit.AF"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Sednit.AC"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Sednit.AB"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Sednit.AA"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Sednit.Z"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Agent.XFK"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Agent.XIO"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Agent.XIJ"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Agent.XIA"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Agent.XBZ"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "OSX/Agent.AE"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "worldpostjournal.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "worldpoliticsreviews.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "worldpoliticsnews.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "worldmilitarynews.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedkit - Domain Names",
+          "type": "domain",
+          "value": "virusdefender.org"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "2c86a6d6e9915a7f38d119888ede60b38ab1d69d"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "2663eb655918c598be1b2231d7c018d8350a0ef9"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "21835aafe6d46840bb697e8b0d4aac06dec44f5b"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "17661a04b4b150a6f70afdabe3fd9839cc56bee8"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "10686cc4e46cf3ffbdeb71dd565329a80787c439"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "0f7893e2647a7204dbf4b72e50678545573c3a10"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "015425010bd4cf9d511f7fcd0fc17fc17c23eec1"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win64/Agent.DJ"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win64/TrojanDropper.Small.B"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win64/TrojanDropper.Small.A"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Small.NNY"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Sednit.AU"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Sednit.AT"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Sednit.AS"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Sednit.AR"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "Seduploader ESET Detection Names",
+          "type": "text",
+          "value": "Win32/Sednit.AG"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "9fc43e32c887b7697bf6d6933e9859d29581ead0"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "99f927f97838eb47c1d59500ee9155adb55b806a"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "90c3b756b1bb849cba80994d445e96a9872d0cf5"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "8f99774926b2e0bf85e5147aaca8bbbbcc5f1d48"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "842b0759b5796979877a2bac82a33500163ded67"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "80dca565807fa69a75a7dd278cef1daaee34236e"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "6fb3fd8c2580c84314b14510944700144a9e31df"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "69d8ca2a02241a1f88a525617cf18971c99fb63b"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "63d1d33e7418daf200dc4660fc9a59492ddd50d9"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "5c3e709517f41febf03109fa9d597f2ccc495956"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "51e42368639d593d0ae2968bd2849dc20735c071"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "51b0e3cd6360d50424bf776b3cd673dd45fd0f97"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "4fae67d3988da117608a7548d9029caddbfb3ebf"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "4d5e923351f52a9d5c94ee90e6a00e6fced733ef"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "3956cfe34566ba8805f9b1fe0d2639606a404cd4"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "351c3762be9948d01034c69aced97628099a90b0"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "f024dbab65198467c2b832de9724cb70e24af0dd"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "ed9f3e5e889d281437b945993c6c2a80c60fdedc"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "e742b917d3ef41992e67389cd2fe2aab0f9ace5b"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "e5fb715a1c70402774ee2c518fb0e4e9cd3fdcff"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "d9989a46d590ebc792f14aa6fec30560dfe931b1"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "d85e44d386315b0258847495be1711450ac02d9f"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "d3aa282b390a5cb29d15a97e0a046305038dbefe"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "c345a85c01360f2833752a253a5094ff421fc839"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "c2e8c584d5401952af4f1db08cf4b6016874ddac"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "c1eae93785c9cb917cfb260d3abf6432c6fdaf4d"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "b8aabe12502f7d55ae332905acee80a10e3bc399"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "b7788af2ef073d7b3fb84086496896e7404e625e"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "b4a515ef9de037f18d96b9b0e48271180f5725b7"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "a857bccf4cc5c15b60667ecd865112999e1e56ba"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "a5fca59a2fae0a12512336ca1b78f857afc06445"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "a43ef43f3c3db76a4a9ca8f40f7b2c89888f0399"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "hpinst.exe"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "hello32.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "hazard.exe"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "decompbufferrawpe-0x7c4-1429488-1.bin"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "decompbufferrawfix-0x624-1643712-1.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "csrs.exe"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "csrs.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "cormac.mcr"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "btecache.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "apisvcd.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "api-ms-win-samcli-dnsapi-0-0-0.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "api-ms-win-downlevel-profile-l1-1-0.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "api-ms-win-core-advapi-l1-1-0.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "amdcache.dll"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "f7608ef62a45822e9300d390064e667028b75dea"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader",
+          "type": "sha1",
+          "value": "f3d50c1f7d5f322c1a1f9a72ff122cac990881ee"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "swsupporttools.com"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "regkey",
+          "value": "HKCU\\Software\\Microsoft\\Office test\\Special\\Perf"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "filename",
+          "value": "jkeyskw.temp"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "filename",
+          "value": "jhuhugit.tmp"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "filename",
+          "value": "jhuhugit.temp"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "mutex",
+          "value": "ASijnoKGszdpodPPiaoaghj8127391"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "mutex",
+          "value": "\\BaseNamedObjects\\sSbydFdIob6NrhNTJcF89uDqE2"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "mutex",
+          "value": "\\BaseNamedObjects\\B5a20F03e6445A6987f8EC87913c9"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "mutex",
+          "value": "\\BaseNamedObjects\\ASLIiasiuqpssuqkl713h"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "mutex",
+          "value": "\\BaseNamedObjects\\513AbTAsEpcq4mf6TEacB"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "mutex",
+          "value": "//dfc01ell6zsq3-ufhhf"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "vmware_manager.exe"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "runrun.exe"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "mgswizap.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "lsasrvi.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Seduploader",
+          "type": "filename",
+          "value": "iprpp.dll"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win32/Agent.XIP"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win32/Agent.WLF"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win32/Agent.WGJ"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win32/Agent.VQQ"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Linux/Fysbis"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "pdb",
+          "value": "D:\\REDMINE\\JOINER\\HEADER_PAYLOAD\\header_payload\\Uploader\\Release\\Uploader.pdb"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "www.winupdatesysmic.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "www.storsvc.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "www.tabsync.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "www.wscapi.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "www.biocpl.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "www.acledit.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "www.windowscheckupdater.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "www.mscoresvw.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "www.dataclen.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C Server Domain Names",
+          "type": "hostname",
+          "value": "www.capisp.com"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "4bc32a3894f64b4be931ff20390712b4ec605488"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "4b74c90c9d9ce7668aa9eb09978c1d8d4dfda24a"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "499ff777c88aeacbbaa47edde183c944ac7e91d2"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "3403519fa3ede4d07fb4c05d422a9f8c026cedbf"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "0f04dad5194f97bb4f1808df19196b04b4aee1b8"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "08c4d755f14fd6df76ec86da6eab1b5574dfbafd"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "082141f1c24fb49981cc70a9ed50cda582ee04dd"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "072933fa35b585511003f36e3885563e1b55d55a"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "iOS/XAgent.B"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "iOS/XAgent.A"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win64/Agent.EZ"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win64/Agent.ED"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win32/Agent.XWX"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win32/Agent.XVD"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win32/Agent.XPZ"
+        },
+        {
+          "category": "Antivirus detection",
+          "comment": "",
+          "type": "text",
+          "value": "Win32/Agent.XPY"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Xagent",
+          "type": "filename",
+          "value": "splm.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Xagent",
+          "type": "filename",
+          "value": "rwte.dll"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent",
+          "type": "sha1",
+          "value": "f080e509c988a9578862665b4fcf1e4bf8d77c3e"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent",
+          "type": "sha1",
+          "value": "ecdda7aca5c805e5be6e0ab2017592439de7e32c"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent",
+          "type": "sha1",
+          "value": "9444d2b29c6401bc7c2d14f071b11ec9014ae040"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent",
+          "type": "sha1",
+          "value": "7e33a52e53e85ddb1dc8dc300e6558735acf10ce"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "f1ee563d44e2b1020b7a556e080159f64f3fd699"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "e816ec78462b5925a1f3ef3cdb3cac6267222e72"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "d0db619a7a160949528d46d20fc0151bf9775c32"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "d00ac5498d0735d5ae0dea42a1f477cf8b8b0826"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "c18edcba2c31533b7cdb6649a970dce397f4b13c"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "baa4c177a53cfa5cc103296b07b62565e1c7799f"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "a70ed3ae0bc3521e743191259753be945972118b"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "780aa72f0397cb6c2a78536201bd9db4818fa02a"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "71636e025fa308fc5b8065136f3dd692870cb8a4"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent",
+          "type": "sha1",
+          "value": "5f05a8cb6fef24a91b3bd6c137b23ab3166f39ae"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper",
+          "type": "sha1",
+          "value": "87f45e82edd63ef05c41d18aeddeac00c49f1aee"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper",
+          "type": "sha1",
+          "value": "4f895db287062a4ee1a2c5415900b56e2cf15842"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xagent C&C server IP Addresses",
+          "type": "ip-dst",
+          "value": "93.115.38.125"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xagent C&C server IP Addresses",
+          "type": "ip-dst",
+          "value": "92.114.92.125"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xagent C&C server IP Addresses",
+          "type": "ip-dst",
+          "value": "89.32.40.4"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xagent C&C server IP Addresses",
+          "type": "ip-dst",
+          "value": "69.12.73.174"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xagent C&C server IP Addresses",
+          "type": "ip-dst",
+          "value": "5.135.183.154"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xagent C&C server IP Addresses",
+          "type": "ip-dst",
+          "value": "31.220.43.99"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xagent C&C server IP Addresses",
+          "type": "ip-dst",
+          "value": "185.86.149.223"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xagent C&C server IP Addresses",
+          "type": "ip-dst",
+          "value": "185.106.120.101"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C server Domain Names - Xagent",
+          "type": "domain",
+          "value": "advpdxapi.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C server Domain Names - Xagent",
+          "type": "domain",
+          "value": "inteldrv64.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C server Domain Names - Xagent",
+          "type": "domain",
+          "value": "timezoneutc.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C server Domain Names - Xagent",
+          "type": "domain",
+          "value": "microsoftsupp.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "C&C server Domain Names - Xagent",
+          "type": "domain",
+          "value": "ciscohelpcenter.com"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Xagent",
+          "type": "filename",
+          "value": "lg3.exe"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Sedreco",
+          "type": "mutex",
+          "value": "\\BaseNamedObjects\\AZZYMTX"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Sedreco",
+          "type": "regkey",
+          "value": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Path"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Sedreco",
+          "type": "regkey",
+          "value": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Path"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Dropper Sedreco",
+          "type": "filename",
+          "value": "wintraysys.exe"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Dropper Sedreco",
+          "type": "filename",
+          "value": "scroll.dll"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "filename",
+          "value": "%TEMP%\\__4964tmp.dat"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "filename",
+          "value": "%TEMP%\\__2315tmp.dat"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "filename",
+          "value": "%ALLUSERSPROFILE%\\msd"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco payload",
+          "type": "sha1",
+          "value": "e3b7704d4c887b40a9802e0695bae379358f3ba0"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco payload",
+          "type": "sha1",
+          "value": "11af174294ee970ac7fd177746d23cdc8ffb92d7"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco payload",
+          "type": "sha1",
+          "value": "04301b59c6eb71db2f701086b617a98c6e026872"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper",
+          "type": "sha1",
+          "value": "e17615331bdce4afa45e4912bdcc989eacf284bc"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper",
+          "type": "sha1",
+          "value": "e034e0d9ad069bab5a6e68c1517c15665abe67c9"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper",
+          "type": "sha1",
+          "value": "c23f18de9779c4f14a3655823f235f8e221d0f6a"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper",
+          "type": "sha1",
+          "value": "9e779c8b68780ac860920fcb4a8e700d97f084ef"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper",
+          "type": "sha1",
+          "value": "8ee6cec34070f20fd8ad4bb202a5b08aea22abfa"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "0450aaf8ed309ca6baf303837701b5b23aac6f05"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "windowsappstore.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "updmanager.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "updatesystems.net"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "updatecenter.name"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "symantecsupport.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "softwaresupportsv.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "nortonupdate.org"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "microsofthelpcenter.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "microsoftdriver.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "kenlynton.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "driversupdate.info"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "cloudflarecdn.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "akamaisoft.com"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Sedreco - C&C",
+          "type": "domain",
+          "value": "1oo7.net"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "Sedreco",
+          "type": "mutex",
+          "value": "\\BaseNamedObjects\\MutYzAz"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xtunnel",
+          "type": "ip-dst",
+          "value": "176.31.96.178"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xtunnel",
+          "type": "ip-dst",
+          "value": "176.31.112.10"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xtunnel",
+          "type": "ip-dst",
+          "value": "167.114.214.63"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xtunnel",
+          "type": "ip-dst",
+          "value": "131.72.136.165"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "e945de27ebfd1baf8e8d2a81f4fb0d4523d85d6a"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "de3946b83411489797232560db838a802370ea71"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "db731119fca496064f8045061033a5976301770d"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "cdeea936331fcdd8158c876e9d23539f8976c305"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "c91b192f4cd47ba0c8e49be438d035790ff85e70"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "c637e01f50f5fbd2160b191f6371c5de2ac56de4"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "99b454262dc26b081600e844371982a49d334e5e"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "982d9241147aaacf795174a9dab0e645cf56b922"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "8f4f0edd5fb3737914180ff28ed0e9cca25bf4cc"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "42dee38929a93dfd45c39045708c57da15d7586c"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "1535d85bee8a9adb52e8179af20983fb0558ccb3"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel",
+          "type": "sha1",
+          "value": "067913b28840e926bf3b4bfac95291c9114d3787"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: de3946b83411489797232560db838a802370ea71",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/4dd8ab2471337a56b431433b7e8db2a659dc5d9dc5481b4209c4cddd07d6dc2b/analysis/1471465605/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: de3946b83411489797232560db838a802370ea71",
+          "type": "md5",
+          "value": "1d1287d4a3ba5d02cca91f51863db738"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: de3946b83411489797232560db838a802370ea71",
+          "type": "sha256",
+          "value": "4dd8ab2471337a56b431433b7e8db2a659dc5d9dc5481b4209c4cddd07d6dc2b"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: e945de27ebfd1baf8e8d2a81f4fb0d4523d85d6a",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/d2e947a39714478983764b270985d2529ff682ffec9ebac792158353caf90ed3/analysis/1477363909/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: e945de27ebfd1baf8e8d2a81f4fb0d4523d85d6a",
+          "type": "md5",
+          "value": "cd1c521b6ae08fc97e3d69f242f00f9e"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: e945de27ebfd1baf8e8d2a81f4fb0d4523d85d6a",
+          "type": "sha256",
+          "value": "d2e947a39714478983764b270985d2529ff682ffec9ebac792158353caf90ed3"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "pdb",
+          "value": "E:\\PROJECT\\XAPS_OBJECTIVE_DLL\\Release\\XAPS_OBJECTIVE.pdb"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "pdb",
+          "value": "%USERPROFILE%\\Documents\\\u00d0\u009d\u00d0\u00be\u00d0\u00b2\u00d0\u00b0\u00d1\u008f \u00d0\u00bf\u00d0\u00b0\u00d0\u00bf\u00d0\u00ba\\XAPS_OBJECTIVE\\Release\\XAPS_OBJECTIVE.pdb"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "pdb",
+          "value": "%USERPROFILE%\\Desktop\\xaps_through_squid_default_proxy\\Release\\XAPS_OBJECTIVE.pdb"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "pdb",
+          "value": "H:\\last version 23.04\\UNvisible crypt version XAPS select - \u00d0\u00ba\u00d0\u00be\u00d0\u00bf\u00d0\u00b8\u00d1\u008f\\XAPS_OBJECTIVE\\Release\\XAPS_OBJECTIVE.pdb"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xtunnel",
+          "type": "ip-dst",
+          "value": "95.215.46.27"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xtunnel",
+          "type": "ip-dst",
+          "value": "81.17.30.29"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xtunnel",
+          "type": "ip-dst",
+          "value": "80.255.3.93"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xtunnel",
+          "type": "ip-dst",
+          "value": "80.255.10.236"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xtunnel",
+          "type": "ip-dst",
+          "value": "46.183.216.209"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Xtunnel",
+          "type": "ip-dst",
+          "value": "192.95.12.5"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 982d9241147aaacf795174a9dab0e645cf56b922",
+          "type": "sha256",
+          "value": "c9ef265fc0a174f3033ff21b8f0274224eb7154dca97f15cba598952be2fbace"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: 99b454262dc26b081600e844371982a49d334e5e",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/a979c5094f75548043a22b174aa10e1f2025371bd9e1249679f052b168e194b3/analysis/1466592617/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 99b454262dc26b081600e844371982a49d334e5e",
+          "type": "md5",
+          "value": "ac3e087e43be67bdc674747c665b46c2"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 99b454262dc26b081600e844371982a49d334e5e",
+          "type": "sha256",
+          "value": "a979c5094f75548043a22b174aa10e1f2025371bd9e1249679f052b168e194b3"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: c637e01f50f5fbd2160b191f6371c5de2ac56de4",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/c6a9db52a3855d980a7f383dbe2fb70300a12b7a3a4f0a995e2ebdef769eaaca/analysis/1471465607/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: c637e01f50f5fbd2160b191f6371c5de2ac56de4",
+          "type": "md5",
+          "value": "b2dc7c29cbf8d71d1dd57b474f1e04b9"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: c637e01f50f5fbd2160b191f6371c5de2ac56de4",
+          "type": "sha256",
+          "value": "c6a9db52a3855d980a7f383dbe2fb70300a12b7a3a4f0a995e2ebdef769eaaca"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: c91b192f4cd47ba0c8e49be438d035790ff85e70",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/1c8869abf756e77e1b6d7d0ad5ca8f1cdce1a111315c3703e212fb3db174a6d5/analysis/1477363730/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: c91b192f4cd47ba0c8e49be438d035790ff85e70",
+          "type": "md5",
+          "value": "672b8d14d1d3e97c24baf69d50937afc"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: c91b192f4cd47ba0c8e49be438d035790ff85e70",
+          "type": "sha256",
+          "value": "1c8869abf756e77e1b6d7d0ad5ca8f1cdce1a111315c3703e212fb3db174a6d5"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: cdeea936331fcdd8158c876e9d23539f8976c305",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/730a0e3daf0b54f065bdd2ca427fbe10e8d4e28646a5dc40cbcfb15e1702ed9a/analysis/1464765930/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: cdeea936331fcdd8158c876e9d23539f8976c305",
+          "type": "md5",
+          "value": "5e70a5c47c6b59dae7faf0f2d62b28b3"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: cdeea936331fcdd8158c876e9d23539f8976c305",
+          "type": "sha256",
+          "value": "730a0e3daf0b54f065bdd2ca427fbe10e8d4e28646a5dc40cbcfb15e1702ed9a"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: db731119fca496064f8045061033a5976301770d",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/60ee6fdca66444bdc2e4b00dc67a1b0fdee5a3cd9979815e0aab9ce6435262c6/analysis/1477363770/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: db731119fca496064f8045061033a5976301770d",
+          "type": "md5",
+          "value": "34651f2df01b956f1989da4b3ea40338"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: db731119fca496064f8045061033a5976301770d",
+          "type": "sha256",
+          "value": "60ee6fdca66444bdc2e4b00dc67a1b0fdee5a3cd9979815e0aab9ce6435262c6"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 0450aaf8ed309ca6baf303837701b5b23aac6f05",
+          "type": "md5",
+          "value": "800af1c9d341b846a856a1e686be6a3e"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 0450aaf8ed309ca6baf303837701b5b23aac6f05",
+          "type": "sha256",
+          "value": "566ab945f61be016bfd9e83cc1b64f783b9b8deb891e6d504d3442bc8281b092"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: 067913b28840e926bf3b4bfac95291c9114d3787",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/d2a6064429754571682f475b6b67f36526f1573d846182aab3516c2637fa1e81/analysis/1477363422/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 067913b28840e926bf3b4bfac95291c9114d3787",
+          "type": "md5",
+          "value": "02522ce47a8db9544f8877dace7e0833"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 067913b28840e926bf3b4bfac95291c9114d3787",
+          "type": "sha256",
+          "value": "d2a6064429754571682f475b6b67f36526f1573d846182aab3516c2637fa1e81"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: 1535d85bee8a9adb52e8179af20983fb0558ccb3",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/8c488b029188e3280ed3614346575a4a390e0dda002bca08c0335210a6202949/analysis/1477361177/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 1535d85bee8a9adb52e8179af20983fb0558ccb3",
+          "type": "md5",
+          "value": "4ac8d16ff796e825625ad1861546e2e8"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 1535d85bee8a9adb52e8179af20983fb0558ccb3",
+          "type": "sha256",
+          "value": "8c488b029188e3280ed3614346575a4a390e0dda002bca08c0335210a6202949"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: 42dee38929a93dfd45c39045708c57da15d7586c",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/a2c9041ee1918523e67dbaf1c514f98609d4dbe451ba08657653bb41946fc89d/analysis/1477361078/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 42dee38929a93dfd45c39045708c57da15d7586c",
+          "type": "md5",
+          "value": "ae4ded48da0766d237ce2262202c3c96"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 42dee38929a93dfd45c39045708c57da15d7586c",
+          "type": "sha256",
+          "value": "a2c9041ee1918523e67dbaf1c514f98609d4dbe451ba08657653bb41946fc89d"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: 8f4f0edd5fb3737914180ff28ed0e9cca25bf4cc",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/1289ee3d29967f491542c0bdeff6974aad6b37932e91ff9c746fb220d5edb407/analysis/1477361026/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 8f4f0edd5fb3737914180ff28ed0e9cca25bf4cc",
+          "type": "md5",
+          "value": "e766e048bd222cfd2b9cc1bf24125dac"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 8f4f0edd5fb3737914180ff28ed0e9cca25bf4cc",
+          "type": "sha256",
+          "value": "1289ee3d29967f491542c0bdeff6974aad6b37932e91ff9c746fb220d5edb407"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: 982d9241147aaacf795174a9dab0e645cf56b922",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/c9ef265fc0a174f3033ff21b8f0274224eb7154dca97f15cba598952be2fbace/analysis/1477361174/"
+        },
+        {
+          "category": "Payload installation",
+          "comment": "Xtunnel - Xchecked via VT: 982d9241147aaacf795174a9dab0e645cf56b922",
+          "type": "md5",
+          "value": "0ebfac6dba63ff8b35cbd374ef33323a"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Sedreco Dropper - Xchecked via VT: e034e0d9ad069bab5a6e68c1517c15665abe67c9",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/fb3a3339e2ba82cb3dcdc43d0e49e7b8a26ced3a587f5ee15a256aee062e6e05/analysis/1436404088/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: e034e0d9ad069bab5a6e68c1517c15665abe67c9",
+          "type": "md5",
+          "value": "6a24be8f61bcd789622dc55ebb7db90b"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: e034e0d9ad069bab5a6e68c1517c15665abe67c9",
+          "type": "sha256",
+          "value": "fb3a3339e2ba82cb3dcdc43d0e49e7b8a26ced3a587f5ee15a256aee062e6e05"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Sedreco Dropper - Xchecked via VT: e17615331bdce4afa45e4912bdcc989eacf284bc",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/6bbec6b2927325891cc008d3378d30941fe9d21e5c9bd6459e8e3ba8c78833c2/analysis/1466540502/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: e17615331bdce4afa45e4912bdcc989eacf284bc",
+          "type": "md5",
+          "value": "5e93cf87040cf225ab5b5b9f9f0a0d03"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: e17615331bdce4afa45e4912bdcc989eacf284bc",
+          "type": "sha256",
+          "value": "6bbec6b2927325891cc008d3378d30941fe9d21e5c9bd6459e8e3ba8c78833c2"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Sedreco payload - Xchecked via VT: 04301b59c6eb71db2f701086b617a98c6e026872",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/37bf2c811842972314956434449fd294e793b43c1a7b37cfe41af4fcc07d329d/analysis/1461069059/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco payload - Xchecked via VT: 04301b59c6eb71db2f701086b617a98c6e026872",
+          "type": "md5",
+          "value": "cf30b7550f04a9372c3257c9b5cff3e9"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco payload - Xchecked via VT: 04301b59c6eb71db2f701086b617a98c6e026872",
+          "type": "sha256",
+          "value": "37bf2c811842972314956434449fd294e793b43c1a7b37cfe41af4fcc07d329d"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Sedreco payload - Xchecked via VT: 11af174294ee970ac7fd177746d23cdc8ffb92d7",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/ba1c02aa6c12794a33c4742e62cbda3c17def08732f3fbaeb801f1806770b9a0/analysis/1461305062/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco payload - Xchecked via VT: 11af174294ee970ac7fd177746d23cdc8ffb92d7",
+          "type": "md5",
+          "value": "9422ca55f7fca4449259d8878ede5e47"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco payload - Xchecked via VT: 11af174294ee970ac7fd177746d23cdc8ffb92d7",
+          "type": "sha256",
+          "value": "ba1c02aa6c12794a33c4742e62cbda3c17def08732f3fbaeb801f1806770b9a0"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Sedreco payload - Xchecked via VT: e3b7704d4c887b40a9802e0695bae379358f3ba0",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/a9dc96d45702538c2086a749ba2fb467ba8d8b603e513bdef62a024dfeb124cb/analysis/1475067319/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco payload - Xchecked via VT: e3b7704d4c887b40a9802e0695bae379358f3ba0",
+          "type": "md5",
+          "value": "a96f4b8ac7aa9dbf4624424b7602d4f7"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco payload - Xchecked via VT: e3b7704d4c887b40a9802e0695bae379358f3ba0",
+          "type": "sha256",
+          "value": "a9dc96d45702538c2086a749ba2fb467ba8d8b603e513bdef62a024dfeb124cb"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xtunnel - Xchecked via VT: 0450aaf8ed309ca6baf303837701b5b23aac6f05",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/566ab945f61be016bfd9e83cc1b64f783b9b8deb891e6d504d3442bc8281b092/analysis/1472528633/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent - Xchecked via VT: f080e509c988a9578862665b4fcf1e4bf8d77c3e",
+          "type": "sha256",
+          "value": "02c7cf55fd5c5809ce2dce56085ba43795f2480423a4256537bfdfda0df85592"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Sedreco Dropper - Xchecked via VT: 4f895db287062a4ee1a2c5415900b56e2cf15842",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/d403ded7c4acfffe8dc2a3ad8fb848f08388b4c3452104f6970835913d92166c/analysis/1477360977/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: 4f895db287062a4ee1a2c5415900b56e2cf15842",
+          "type": "md5",
+          "value": "5363e5cc28687b7dd71f1e257eab2d5d"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: 4f895db287062a4ee1a2c5415900b56e2cf15842",
+          "type": "sha256",
+          "value": "d403ded7c4acfffe8dc2a3ad8fb848f08388b4c3452104f6970835913d92166c"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Sedreco Dropper - Xchecked via VT: 87f45e82edd63ef05c41d18aeddeac00c49f1aee",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/378ef276eeaa4a29dab46d114710fc14ba0a9f964f6d949bcbc5ed3267579892/analysis/1438176380/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: 87f45e82edd63ef05c41d18aeddeac00c49f1aee",
+          "type": "md5",
+          "value": "9617f3948b1886ebc95689c02d2cf264"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: 87f45e82edd63ef05c41d18aeddeac00c49f1aee",
+          "type": "sha256",
+          "value": "378ef276eeaa4a29dab46d114710fc14ba0a9f964f6d949bcbc5ed3267579892"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Sedreco Dropper - Xchecked via VT: 8ee6cec34070f20fd8ad4bb202a5b08aea22abfa",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/20ac1420eade0bdb464cd9f6d26a84094271b252c0650a7853721d8e928f6e6c/analysis/1440551349/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: 8ee6cec34070f20fd8ad4bb202a5b08aea22abfa",
+          "type": "md5",
+          "value": "30cda69cf82637dfa2ffdc803bf2aead"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: 8ee6cec34070f20fd8ad4bb202a5b08aea22abfa",
+          "type": "sha256",
+          "value": "20ac1420eade0bdb464cd9f6d26a84094271b252c0650a7853721d8e928f6e6c"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Sedreco Dropper - Xchecked via VT: 9e779c8b68780ac860920fcb4a8e700d97f084ef",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/2c81023a146d2b5003d2b0c617ebf2eb1501dc6e55fc6326e834f05f5558c0ec/analysis/1466631008/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: 9e779c8b68780ac860920fcb4a8e700d97f084ef",
+          "type": "md5",
+          "value": "f686304cff9b35ea0d7647820ab525ba"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: 9e779c8b68780ac860920fcb4a8e700d97f084ef",
+          "type": "sha256",
+          "value": "2c81023a146d2b5003d2b0c617ebf2eb1501dc6e55fc6326e834f05f5558c0ec"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Sedreco Dropper - Xchecked via VT: c23f18de9779c4f14a3655823f235f8e221d0f6a",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/ec2f14916e0b52fb727111962dff9846839137968e32269a82288aee9f227bd4/analysis/1445274531/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: c23f18de9779c4f14a3655823f235f8e221d0f6a",
+          "type": "md5",
+          "value": "9f82abbaebc1093a187f1887df2cf926"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Sedreco Dropper - Xchecked via VT: c23f18de9779c4f14a3655823f235f8e221d0f6a",
+          "type": "sha256",
+          "value": "ec2f14916e0b52fb727111962dff9846839137968e32269a82288aee9f227bd4"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: e816ec78462b5925a1f3ef3cdb3cac6267222e72",
+          "type": "md5",
+          "value": "404eb3f7554392e85e56aed414db8455"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: e816ec78462b5925a1f3ef3cdb3cac6267222e72",
+          "type": "sha256",
+          "value": "94c220653ea7421c60e3eafd753a9ae9d69b475d61230f2f403789d326309c24"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: f1ee563d44e2b1020b7a556e080159f64f3fd699",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/bebe0be0cf8349706b2feb789572e035955209d5bf5d5fea0e5d29a7fbfdc7c4/analysis/1461076577/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: f1ee563d44e2b1020b7a556e080159f64f3fd699",
+          "type": "md5",
+          "value": "58ca9243d35e529499dd17d27642b419"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: f1ee563d44e2b1020b7a556e080159f64f3fd699",
+          "type": "sha256",
+          "value": "bebe0be0cf8349706b2feb789572e035955209d5bf5d5fea0e5d29a7fbfdc7c4"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Linux Xagent - Xchecked via VT: 7e33a52e53e85ddb1dc8dc300e6558735acf10ce",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/dd8facad6c0626b6c94e1cc891698d4982782a5564aae696a218c940b7b8d084/analysis/1462371180/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent - Xchecked via VT: 7e33a52e53e85ddb1dc8dc300e6558735acf10ce",
+          "type": "md5",
+          "value": "fd8d1b48f91864dc5acb429a49932ca3"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent - Xchecked via VT: 7e33a52e53e85ddb1dc8dc300e6558735acf10ce",
+          "type": "sha256",
+          "value": "dd8facad6c0626b6c94e1cc891698d4982782a5564aae696a218c940b7b8d084"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Linux Xagent - Xchecked via VT: 9444d2b29c6401bc7c2d14f071b11ec9014ae040",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/8bca0031f3b691421cb15f9c6e71ce193355d2d8cf2b190438b6962761d0c6bb/analysis/1466540613/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent - Xchecked via VT: 9444d2b29c6401bc7c2d14f071b11ec9014ae040",
+          "type": "md5",
+          "value": "364ff454dcf00420cff13a57bcb78467"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent - Xchecked via VT: 9444d2b29c6401bc7c2d14f071b11ec9014ae040",
+          "type": "sha256",
+          "value": "8bca0031f3b691421cb15f9c6e71ce193355d2d8cf2b190438b6962761d0c6bb"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Linux Xagent - Xchecked via VT: ecdda7aca5c805e5be6e0ab2017592439de7e32c",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/fd8b2ea9a2e8a67e4cb3904b49c789d57ed9b1ce5bebfe54fe3d98214d6a0f61/analysis/1466540634/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent - Xchecked via VT: ecdda7aca5c805e5be6e0ab2017592439de7e32c",
+          "type": "md5",
+          "value": "e107c5c84ded6cd9391aede7f04d64c8"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent - Xchecked via VT: ecdda7aca5c805e5be6e0ab2017592439de7e32c",
+          "type": "sha256",
+          "value": "fd8b2ea9a2e8a67e4cb3904b49c789d57ed9b1ce5bebfe54fe3d98214d6a0f61"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Linux Xagent - Xchecked via VT: f080e509c988a9578862665b4fcf1e4bf8d77c3e",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/02c7cf55fd5c5809ce2dce56085ba43795f2480423a4256537bfdfda0df85592/analysis/1466540604/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Linux Xagent - Xchecked via VT: f080e509c988a9578862665b4fcf1e4bf8d77c3e",
+          "type": "md5",
+          "value": "075b6695ab63f36af65f7ffd45cccd39"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: a70ed3ae0bc3521e743191259753be945972118b",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/715f69916db9ff8fedf6630307f4ebb84aae6653fd0e593036517c5040d84dbe/analysis/1477363561/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: a70ed3ae0bc3521e743191259753be945972118b",
+          "type": "md5",
+          "value": "9a66142acfc7739f78c23ab1252db45b"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: a70ed3ae0bc3521e743191259753be945972118b",
+          "type": "sha256",
+          "value": "715f69916db9ff8fedf6630307f4ebb84aae6653fd0e593036517c5040d84dbe"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: baa4c177a53cfa5cc103296b07b62565e1c7799f",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/dea4e560017b4da05e8fd0a03ba74239723349934ee8fbd201a79be1ecf1c32d/analysis/1477363563/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: baa4c177a53cfa5cc103296b07b62565e1c7799f",
+          "type": "md5",
+          "value": "9d1a09bb98bf1ee31f390b60b0cf724d"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: baa4c177a53cfa5cc103296b07b62565e1c7799f",
+          "type": "sha256",
+          "value": "dea4e560017b4da05e8fd0a03ba74239723349934ee8fbd201a79be1ecf1c32d"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: c18edcba2c31533b7cdb6649a970dce397f4b13c",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/fc2dbfda41860b2385314c87e81f1ebb4f9ae1106b697e019841d8c3bf402570/analysis/1477363566/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: c18edcba2c31533b7cdb6649a970dce397f4b13c",
+          "type": "md5",
+          "value": "4265f6e8cc545b925912867ec8af2f11"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: c18edcba2c31533b7cdb6649a970dce397f4b13c",
+          "type": "sha256",
+          "value": "fc2dbfda41860b2385314c87e81f1ebb4f9ae1106b697e019841d8c3bf402570"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: d00ac5498d0735d5ae0dea42a1f477cf8b8b0826",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/68065abd6482405614d245537600ea60857c6ec9febac4870486b5227589d35c/analysis/1477363734/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: d00ac5498d0735d5ae0dea42a1f477cf8b8b0826",
+          "type": "md5",
+          "value": "12a9fff59de1663dec1b45ea2ede22f5"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: d00ac5498d0735d5ae0dea42a1f477cf8b8b0826",
+          "type": "sha256",
+          "value": "68065abd6482405614d245537600ea60857c6ec9febac4870486b5227589d35c"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: d0db619a7a160949528d46d20fc0151bf9775c32",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/e031299fa1381b40c660b8cd831bb861654f900a1e2952b1a76bedf140972a81/analysis/1475067327/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: d0db619a7a160949528d46d20fc0151bf9775c32",
+          "type": "md5",
+          "value": "ee64d3273f9b4d80020c24edcbbf961e"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: d0db619a7a160949528d46d20fc0151bf9775c32",
+          "type": "sha256",
+          "value": "e031299fa1381b40c660b8cd831bb861654f900a1e2952b1a76bedf140972a81"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: e816ec78462b5925a1f3ef3cdb3cac6267222e72",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/94c220653ea7421c60e3eafd753a9ae9d69b475d61230f2f403789d326309c24/analysis/1477363908/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 499ff777c88aeacbbaa47edde183c944ac7e91d2",
+          "type": "sha256",
+          "value": "82c4e9bc100533482a15a1d756d55e1a604d330eff8fbc0e13c4b166ac2c9bd3"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 4b74c90c9d9ce7668aa9eb09978c1d8d4dfda24a",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/24e11c80f1d4c1e9db654d54cc784db6b5f4a126f9fe5e26c269fdc4009c8f29/analysis/1477360974/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 4b74c90c9d9ce7668aa9eb09978c1d8d4dfda24a",
+          "type": "md5",
+          "value": "409848dabfd110f4d373dd0a97ff708e"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 4b74c90c9d9ce7668aa9eb09978c1d8d4dfda24a",
+          "type": "sha256",
+          "value": "24e11c80f1d4c1e9db654d54cc784db6b5f4a126f9fe5e26c269fdc4009c8f29"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 4bc32a3894f64b4be931ff20390712b4ec605488",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/b23193bff95c4e65af0c9848036eb80ef006503a78be842e921035f8d77eb5de/analysis/1463722857/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 4bc32a3894f64b4be931ff20390712b4ec605488",
+          "type": "md5",
+          "value": "57cc08213ab8b6d4a538e4568d00a123"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 4bc32a3894f64b4be931ff20390712b4ec605488",
+          "type": "sha256",
+          "value": "b23193bff95c4e65af0c9848036eb80ef006503a78be842e921035f8d77eb5de"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 5f05a8cb6fef24a91b3bd6c137b23ab3166f39ae",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/07393ac2e890772f70adf9e8d3aa07ab2f98e2726e3be275276dadd00daf5fc6/analysis/1477360979/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 5f05a8cb6fef24a91b3bd6c137b23ab3166f39ae",
+          "type": "md5",
+          "value": "9ca6ead1384953d787487d399c23cb41"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 5f05a8cb6fef24a91b3bd6c137b23ab3166f39ae",
+          "type": "sha256",
+          "value": "07393ac2e890772f70adf9e8d3aa07ab2f98e2726e3be275276dadd00daf5fc6"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 71636e025fa308fc5b8065136f3dd692870cb8a4",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/ea957d663dbc0b28844f6aa7dfdc5ac0110a4004ac46c87d0f1aa943ef253cfe/analysis/1477363424/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 71636e025fa308fc5b8065136f3dd692870cb8a4",
+          "type": "md5",
+          "value": "96ed0a7976e57ae0bb79dcbd67e39743"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 71636e025fa308fc5b8065136f3dd692870cb8a4",
+          "type": "sha256",
+          "value": "ea957d663dbc0b28844f6aa7dfdc5ac0110a4004ac46c87d0f1aa943ef253cfe"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 780aa72f0397cb6c2a78536201bd9db4818fa02a",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/d0e019229493a1cfb3ffc918a2d8ffcbaee31f9132293c95b1f8c1fd6d595054/analysis/1444926033/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 780aa72f0397cb6c2a78536201bd9db4818fa02a",
+          "type": "md5",
+          "value": "effd7b2411975447fd36603445b380c7"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 780aa72f0397cb6c2a78536201bd9db4818fa02a",
+          "type": "sha256",
+          "value": "d0e019229493a1cfb3ffc918a2d8ffcbaee31f9132293c95b1f8c1fd6d595054"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 072933fa35b585511003f36e3885563e1b55d55a",
+          "type": "md5",
+          "value": "99b93cfcff258eb49e7af603d779a146"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 072933fa35b585511003f36e3885563e1b55d55a",
+          "type": "sha256",
+          "value": "c19d266af9e33dae096e45e7624ab3a3f642c8de580e902fec9dac11bcb8d3fd"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 082141f1c24fb49981cc70a9ed50cda582ee04dd",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/99d3f03fc6f048c74e58da6fb7ea1e831ba31d58194ad2463a7a6cd55da5f96b/analysis/1458043424/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 082141f1c24fb49981cc70a9ed50cda582ee04dd",
+          "type": "md5",
+          "value": "7a055cbe6672f77b2271c1cb8e2670b8"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 082141f1c24fb49981cc70a9ed50cda582ee04dd",
+          "type": "sha256",
+          "value": "99d3f03fc6f048c74e58da6fb7ea1e831ba31d58194ad2463a7a6cd55da5f96b"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 08c4d755f14fd6df76ec86da6eab1b5574dfbafd",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/5f6b2a0d1d966fc4f1ed292b46240767f4acb06c13512b0061b434ae2a692fa1/analysis/1477381025/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 08c4d755f14fd6df76ec86da6eab1b5574dfbafd",
+          "type": "md5",
+          "value": "26ac59dab32f6246e1ce3da7506d48fa"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 08c4d755f14fd6df76ec86da6eab1b5574dfbafd",
+          "type": "sha256",
+          "value": "5f6b2a0d1d966fc4f1ed292b46240767f4acb06c13512b0061b434ae2a692fa1"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 0f04dad5194f97bb4f1808df19196b04b4aee1b8",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/972e907a901a7716f3b8f9651eadd65a0ce09bbc78a1ceacff6f52056af8e8f4/analysis/1477360971/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 0f04dad5194f97bb4f1808df19196b04b4aee1b8",
+          "type": "md5",
+          "value": "8b6d824619e993f74973eedfaf18be78"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 0f04dad5194f97bb4f1808df19196b04b4aee1b8",
+          "type": "sha256",
+          "value": "972e907a901a7716f3b8f9651eadd65a0ce09bbc78a1ceacff6f52056af8e8f4"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 3403519fa3ede4d07fb4c05d422a9f8c026cedbf",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/ddab96e4a8e909065e05c4b6a73ba351ea45ad4806258f41ac3cecbcae8671a6/analysis/1471786112/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 3403519fa3ede4d07fb4c05d422a9f8c026cedbf",
+          "type": "md5",
+          "value": "113cc4a88fd28ea4398e312093a6a4d5"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 3403519fa3ede4d07fb4c05d422a9f8c026cedbf",
+          "type": "sha256",
+          "value": "ddab96e4a8e909065e05c4b6a73ba351ea45ad4806258f41ac3cecbcae8671a6"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 499ff777c88aeacbbaa47edde183c944ac7e91d2",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/82c4e9bc100533482a15a1d756d55e1a604d330eff8fbc0e13c4b166ac2c9bd3/analysis/1477361169/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Xagent - Xchecked via VT: 499ff777c88aeacbbaa47edde183c944ac7e91d2",
+          "type": "md5",
+          "value": "ea726d3e8f6516807366584f3c5b5e2a"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: e742b917d3ef41992e67389cd2fe2aab0f9ace5b",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/63047199037892f66dc083420e2fc60655a770756848c1f07adc2eb7d4a385d0/analysis/1477391697/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: e742b917d3ef41992e67389cd2fe2aab0f9ace5b",
+          "type": "md5",
+          "value": "7764499bb1c4720d0f1d302f15be792c"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: e742b917d3ef41992e67389cd2fe2aab0f9ace5b",
+          "type": "sha256",
+          "value": "63047199037892f66dc083420e2fc60655a770756848c1f07adc2eb7d4a385d0"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: ed9f3e5e889d281437b945993c6c2a80c60fdedc",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/261b0a5912965ea95b8ae02aae1e761a61f9ad3a9fb85ef781e62013d6a21368/analysis/1466540615/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: ed9f3e5e889d281437b945993c6c2a80c60fdedc",
+          "type": "md5",
+          "value": "2dfc90375a09459033d430d046216d22"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: ed9f3e5e889d281437b945993c6c2a80c60fdedc",
+          "type": "sha256",
+          "value": "261b0a5912965ea95b8ae02aae1e761a61f9ad3a9fb85ef781e62013d6a21368"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: f024dbab65198467c2b832de9724cb70e24af0dd",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/df47a939809f925475bc19804319652635848b8f346fb7dfd8c95c620595fe9f/analysis/1477392037/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: f024dbab65198467c2b832de9724cb70e24af0dd",
+          "type": "md5",
+          "value": "7b1bfd7c1866040e8f618fe67b93bea5"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: f024dbab65198467c2b832de9724cb70e24af0dd",
+          "type": "sha256",
+          "value": "df47a939809f925475bc19804319652635848b8f346fb7dfd8c95c620595fe9f"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: f3d50c1f7d5f322c1a1f9a72ff122cac990881ee",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/eb6620442c3ab327f3ccff1cc6d63d6ffe7729186f7e8ac1dbbbfddd971528f0/analysis/1466540604/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: f3d50c1f7d5f322c1a1f9a72ff122cac990881ee",
+          "type": "md5",
+          "value": "77089c094c0f2c15898ff0f021945148"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: f3d50c1f7d5f322c1a1f9a72ff122cac990881ee",
+          "type": "sha256",
+          "value": "eb6620442c3ab327f3ccff1cc6d63d6ffe7729186f7e8ac1dbbbfddd971528f0"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: f7608ef62a45822e9300d390064e667028b75dea",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/b6fff95a74f9847f1a4282b38f148d80e4684d9c35d9ae79fad813d5dc0fd7a9/analysis/1466540589/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: f7608ef62a45822e9300d390064e667028b75dea",
+          "type": "md5",
+          "value": "75f71713a429589e87cf2656107d2bfc"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: f7608ef62a45822e9300d390064e667028b75dea",
+          "type": "sha256",
+          "value": "b6fff95a74f9847f1a4282b38f148d80e4684d9c35d9ae79fad813d5dc0fd7a9"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Xagent - Xchecked via VT: 072933fa35b585511003f36e3885563e1b55d55a",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/c19d266af9e33dae096e45e7624ab3a3f642c8de580e902fec9dac11bcb8d3fd/analysis/1443782586/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: c2e8c584d5401952af4f1db08cf4b6016874ddac",
+          "type": "sha256",
+          "value": "54c4ce98970a44f92be748ebda9fcfb7b30e08d98491e7735be6dd287189cea3"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: c345a85c01360f2833752a253a5094ff421fc839",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/fbd5c2cf1c1f17402cc313fe3266b097a46e08f48b971570ef4667fbfd6b7301/analysis/1467376373/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: c345a85c01360f2833752a253a5094ff421fc839",
+          "type": "md5",
+          "value": "1219318522fa28252368f58f36820ac2"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: c345a85c01360f2833752a253a5094ff421fc839",
+          "type": "sha256",
+          "value": "fbd5c2cf1c1f17402cc313fe3266b097a46e08f48b971570ef4667fbfd6b7301"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: d3aa282b390a5cb29d15a97e0a046305038dbefe",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/eae782130b06d95f3373ff7d5c0977a8019960bdf80614c1aa7e324dc350428a/analysis/1463562733/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: d3aa282b390a5cb29d15a97e0a046305038dbefe",
+          "type": "md5",
+          "value": "18efc091b431c39d3e59be445429a7bc"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: d3aa282b390a5cb29d15a97e0a046305038dbefe",
+          "type": "sha256",
+          "value": "eae782130b06d95f3373ff7d5c0977a8019960bdf80614c1aa7e324dc350428a"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: d85e44d386315b0258847495be1711450ac02d9f",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/500fa112a204b6abb365101013a17749ce83403c30cd37f7c6f94e693c2d492f/analysis/1466540502/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: d85e44d386315b0258847495be1711450ac02d9f",
+          "type": "md5",
+          "value": "c4ffab85d84b494e1c450819a0e9c7db"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: d85e44d386315b0258847495be1711450ac02d9f",
+          "type": "sha256",
+          "value": "500fa112a204b6abb365101013a17749ce83403c30cd37f7c6f94e693c2d492f"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: d9989a46d590ebc792f14aa6fec30560dfe931b1",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/4bcd11142d5b9f96730715905152a645a1bf487921dd65618c354281512a4ae7/analysis/1477391375/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: d9989a46d590ebc792f14aa6fec30560dfe931b1",
+          "type": "md5",
+          "value": "8b031fce1d0c38d6b4c68d52b2764c7e"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: d9989a46d590ebc792f14aa6fec30560dfe931b1",
+          "type": "sha256",
+          "value": "4bcd11142d5b9f96730715905152a645a1bf487921dd65618c354281512a4ae7"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: e5fb715a1c70402774ee2c518fb0e4e9cd3fdcff",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/c431ae04c79ade56e1902094acf51e5bf6b54d65363dfa239d59f31c27989fde/analysis/1477391617/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: e5fb715a1c70402774ee2c518fb0e4e9cd3fdcff",
+          "type": "md5",
+          "value": "072c692783c67ea56da9de0a53a60d11"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: e5fb715a1c70402774ee2c518fb0e4e9cd3fdcff",
+          "type": "sha256",
+          "value": "c431ae04c79ade56e1902094acf51e5bf6b54d65363dfa239d59f31c27989fde"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: a857bccf4cc5c15b60667ecd865112999e1e56ba",
+          "type": "md5",
+          "value": "0c334645a4c12513020aaabc3b78ef9f"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: a857bccf4cc5c15b60667ecd865112999e1e56ba",
+          "type": "sha256",
+          "value": "e1b1143c0003c6905227df37d40aacbaecc2be8b9d86547650fe11bd47ca6989"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: b4a515ef9de037f18d96b9b0e48271180f5725b7",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/d93f22d46090bfc19ef51963a781eeb864390c66d9347e86e03bba25a1fc29c5/analysis/1477032096/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: b4a515ef9de037f18d96b9b0e48271180f5725b7",
+          "type": "md5",
+          "value": "afe09fb5a2b97f9e119f70292092604e"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: b4a515ef9de037f18d96b9b0e48271180f5725b7",
+          "type": "sha256",
+          "value": "d93f22d46090bfc19ef51963a781eeb864390c66d9347e86e03bba25a1fc29c5"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: b7788af2ef073d7b3fb84086496896e7404e625e",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/b1800cb1d4b755e05b0fca251b8c6da96bb85f8042f2d755b7f607cbeef58db8/analysis/1467632921/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: b7788af2ef073d7b3fb84086496896e7404e625e",
+          "type": "md5",
+          "value": "eda061c497ba73441994a30e36f55b1d"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: b7788af2ef073d7b3fb84086496896e7404e625e",
+          "type": "sha256",
+          "value": "b1800cb1d4b755e05b0fca251b8c6da96bb85f8042f2d755b7f607cbeef58db8"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: b8aabe12502f7d55ae332905acee80a10e3bc399",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/1a09ce8a9210d2530d6ce1d59bfae2ac617ac89558cdcdcac15392d176e70c8d/analysis/1469601528/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: b8aabe12502f7d55ae332905acee80a10e3bc399",
+          "type": "md5",
+          "value": "91381cd82cdd5f52bbc7b30d34cb8d83"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: b8aabe12502f7d55ae332905acee80a10e3bc399",
+          "type": "sha256",
+          "value": "1a09ce8a9210d2530d6ce1d59bfae2ac617ac89558cdcdcac15392d176e70c8d"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: c1eae93785c9cb917cfb260d3abf6432c6fdaf4d",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/6236a1bdd76ed90659a36f58b3e073623c34c6436d26413c8eca95f3266cc6fc/analysis/1477391033/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: c1eae93785c9cb917cfb260d3abf6432c6fdaf4d",
+          "type": "md5",
+          "value": "732fbf0a4ceb10e9a2254af59ae4f880"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: c1eae93785c9cb917cfb260d3abf6432c6fdaf4d",
+          "type": "sha256",
+          "value": "6236a1bdd76ed90659a36f58b3e073623c34c6436d26413c8eca95f3266cc6fc"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: c2e8c584d5401952af4f1db08cf4b6016874ddac",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/54c4ce98970a44f92be748ebda9fcfb7b30e08d98491e7735be6dd287189cea3/analysis/1477391056/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: c2e8c584d5401952af4f1db08cf4b6016874ddac",
+          "type": "md5",
+          "value": "078755389b98d17788eb5148e23109a6"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 90c3b756b1bb849cba80994d445e96a9872d0cf5",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/dfa8a85e26c07a348a854130c652dcc6d29b203ee230ce0603c83d9f11bbcacc/analysis/1477031337/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 90c3b756b1bb849cba80994d445e96a9872d0cf5",
+          "type": "md5",
+          "value": "21d63e99ed7dcd8baec74e6ce65c9ef3"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 90c3b756b1bb849cba80994d445e96a9872d0cf5",
+          "type": "sha256",
+          "value": "dfa8a85e26c07a348a854130c652dcc6d29b203ee230ce0603c83d9f11bbcacc"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 99f927f97838eb47c1d59500ee9155adb55b806a",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/8f0674cb85f28b2619a6e0ddc74ce71e92ce4c3162056ef65ff2777104d20109/analysis/1477031153/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 99f927f97838eb47c1d59500ee9155adb55b806a",
+          "type": "md5",
+          "value": "07c8a0a792a5447daf08ac32d1e283e8"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 99f927f97838eb47c1d59500ee9155adb55b806a",
+          "type": "sha256",
+          "value": "8f0674cb85f28b2619a6e0ddc74ce71e92ce4c3162056ef65ff2777104d20109"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 9fc43e32c887b7697bf6d6933e9859d29581ead0",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/bf28267386a010197a50b65f24e815aa527f2adbc53c609d2b2a4f999a639413/analysis/1466540588/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 9fc43e32c887b7697bf6d6933e9859d29581ead0",
+          "type": "md5",
+          "value": "a3c757af9e7a9a60e235d08d54740fbc"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 9fc43e32c887b7697bf6d6933e9859d29581ead0",
+          "type": "sha256",
+          "value": "bf28267386a010197a50b65f24e815aa527f2adbc53c609d2b2a4f999a639413"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: a43ef43f3c3db76a4a9ca8f40f7b2c89888f0399",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/c2551c4e6521ac72982cb952503a2e6f016356e02ee31dea36c713141d4f3785/analysis/1476924167/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: a43ef43f3c3db76a4a9ca8f40f7b2c89888f0399",
+          "type": "md5",
+          "value": "7c2b1de614a9664103b6ff7f3d73f83d"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: a43ef43f3c3db76a4a9ca8f40f7b2c89888f0399",
+          "type": "sha256",
+          "value": "c2551c4e6521ac72982cb952503a2e6f016356e02ee31dea36c713141d4f3785"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: a5fca59a2fae0a12512336ca1b78f857afc06445",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/5a414a39851c4e22d4f9383211dfc080e16e2caffd90fa06dcbe51d11fdb0d6c/analysis/1477390649/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: a5fca59a2fae0a12512336ca1b78f857afc06445",
+          "type": "md5",
+          "value": "f1d3447a2bff56646478b0adb7d0451c"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: a5fca59a2fae0a12512336ca1b78f857afc06445",
+          "type": "sha256",
+          "value": "5a414a39851c4e22d4f9383211dfc080e16e2caffd90fa06dcbe51d11fdb0d6c"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: a857bccf4cc5c15b60667ecd865112999e1e56ba",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/e1b1143c0003c6905227df37d40aacbaecc2be8b9d86547650fe11bd47ca6989/analysis/1477390867/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 63d1d33e7418daf200dc4660fc9a59492ddd50d9",
+          "type": "sha256",
+          "value": "b4f755c91c2790f4ab9bac4ee60725132323e13a2688f3d8939ae9ed4793d014"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 69d8ca2a02241a1f88a525617cf18971c99fb63b",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/4c52957270e63efa4b81a1c6551c706b82951f019b682219096e67182a727eab/analysis/1477390146/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 69d8ca2a02241a1f88a525617cf18971c99fb63b",
+          "type": "md5",
+          "value": "ed601bbd4dd0e267afb0be840cb27c90"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 69d8ca2a02241a1f88a525617cf18971c99fb63b",
+          "type": "sha256",
+          "value": "4c52957270e63efa4b81a1c6551c706b82951f019b682219096e67182a727eab"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 6fb3fd8c2580c84314b14510944700144a9e31df",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/63911ebce691c4b7c9582f37f63f6f439d2ce56e992bfbdcf812132512e753eb/analysis/1477390189/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 6fb3fd8c2580c84314b14510944700144a9e31df",
+          "type": "md5",
+          "value": "f7ee38ca49cd4ae35824ce5738b6e587"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 6fb3fd8c2580c84314b14510944700144a9e31df",
+          "type": "sha256",
+          "value": "63911ebce691c4b7c9582f37f63f6f439d2ce56e992bfbdcf812132512e753eb"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 80dca565807fa69a75a7dd278cef1daaee34236e",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/0abda721c4f1ca626f5d8bd2ce186aa98b197ca68d53e81cf152c32230345071/analysis/1477390219/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 80dca565807fa69a75a7dd278cef1daaee34236e",
+          "type": "md5",
+          "value": "9863f1efc5274b3d449b5b7467819d28"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 80dca565807fa69a75a7dd278cef1daaee34236e",
+          "type": "sha256",
+          "value": "0abda721c4f1ca626f5d8bd2ce186aa98b197ca68d53e81cf152c32230345071"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 842b0759b5796979877a2bac82a33500163ded67",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/f50791f9909c542e4abb5e3f760c896995758a832b0699c23ca54b579a9f2108/analysis/1477031375/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 842b0759b5796979877a2bac82a33500163ded67",
+          "type": "md5",
+          "value": "291af793767f5c5f2dc9c6d44f1bfb59"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 842b0759b5796979877a2bac82a33500163ded67",
+          "type": "sha256",
+          "value": "f50791f9909c542e4abb5e3f760c896995758a832b0699c23ca54b579a9f2108"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 8f99774926b2e0bf85e5147aaca8bbbbcc5f1d48",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/69940a20ab9abb31a03fcefe6de92a16ed474bbdff3288498851afc12a834261/analysis/1475067309/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 8f99774926b2e0bf85e5147aaca8bbbbcc5f1d48",
+          "type": "md5",
+          "value": "c2988e3e4f70d5901b234ff1c1363dcc"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 8f99774926b2e0bf85e5147aaca8bbbbcc5f1d48",
+          "type": "sha256",
+          "value": "69940a20ab9abb31a03fcefe6de92a16ed474bbdff3288498851afc12a834261"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 4d5e923351f52a9d5c94ee90e6a00e6fced733ef",
+          "type": "md5",
+          "value": "6159c094a663a171efd531b23a46716d"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 4d5e923351f52a9d5c94ee90e6a00e6fced733ef",
+          "type": "sha256",
+          "value": "e00eaf295a28f5497dbb5cb8f647537b6e55dd66613505389c24e658d150972c"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 4fae67d3988da117608a7548d9029caddbfb3ebf",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/b0b3f0d6e6c593e2a2046833080574f98566c48a1eda865b2e110cd41bf31a31/analysis/1466540590/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 4fae67d3988da117608a7548d9029caddbfb3ebf",
+          "type": "md5",
+          "value": "c6a80316ea97218df11e11125337233a"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 4fae67d3988da117608a7548d9029caddbfb3ebf",
+          "type": "sha256",
+          "value": "b0b3f0d6e6c593e2a2046833080574f98566c48a1eda865b2e110cd41bf31a31"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 51b0e3cd6360d50424bf776b3cd673dd45fd0f97",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/7c4101caf833aa9025fec4f04a637c049c929459ad3e4023ba27ac72bde7638d/analysis/1466540626/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 51b0e3cd6360d50424bf776b3cd673dd45fd0f97",
+          "type": "md5",
+          "value": "973e0c922eb07aad530d8a1de19c7755"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 51b0e3cd6360d50424bf776b3cd673dd45fd0f97",
+          "type": "sha256",
+          "value": "7c4101caf833aa9025fec4f04a637c049c929459ad3e4023ba27ac72bde7638d"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 51e42368639d593d0ae2968bd2849dc20735c071",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/13468ebe5d47d57d62777043c80784cbf475fb2de1df4546a307807bd2376b45/analysis/1477390032/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 51e42368639d593d0ae2968bd2849dc20735c071",
+          "type": "md5",
+          "value": "dfc836e035cb6c43ce26ed870f61d7e8"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 51e42368639d593d0ae2968bd2849dc20735c071",
+          "type": "sha256",
+          "value": "13468ebe5d47d57d62777043c80784cbf475fb2de1df4546a307807bd2376b45"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 5c3e709517f41febf03109fa9d597f2ccc495956",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/0ac7b666814fd016b3d21d7812f4a272104511f90ca666fa13e9fb6cefa603c7/analysis/1466540502/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 5c3e709517f41febf03109fa9d597f2ccc495956",
+          "type": "md5",
+          "value": "ac75fd7d79e64384b9c4053b37e5623f"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 5c3e709517f41febf03109fa9d597f2ccc495956",
+          "type": "sha256",
+          "value": "0ac7b666814fd016b3d21d7812f4a272104511f90ca666fa13e9fb6cefa603c7"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 63d1d33e7418daf200dc4660fc9a59492ddd50d9",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/b4f755c91c2790f4ab9bac4ee60725132323e13a2688f3d8939ae9ed4793d014/analysis/1469601172/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 63d1d33e7418daf200dc4660fc9a59492ddd50d9",
+          "type": "md5",
+          "value": "2d4eaa0331abbc6d867f5f979b2c890d"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 21835aafe6d46840bb697e8b0d4aac06dec44f5b",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/3d13f2e5b241168005425b15410556bcf26d04078da6b2ef42bc0c2be7654bf8/analysis/1466540603/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 21835aafe6d46840bb697e8b0d4aac06dec44f5b",
+          "type": "md5",
+          "value": "211b7100fd799e9eaabeb13cfa446231"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 21835aafe6d46840bb697e8b0d4aac06dec44f5b",
+          "type": "sha256",
+          "value": "3d13f2e5b241168005425b15410556bcf26d04078da6b2ef42bc0c2be7654bf8"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 2663eb655918c598be1b2231d7c018d8350a0ef9",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/31dd3e3c05fabbfeafbcb7f5616dba30bbb2b1fc77dba6f0250a2c3270c0dd6b/analysis/1477388767/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 2663eb655918c598be1b2231d7c018d8350a0ef9",
+          "type": "md5",
+          "value": "540e4a7a28ca1514e53c2564993d8d87"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 2663eb655918c598be1b2231d7c018d8350a0ef9",
+          "type": "sha256",
+          "value": "31dd3e3c05fabbfeafbcb7f5616dba30bbb2b1fc77dba6f0250a2c3270c0dd6b"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 2c86a6d6e9915a7f38d119888ede60b38ab1d69d",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/69d5123a277dc1f618be5edcc95938a0df148c856d2e1231a07e2743bd683e01/analysis/1477388789/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 2c86a6d6e9915a7f38d119888ede60b38ab1d69d",
+          "type": "md5",
+          "value": "56e011137b9678f1fcc54f9372198bae"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 2c86a6d6e9915a7f38d119888ede60b38ab1d69d",
+          "type": "sha256",
+          "value": "69d5123a277dc1f618be5edcc95938a0df148c856d2e1231a07e2743bd683e01"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 351c3762be9948d01034c69aced97628099a90b0",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/853dbbba09e2463c45c0ad913d15d67d15792d888f81b4908b2216859342aa04/analysis/1477388900/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 351c3762be9948d01034c69aced97628099a90b0",
+          "type": "md5",
+          "value": "83cf67a5d2e68f9c00fbbe6d7d9203bf"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 351c3762be9948d01034c69aced97628099a90b0",
+          "type": "sha256",
+          "value": "853dbbba09e2463c45c0ad913d15d67d15792d888f81b4908b2216859342aa04"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 3956cfe34566ba8805f9b1fe0d2639606a404cd4",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/0356f5fa9907ea060a7d6964e65f019896deb1c7e303b7ba04da1458dc73a842/analysis/1477388926/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 3956cfe34566ba8805f9b1fe0d2639606a404cd4",
+          "type": "md5",
+          "value": "dffb22a1a6a757443ab403d61e760f0c"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 3956cfe34566ba8805f9b1fe0d2639606a404cd4",
+          "type": "sha256",
+          "value": "0356f5fa9907ea060a7d6964e65f019896deb1c7e303b7ba04da1458dc73a842"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 4d5e923351f52a9d5c94ee90e6a00e6fced733ef",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/e00eaf295a28f5497dbb5cb8f647537b6e55dd66613505389c24e658d150972c/analysis/1477389749/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments - Xchecked via VT: e7f7f6caaede6cc29c2e7e4888019f2d1be37cef",
+          "type": "sha256",
+          "value": "9e5fbd79d8febe7a162cd5200041772db60dc83244605b1ff37ef8d14334f512"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Email Attachments - Xchecked via VT: ef755f3fa59960838fa2b37b7dedce83ce41f05c",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/03cb76bdc619fac422d2b954adfa511e7ecabc106adce804b1834581b5913bca/analysis/1469690600/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments - Xchecked via VT: ef755f3fa59960838fa2b37b7dedce83ce41f05c",
+          "type": "md5",
+          "value": "c13655fee08417cffa04d1bf71af4ad1"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments - Xchecked via VT: ef755f3fa59960838fa2b37b7dedce83ce41f05c",
+          "type": "sha256",
+          "value": "03cb76bdc619fac422d2b954adfa511e7ecabc106adce804b1834581b5913bca"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 015425010bd4cf9d511f7fcd0fc17fc17c23eec1",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/63d0b28114f6277b901132bc1cc1f541a594ee72f27d95653c54e1b73382a5f6/analysis/1466540615/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 015425010bd4cf9d511f7fcd0fc17fc17c23eec1",
+          "type": "md5",
+          "value": "c2a0344a2bbb29d9b56d378386afcbed"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 015425010bd4cf9d511f7fcd0fc17fc17c23eec1",
+          "type": "sha256",
+          "value": "63d0b28114f6277b901132bc1cc1f541a594ee72f27d95653c54e1b73382a5f6"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 0f7893e2647a7204dbf4b72e50678545573c3a10",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/da43d39c749c121e99bba00ce809ca63794df3f704e7ad4077094abde4cf2a73/analysis/1476967118/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 0f7893e2647a7204dbf4b72e50678545573c3a10",
+          "type": "md5",
+          "value": "35283c2e60a3cba6734f4f98c443d11f"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 0f7893e2647a7204dbf4b72e50678545573c3a10",
+          "type": "sha256",
+          "value": "da43d39c749c121e99bba00ce809ca63794df3f704e7ad4077094abde4cf2a73"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 10686cc4e46cf3ffbdeb71dd565329a80787c439",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/bc8fec92eee715e77c762693f1ae2bbcd6a3f3127f1226a847a8efdc272e2cbc/analysis/1477388693/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 10686cc4e46cf3ffbdeb71dd565329a80787c439",
+          "type": "md5",
+          "value": "d7c471729bc124babf32945eb5706eb6"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 10686cc4e46cf3ffbdeb71dd565329a80787c439",
+          "type": "sha256",
+          "value": "bc8fec92eee715e77c762693f1ae2bbcd6a3f3127f1226a847a8efdc272e2cbc"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Seduploader - Xchecked via VT: 17661a04b4b150a6f70afdabe3fd9839cc56bee8",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/6562e2ac60afa314cd463f771fcfb8be70f947f6e2b314b0c48187eebb33dd82/analysis/1477388713/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 17661a04b4b150a6f70afdabe3fd9839cc56bee8",
+          "type": "md5",
+          "value": "a579d53a1d29684de6d2c0cbabd525c5"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Seduploader - Xchecked via VT: 17661a04b4b150a6f70afdabe3fd9839cc56bee8",
+          "type": "sha256",
+          "value": "6562e2ac60afa314cd463f771fcfb8be70f947f6e2b314b0c48187eebb33dd82"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Email Attachments - Xchecked via VT: 76053b58643d0630b39d8c9d3080d7db5d017020",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/50539deb509814d4f5c5fe98aedb6f49d5b2f4c495e5e086dac8556c2e47b8e8/analysis/1477388139/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments - Xchecked via VT: 76053b58643d0630b39d8c9d3080d7db5d017020",
+          "type": "md5",
+          "value": "bc7d13043fd9cdc65b5e70b1662f40d3"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments - Xchecked via VT: 76053b58643d0630b39d8c9d3080d7db5d017020",
+          "type": "sha256",
+          "value": "50539deb509814d4f5c5fe98aedb6f49d5b2f4c495e5e086dac8556c2e47b8e8"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Email Attachments - Xchecked via VT: 9b276a0f5fd824c3dff638c5c127567c65222230",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/12572c2fc2b0298ffd4305ca532317dc8b97ddfd0a05671066fe594997ec38f5/analysis/1476925033/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments - Xchecked via VT: 9b276a0f5fd824c3dff638c5c127567c65222230",
+          "type": "md5",
+          "value": "3f44a0f1d746cb99ab0321e73133ecae"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments - Xchecked via VT: 9b276a0f5fd824c3dff638c5c127567c65222230",
+          "type": "sha256",
+          "value": "12572c2fc2b0298ffd4305ca532317dc8b97ddfd0a05671066fe594997ec38f5"
+        },
+        {
+          "category": "External analysis",
+          "comment": "Email Attachments - Xchecked via VT: e7f7f6caaede6cc29c2e7e4888019f2d1be37cef",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/9e5fbd79d8febe7a162cd5200041772db60dc83244605b1ff37ef8d14334f512/analysis/1476924238/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Email Attachments - Xchecked via VT: e7f7f6caaede6cc29c2e7e4888019f2d1be37cef",
+          "type": "md5",
+          "value": "112c64f7c07a959a1cbff6621850a4ad"
+        }
+      ],
+      "objects": [],
+      "reports": []
+    }
+  },
+  "agent_2": {
+    "model_used": "mistral-small3.2:24b-instruct-2506-q8_0",
+    "retrieved_nice_information": "nice_info",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent2 file)'"
+    }
+  },
+  "agent_3": {
+    "model_used": "mistral-small3.2:latest",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent3 file)'"
+    }
+  }
+}
