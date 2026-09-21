@@ -1,0 +1,181 @@
+{
+  "title": "Linux.Bew_Backdoor_Investigation_b0a",
+  "description": "Investigate and respond to the Linux.Bew backdoor malware incident.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of suspicious services",
+    "Analysis of persistence mechanisms",
+    "Identification of lateral movement techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Linux.Bew backdoor malware, a variant designed for Bitcoin mining. This malware communicates with a command-and-control (C2) server and can perform various malicious activities such as lateral movement, exfiltration, and persistence. Your task is to investigate and respond to this incident. By the end of this exercise, you will be able to identify suspicious services, analyze persistence mechanisms, and detect lateral movement techniques."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have access to the target host as user cyrano with password cyrano. From there, you can investigate the compromised system and any other reachable hosts. Enter the word 'start' to proceed to the next level.",
+      "local_content": "You have access to the target host as user cyrano with password cyrano. From there, you can investigate the compromised system and any other reachable hosts. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for any unauthorized or suspicious services running on the system. What is the name of the suspicious service running on the target host?",
+      "solution": "To identify suspicious services, start by listing all running services using the command 'systemctl list-units --type=service'. Look for any service names that appear unusual or unauthorized. The suspicious service is named 'bkd.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Begin by understanding the concept of unauthorized or suspicious services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "List all running services to identify any that appear unusual or unauthorized.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-units --type=service' to list all running services and look for the suspicious service named 'bkd.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemd service and timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. What is the persistence mechanism used by the suspicious service?",
+      "solution": "To determine the persistence mechanism, investigate systemd services and timers. Use the command 'systemctl list-timers' to list all systemd timers. Look for any timers that are associated with the suspicious service. The persistence mechanism is a systemd service and timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that persistence mechanisms are used to automatically start services after reboot.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Investigate systemd services and timers to find how the service is set to start automatically.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-timers' to list all systemd timers and look for any timers that are associated with the suspicious service. The persistence mechanism is a systemd service and timer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Identify file transfers or remote execution used to move between hosts. What is the service name used for lateral movement via file transfers?",
+      "solution": "To identify lateral movement, check the logs and systemd services for any indications of file transfers or remote execution. Use the command 'systemctl list-units --type=service' to list all running services. Look for any service names that indicate file transfers or remote execution. The service name used for lateral movement is 'payload-transfer.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Understand that lateral movement involves file transfers or remote execution used to move between hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the logs and systemd services for any indications of file transfers or remote execution.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-units --type=service' to list all running services and look for the service named 'payload-transfer.service' that indicates file transfers or remote execution.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_lateral_movement",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
