@@ -1,0 +1,197 @@
+{
+  "title": "BlackTech_PLEAD_Backdoor_Investigation_1b2",
+  "description": "Investigate and respond to a BlackTech threat group PLEAD backdoor malware incident in a target network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl",
+    "Usage of journalctl",
+    "Log file analysis"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the BlackTech threat group using the PLEAD backdoor malware. Your task is to investigate and respond to this incident. The malware is known to establish command and control (C2) communication, perform lateral movement, and exfiltrate data. The compromised hosts are running Ubuntu. You will need to identify services, persistence mechanisms, and lateral movement indicators."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised hosts and take necessary actions.",
+      "local_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised hosts and take necessary actions."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the `target` host.",
+      "solution": "To identify the suspicious service, start by understanding the systemd service management system. Then, enumerate running services using `systemctl list-units --type=service`. Look for any unusual or unauthorized services, such as the service name flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd is a suite of system management daemons, libraries, and utilities in Linux. It manages system services and can be used to identify suspicious services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "To identify suspicious services, you should first understand the systemd service management system. Then, enumerate running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot on the `target` host.",
+      "solution": "To determine the persistence mechanism, understand how systemd timers can be used to schedule services. Then, examine the systemd service files and timers using `systemctl cat payload-transfer.service` and `systemctl cat payload-transfer.timer`. Identify the persistence mechanism timer name flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd timers are a way to schedule services to run at specific intervals or after certain events, such as system boot.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "To determine the persistence mechanism, you should first understand how systemd timers work. Then, examine the systemd service files and timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the commands `systemctl cat payload-transfer.service` and `systemctl cat payload-transfer.timer` to inspect the service and timer files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl cat payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat payload-transfer.service",
+          "optional": false
+        },
+        {
+          "state_name": "persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl cat payload-transfer.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat payload-transfer.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/payload-transfer.log",
+      "answer_variable_name": null,
+      "content": "Identify file transfers or remote execution used to move between hosts from the `target` host to the `next-target` host.",
+      "solution": "To identify lateral movement, understand how logs can reveal file transfers or remote execution. Then, check the logs and systemd services related to file transfers using `journalctl -u payload-transfer.service` and `cat /home/cyrano/payload-transfer.log`. Identify the lateral movement indicator log file path flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Logs can provide valuable information about file transfers and remote execution, which are common indicators of lateral movement.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "To identify lateral movement, you should first understand how logs can reveal file transfers or remote execution. Then, check the logs and systemd services related to file transfers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Command Hint",
+          "content": "Use the commands `journalctl -u payload-transfer.service` and `cat /home/cyrano/payload-transfer.log` to inspect the logs.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement",
+          "prereq_state": [],
+          "cmd": "journalctl -u payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u payload-transfer.service",
+          "optional": false
+        },
+        {
+          "state_name": "lateral_movement",
+          "prereq_state": [],
+          "cmd": "cat /home/cyrano/payload-transfer.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /home/cyrano/payload-transfer.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
