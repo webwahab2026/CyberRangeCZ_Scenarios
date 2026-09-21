@@ -1,0 +1,182 @@
+{
+  "title": "Umbreon_Linux_Rootkit_Investigation_bee",
+  "description": "Investigate a Linux system compromised by the Umbreon rootkit, which hides processes, files, and network connections from system administrators and security tools.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux system administration",
+    "Basic knowledge of Linux command-line tools"
+  ],
+  "outcomes": [
+    "Investigation of Linux rootkit compromises",
+    "Detection of shared library injection",
+    "Analysis of system-wide preload configuration",
+    "Forensic techniques for uncovering hidden files and directories"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon Linux Rootkit targets Linux systems, including both Intel and ARM processors. It is designed to hide processes, files, and network connections from system administrators and security tools. The rootkit uses various techniques to maintain persistence and evade detection. Learning Objective: Investigate a Linux system compromised by the Umbreon rootkit. The Umbreon rootkit is part of the Linux Rootkit Family, known for its sophisticated evasion techniques. It is often used in targeted attacks against Linux servers to maintain persistent access and hide malicious activities. The rootkit family is known for its modular architecture, allowing attackers to customize its functionality to evade detection and maintain persistence on compromised systems. Understanding the context and behavior of this rootkit family is crucial for effective investigation and mitigation."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. From there, you can investigate the system and identify signs of the Umbreon rootkit compromise.",
+      "local_content": "Local sandbox access is not required for this scenario. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Identify Evidence of Shared Library Injection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for signs of unauthorized shared library injection. Look for indicators that malicious code has been loaded into system processes. The flag you are looking for is a file path.",
+      "solution": "Check the loaded libraries for system processes and look for any unusual or unauthorized entries. The hidden file flag for this task is `/lib/x86_64-linux-gnu/libsysmon.so.1`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Shared library injection can be detected by examining the libraries loaded by system processes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `ldd` command to list the shared libraries used by a process. For example, `ldd /sbin/init`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the libraries loaded by critical system processes such as `init` or `systemd`. Use the command `ldd /sbin/init` to inspect the libraries. Look for any unusual or unauthorized entries.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ldd /sbin/init",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ldd /sbin/init",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine System-Wide Preload Configuration Modification",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "Examine the system-wide preload configuration to see if it has been tampered with to load unauthorized code. This could indicate a persistence mechanism used by the rootkit. The flag you are looking for is a file path.",
+      "solution": "Inspect the preload configuration file and check for any suspicious entries. The hidden file flag for this task is `/etc/ld.so.preload`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "System-wide preload configuration can be tampered with to load unauthorized code.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the contents of the `/etc/ld.so.preload` file for any suspicious entries. Use the command `cat /etc/ld.so.preload`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the `cat` command to view the contents of the `/etc/ld.so.preload` file. For example, `cat /etc/ld.so.preload`. Look for any unusual or unauthorized entries.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Concealed Files or Directories",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf/config",
+      "answer_variable_name": null,
+      "content": "Search the victim host for any files or directories that are hidden from normal system utilities. These could be artifacts left by the rootkit to maintain its presence on the system. The flag you are looking for is a file path.",
+      "solution": "Use forensic techniques to uncover hidden files or directories that are not visible through standard commands. The hidden file flag for this task is `/etc/.kit_conf/config`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Hidden files or directories can be artifacts left by the rootkit to maintain its presence on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the `ls` command with the `-a` option to list all files and directories, including hidden ones. For example, `ls -a /etc`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Check the `/etc` directory for any hidden files or directories. Use the command `ls -a /etc`. Look for any unusual or unauthorized entries.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -a /etc",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -a /etc",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
