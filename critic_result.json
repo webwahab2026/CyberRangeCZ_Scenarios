@@ -1,0 +1,87 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "issues": [
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Unusual Network Activity",
+      "description": "The flag 'nyadrop_listener' is not explicitly mentioned in the content of the TRAINING_LEVEL.",
+      "fix": "Add a mention of the flag 'nyadrop_listener' in the content of the TRAINING_LEVEL."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine Persistence Mechanism",
+      "description": "The flag 'nyadrop.service' is not explicitly mentioned in the content of the TRAINING_LEVEL.",
+      "fix": "Add a mention of the flag 'nyadrop.service' in the content of the TRAINING_LEVEL."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Lateral Movement",
+      "description": "The flag 'payload-transfer.service' is not explicitly mentioned in the content of the TRAINING_LEVEL.",
+      "fix": "Add a mention of the flag 'payload-transfer.service' in the content of the TRAINING_LEVEL."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'outcomes' section in the training JSON does not fully capture the skills and knowledge gained from the scenario.",
+      "fix": "Expand the 'outcomes' section to include all relevant skills and knowledge, such as investigating network activity, identifying persistence mechanisms, and investigating lateral movement."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'prerequisites' section in the training JSON could be more detailed to better prepare participants.",
+      "fix": "Expand the 'prerequisites' section to include more specific knowledge and skills required for the scenario."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unusual Network Activity",
+      "current_flag": "nyadrop_listener",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "nyadrop.service",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "current_flag": "payload-transfer.service",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The topology and provisioning files are aligned with the scenario design.",
+      "The hosts, networks, and services are correctly configured."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Investigate Unusual Network Activity",
+      "revised_flag": "nyadrop_listener"
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "revised_flag": "nyadrop.service"
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "revised_flag": "payload-transfer.service"
+    }
+  ],
+  "summary": "The scenario is well-designed and aligns with the provided topology and provisioning files. The flags are correctly placed and reachable. The training JSON could benefit from more detailed prerequisites and outcomes. The narrative is strong, and the difficulty progression is appropriate."
+}

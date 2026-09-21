@@ -1,0 +1,179 @@
+{
+  "title": "Linux_NyaDrop_Incident_Response_Scenario_111",
+  "description": "Investigate and respond to a potential security incident involving the Linux/NyaDrop malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity. Your task is to investigate and respond to this potential security incident involving the Linux/NyaDrop malware. Learning objective: Gain hands-on experience in investigating and responding to a security incident involving the Linux/NyaDrop malware."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the 192.168.50.0/24 network. Enter the word 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the 192.168.50.0/24 network. Enter the word 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate Unusual Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "nyadrop_listener",
+      "answer_variable_name": null,
+      "content": "Investigate the unusual network activity on the target system. Identify and investigate an unauthorized or suspicious service running on the target system. Look for the flag 'nyadrop_listener' in the output of the command.",
+      "solution": "To identify the suspicious service, use the command `ss -tulnp | grep 4444`. The flag 'nyadrop_listener' will be present in the output if the service is running.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by checking the running services and network connections on the target system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ss -tulnp` to list all running services and network connections.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Filter the output using the command `ss -tulnp | grep 4444` to identify the suspicious service. Look for the flag 'nyadrop_listener' in the output.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_network_activity",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep 4444",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp | grep 4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "nyadrop.service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. Identify persistence mechanisms (e.g., systemd, cron, scheduled task). Look for the flag 'nyadrop.service' in the output of the command.",
+      "solution": "To identify the persistence mechanism, use the command `systemctl list-unit-files | grep nyadrop`. The flag 'nyadrop.service' will be present in the output if the service is configured to start automatically.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by checking the systemd services and timers on the target system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-unit-files` to list all systemd services and timers.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Filter the output using the command `systemctl list-unit-files | grep nyadrop` to identify the persistence mechanism. Look for the flag 'nyadrop.service' in the output.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "determine_persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files | grep nyadrop",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files | grep nyadrop",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the file transfers or remote execution used to move between hosts. Correlate events across hosts to identify attacker lateral movement. Look for the flag 'payload-transfer.service' in the output of the command.",
+      "solution": "To investigate the lateral movement, use the command `journalctl -u payload-transfer.service`. The flag 'payload-transfer.service' will be present in the output if the service is used for lateral movement.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by checking the logs and network connections on both the target and next-target systems.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `journalctl -u payload-transfer.service` to investigate the lateral movement.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the flag 'payload-transfer.service' in the output of the command.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "journalctl -u payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
