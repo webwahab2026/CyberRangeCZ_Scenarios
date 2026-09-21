@@ -1,0 +1,147 @@
+{
+  "title": "Gafgyt_Botnet_Investigation_893",
+  "description": "You are an incident responder tasked with investigating a potential Gafgyt (BASHLITE) botnet infection on a Linux-based system. Gafgyt is known to compromise IoT devices and Linux systems, often conducting DDoS attacks. Your goal is to identify and mitigate the botnet activity.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify unauthorized or suspicious services responsible for periodic external communication.",
+    "Investigate network connections to identify command-and-control (C2) servers.",
+    "Analyze network traffic to determine the target of malicious activities.",
+    "Collect forensic evidence supporting the identified botnet activity.",
+    "Apply appropriate network controls to mitigate the attack."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Gafgyt (BASHLITE) botnet infection on a Linux-based system. Gafgyt is known to compromise IoT devices and Linux systems, often conducting DDoS attacks. Your goal is to identify and mitigate the botnet activity."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox via the provided cloud environment. Enter the word 'start' to proceed to the next level.",
+      "local_content": "Local sandbox access is not required for this scenario. Enter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-busybox.timer",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from `bot1`. Your task is to identify the service responsible for this suspicious behavior. The service name is the timer flag `bot-beacon-busybox.timer`.",
+      "solution": "Use the command `systemctl list-timers` to list all timers and look for the flag `bot-beacon-busybox.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and their network activity. Use the command `systemctl list-timers` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon-busybox.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine C2 Server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.70.5",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, your next step is to determine the external command-and-control (C2) server it is communicating with. The C2 IP address is the IP flag `192.168.70.5`.",
+      "solution": "Use the command `cat /usr/local/lib/.botcache/beacon.sh` to view the beacon script and identify the flag `192.168.70.5`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Inspect the service configuration and network connections. Use the command `cat /usr/local/lib/.botcache/beacon.sh` to view the beacon script.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_identification",
+          "prereq_state": [],
+          "cmd": "cat /usr/local/lib/.botcache/beacon.sh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.70.5",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Target System",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.80.100",
+      "answer_variable_name": null,
+      "content": "The suspicious service is generating a high volume of network traffic. Identify the target system of this traffic. The victim IP address is the IP flag `192.168.80.100`.",
+      "solution": "Use the command `cat /usr/local/lib/.botcache/flood.sh` to view the flood script and identify the flag `192.168.80.100`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Analyze the network flows and service logs. Use the command `cat /usr/local/lib/.botcache/flood.sh` to view the flood script.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "target_identification",
+          "prereq_state": [],
+          "cmd": "cat /usr/local/lib/.botcache/flood.sh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.80.100",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
