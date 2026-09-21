@@ -1,0 +1,86 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "issues": [
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Suspicious Service Discovery",
+      "description": "The flag 'javaxxx.service' is not consistent with the service name 'javaxxx.service' mentioned in the solution and hints.",
+      "fix": "Update the flag to 'javaxxx.service' to match the service name mentioned in the solution and hints."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Lateral Movement Investigation",
+      "description": "The flag 'payload-transfer.service' is not consistent with the service name 'payload-transfer.sh' mentioned in the provisioning files.",
+      "fix": "Update the flag to 'payload-transfer.sh' to match the service name mentioned in the provisioning files."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each level does not explicitly mention the flag.",
+      "fix": "Update the 'solution' for each level to explicitly mention the flag."
+    },
+    {
+      "severity": "minor",
+      "component": "training",
+      "level": "global",
+      "description": "The 'solution' for each level includes only commands and does not provide methodology.",
+      "fix": "Update the 'solution' for each level to include methodology and commands."
+    },
+    {
+      "severity": "minor",
+      "component": "narrative",
+      "level": "global",
+      "description": "The learning objectives do not explicitly mention the type of flags the participant will encounter.",
+      "fix": "Update the learning objectives to explicitly mention the type of flags the participant will encounter."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "javaxxx.service",
+      "recommendation": "javaxxx.service"
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "4444",
+      "recommendation": ""
+    },
+    {
+      "level": "Lateral Movement Investigation",
+      "current_flag": "payload-transfer.service",
+      "recommendation": "payload-transfer.sh"
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The topology and provisioning files are aligned with the scenario design."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Suspicious Service Discovery",
+      "revised_flag": "javaxxx.service"
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "revised_flag": "4444"
+    },
+    {
+      "level": "Lateral Movement Investigation",
+      "revised_flag": "payload-transfer.sh"
+    }
+  ],
+  "summary": "The scenario is well-designed and aligns with the provided topology and provisioning files. However, there are some inconsistencies in the flags and solutions that need to be addressed. The difficulty progression is correct, and the narrative is strong. The scenario covers the attack chain completely and accurately."
+}

@@ -1,0 +1,182 @@
+{
+  "title": "Rakos_Backdoor_Investigation_064",
+  "description": "Your organization has detected suspicious SSH brute force attempts originating from an internal server. Initial analysis suggests the presence of the Rakos Linux backdoor malware, which is known to create botnets by compromising devices with weak passwords. Your task is to investigate and respond to this incident. You will encounter service name flags during this investigation.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques",
+    "Identifying service name flags"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Your organization has detected suspicious SSH brute force attempts originating from an internal server. Initial analysis suggests the presence of the Rakos Linux backdoor malware, which is known to create botnets by compromising devices with weak passwords. Your task is to investigate and respond to this incident. You will encounter service name flags during this investigation. The Rakos malware family is known for its ability to create backdoors and perform lateral movement within compromised networks."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter the word `start` to proceed.",
+      "local_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter the word `start` to proceed."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "javaxxx.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from the target host. Investigate the running services on the target host to identify the suspicious service name flag `javaxxx.service`.",
+      "solution": "netstat -tuln | grep javaxxx.service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "The suspicious service is likely running on a non-standard port. Consider checking the list of running services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use a command to list all running services and their associated ports.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use `netstat -tuln | grep javaxxx.service` to find the suspicious service name flag.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tuln | grep javaxxx.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln | grep javaxxx.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, determine the network port it is using for communication. This information is crucial for understanding the malware's command-and-control (C2) infrastructure.",
+      "solution": "tcpdump -i any port 4444",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "The suspicious service is likely communicating over a specific port. Consider monitoring network traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use a network monitoring tool to inspect the ports being used by the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use `tcpdump -i any port 4444` to inspect the network traffic and look for the port `4444`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_port_discovery",
+          "prereq_state": [],
+          "cmd": "tcpdump -i any port 4444",
+          "cmd_type": "bash-command",
+          "cmd_regex": "tcpdump -i any port 4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "The Rakos malware is known to perform lateral movement by brute-forcing SSH logins. Investigate the target host to find the service name flag `payload-transfer.service` that indicates lateral movement attempts to other hosts in the network.",
+      "solution": "grep 'Failed password' /var/log/auth.log | grep payload-transfer.service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "The malware may be attempting to move laterally by brute-forcing SSH logins. Check the SSH logs for suspicious activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use a command to search the SSH logs for failed password attempts.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use `grep 'Failed password' /var/log/auth.log | grep payload-transfer.service` to find the service name flag.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "grep 'Failed password' /var/log/auth.log | grep payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep 'Failed password' /var/log/auth.log | grep payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
