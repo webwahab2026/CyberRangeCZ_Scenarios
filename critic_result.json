@@ -1,0 +1,256 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "condition_review": [
+    {
+      "condition": "C1",
+      "level": "global",
+      "status": "pass",
+      "evidence": "Both cloud_content and local_content in ACCESS_LEVEL contain username and password.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C2",
+      "level": "global",
+      "status": "pass",
+      "evidence": "Both cloud_content and local_content in ACCESS_LEVEL instruct the trainee to enter 'start' to proceed.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The answer 'systemkernelservicedefender.service' is verified in the provisioning files as a real, reachable artifact.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer 'lab-checkin.timer' is verified in the provisioning files as a real, reachable artifact.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The answer 'payload-transfer.service' is verified in the provisioning files as a real, reachable artifact.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag requires completing the intended task of checking running services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag requires completing the intended task of investigating systemd timers.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The flag requires completing the intended task of identifying services associated with lateral movement.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states the expected answer type: 'Enter the name of the suspicious service.'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states the expected answer type: 'Enter the name of the timer responsible for this persistence.'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The content explicitly states the expected answer type: 'Enter the name of the service associated with lateral movement.'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not contain or trivially disclose the exact answer 'systemkernelservicedefender.service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not contain or trivially disclose the exact answer 'lab-checkin.timer'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The content does not contain or trivially disclose the exact answer 'payload-transfer.service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hints contain usable commands when needed.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hints contain usable commands when needed.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "Hints contain usable commands when needed.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Suspicious Service",
+      "description": "The answer 'systemkernelservicedefender' in the scenario design does not match the answer 'systemkernelservicedefender.service' in the training JSON.",
+      "fix": "Update the answer in the scenario design to match the training JSON."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Lateral Movement",
+      "description": "The answer 'payload-transfer' in the scenario design does not match the answer 'payload-transfer.service' in the training JSON.",
+      "fix": "Update the answer in the scenario design to match the training JSON."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified in the provisioning files as a real, reachable artifact.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "lab-checkin.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified in the provisioning files as a real, reachable artifact.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Lateral Movement",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified in the provisioning files as a real, reachable artifact.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "Hosts, networks, and services are correctly provisioned and aligned with the scenario design."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "revised_flags": [
+    {
+      "level": "Identify Suspicious Service",
+      "revised_flag": "systemkernelservicedefender.service"
+    },
+    {
+      "level": "Identify Lateral Movement",
+      "revised_flag": "payload-transfer.service"
+    }
+  ],
+  "summary": "The scenario is well-designed and mostly compliant with the mandatory rules. Two major issues were identified related to flag consistency between the scenario design and training JSON. These issues need to be addressed to ensure full compliance."
+}
