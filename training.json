@@ -1,0 +1,181 @@
+{
+  "title": "Linux.Mirai_Incident_Response_e2e",
+  "description": "Investigate and respond to a potential compromise on a victim host exhibiting unusual behavior.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemd commands",
+    "Identifying suspicious services and timers",
+    "Locating malware-related files"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected outbound network connections and suspicious scheduled tasks. Your task is to investigate and respond to this potential compromise involving the Linux.Mirai malware family."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano"
+    },
+    {
+      "title": "Investigate the suspicious service running on the victim host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the victim host, you noticed an unusual service running. Investigate this service to determine if it is legitimate or malicious. The flag is the name of the service.",
+      "solution": "To identify the suspicious service, follow these steps:\n1. List all running services using the command 'systemctl list-units --type=service'.\n2. Look for services with unusual names or descriptions that do not match typical system services.\n3. Identify the suspicious service named 'network-diagnostics.service'. The flag is the name of the service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd services can be listed using the 'systemctl' command. This will help you identify any unusual services running on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'systemctl list-units --type=service' to list all services. This will show you the names and statuses of all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for services with unusual names or descriptions that do not match typical system services. The suspicious service is named 'network-diagnostics.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "network-diagnostics.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the scheduled task responsible for executing the malware",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be triggered by a scheduled task. Identify the task that is responsible for automatically executing the malware. The flag is the name of the timer.",
+      "solution": "To identify the suspicious timer, follow these steps:\n1. List all systemd timers using the command 'systemctl list-timers'.\n2. Look for timers with unusual names or descriptions that do not match typical system timers.\n3. Identify the suspicious timer named 'network-diagnostics.timer'. The flag is the name of the timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd timers can be listed using the 'systemctl' command. This will help you identify any unusual timers that might be triggering the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'systemctl list-timers' to list all timers. This will show you the names and statuses of all scheduled tasks.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for timers with unusual names or descriptions that do not match typical system timers. The suspicious timer is named 'network-diagnostics.timer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "network-diagnostics.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate the files installed by the malware on the compromised host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/net-diag-installer.sh",
+      "answer_variable_name": null,
+      "content": "The malware has likely installed files on the victim host. Locate these files to understand the extent of the compromise. The flag is the file named 'net-diag-installer.sh'.",
+      "solution": "To locate the malware-related files, follow these steps:\n1. Search for the file using the command 'find / -name \"net-diag-installer.sh\" 2>/dev/null'.\n2. The file is likely located in directories such as '/usr/local/lib/.netd' and '/var/lib/.netd'.\n3. The flag is the file named 'net-diag-installer.sh'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malware often installs files in unusual locations. You can search for specific files using the 'find' command.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use the command 'find / -name \"net-diag-installer.sh\" 2>/dev/null' to search for the file. This command will search the entire filesystem for the specified file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Look for files in directories such as '/usr/local/lib/.netd' and '/var/lib/.netd'. The file you are looking for is named 'net-diag-installer.sh'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_search",
+          "prereq_state": [],
+          "cmd": "find / -name 'net-diag-installer.sh' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "net-diag-installer.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
