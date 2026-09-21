@@ -1,0 +1,13 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: 9444d2b29c6401bc7c2d14f071b11ec9014ae040
+  content: "9444d2b29c6401bc7c2d14f071b11ec9014ae040\n"
+packages_to_install:
+- openssh-server

@@ -1,0 +1,205 @@
+{
+  "title": "Sednit_Xagent_Incident_Response_aab",
+  "description": "Investigate and respond to a Sednit Xagent malware incident on the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of netstat",
+    "Usage of systemctl",
+    "Usage of ps"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected potential malicious activity on its network. As an incident responder, your task is to investigate and respond to this activity. The Sednit group is known for using the Xagent backdoor malware, which is capable of establishing command and control (C2) communication, lateral movement, and data exfiltration. You will need to identify services and timers as part of your investigation."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) using the provided credentials. Enter the word 'start' to progress to the next level.",
+      "local_content": "Access the target host (IP: 192.168.50.5) using the provided credentials. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.service",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you noticed unusual outbound connections from the target host. Investigate this activity and identify the suspicious service name responsible for these connections. The flag type is a service name.",
+      "solution": "Use the command `netstat -tuln` to identify the suspicious service name 'lab-checkin.service'. The flag type is a service name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate network connections to identify suspicious services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use network-related commands to find the suspicious service name.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run `netstat -tuln` to list all network connections and identify the suspicious service name.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_network_activity",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln.*lab-checkin.service",
+          "optional": false
+        },
+        {
+          "state_name": "investigate_network_activity",
+          "prereq_state": [],
+          "cmd": "ss -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tuln.*lab-checkin.service",
+          "optional": true
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it maintains persistence on the system. This will help in planning the removal of the malware. Identify the timer name responsible for persistence. The flag type is a timer name.",
+      "solution": "Use the command `systemctl list-timers` to identify the timer name 'lab-checkin.timer'. The flag type is a timer name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate systemd timers to determine the persistence mechanism.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use systemd-related commands to find the timer name.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run `systemctl list-timers` to list all systemd timers and identify the timer name.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "analyze_persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers.*lab-checkin.timer",
+          "optional": false
+        },
+        {
+          "state_name": "analyze_persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=timer.*lab-checkin.timer",
+          "optional": true
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "The Sednit group is known for moving laterally within compromised networks. Investigate if the malware has attempted to move laterally from the target host to other systems in the network. Identify the service name responsible for lateral movement. The flag type is a service name.",
+      "solution": "Use the command `ps aux` to identify the service name 'payload-transfer.service'. The flag type is a service name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate running processes to identify evidence of lateral movement.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use process-related commands to find the service name.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run `ps aux` to list all running processes and identify the service name.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux.*payload-transfer.service",
+          "optional": false
+        },
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "top",
+          "cmd_type": "bash-command",
+          "cmd_regex": "top.*payload-transfer.service",
+          "optional": true
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
