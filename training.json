@@ -1,0 +1,181 @@
+{
+  "title": "Gafgyt_Botnet_Investigation_dbf",
+  "description": "Investigate unusual traffic patterns and performance degradation in the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and performance degradation. Your task is to investigate and identify the source of these issues."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the bot1 host with the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the bot1 host with the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Suspicious Beacon Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-busybox.timer",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication. The flag is discoverable through systemd services.\n\n**Question:** What is the name of the suspicious service responsible for periodic external communication?",
+      "solution": "Check the systemd services and look for any unusual or recently created services. The suspicious service is named 'bot-beacon-busybox.timer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or recently created services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'systemctl list-timers' to list all timers and look for suspicious entries. The suspicious service is named 'bot-beacon-busybox.timer'.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run 'systemctl list-timers --all' to see all timers, including inactive ones, and identify the suspicious service 'bot-beacon-busybox.timer'.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious Flood Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood-busybox.timer",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic. The flag is discoverable through systemd services.\n\n**Question:** What is the name of the service responsible for generating abnormal volumes of network traffic?",
+      "solution": "Investigate the systemd services and look for any services that might be related to network diagnostics or probes. The suspicious service is named 'bot-flood-busybox.timer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd services and look for any services that might be related to network diagnostics or probes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'systemctl list-timers' to list all timers and look for suspicious entries. The suspicious service is named 'bot-flood-busybox.timer'.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run 'systemctl list-timers --all' to see all timers, including inactive ones, and identify the suspicious service 'bot-flood-busybox.timer'.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (IP Address)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.70.5",
+      "answer_variable_name": null,
+      "content": "Determine the external host communicating with the compromised system. The flag is discoverable through network connections and logs.\n\n**Question:** What is the IP address of the external host communicating with the compromised system?",
+      "solution": "Examine the network connections and logs to identify the command-and-control server. The IP address of the external host is 192.168.70.5.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the network connections and logs to identify the command-and-control server.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'netstat -tuln' to list all active network connections and look for suspicious IPs. The IP address of the external host is 192.168.70.5.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run 'ss -tuln' to see all listening ports and connections, and identify the suspicious IP address 192.168.70.5.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
