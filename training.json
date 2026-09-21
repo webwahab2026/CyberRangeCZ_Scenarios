@@ -1,0 +1,181 @@
+{
+  "title": "Mirai_Trojan_Investigation_Scenario_d9b",
+  "description": "Investigate a victim host exhibiting unusual behavior to determine the cause of suspicious activity.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate systemd timers for suspicious tasks",
+    "Examine system logs for unauthorized services",
+    "Identify unauthorized network connections"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected outbound network connections and elevated CPU usage. Your task is to investigate and determine the cause of this activity."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano\n\nEnter the passkey 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano\n\nEnter the passkey 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate Systemd Timers",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the systemd timers on the victim host to identify any suspicious or unauthorized scheduled tasks.",
+      "solution": "Use the `systemctl list-timers` command to list all active timers and examine their associated services. Look for any timers that appear suspicious or unauthorized. The hidden flag is the name of the suspicious timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl list-timers` command to list all active timers and examine their associated services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Run `systemctl list-timers --all` to see all timers, including inactive ones, which might help identify hidden or disabled suspicious timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Execute `systemctl status <timer-name>` to inspect the details of a specific timer, replacing <timer-name> with the timer you suspect.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Examine System Logs",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.service",
+      "answer_variable_name": null,
+      "content": "Examine the system logs to identify any unusual or unauthorized services that have been started or stopped recently.",
+      "solution": "Use the `journalctl` command to review system logs, focusing on service-related events. Look for any services that appear unusual or unauthorized. The hidden flag is the name of the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `journalctl` command to review system logs, focusing on service-related events.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Run `journalctl -u <service-name>` to see logs specific to a particular service, replacing <service-name> with the service you suspect.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Execute `journalctl -b` to view logs from the current boot, which can help identify recently started or stopped services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "journalctl",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.60.20",
+      "answer_variable_name": null,
+      "content": "Investigate the network connections on the victim host to identify any unauthorized or suspicious outbound connections.",
+      "solution": "Use the `ss` or `netstat` command to list all active network connections and examine their destinations. Look for any connections that appear unauthorized or suspicious. The hidden flag is the IP address of the command-and-control server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `ss` or `netstat` command to list all active network connections and examine their destinations.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Run `ss -tulnp` to see all listening ports and the processes using them, which can help identify suspicious network activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Execute `netstat -tulnp` to view all active network connections and listening ports, which can help identify unauthorized connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

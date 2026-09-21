@@ -1,0 +1,238 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "The flag 'network-diagnostics.timer' is present in the provisioning files and corresponds to a real sandbox artifact.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to investigate systemd timers.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "The content explicitly states that the flag is the name of the suspicious timer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "The flag 'network-diagnostics.service' is present in the provisioning files and corresponds to a real sandbox artifact.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to examine system logs.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "The content explicitly states that the flag is the name of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate Network Connections",
+      "status": "pass",
+      "evidence": "The flag '192.168.60.20' is present in the provisioning files and corresponds to a real sandbox artifact.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Network Connections",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to investigate network connections.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Network Connections",
+      "status": "pass",
+      "evidence": "The content explicitly states that the flag is the IP address of the command-and-control server.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Network Connections",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Network Connections",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Network Connections",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Network Connections",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Network Connections",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "other",
+      "severity": "minor",
+      "component": "content",
+      "level": "Get Access",
+      "description": "The passkey 'start' is mentioned but not explicitly instructed to be entered in the content.",
+      "fix": "Explicitly instruct the trainee to enter the passkey 'start' to progress."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Systemd Timers",
+      "current_flag": "network-diagnostics.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "Present in the provisioning files and corresponds to a real sandbox artifact.",
+      "recommendation": ""
+    },
+    {
+      "level": "Examine System Logs",
+      "current_flag": "network-diagnostics.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Present in the provisioning files and corresponds to a real sandbox artifact.",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Network Connections",
+      "current_flag": "192.168.60.20",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "Present in the provisioning files and corresponds to a real sandbox artifact.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-structured and meets most requirements. However, the passkey 'start' needs to be explicitly instructed to be entered in the content to fully comply with the mandatory access validation."
+}
