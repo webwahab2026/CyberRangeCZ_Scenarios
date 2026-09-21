@@ -1,0 +1,194 @@
+{
+  "title": "Ransomware_Incident_Response_Scenario_743",
+  "description": "This scenario presents a ransomware incident affecting a Linux system. Your task is to investigate the compromise, identify indicators of compromise, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of netstat",
+    "Usage of grep",
+    "Usage of ls",
+    "Usage of find"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "This scenario presents a ransomware incident affecting a Linux system. Your task is to investigate the compromise, identify indicators of compromise, and contain the threat.\n\nThe victim system has shown signs of unusual activity, including encrypted files and network connections to unknown hosts. Your mission is to analyze the situation, determine the scope of the compromise, and implement containment measures."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim system with the following credentials:\n- Host: victim\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "Enter the word 'start' to begin the scenario. Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Determine the external host communicating with the compromised system",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.5",
+      "answer_variable_name": null,
+      "content": "Analyze network connections and identify the ransomware command-and-control server IP address.",
+      "solution": "The C2 IP address flag is 192.168.90.5.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint: Understand the purpose of netstat",
+          "content": "netstat is a powerful tool for monitoring network connections. It can help you identify active connections and listening ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint: Use netstat to check system logs for unusual outbound connections",
+          "content": "Check the system logs for any unusual outbound connections. Use the command 'netstat -tuln'.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint: Look for connections to unknown hosts",
+          "content": "Look for connections to unknown hosts in the output of 'netstat -tuln'. The IP address you are looking for is likely not part of your local network.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "netstat -tuln",
+        "ss -tuln",
+        "lsof -i"
+      ],
+      "commands_required": false
+    },
+    {
+      "title": "Identify a file or a dataset that was transferred outside the environment before encryption",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "quarterly_report.txt",
+      "answer_variable_name": null,
+      "content": "Analyze logs, file access records, and network activity to determine what data was exfiltrated. Find the exfiltrated file name.",
+      "solution": "The exfiltrated file name flag is quarterly_report.txt.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint: Understand the purpose of grep",
+          "content": "grep is a powerful tool for searching text using patterns. It can help you find specific strings in files or logs.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint: Use grep to investigate network traffic and file transfer logs",
+          "content": "Investigate the network traffic and file transfer logs. Use the command 'grep -i 'quarterly_report.txt' /var/log/syslog'.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint: Look for the file name in the logs",
+          "content": "Look for the file name 'quarterly_report.txt' in the logs. It should be mentioned in the context of a file transfer.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "grep -i 'quarterly_report.txt' /var/log/syslog",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -i 'quarterly_report.txt' /var/log/syslog",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "grep -i 'quarterly_report.txt' /var/log/syslog",
+        "cat /var/log/syslog | grep -i 'quarterly_report.txt'",
+        "journalctl -u ssh | grep -i 'quarterly_report.txt'"
+      ],
+      "commands_required": false
+    },
+    {
+      "title": "Locate the ransom note left on the compromised system",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/RANSOM_NOTE.txt",
+      "answer_variable_name": null,
+      "content": "Investigate filesystem artifacts generated following encryption. Find the path to the ransom note file.",
+      "solution": "The ransom note file path flag is /home/cyrano/RANSOM_NOTE.txt.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint: Understand the purpose of ls",
+          "content": "ls is a command used to list information about files and directories. It can help you find files with unusual names or content.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint: Use ls to search for files with unusual names or content in the user's home directory",
+          "content": "Search for files with unusual names or content in the user's home directory. Use the command 'ls -la /home/cyrano/'.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint: Look for a file named RANSOM_NOTE.txt",
+          "content": "Look for a file named RANSOM_NOTE.txt in the user's home directory. It is likely to be in a prominent location.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /home/cyrano/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "ls -la /home/cyrano/",
+        "find /home/cyrano/ -name 'RANSOM_NOTE.txt'",
+        "locate RANSOM_NOTE.txt"
+      ],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
