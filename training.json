@@ -1,0 +1,181 @@
+{
+  "title": "Sednit_Xagent_Incident_Response_6ab",
+  "description": "Investigate a compromised network where the Sednit group's Xagent malware has been detected. Identify the malware, understand its behavior, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Linux system administration",
+    "Basic knowledge of systemd service management"
+  ],
+  "outcomes": [
+    "Identifying suspicious services",
+    "Analyzing service persistence mechanisms",
+    "Discovering command and control communication ports"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Sednit group, also known as APT29, is a sophisticated cyber espionage group believed to be operating out of Russia. They are known for targeting government agencies, diplomatic organizations, and research institutions. The Sednit group uses a variety of malware, including Xagent, a backdoor malware capable of establishing persistent connections to command and control (C2) servers, executing commands, and exfiltrating data.\n\nIn this scenario, you will investigate a compromised network where the Sednit group's Xagent malware has been detected. Your goal is to identify the malware, understand its behavior, and contain the threat.\n\nThis scenario follows a progressive difficulty structure, starting with basic service discovery and advancing to more complex persistence and C2 communication analysis. The attack chain covered includes initial access, persistence mechanisms, and command and control communication. The techniques used are accurate representations of real-world malware behavior."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Instructions for accessing the sandbox in cloud. Enter the word 'start' to progress to the next level.",
+      "local_content": "Instructions for local sandbox usage. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Users have reported slow performance on the `target` host. Investigate and identify any unauthorized or suspicious services running on this host. The flag is the name of the suspicious service.",
+      "solution": "systemctl list-units --type=service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual hint",
+          "content": "Suspicious services often have unusual or unfamiliar names. Look for services that don't match the typical system services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional hint",
+          "content": "Systemd services can be listed using the systemctl command. Focus on the service names rather than their status.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-spoiler hint",
+          "content": "Try the command: systemctl list-units --type=service | grep -v 'systemd|dbus|sshd'",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/bkd.service",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, determine how it is automatically started after reboot. The flag is the path to the service configuration file.",
+      "solution": "systemctl status bkd.service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual hint",
+          "content": "Persistence mechanisms often involve service configuration files that define how and when a service should start.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional hint",
+          "content": "Systemd service status can reveal the configuration file location. Look for the 'Loaded' line in the status output.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-spoiler hint",
+          "content": "Try the command: systemctl status bkd.service | grep 'Loaded'",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl status bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be communicating with an external command and control server. Determine which network port is used for this communication. The flag is the port number.",
+      "solution": "ss -tulnp",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual hint",
+          "content": "Command and control communication typically involves network ports that are listening for incoming connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional hint",
+          "content": "Network ports can be listed using the ss command. Focus on the listening ports (LISTEN state).",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-spoiler hint",
+          "content": "Try the command: ss -tulnp | grep LISTEN",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
