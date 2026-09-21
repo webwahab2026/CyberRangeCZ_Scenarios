@@ -1,0 +1,182 @@
+{
+  "title": "Umbreon_Rootkit_Investigation_12b",
+  "description": "Investigate and contain the Umbreon rootkit on compromised Linux systems.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of Linux rootkits",
+    "Identification of unauthorized shared libraries",
+    "Detection of system-wide preload configuration modifications",
+    "Discovery of hidden files and directories"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a Linux rootkit designed to hide its presence and provide backdoor access to attackers. It targets both Intel and ARM processors and is capable of command-and-control communication, lateral movement, data exfiltration, and persistence. This scenario focuses on investigating and containing the Umbreon rootkit on compromised Linux systems."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You are provided with SSH access to the victim host as the user 'cyrano' with the password 'cyrano'. From this host, you can investigate the compromise and attempt to contain the threat. Enter 'start' to progress to the training levels.",
+      "local_content": "To start the local sandbox, use the username 'cyrano' and password 'cyrano'. Connect via SSH to begin your investigation. Enter 'start' to progress to the training levels."
+    },
+    {
+      "title": "Identify evidence that a shared library has been injected into system processes",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for signs of unauthorized shared library injection. Look for evidence that malicious code has been loaded into system processes. Submit the path to the shared library.",
+      "solution": "To identify the injected shared library, use the `ldd` command to list dynamically linked libraries for system processes. Look for any unusual or unauthorized libraries. The final flag is the path to the shared library: `/lib/x86_64-linux-gnu/libsysmon.so.1`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the loaded libraries for system processes and look for any unusual or unauthorized libraries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "System processes often include critical services like `systemd`, `sshd`, or `cron`. Focus your investigation on these processes.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ldd /path/to/system/process` to list the dynamically linked libraries for a specific process. Replace `/path/to/system/process` with the actual path to a system process.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine whether a system-wide preload configuration has been modified to execute unauthorized code",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "Examine the system-wide preload configuration to determine if it has been tampered with to load unauthorized code. This could indicate a persistence mechanism for the rootkit. Submit the path to the preload configuration file.",
+      "solution": "To inspect the preload configuration file, use the `cat` or `less` command to view the contents of `/etc/ld.so.preload`. Check for any unusual or unauthorized library paths. The final flag is the path to the preload configuration file: `/etc/ld.so.preload`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Inspect the preload configuration file and check for any unusual or unauthorized library paths.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "The preload configuration file is typically located at `/etc/ld.so.preload`. Use standard file viewing commands to examine its contents.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `cat /etc/ld.so.preload` to view the contents of the preload configuration file.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate files or directories concealed from normal system utilities",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf",
+      "answer_variable_name": null,
+      "content": "Search the victim host for any hidden files or directories that may have been created or modified by the rootkit. These artifacts could provide valuable information about the rootkit's behavior and persistence mechanisms. Submit the path to the hidden artifact.",
+      "solution": "To uncover hidden artifacts, use alternative forensic techniques such as examining file metadata or using specialized tools. The final flag is the path to the hidden artifact: `/etc/.kit_conf`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use alternative forensic techniques to uncover hidden artifacts that may not be visible through standard system utilities.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Hidden files and directories often start with a dot (.) and may be located in system directories like `/etc`, `/var`, or `/tmp`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ls -la /etc` to list all files and directories in the `/etc` directory, including hidden ones.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
