@@ -1,0 +1,181 @@
+{
+  "title": "Groundhog_Backdoor_Investigation_45d",
+  "description": "Investigate and respond to the Groundhog backdoor malware incident in your network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of systemctl commands",
+    "Investigation of systemd timers",
+    "Identification of malicious scripts"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Groundhog backdoor malware has been detected in your network. This malware targets Linux servers, uses XOR encryption for communication, and can perform DDoS attacks. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can access the `next-target` host using SSH. Enter the word 'start' to progress to the next level.",
+      "local_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can access the `next-target` host using SSH. Enter the word 'start' to progress to the next level."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the `target` host. The flag type is a service name.",
+      "solution": "The suspicious service is named `bkd.service`. To identify it, check the running services using the command `systemctl list-units --type=service` and look for any that seem unusual or unauthorized. This helps in understanding the malware's persistence and execution mechanism. The flag type is a service name.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Check running services",
+          "content": "Start by listing all running services. Use the command `systemctl list-units --type=service` to see the services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Look for unusual services",
+          "content": "Review the list of services and look for any that seem unusual or unauthorized. Pay attention to service names and descriptions.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Identify the suspicious service",
+          "content": "The suspicious service is named `bkd.service`. Use the command `systemctl list-units --type=service` to confirm its presence.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemd timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. The flag type is a persistence mechanism.",
+      "solution": "The persistence mechanism used by the suspicious service is a systemd timer. To investigate this, use the command `systemctl list-timers` to list all systemd timers. This helps in understanding how the malware ensures its continuous operation across reboots. The flag type is a persistence mechanism.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Understand persistence mechanisms",
+          "content": "Persistence mechanisms are methods used by malware to ensure it runs automatically after a system reboot. Common mechanisms include systemd timers, cron jobs, and startup scripts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Investigate systemd timers",
+          "content": "Systemd timers are a common persistence mechanism. Use the command `systemctl list-timers` to list all systemd timers and look for any that seem unusual or unauthorized.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Identify the systemd timer",
+          "content": "The persistence mechanism used by the suspicious service is a systemd timer. Use the command `systemctl list-timers` to confirm its presence.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemd timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Executable File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "Locate the executable or file associated with the suspicious activity. The flag type is a file path.",
+      "solution": "The path to the script that the suspicious service executes is `/usr/local/bin/lab-checkin.sh`. To locate it, check the service unit file using the command `cat /etc/systemd/system/bkd.service`. This helps in identifying the malicious payload and understanding its functionality. The flag type is a file path.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Understand service unit files",
+          "content": "Service unit files contain information about the services, including the executable or script they run. Use the command `cat /etc/systemd/system/bkd.service` to view the service unit file.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Look for the executable path",
+          "content": "Review the service unit file and look for the `ExecStart` line, which specifies the executable or script path. Pay attention to the path and filename.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Identify the executable file",
+          "content": "The path to the script that the suspicious service executes is `/usr/local/bin/lab-checkin.sh`. Use the command `cat /etc/systemd/system/bkd.service` to confirm its presence.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "executable_check",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/usr/local/bin/lab-checkin.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
