@@ -1,0 +1,145 @@
+{
+  "title": "Rakos_Backdoor_Investigation_d64",
+  "description": "Investigate and respond to a potential Rakos infection in the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Rakos backdoor is a Linux malware that spreads via brute force attempts at SSH logins. It targets both embedded devices and servers with open SSH ports and weak passwords. The malware creates a botnet by compromising unsecured devices and can update its configuration and upgrade itself.\n\nYour task is to investigate and respond to a potential Rakos infection in the network."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have access to the `target` host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nFrom this host, you can investigate the system and any connected devices.\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have access to the `target` host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nFrom this host, you can investigate the system and any connected devices.\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "javaxxx.service",
+      "answer_variable_name": null,
+      "content": "Investigate the `target` host for any unauthorized or suspicious services running on the system. The suspicious service should be identifiable through systemd service listings.\n\n**Question:** What is the name of the suspicious service running on the `target` host?",
+      "solution": "To identify the suspicious service, check the systemd services running on the `target` host. The service named `javaxxx.service` is suspicious and should be investigated further.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or unauthorized services.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "javaxxx.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemd unit files",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service identified in the previous task is automatically started after reboot. The persistence mechanism should be identifiable through systemd unit files and timers.\n\n**Question:** What is the persistence mechanism used by the suspicious service?",
+      "solution": "Examine the systemd unit files and timers to understand how the service is scheduled to run. The persistence mechanism involves systemd unit files and timers that ensure the service starts automatically after a reboot.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd unit files and timers to understand how the service is scheduled to run.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "javaxxx.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the file transfers between the `target` host and the `next-target` host to identify any lateral movement. The responsible service should be identifiable through systemd service listings.\n\n**Question:** What is the name of the service responsible for the file transfers between the `target` host and the `next-target` host?",
+      "solution": "Check the systemd services and logs related to file transfers on the `target` host. The service named `payload-transfer.service` is responsible for the file transfers between the `target` host and the `next-target` host.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and logs related to file transfers on the `target` host.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_file_transfers",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
