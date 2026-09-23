@@ -1,0 +1,181 @@
+{
+  "title": "Tsunami_Kaiten_Incident_Response_Scenario_e2c",
+  "description": "Investigate and respond to a potential security incident involving a backdoor trojan with IRC bot capabilities.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity, including unexpected outbound connections to an unknown server. Initial analysis suggests the presence of a backdoor trojan with IRC bot capabilities. Your task is to investigate and respond to this potential security incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and has the IP address `192.168.50.5`. Enter the passkey `start` to proceed.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and has the IP address `192.168.50.5`. Enter the passkey `start` to proceed."
+    },
+    {
+      "title": "Investigate Unusual Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "ircd",
+      "answer_variable_name": null,
+      "content": "Investigate the unusual network activity on the target system. Identify and investigate an unauthorized or suspicious service running on the target system. Submit the name of the suspicious process as the answer.",
+      "solution": "Check the system logs and running processes for any unusual activity. Use the command `ps aux | grep -i 'suspicious'` to identify the suspicious process running on port 4444. The answer is `ircd`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the system logs and running processes for any unusual activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any unusual network connections or services running on unexpected ports.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ps aux | grep -i 'suspicious'` to identify the suspicious process.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ps aux | grep -i 'suspicious'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux | grep -i 'suspicious'",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "tsunami.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. Identify persistence mechanisms (e.g., systemd, cron, scheduled task). Submit the name of the malicious timer as the answer.",
+      "solution": "Examine the systemd services and timers to identify the persistence mechanism. Use the command `systemctl list-timers --all` to identify the malicious timer. The answer is `tsunami.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd services and timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any services or timers that are related to the suspicious activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl list-timers --all` to identify the malicious timer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "kaiten",
+      "answer_variable_name": null,
+      "content": "Identify file transfers or remote execution used to move between hosts. Correlate events across hosts to identify attacker lateral movement. Submit the name of the file used for lateral movement as the answer.",
+      "solution": "Check the logs for any file transfers or remote execution commands. Use the command `grep -r 'kaiten' /var/log/` to identify the file used for lateral movement. The answer is `kaiten`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the logs for any file transfers or remote execution commands.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any commands or services that are used to transfer files or execute commands remotely.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `grep -r 'kaiten' /var/log/` to identify the file used for lateral movement.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "grep -r 'kaiten' /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r 'kaiten' /var/log/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

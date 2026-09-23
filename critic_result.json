@@ -1,0 +1,238 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The answer `ircd` corresponds to a suspicious process running on port 4444 as indicated in the solution and provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The answer requires identifying the suspicious process running on port 4444, which is not directly available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The content explicitly states to submit the name of the suspicious process as the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer `ircd` or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes the usable command `ps aux | grep -i 'suspicious'`, and explicitly states the final flag `ircd`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution `ircd` matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy: Hint 1 is conceptual, Hint 2 is directional, and Hint 3 provides a near-spoiler with a precise methodology and command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `ps aux | grep -i 'suspicious'` that uses real provisioned tools and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer `tsunami.timer` corresponds to a malicious timer as indicated in the solution and provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer requires identifying the malicious timer, which is not directly available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states to submit the name of the malicious timer as the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer `tsunami.timer` or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes the usable command `systemctl list-timers --all`, and explicitly states the final flag `tsunami.timer`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution `tsunami.timer` matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy: Hint 1 is conceptual, Hint 2 is directional, and Hint 3 provides a near-spoiler with a precise methodology and command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `systemctl list-timers --all` that uses real provisioned tools and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The answer `kaiten` corresponds to a file used for lateral movement as indicated in the solution and provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The answer requires identifying the file used for lateral movement, which is not directly available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The content explicitly states to submit the name of the file used for lateral movement as the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer `kaiten` or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes the usable command `grep -r 'kaiten' /var/log/`, and explicitly states the final flag `kaiten`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The final flag in the solution `kaiten` matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy: Hint 1 is conceptual, Hint 2 is directional, and Hint 3 provides a near-spoiler with a precise methodology and command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `grep -r 'kaiten' /var/log/` that uses real provisioned tools and matches the OS/runtime.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The username and password are provided in the content, but the scenario does not explicitly instruct the trainee to enter the passkey `start` in both cloud_content and local_content.",
+      "fix": "Explicitly instruct the trainee to enter the passkey `start` in both cloud_content and local_content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unusual Network Activity",
+      "current_flag": "ircd",
+      "flag_type": "process name",
+      "verdict": "valid",
+      "sandbox_evidence": "The answer corresponds to a suspicious process running on port 4444 as indicated in the solution and provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "tsunami.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The answer corresponds to a malicious timer as indicated in the solution and provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Lateral Movement",
+      "current_flag": "kaiten",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "The answer corresponds to a file used for lateral movement as indicated in the solution and provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario meets most of the required conditions, but it fails to explicitly instruct the trainee to enter the passkey `start` in both cloud_content and local_content. This issue needs to be addressed for the scenario to be approved."
+}
