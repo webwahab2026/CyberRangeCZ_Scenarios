@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: trainee, Password: trainee123, Enter 'start' to begin."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: trainee, Password: trainee123, Enter 'start' to begin."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The service 'bot-beacon.timer' is provisioned and discoverable via systemctl commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine C2 Server",
+      "status": "pass",
+      "evidence": "The C2 IP address '192.168.70.5' is provisioned and discoverable via network commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Flooding Target",
+      "status": "pass",
+      "evidence": "The victim IP address '192.168.80.100' is provisioned and discoverable via network commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The service name requires investigation of systemd services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine C2 Server",
+      "status": "pass",
+      "evidence": "The C2 IP address requires investigation of network connections.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Flooding Target",
+      "status": "pass",
+      "evidence": "The victim IP address requires analysis of network flows.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content specifies the answer must be the service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine C2 Server",
+      "status": "pass",
+      "evidence": "The content specifies the answer must be the C2 IP address.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Flooding Target",
+      "status": "pass",
+      "evidence": "The content specifies the answer must be the victim IP address.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not reveal the service name directly.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine C2 Server",
+      "status": "pass",
+      "evidence": "The content does not reveal the C2 IP address directly.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Flooding Target",
+      "status": "pass",
+      "evidence": "The content does not reveal the victim IP address directly.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution explains how to identify the service and provides the correct command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine C2 Server",
+      "status": "pass",
+      "evidence": "The solution explains how to identify the C2 server and provides the correct command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Flooding Target",
+      "status": "pass",
+      "evidence": "The solution explains how to identify the flooding target and provides the correct command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine C2 Server",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Flooding Target",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The hints follow a logical progression from conceptual to near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine C2 Server",
+      "status": "pass",
+      "evidence": "The hints follow a logical progression from conceptual to near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Flooding Target",
+      "status": "pass",
+      "evidence": "The hints follow a logical progression from conceptual to near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine C2 Server",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Flooding Target",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Suspicious Service",
+      "description": "The service 'bot-beacon.timer' is not explicitly mentioned in the provisioning files or topology.",
+      "fix": "Ensure the service is explicitly provisioned and documented."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine C2 Server",
+      "description": "The C2 IP address '192.168.70.5' is not explicitly mentioned in the provisioning files or topology.",
+      "fix": "Ensure the C2 IP address is explicitly provisioned and documented."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Flooding Target",
+      "description": "The victim IP address '192.168.80.100' is not explicitly mentioned in the provisioning files or topology.",
+      "fix": "Ensure the victim IP address is explicitly provisioned and documented."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "bot-beacon.timer",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned and discoverable via systemctl commands.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine C2 Server",
+      "current_flag": "192.168.70.5",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The C2 IP address is provisioned and discoverable via network commands.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Flooding Target",
+      "current_flag": "192.168.80.100",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The victim IP address is provisioned and discoverable via network commands.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and meets most criteria. However, there are major issues with the explicit documentation of the service, C2 IP address, and victim IP address in the provisioning files and topology. These issues need to be addressed before the scenario can be approved."
+}
