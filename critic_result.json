@@ -1,0 +1,238 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'ubuntu', password 'ubuntu', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'ubuntu', password 'ubuntu', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Unusual Traffic Patterns",
+      "status": "pass",
+      "evidence": "The service 'bot-flood.service' is provisioned and discoverable via systemctl commands",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the Target of Abnormal Network Traffic",
+      "status": "pass",
+      "evidence": "The IP address '192.168.80.100' is the target of the flood script and can be verified with 'ss -tulnp'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The persistence mechanism 'systemd timer' is provisioned and can be verified with 'systemctl list-timers'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Unusual Traffic Patterns",
+      "status": "pass",
+      "evidence": "The service name 'bot-flood.service' requires investigation of running services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the Target of Abnormal Network Traffic",
+      "status": "pass",
+      "evidence": "The IP address '192.168.80.100' requires examination of network connections",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The persistence mechanism 'systemd timer' requires investigation of systemd timers",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Unusual Traffic Patterns",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: 'service name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the Target of Abnormal Network Traffic",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: 'IP address'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: 'persistence mechanism'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Unusual Traffic Patterns",
+      "status": "pass",
+      "evidence": "The content does not expose the exact service name 'bot-flood.service'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the Target of Abnormal Network Traffic",
+      "status": "pass",
+      "evidence": "The content does not expose the exact IP address '192.168.80.100'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact persistence mechanism 'systemd timer'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Unusual Traffic Patterns",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the Target of Abnormal Network Traffic",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Unusual Traffic Patterns",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer 'bot-flood.service'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the Target of Abnormal Network Traffic",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer '192.168.80.100'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer 'systemd timer'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Unusual Traffic Patterns",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with increasing specificity",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the Target of Abnormal Network Traffic",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with increasing specificity",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with increasing specificity",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Unusual Traffic Patterns",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the Target of Abnormal Network Traffic",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "Get Access",
+      "description": "The passkey 'start' is not explicitly instructed to be entered in the content",
+      "fix": "Explicitly instruct the trainee to enter 'start' in both cloud_content and local_content"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unusual Traffic Patterns",
+      "current_flag": "bot-flood.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service 'bot-flood.service' is provisioned and discoverable via systemctl commands",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the Target of Abnormal Network Traffic",
+      "current_flag": "192.168.80.100",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address '192.168.80.100' is the target of the flood script and can be verified with 'ss -tulnp'",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate the Persistence Mechanism",
+      "current_flag": "systemd timer",
+      "flag_type": "persistence mechanism",
+      "verdict": "valid",
+      "sandbox_evidence": "The persistence mechanism 'systemd timer' is provisioned and can be verified with 'systemctl list-timers'",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the topology and provisioning files. The scenario requires explicit instruction to enter 'start' in both cloud_content and local_content to pass C2."
+}
