@@ -1,0 +1,183 @@
+{
+  "title": "Umbreon_Rootkit_Investigation_06d",
+  "description": "You are an incident responder tasked with investigating a compromised Linux system infected with the Umbreon rootkit. The Umbreon rootkit is a sophisticated malware designed to gain unauthorized access to a system, maintain persistence, and hide its presence from standard detection mechanisms. It provides backdoor access to attackers, allowing them to execute commands, exfiltrate data, and perform other malicious activities. Your goal is to identify and analyze the rootkit's presence, persistence mechanisms, and any command-and-control (C2) communication.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate loaded libraries and detect unauthorized code injection.",
+    "Identify preload-based persistence and code injection mechanisms.",
+    "Apply forensic techniques to identify hidden filesystem artifacts.",
+    "Correlate suspicious activity with malware components stored on disk.",
+    "Detect command-and-control beaconing through log and network analysis."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised Linux system infected with the Umbreon rootkit. The Umbreon rootkit is a sophisticated malware designed to gain unauthorized access to a system, maintain persistence, and hide its presence from standard detection mechanisms. It provides backdoor access to attackers, allowing them to execute commands, exfiltrate data, and perform other malicious activities. Your goal is to identify and analyze the rootkit's presence, persistence mechanisms, and any command-and-control (C2) communication.\n\nThis scenario will guide you through the process of investigating a system compromised by the Umbreon rootkit. You will learn to identify and analyze the rootkit's presence, persistence mechanisms, and any command-and-control (C2) communication. Follow the steps carefully to uncover the rootkit's activities and mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the victim machine via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin.",
+      "local_content": "Access the victim machine via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin."
+    },
+    {
+      "title": "Identify evidence that a shared library has been injected into system processes",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "The Umbreon rootkit is known to inject a shared library into system processes to hide its presence. Investigate the system to identify any evidence of unauthorized shared library injection.",
+      "solution": "To identify the injected shared library, you can use the `ldd` command to list the shared libraries used by a process. Look for any unusual or unauthorized libraries. For example, you can check the libraries used by the `bash` process with the command `ldd /bin/bash`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the loaded libraries for system processes and look for any unusual or unauthorized libraries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ldd` command to list the shared libraries used by a process.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Consider that rootkits often manipulate process listings and library dependencies to hide their presence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ldd /bin/bash",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ldd /bin/bash",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine whether a system-wide preload configuration has been modified to execute unauthorized code",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "The Umbreon rootkit may modify the system-wide preload configuration to execute unauthorized code. Investigate the system to determine if any modifications have been made to the preload configuration.",
+      "solution": "To check the preload configuration, you can use the `cat` command to view the contents of the `/etc/ld.so.preload` file. Look for any unusual or unauthorized entries. For example, you can use the command `cat /etc/ld.so.preload`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the preload configuration file for any unusual or unauthorized entries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `cat` command to view the contents of the `/etc/ld.so.preload` file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Consider that rootkits often use preload mechanisms to load their own libraries before legitimate ones.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate files or directories concealed from normal system utilities",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf",
+      "answer_variable_name": null,
+      "content": "The Umbreon rootkit may create hidden files or directories to conceal its presence. Investigate the system to locate any hidden files or directories.",
+      "solution": "To locate hidden files or directories, you can use the `ls` command with the `-a` option to view all files, including hidden ones. For example, you can use the command `ls -a /etc/.kit_conf`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use alternative forensic techniques to identify hidden files or directories that are not visible through standard system utilities.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ls` command with the `-a` option to view all files, including hidden ones.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Consider that rootkits often hide their files in directories with unusual names or starting with dots.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -a /etc/.kit_conf",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -a /etc/.kit_conf",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
