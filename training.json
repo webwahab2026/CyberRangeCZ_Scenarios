@@ -1,0 +1,181 @@
+{
+  "title": "Sednit_Xagent_Investigation_b86",
+  "description": "Investigate suspicious network activity related to the Sednit Xagent backdoor.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Service discovery techniques",
+    "Persistence mechanism identification",
+    "Lateral movement investigation"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction to Sednit Xagent",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Sednit group, also known as APT28, Fancy Bear, and Sofacy, is a group of attackers operating since 2004. Their main objective is to steal confidential information from specific targets. The group developed two different spying backdoors for long-term monitoring, named Sedreco and Xagent, to maximize the chance of avoiding detection. The Xagent backdoor can communicate with its C&C server over email with a custom protocol, which in some cases is based on Georgian words. The Sednit group also developed a network proxy tool, named Xtunnel, to transform a compromised computer into a network pivot, allowing contact with machines normally unreachable from the Internet."
+    },
+    {
+      "title": "Access the Target Host",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have been given access to the target host with the following credentials:\n- Hostname: target\n- Username: cyrano\n- Password: cyrano\n\nYou can access this host via SSH on port 22.\n\nEnter 'start' to progress to the training levels.",
+      "local_content": "You have been given access to the target host with the following credentials:\n- Hostname: target\n- Username: cyrano\n- Password: cyrano\n\nYou can access this host via SSH on port 22.\n\nEnter 'start' to progress to the training levels."
+    },
+    {
+      "title": "Suspicious Network Activity Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you've noticed unusual outbound connections from the target host. Investigate this activity and identify the service name responsible for these connections. Ensure the service 'bkd.service' is explicitly documented in the provisioning files.",
+      "solution": "To identify the service responsible for the suspicious network activity, you should check the systemd services running on the target host. The service name is bkd.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or unfamiliar services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the systemctl command to list all active services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command: systemctl list-units --type=service",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Mechanism Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it maintains persistence on the system. Find out the timer name that is automatically started after a system reboot. Ensure the timer 'lab-checkin.timer' is explicitly documented in the provisioning files.",
+      "solution": "To determine how the suspicious service maintains persistence, examine the systemd unit files and timers related to the service. The persistence mechanism is lab-checkin.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd unit files and timers related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the systemctl command to list all active timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command: systemctl list-timers",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate if the suspicious activity on the target host has led to any lateral movement within the network. Check for any file transfers or remote execution attempts to other hosts and identify the service name responsible. Ensure the service 'payload-transfer.service' is explicitly documented in the provisioning files.",
+      "solution": "To investigate lateral movement, examine the systemd services and logs related to file transfers or remote execution. The service name is payload-transfer.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd services and logs related to file transfers or remote execution.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the systemctl command to list all active services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command: systemctl list-units --type=service",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

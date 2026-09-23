@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Network Activity Investigation",
+      "status": "pass",
+      "evidence": "bkd.service is documented in provisioning files and matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Mechanism Discovery",
+      "status": "pass",
+      "evidence": "lab-checkin.timer is documented in provisioning files and matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "payload-transfer.service is documented in provisioning files and matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Network Activity Investigation",
+      "status": "pass",
+      "evidence": "The service name requires investigation of systemd services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Mechanism Discovery",
+      "status": "pass",
+      "evidence": "The timer name requires examination of systemd unit files and timers",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The service name requires examination of systemd services and logs",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Network Activity Investigation",
+      "status": "pass",
+      "evidence": "Content explicitly states the service name must be submitted",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Mechanism Discovery",
+      "status": "pass",
+      "evidence": "Content explicitly states the timer name must be submitted",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Content explicitly states the service name must be submitted",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Network Activity Investigation",
+      "status": "pass",
+      "evidence": "Content does not expose the exact service name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Mechanism Discovery",
+      "status": "pass",
+      "evidence": "Content does not expose the exact timer name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Content does not expose the exact service name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Network Activity Investigation",
+      "status": "pass",
+      "evidence": "Solution explains methodology, includes commands, and states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Mechanism Discovery",
+      "status": "pass",
+      "evidence": "Solution explains methodology, includes commands, and states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Solution explains methodology, includes commands, and states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Network Activity Investigation",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Mechanism Discovery",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Network Activity Investigation",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Mechanism Discovery",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Network Activity Investigation",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Mechanism Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Suspicious Network Activity Investigation",
+      "description": "The service 'bkd.service' is not explicitly documented in the provisioning files as required by the content",
+      "fix": "Ensure 'bkd.service' is explicitly documented in the provisioning files"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Persistence Mechanism Discovery",
+      "description": "The timer 'lab-checkin.timer' is not explicitly documented in the provisioning files as required by the content",
+      "fix": "Ensure 'lab-checkin.timer' is explicitly documented in the provisioning files"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Lateral Movement Investigation",
+      "description": "The service 'payload-transfer.service' is not explicitly documented in the provisioning files as required by the content",
+      "fix": "Ensure 'payload-transfer.service' is explicitly documented in the provisioning files"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Network Activity Investigation",
+      "current_flag": "bkd.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "bkd.service is documented in provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Mechanism Discovery",
+      "current_flag": "lab-checkin.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "lab-checkin.timer is documented in provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Lateral Movement Investigation",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "payload-transfer.service is documented in provisioning files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and aligns with the sandbox environment. However, there are major issues with the documentation of the services and timers in the provisioning files as required by the content. These issues need to be addressed before the scenario can be approved."
+}
