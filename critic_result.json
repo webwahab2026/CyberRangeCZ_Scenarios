@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Access the target host via SSH using the username 'cyrano' and password 'cyrano' and enter 'start' to begin the investigation."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Access the target host via SSH using the username 'cyrano' and password 'cyrano' and enter 'start' to begin the investigation."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The answer 'bkd.service' corresponds to the suspicious service running on the target host as per the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The answer 'systemd timer' is verified by the systemd timer configuration in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The answer '4444' matches the port configured in the c2-listener role in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bkd.service' requires investigation of running services and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The flag 'systemd timer' requires investigation of systemd timers and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag '4444' requires analysis of network connections and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states that the student must identify the suspicious service running on the target host.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states that the student must identify the persistence mechanism used by the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content explicitly states that the student must identify the network port used for C2 communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer 'bkd.service' or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer 'systemd timer' or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer '4444' or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer using the `systemctl list-units --type=service` command and explicitly states the final flag 'bkd.service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer using the `systemctl list-timers` command and explicitly states the final flag 'systemd timer'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer using the `ss -tulnp` command and explicitly states the final flag '4444'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution 'bkd.service' matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution 'systemd timer' matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The final flag in the solution '4444' matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `systemctl list-units --type=service` that uses real provisioned tools and matches the OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `systemctl list-timers` that uses real provisioned tools and matches the OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `ss -tulnp` that uses real provisioned tools and matches the OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Suspicious Service Discovery",
+      "description": "The flag 'bkd.service' is not explicitly verified in the topology_yaml or provisioning_files.",
+      "fix": "Ensure the flag 'bkd.service' is explicitly verified in the topology_yaml or provisioning_files."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Persistence Discovery",
+      "description": "The flag 'systemd timer' is not explicitly verified in the topology_yaml or provisioning_files.",
+      "fix": "Ensure the flag 'systemd timer' is explicitly verified in the topology_yaml or provisioning_files."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "C2 Communication Discovery (Port)",
+      "description": "The flag '4444' is not explicitly verified in the topology_yaml or provisioning_files.",
+      "fix": "Ensure the flag '4444' is explicitly verified in the topology_yaml or provisioning_files."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "bkd.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag 'bkd.service' is verified by the c2-listener role in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "systemd timer",
+      "flag_type": "persistence mechanism",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag 'systemd timer' is verified by the systemd timer configuration in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "4444",
+      "flag_type": "network port",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag '4444' matches the port configured in the c2-listener role in the provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. However, there are major issues with the verification of flags in the topology_yaml or provisioning_files. These issues need to be addressed to ensure the scenario is fully functional and meets all requirements."
+}
