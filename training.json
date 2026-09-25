@@ -1,0 +1,181 @@
+{
+  "title": "Tsunami_Kaiten_Incident_Response_Scenario_f7e",
+  "description": "Investigate and respond to a potential compromise involving the Tsunami/Kaiten.c Unix Trojan.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity, including unexpected outbound connections. Initial analysis suggests the presence of a Unix Trojan known as Tsunami/Kaiten.c, which operates as an IRC/Bot with flooder and backdoor capabilities. Your task is to investigate and respond to this potential compromise."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. Enter the passkey `start` to begin the investigation. Submit the passkey as a text value.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the `192.168.50.0/24` network. Enter the passkey `start` to begin the investigation. Submit the passkey as a text value."
+    },
+    {
+      "title": "Investigate Unusual Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": "suspicious_port",
+      "content": "Investigate the unusual network activity on the target system. Identify and investigate an unauthorized or suspicious service running on the target system. Submit the port number where the suspicious service is running.",
+      "solution": "Check the running services and network connections on the target system. The suspicious service is running on port 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Network services are typically associated with specific ports. Investigate open ports to identify suspicious services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Use network scanning tools to identify open ports and services on the target system.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command `netstat -tuln` to list all open ports and services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.service",
+      "answer_variable_name": "persistence_service",
+      "content": "Determine how the suspicious service is automatically started after reboot. Identify persistence mechanisms (e.g., systemd, cron, scheduled task). Submit the name of the systemd service responsible for the suspicious activity.",
+      "solution": "Examine the systemd services and timers on the target system. The systemd service and timer responsible for the suspicious activity are `lab-checkin.timer` and `lab-checkin.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms often involve system services or scheduled tasks that automatically start malicious processes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Investigate systemd services and timers to identify any suspicious entries.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command `systemctl list-timers --all` to list all systemd timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": "lateral_movement_service",
+      "content": "Investigate the file transfers or remote execution used to move between hosts. Correlate events across hosts to identify attacker lateral movement. Submit the name of the service used for lateral movement.",
+      "solution": "Check the logs and systemd services related to file transfers on the target system. The service name, filename, or destination host used for lateral movement is `payload-transfer.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement often involves file transfers or remote execution between hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Investigate systemd services and logs related to file transfers to identify any suspicious activities.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Run the command `journalctl -u payload-transfer.service` to check the logs of the payload-transfer.service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

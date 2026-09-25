@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The answer `4444` corresponds to the port used by the `lab-checkin.service` as defined in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The port number `4444` is not directly available from the content, topology, or provided credentials.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The content explicitly states that the student should submit the port number where the suspicious service is running.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer `4444` or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer by checking running services and network connections and explicitly states the final flag `4444`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution `4444` matches the `answer` field.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The hints follow a logical progression from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `netstat -tuln` that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer `lab-checkin.service` corresponds to the systemd service defined in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The service name `lab-checkin.service` is not directly available from the content, topology, or provided credentials.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states that the student should submit the name of the systemd service responsible for the suspicious activity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer `lab-checkin.service` or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer by examining systemd services and timers and explicitly states the final flag `lab-checkin.service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution `lab-checkin.service` matches the `answer` field.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The hints follow a logical progression from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `systemctl list-timers --all` that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The answer `payload-transfer.service` corresponds to the systemd service defined in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The service name `payload-transfer.service` is not directly available from the content, topology, or provided credentials.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The content explicitly states that the student should submit the name of the service used for lateral movement.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer `payload-transfer.service` or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer by checking logs and systemd services related to file transfers and explicitly states the final flag `payload-transfer.service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The final flag in the solution `payload-transfer.service` matches the `answer` field.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The hints follow a logical progression from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `journalctl -u payload-transfer.service` that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Unusual Network Activity",
+      "description": "The answer `4444` is not explicitly verifiable from the topology_yaml or provisioning_files. It is derived from the provisioning files but not clearly documented.",
+      "fix": "Ensure the answer is explicitly verifiable from the topology_yaml or provisioning_files."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine Persistence Mechanism",
+      "description": "The answer `lab-checkin.service` is not explicitly verifiable from the topology_yaml or provisioning_files. It is derived from the provisioning files but not clearly documented.",
+      "fix": "Ensure the answer is explicitly verifiable from the topology_yaml or provisioning_files."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Lateral Movement",
+      "description": "The answer `payload-transfer.service` is not explicitly verifiable from the topology_yaml or provisioning_files. It is derived from the provisioning files but not clearly documented.",
+      "fix": "Ensure the answer is explicitly verifiable from the topology_yaml or provisioning_files."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unusual Network Activity",
+      "current_flag": "4444",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port `4444` is used by the `lab-checkin.service` as defined in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "lab-checkin.service",
+      "flag_type": "systemd service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service `lab-checkin.service` is defined in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "systemd service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service `payload-transfer.service` is defined in the provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the topology and provisioning files. However, the answers for the training levels need to be explicitly verifiable from the topology_yaml or provisioning_files. The scenario covers the attack chain comprehensively and maintains a strong narrative with accurate techniques and appropriate difficulty progression."
+}
