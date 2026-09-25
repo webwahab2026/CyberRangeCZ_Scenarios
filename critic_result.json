@@ -1,0 +1,238 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The answer '192.168.90.5' corresponds to the IP address of the c2-server in the topology.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The IP address requires investigation of network connections and logs.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The content explicitly states the answer should be the IP address of the command-and-control server.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The content does not expose the exact IP address or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer using commands like 'netstat -tuln' or 'ss -tuln'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer '192.168.90.5'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The hints follow a logical progression from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command 'netstat -tuln' that uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The answer '4443' corresponds to the port number used by the ransomware for command-and-control communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The port number requires investigation of network traffic.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The content explicitly states the answer should be the port number used for the command-and-control communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact port number or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer using tools like 'tcpdump' or 'Wireshark'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer '4443'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The hints follow a logical progression from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command 'tcpdump -i any port 4443' that uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Exfiltrated Files",
+      "status": "pass",
+      "evidence": "The answer 'quarterly_report.txt' corresponds to a file that was exfiltrated to the exfil-server.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Exfiltrated Files",
+      "status": "pass",
+      "evidence": "The file name requires analysis of logs and network activity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Exfiltrated Files",
+      "status": "pass",
+      "evidence": "The content explicitly states the answer should be the name of a file that was exfiltrated.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Exfiltrated Files",
+      "status": "pass",
+      "evidence": "The content does not expose the exact file name or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Exfiltrated Files",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer by analyzing logs and network activity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Exfiltrated Files",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer 'quarterly_report.txt'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Exfiltrated Files",
+      "status": "pass",
+      "evidence": "The hints follow a logical progression from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Exfiltrated Files",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command 'grep -i 'exfil' /var/log/*' that uses provisioned tools.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Exfiltrated Files",
+      "description": "The file 'quarterly_report.txt' is mentioned in the provisioning files but needs verification in the sandbox.",
+      "fix": "Verify the file 'quarterly_report.txt' exists in the sandbox and is accessible with the provided credentials."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify the Command-and-Control Server",
+      "current_flag": "192.168.90.5",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address corresponds to the c2-server in the topology.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the Command-and-Control Port",
+      "current_flag": "4443",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port number is used by the ransomware for command-and-control communication.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Exfiltrated Files",
+      "current_flag": "quarterly_report.txt",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "The file is mentioned in the provisioning files and needs verification in the sandbox.",
+      "recommendation": "Verify the file exists in the sandbox and is accessible with the provided credentials."
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the topology and provisioning files. The scenario requires verification of the exfiltrated file in the sandbox. The scenario is coherent and follows a logical progression, but needs minor adjustments to ensure all flags are valid and accessible."
+}

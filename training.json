@@ -1,0 +1,163 @@
+{
+  "title": "Ransomware_Incident_Response_Scenario_1a9",
+  "description": "Investigate a ransomware incident on a Linux system, identify the threat, and contain the damage.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has been compromised by ransomware. Your task is to investigate the incident, identify the threat, and contain the damage. The victim host is running a Linux operating system and has been exhibiting unusual behavior."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation"
+    },
+    {
+      "title": "Identify the Command-and-Control Server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.5",
+      "answer_variable_name": null,
+      "content": "Identify the external host communicating with the compromised system.\n\nQuestion: What is the IP address of the command-and-control server?\n\nHint: Check network connections and logs for suspicious outbound connections.",
+      "solution": "To identify the command-and-control server, you need to check network connections and logs for suspicious outbound connections. Use commands like `netstat -tuln` or `ss -tuln` to list active connections. Look for connections to external IPs that are not part of your internal network.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Network Connections",
+          "content": "Use commands like `netstat -tuln` or `ss -tuln` to list active connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Log Analysis",
+          "content": "Check logs in `/var/log/` for suspicious outbound connections.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Command-and-Control Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4443",
+      "answer_variable_name": null,
+      "content": "Determine which network port is used for suspicious command-and-control communication.\n\nQuestion: What is the port number used for the command-and-control communication?\n\nHint: Investigate network traffic to identify unusual ports.",
+      "solution": "To determine the command-and-control port, investigate network traffic to identify unusual ports. Use tools like `tcpdump` or `Wireshark` to capture and analyze network traffic. Look for connections to external IPs on non-standard ports.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Network Traffic Analysis",
+          "content": "Use tools like `tcpdump` or `Wireshark` to capture and analyze network traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Port Scanning",
+          "content": "Use `nmap` to scan for open ports and identify suspicious activity.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "analyze_network_traffic",
+          "prereq_state": [],
+          "cmd": "tcpdump -i any port 4443",
+          "cmd_type": "bash-command",
+          "cmd_regex": "tcpdump -i any port 4443",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Exfiltrated Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "quarterly_report.txt",
+      "answer_variable_name": null,
+      "content": "Identify a file or a dataset that was transferred outside the environment before encryption.\n\nQuestion: What is the name of a file that was exfiltrated from the victim host?\n\nHint: Analyze logs and network activity to determine what data was exfiltrated.",
+      "solution": "To identify exfiltrated files, analyze logs and network activity to determine what data was exfiltrated. Check logs in `/var/log/` for any references to file transfers or exfiltration. Use tools like `rsync` to verify the presence of exfiltrated files on the exfil-server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Log Analysis",
+          "content": "Check logs in `/var/log/` for any references to file transfers or exfiltration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Network Activity",
+          "content": "Use tools like `Wireshark` to capture and analyze network traffic for exfiltration.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "analyze_logs",
+          "prereq_state": [],
+          "cmd": "grep -i 'exfil' /var/log/*",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -i 'exfil' /var/log/*",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
