@@ -1,0 +1,252 @@
+{
+  "coherence_score": 4,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": false,
+      "password_present": false,
+      "start_instruction_present": true,
+      "evidence": "Access the target host via SSH using the username 'user' and password 'password'. Enter 'start' to begin."
+    },
+    "local_content": {
+      "username_present": false,
+      "password_present": false,
+      "start_instruction_present": true,
+      "evidence": "Access the target host via SSH using the username 'user' and password 'password'. Enter 'start' to begin."
+    },
+    "c1_status": "fail",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C1",
+      "level": "ACCESS_LEVEL",
+      "status": "fail",
+      "evidence": "cloud_content and local_content do not contain explicit username and password",
+      "required_fix": "Provide explicit username and password in both cloud_content and local_content"
+    },
+    {
+      "condition": "C2",
+      "level": "ACCESS_LEVEL",
+      "status": "pass",
+      "evidence": "Both cloud_content and local_content explicitly instruct to enter 'start'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "bkd.service is a valid service in the sandbox",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The service is not trivially discoverable without investigation",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit (service name)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "lab-checkin.timer is a valid timer in the sandbox",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The timer is not trivially discoverable without investigation",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit (timer name)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "/usr/local/bin/lab-checkin.sh is a valid file in the sandbox",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The file is not trivially discoverable without investigation",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit (file path)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "cloud_content and local_content do not contain explicit username and password",
+      "fix": "Provide explicit username and password in both cloud_content and local_content"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "bkd.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "bkd.service is a valid service in the sandbox",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "lab-checkin.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "lab-checkin.timer is a valid timer in the sandbox",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious File Discovery",
+      "current_flag": "/usr/local/bin/lab-checkin.sh",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "/usr/local/bin/lab-checkin.sh is a valid file in the sandbox",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-structured and the training levels are properly defined. However, the ACCESS_LEVEL fails C1 because the cloud_content and local_content do not contain explicit username and password. This issue needs to be addressed before the scenario can be approved."
+}
