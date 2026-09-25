@@ -1,0 +1,163 @@
+{
+  "title": "Umbreon_Rootkit_Investigation_149",
+  "description": "Investigate and respond to a suspected Umbreon rootkit infection on the victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify shared library injection",
+    "Detect system-wide preload configuration modifications",
+    "Find hidden filesystem artifacts"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a Pok\u00e9mon-themed Linux rootkit that targets both x86 and ARM systems. It is designed to hide processes, files, and network connections, making it difficult to detect. The rootkit uses various techniques to maintain persistence and evade detection. Your task is to investigate and respond to a suspected Umbreon rootkit infection on the victim host."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the victim host (IP: 192.168.50.5) using the username 'investigator' and password 'Umbreon2023'. Enter 'start' to begin the investigation.",
+      "local_content": "Access the victim host (IP: 192.168.50.5) using the username 'investigator' and password 'Umbreon2023'. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Evidence of Shared Library Injection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Identify evidence that a shared library has been injected into system processes. Investigate loaded libraries and detect unauthorized code injection.",
+      "solution": "Check the loaded libraries for all running processes and look for any suspicious or unexpected libraries. The libsysmon.so.1 library should be identified as loaded into system processes.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the loaded libraries for all running processes and look for any suspicious or unexpected libraries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `ldd` or `lsof` to inspect loaded libraries in system processes.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ldd /path/to/process",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ldd .*",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine System-Wide Preload Configuration Modifications",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "Determine whether a system-wide preload configuration has been modified to execute unauthorized code. Identify preload-based persistence and code injection mechanisms.",
+      "solution": "Inspect the /etc/ld.so.preload file for any unexpected entries. The file should contain an entry for the libsysmon.so.1 library.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Inspect the /etc/ld.so.preload file for any unexpected entries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `cat` command to view the contents of the /etc/ld.so.preload file.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Hidden Filesystem Artifacts",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf/config",
+      "answer_variable_name": null,
+      "content": "Locate files or directories concealed from normal system utilities. Apply forensic techniques to identify hidden filesystem artifacts.",
+      "solution": "Use alternative methods to list files and directories, such as examining inode tables or using debugfs. Hidden files or directories such as /etc/.kit_conf or /home/cyrano/.kit_credentials.txt should be identified.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use alternative methods to list files and directories, such as examining inode tables or using debugfs.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `ls -i` or `debugfs` to inspect the filesystem for hidden artifacts.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -i /etc",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -i /etc",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
