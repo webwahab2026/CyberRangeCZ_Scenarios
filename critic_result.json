@@ -1,0 +1,302 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The answer 'network-diagnostics.timer' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to identify the scheduled task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The content explicitly states that the name of the scheduled task must be submitted as the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "status": "fail",
+      "evidence": "The solution does not include usable commands or explicitly state the final flag.",
+      "required_fix": "The solution must explain how to obtain the answer, include usable commands, and explicitly state the final flag."
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "status": "fail",
+      "evidence": "Only one hint is provided, which does not follow the required hierarchy.",
+      "required_fix": "Provide three hints with increasing specificity, ensuring earlier hints do not reveal more than later hints."
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "status": "fail",
+      "evidence": "The hint does not contain a usable command.",
+      "required_fix": "Hint 3 should contain a usable command that uses real provisioned tools/paths/services and matches the OS/runtime."
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Files Installed by the Malware",
+      "status": "pass",
+      "evidence": "The answer '/usr/local/lib/.netd/revshell.sh' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Files Installed by the Malware",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to locate the malware files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Files Installed by the Malware",
+      "status": "pass",
+      "evidence": "The content explicitly states that the full file path must be submitted as the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Files Installed by the Malware",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Files Installed by the Malware",
+      "status": "fail",
+      "evidence": "The solution does not include usable commands or explicitly state the final flag.",
+      "required_fix": "The solution must explain how to obtain the answer, include usable commands, and explicitly state the final flag."
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Files Installed by the Malware",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Files Installed by the Malware",
+      "status": "fail",
+      "evidence": "Only one hint is provided, which does not follow the required hierarchy.",
+      "required_fix": "Provide three hints with increasing specificity, ensuring earlier hints do not reveal more than later hints."
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Files Installed by the Malware",
+      "status": "fail",
+      "evidence": "The hint does not contain a usable command.",
+      "required_fix": "Hint 3 should contain a usable command that uses real provisioned tools/paths/services and matches the OS/runtime."
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "status": "pass",
+      "evidence": "The answer '192.168.60.20' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to identify the command-and-control server.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "status": "pass",
+      "evidence": "The content explicitly states that the IP address must be submitted as the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "status": "fail",
+      "evidence": "The solution does not include usable commands or explicitly state the final flag.",
+      "required_fix": "The solution must explain how to obtain the answer, include usable commands, and explicitly state the final flag."
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "status": "fail",
+      "evidence": "Only one hint is provided, which does not follow the required hierarchy.",
+      "required_fix": "Provide three hints with increasing specificity, ensuring earlier hints do not reveal more than later hints."
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "status": "fail",
+      "evidence": "The hint does not contain a usable command.",
+      "required_fix": "Hint 3 should contain a usable command that uses real provisioned tools/paths/services and matches the OS/runtime."
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C7",
+      "severity": "major",
+      "component": "solution",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "description": "The solution does not include usable commands or explicitly state the final flag.",
+      "fix": "The solution must explain how to obtain the answer, include usable commands, and explicitly state the final flag."
+    },
+    {
+      "condition": "C9",
+      "severity": "major",
+      "component": "hint",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "description": "Only one hint is provided, which does not follow the required hierarchy.",
+      "fix": "Provide three hints with increasing specificity, ensuring earlier hints do not reveal more than later hints."
+    },
+    {
+      "condition": "C10",
+      "severity": "major",
+      "component": "hint",
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "description": "The hint does not contain a usable command.",
+      "fix": "Hint 3 should contain a usable command that uses real provisioned tools/paths/services and matches the OS/runtime."
+    },
+    {
+      "condition": "C7",
+      "severity": "major",
+      "component": "solution",
+      "level": "Locate Files Installed by the Malware",
+      "description": "The solution does not include usable commands or explicitly state the final flag.",
+      "fix": "The solution must explain how to obtain the answer, include usable commands, and explicitly state the final flag."
+    },
+    {
+      "condition": "C9",
+      "severity": "major",
+      "component": "hint",
+      "level": "Locate Files Installed by the Malware",
+      "description": "Only one hint is provided, which does not follow the required hierarchy.",
+      "fix": "Provide three hints with increasing specificity, ensuring earlier hints do not reveal more than later hints."
+    },
+    {
+      "condition": "C10",
+      "severity": "major",
+      "component": "hint",
+      "level": "Locate Files Installed by the Malware",
+      "description": "The hint does not contain a usable command.",
+      "fix": "Hint 3 should contain a usable command that uses real provisioned tools/paths/services and matches the OS/runtime."
+    },
+    {
+      "condition": "C7",
+      "severity": "major",
+      "component": "solution",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "description": "The solution does not include usable commands or explicitly state the final flag.",
+      "fix": "The solution must explain how to obtain the answer, include usable commands, and explicitly state the final flag."
+    },
+    {
+      "condition": "C9",
+      "severity": "major",
+      "component": "hint",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "description": "Only one hint is provided, which does not follow the required hierarchy.",
+      "fix": "Provide three hints with increasing specificity, ensuring earlier hints do not reveal more than later hints."
+    },
+    {
+      "condition": "C10",
+      "severity": "major",
+      "component": "hint",
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "description": "The hint does not contain a usable command.",
+      "fix": "Hint 3 should contain a usable command that uses real provisioned tools/paths/services and matches the OS/runtime."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Scheduled Tasks",
+      "current_flag": "network-diagnostics.timer",
+      "flag_type": "scheduled task name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Files Installed by the Malware",
+      "current_flag": "/usr/local/lib/.netd/revshell.sh",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the External Host Communicating with the Compromised System",
+      "current_flag": "192.168.60.20",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the topology and provisioning files. However, the solutions and hints for each training level need to be improved to meet the required standards. Specifically, the solutions must include usable commands and explicitly state the final flag, and the hints must follow a hierarchical structure with increasing specificity."
+}
