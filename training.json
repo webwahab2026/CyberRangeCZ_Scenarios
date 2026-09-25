@@ -1,0 +1,181 @@
+{
+  "title": "XOR.DDoS_Malware_Investigation_d19",
+  "description": "Investigate and respond to the XOR.DDoS malware family, specifically the Groundhog backdoor, in a Linux server environment.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Analyze network traffic to identify suspicious ports",
+    "Correlate events across hosts to identify attacker lateral movement",
+    "Collect relevant logs, process information, service configuration, and network evidence"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity on its Linux servers. Initial analysis suggests the presence of the XOR.DDoS malware family, specifically the Groundhog backdoor. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised host and any lateral movement to other hosts. Enter `start` to proceed.",
+      "local_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised host and any lateral movement to other hosts. Enter `start` to proceed."
+    },
+    {
+      "title": "Investigate Suspicious Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "While monitoring the `target` host, you notice unusual outbound network connections. Identify the suspicious network port used for this communication.",
+      "solution": "Use network monitoring tools to inspect active connections and listen ports. The suspicious port is 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use network monitoring tools to inspect active connections and listen ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the active connections using `netstat -tuln` or `ss -tuln`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious port is used for communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Lateral Movement Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "The attacker appears to be moving laterally within the network. Investigate the `target` host to determine how files are being transferred to the `next-target` host.",
+      "solution": "Check system logs and scheduled tasks for evidence of file transfers. The attacker is using `rsync` to transfer files.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check system logs and scheduled tasks for evidence of file transfers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for scheduled tasks using `systemctl list-timers` and check logs in `/var/log/`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The file transfer mechanism involves a script.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Collect Forensic Evidence",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/log/local-inventory/inventory.log",
+      "answer_variable_name": null,
+      "content": "Gather forensic evidence from the `target` host to support your findings of malicious activity. This includes logs, process information, and network evidence.",
+      "solution": "Use command-line tools to gather and preserve evidence for further analysis. Collect logs from `/var/log/`, process information using `ps aux`, and network evidence using `tcpdump`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use command-line tools to gather and preserve evidence for further analysis.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Collect logs from `/var/log/`, process information using `ps aux`, and network evidence using `tcpdump`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The critical log file is located in `/var/log/`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
