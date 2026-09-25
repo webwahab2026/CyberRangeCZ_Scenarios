@@ -1,0 +1,181 @@
+{
+  "title": "CrossRAT_Incident_Response_05e",
+  "description": "You are an incident responder tasked with investigating and responding to a CrossRAT malware infection. CrossRAT is a backdoor tool capable of targeting Windows, OSX, and Linux systems, allowing attackers to exfiltrate data and maintain persistence. Your goal is to identify the infection, understand its behavior, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating and responding to a CrossRAT malware infection. CrossRAT is a backdoor tool capable of targeting Windows, OSX, and Linux systems, allowing attackers to exfiltrate data and maintain persistence. Your goal is to identify the infection, understand its behavior, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin.",
+      "local_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "mediamgrs.jar.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from the target host. Investigate the target host to identify any unauthorized or suspicious services running. The suspicious service 'mediamgrs.jar.service' should be discoverable through the described methods.",
+      "solution": "To identify suspicious services, you can use the `systemctl list-units --type=service` command to list all running services. Look for any services that seem out of place or unfamiliar. Additionally, you can use the `netstat -tuln` command to check for any suspicious network connections.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the list of running services and look for any that seem out of place or unfamiliar.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-units --type=service` command to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services with unusual names or those that are not part of standard system services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "You have identified a suspicious service. Determine how this service is automatically started after a system reboot. The persistence mechanism 'payload-transfer.timer' should be discoverable through the described methods.",
+      "solution": "To identify persistence mechanisms, you can use the `systemctl list-unit-files --state=enabled` command to list all enabled systemd services. Additionally, you can check for any cron jobs or scheduled tasks using the `crontab -l` command.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate systemd services and timers to find how the suspicious service is maintained.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-unit-files --state=enabled` command to list all enabled systemd services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for timers or services that might be responsible for restarting the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --state=enabled",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --state=enabled",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2223",
+      "answer_variable_name": null,
+      "content": "Analyze the network traffic to determine which port is used for the suspicious communication between the target host and the potential command-and-control server. The port '2223' should be discoverable through the described methods.",
+      "solution": "To identify the port used for C2 communication, you can use the `netstat -tuln` command to list all network connections. Look for any suspicious connections to external IPs or unusual ports.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the network connections and listen ports to find the one used by the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `netstat -tuln` command to list all network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for connections to external IPs or unusual ports that might indicate C2 communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
