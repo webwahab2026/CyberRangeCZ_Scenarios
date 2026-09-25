@@ -1,0 +1,246 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'ubuntu', password 'ubuntu', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'ubuntu', password 'ubuntu', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The service 'bot-beacon.service' is provisioned and discoverable via 'systemctl list-units --type=service'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The service name requires investigation and is not trivially available",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states to submit the service name as the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact service name or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes the command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The service 'bot-flood.service' is provisioned and discoverable via 'systemctl list-timers'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The service name requires investigation and is not trivially available",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states to submit the service name as the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact service name or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes the command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The port '80' is provisioned and discoverable via 'ss -tulnp'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The port number requires investigation and is not trivially available",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content explicitly states to submit the port number as the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content does not expose the exact port number or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes the command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The credentials provided in the ACCESS_LEVEL do not match the provisioned credentials in the sandbox.",
+      "fix": "Update the credentials in the ACCESS_LEVEL to match the provisioned credentials in the sandbox."
+    },
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The passkey 'start' is not explicitly instructed to be entered in the cloud_content and local_content.",
+      "fix": "Explicitly instruct the trainee to enter the passkey 'start' in both cloud_content and local_content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Beacon Service Discovery",
+      "current_flag": "bot-beacon.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service 'bot-beacon.service' is provisioned and discoverable via 'systemctl list-units --type=service'",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious Flood Service Discovery",
+      "current_flag": "bot-flood.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service 'bot-flood.service' is provisioned and discoverable via 'systemctl list-timers'",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port '80' is provisioned and discoverable via 'ss -tulnp'",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with clear objectives and a logical progression of tasks. However, the credentials provided in the ACCESS_LEVEL do not match the provisioned credentials in the sandbox, and the passkey 'start' is not explicitly instructed to be entered in the cloud_content and local_content. These issues need to be addressed before the scenario can be approved."
+}
