@@ -1,0 +1,181 @@
+{
+  "title": "Linux_Rakos_Backdoor_Investigation_1e6",
+  "description": "Investigate and respond to unusual SSH activity and potential lateral movement between hosts.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual SSH activity and potential lateral movement between hosts. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have access to the `target` host with the username `cyrano` and password `cyrano`. From this host, you can investigate the network and connected systems. Enter 'start' to begin.",
+      "local_content": "You have access to the `target` host with the username `cyrano` and password `cyrano`. From this host, you can investigate the network and connected systems. Enter 'start' to begin."
+    },
+    {
+      "title": "Investigate Unusual SSH Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/log/auth.log",
+      "answer_variable_name": null,
+      "content": "Investigate the unusual SSH activity on the `target` host. Identify and investigate the source of suspicious SSH connections. Submit the path to the log file containing the suspicious activity.",
+      "solution": "To investigate the unusual SSH activity, you need to check the SSH logs for any anomalies. Use the following command to view the SSH logs: `cat /var/log/auth.log | grep sshd`. Look for any unusual connections or commands executed via SSH. The path to the log file containing the suspicious activity is `/var/log/auth.log`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Start by checking the SSH logs for any anomalies.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for any unusual connections or commands executed via SSH in the logs.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `cat /var/log/auth.log | grep sshd` to view the SSH logs.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "ssh_logs",
+          "prereq_state": [],
+          "cmd": "cat /var/log/auth.log | grep sshd",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /var/log/auth.log | grep sshd",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/log/syslog",
+      "answer_variable_name": null,
+      "content": "Determine if the suspicious SSH activity is part of a larger lateral movement campaign. Identify any file transfers or remote command executions that indicate lateral movement. Submit the path to the log file containing evidence of lateral movement.",
+      "solution": "To determine lateral movement, examine the system logs for evidence of file transfers or remote command executions. Use the following command to view the system logs: `cat /var/log/syslog | grep -i 'transfer'`. The path to the log file containing evidence of lateral movement is `/var/log/syslog`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Examine the system logs for evidence of lateral movement.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for any file transfers or remote command executions in the system logs.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `cat /var/log/syslog | grep -i 'transfer'` to view the system logs.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "system_logs",
+          "prereq_state": [],
+          "cmd": "cat /var/log/syslog | grep -i 'transfer'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /var/log/syslog | grep -i 'transfer'",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain the Threat",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "61314",
+      "answer_variable_name": null,
+      "content": "Contain the threat by blocking the command-and-control (C2) communication. Identify the C2 server and implement network controls to block its communication. Submit the port number used for C2 communication.",
+      "solution": "To contain the threat, analyze the network traffic to identify the destination IP address and port used for C2 communication. Use the following command to view the network traffic: `tcpdump -i any -n port 61314`. Implement network controls to block this communication. The port number used for C2 communication is `61314`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Analyze the network traffic to identify the C2 server.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for the destination IP address and port used for C2 communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `tcpdump -i any -n port 61314` to view the network traffic.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_traffic",
+          "prereq_state": [],
+          "cmd": "tcpdump -i any -n port 61314",
+          "cmd_type": "bash-command",
+          "cmd_regex": "tcpdump -i any -n port 61314",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
