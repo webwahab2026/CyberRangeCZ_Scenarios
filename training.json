@@ -1,0 +1,181 @@
+{
+  "title": "TeamTNT_Hildegard_Backdoor_Investigation_e3d",
+  "description": "Investigate a compromised host with TeamTNT Hildegard backdoor malware, identify malicious activity, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The security team has detected unusual network activity originating from the target host in your environment. Initial analysis suggests a potential compromise by the TeamTNT Hildegard backdoor malware, which targets Kubernetes clusters and performs cryptojacking operations. Your task is to investigate the compromised host, identify the malicious activity, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the username 'cyrano' and password 'cyrano'. Enter 'start' to progress.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the username 'cyrano' and password 'cyrano'. Enter 'start' to progress."
+    },
+    {
+      "title": "Investigate Suspicious Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "While monitoring the target host, you notice unusual outbound network connections. Identify the suspicious network port used for this communication.",
+      "solution": "Check the system logs for recent network connections. The suspicious port is 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the system logs for recent network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for unusual outbound connections in the logs.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious port is likely to be a non-standard port. Focus on ports above 1024.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "grep -i 'outbound' /var/log/syslog",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -i 'outbound' /var/log/syslog",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bioset.service bioset.timer",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be automatically started after reboot. Determine how this persistence is achieved.",
+      "solution": "Examine the systemd service files and timers. The persistence mechanism is the 'bioset.service' and 'bioset.timer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd service files and timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for suspicious service files in /etc/systemd/system/",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check for timers that might be triggering the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malicious Artifact",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/x86_64.so",
+      "answer_variable_name": null,
+      "content": "Find the executable or file associated with the suspicious activity on the target host.",
+      "solution": "Search for unusual files in the home directory of the user cyrano. The malicious artifact is 'x86_64.so'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Search for unusual files in the home directory of the user cyrano.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for files with unusual names or extensions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The malicious artifact is likely to be a shared object file (.so).",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "locate_malicious_artifact",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /home/cyrano/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
