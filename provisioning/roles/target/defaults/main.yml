@@ -1,0 +1,15 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: cd09ec795a8f4b6ced003500a44d810f49943514e2f92c81ab96c33e1c0fbd68
+  content: "cd09ec795a8f4b6ced003500a44d810f49943514e2f92c81ab96c33e1c0fbd68\n"
+- name: libdsplibs.so
+  content: "libdsplibs.so\n"
+packages_to_install:
+- openssh-server
