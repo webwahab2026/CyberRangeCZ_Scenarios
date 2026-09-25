@@ -1,0 +1,181 @@
+{
+  "title": "VoIP_Platform_Compromise_Investigation_733",
+  "description": "You are an incident responder tasked with investigating a potential compromise of your organization's VoIP platform. Recent monitoring has detected unusual outbound network traffic from one of the VoIP servers. Your mission is to investigate this activity, identify the source of the compromise, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential compromise of your organization's VoIP platform. Recent monitoring has detected unusual outbound network traffic from one of the VoIP servers. Your mission is to investigate this activity, identify the source of the compromise, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target VoIP server via SSH using the provided credentials. Username: admin, Password: admin. Enter 'start' to begin.",
+      "local_content": "Access the target VoIP server via SSH using the provided credentials. Username: admin, Password: admin. Enter 'start' to begin."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "callservice",
+      "answer_variable_name": null,
+      "content": "While monitoring your VoIP platform, you noticed unusual outbound network traffic. Begin your investigation by identifying any unauthorized or suspicious services running on the target VoIP server.",
+      "solution": "To identify suspicious services, you can use commands like `netstat -tuln` or `ss -tuln` to list all running services and their associated ports. Look for any services that don't belong to the standard VoIP platform services. The suspicious service in this scenario is named `callservice`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and look for anything that doesn't belong to the standard VoIP platform services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `netstat -tuln` or `ss -tuln` to list all running services and their associated ports.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is not part of the standard VoIP platform services and is likely the cause of the unusual outbound network traffic.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/callservice.service",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it maintains persistence on the system. Investigate how this service is automatically started after system reboots.",
+      "solution": "To determine the persistence mechanism, check systemd service configurations and timers. The suspicious service in this scenario is maintained by the systemd service unit file named `callservice.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check systemd service configurations and timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-unit-files` to list all systemd service unit files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The persistence mechanism is likely configured in a systemd service unit file located in the `/etc/systemd/system/` directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "With the suspicious service identified, investigate its network communication patterns. Determine which network port is used for the suspicious outbound connections.",
+      "solution": "To investigate network communication patterns, examine network connections and listen ports associated with the suspicious service. The suspicious service in this scenario uses network port 80 for its outbound communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine network connections and listen ports associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `netstat -tuln` or `ss -tuln` to examine network connections and listen ports.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is likely communicating with a command and control server using a common network port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
