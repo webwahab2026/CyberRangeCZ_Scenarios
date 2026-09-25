@@ -1,0 +1,181 @@
+{
+  "title": "Mirai_Botnet_Investigation_707",
+  "description": "You are an incident responder tasked with investigating a potential Mirai botnet infection within your organization's network. The Mirai botnet is known for turning IoT devices into a botnet for launching distributed denial-of-service (DDoS) attacks. Your goal is to identify and mitigate the botnet activity.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Mirai botnet infection within your organization's network. The Mirai botnet is known for turning IoT devices into a botnet for launching distributed denial-of-service (DDoS) attacks. Your goal is to identify and mitigate the botnet activity."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox in the cloud, use the following credentials: username: cyrano, password: cyrano. Enter 'start' to begin the investigation.",
+      "local_content": "To access the local sandbox, use the following credentials: username: cyrano, password: cyrano. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you have noticed unusual outbound connections from one of the hosts. Your task is to identify the service responsible for this suspicious behavior. Submit the service name.",
+      "solution": "To identify the suspicious service, you need to enumerate running services and look for any unusual or recently added services. Check the systemd services and look for any unusual or recently added services. The service name should be identified and reported.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or recently added services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any services that are generating a high volume of traffic.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is likely to have a name that indicates its malicious intent.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Abnormal Traffic Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.service",
+      "answer_variable_name": null,
+      "content": "You have observed a significant increase in network traffic originating from the same host. Your task is to identify the service responsible for this abnormal traffic. Submit the service name.",
+      "solution": "To identify the service responsible for the abnormal traffic, you need to examine the network connections and look for any services that are generating a high volume of traffic. The service name should be identified and reported.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the network connections and look for any services that are generating a high volume of traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use tools like netstat or ss to examine the network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The service generating abnormal traffic is likely to have a name that indicates its malicious intent.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "You need to understand how the identified suspicious service maintains its persistence on the system. Investigate the persistence mechanism used by the service. Submit the timer name.",
+      "solution": "To determine the persistence mechanism, you need to check the systemd timers and look for any timers associated with the suspicious service. The persistence mechanism should be identified and reported.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd timers and look for any timers associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any cron jobs or scheduled tasks that might be associated with the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The persistence mechanism is likely to be a timer with a name that indicates its malicious intent.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
