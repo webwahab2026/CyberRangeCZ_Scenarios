@@ -1,0 +1,181 @@
+{
+  "title": "Octopus-Rex_Botnet_Investigation_eb7",
+  "description": "Investigate and mitigate the Octopus-Rex botnet activity within the provided sandbox environment.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Octopus-Rex botnet is a multi-task botnet capable of various malicious activities including command and control (C2) communication, lateral movement, exfiltration, and persistence mechanisms. It primarily targets Linux platforms. Your task is to investigate and mitigate the botnet activity within the provided sandbox environment. In subsequent levels, you will need to submit specific service names as answers."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Username: ubuntu\n- Password: ubuntu\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Username: ubuntu\n- Password: ubuntu\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication.\n\nObjective: Enumerate running services and identify beaconing behavior associated with botnet activity.\n\nHint: Check the systemd services and look for any unusual or unfamiliar services.",
+      "solution": "To identify the suspicious service, you need to enumerate the running services on the victim host. You can use the command `systemctl list-units --type=service` to list all services. Look for any unusual or unfamiliar services, such as `bot-beacon.service`. This service is responsible for periodic external communication and is associated with the Octopus-Rex botnet activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or unfamiliar services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services that have unusual names or are not part of the standard system services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Abnormal Traffic Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.service",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic.\n\nObjective: Distinguish malicious traffic generation services from legitimate network services.\n\nHint: Examine the network connections and look for any services that are generating excessive traffic.",
+      "solution": "To identify the service responsible for generating abnormal volumes of network traffic, you need to examine the network connections on the victim host. You can use the command `ss -tulnp` to list all network connections. Look for any services that are generating excessive traffic, such as `bot-flood.service`. This service is responsible for generating abnormal volumes of network traffic and is associated with the Octopus-Rex botnet activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the network connections and look for any services that are generating excessive traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ss -tulnp` to list all network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for connections that are established to external IP addresses or domains that are not part of your organization's network.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_abnormal_traffic_service",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot.\n\nObjective: Identify persistence mechanisms (e.g., systemd, cron, scheduled task, registry).\n\nHint: Investigate the systemd timers and look for any timers associated with the suspicious service.",
+      "solution": "To determine how the suspicious service is automatically started after reboot, you need to investigate the systemd timers on the victim host. You can use the command `systemctl list-timers` to list all systemd timers. Look for any timers associated with the suspicious service, such as `bot-beacon.timer`. This timer is responsible for automatically starting the `bot-beacon.service` after reboot and is associated with the Octopus-Rex botnet activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd timers and look for any timers associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-timers` to list all systemd timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for timers that are set to run at regular intervals or at system startup.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "determine_persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
