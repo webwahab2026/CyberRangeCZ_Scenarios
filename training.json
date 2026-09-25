@@ -1,0 +1,145 @@
+{
+  "title": "Xbash_Ransomware_Incident_Response_Scenario_ff3",
+  "description": "Investigate the Xbash ransomware incident, identify indicators of compromise, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has been compromised by the Xbash ransomware. This malware combines ransomware, coinmining, and worm-like self-propagation capabilities. It targets Linux-based systems for ransomware and botnet capabilities and Microsoft Windows-based systems for coinmining and self-propagation. The ransomware component targets and deletes Linux-based databases. It spreads by attacking weak passwords and unpatched vulnerabilities.\n\nYour task is to investigate the incident, identify the indicators of compromise, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\nEnter 'start' to begin.",
+      "local_content": "To access the scenario, use the following credentials:\n- Username: cyrano\n- Password: cyrano\nEnter 'start' to begin."
+    },
+    {
+      "title": "Identify the External Host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.5",
+      "answer_variable_name": null,
+      "content": "Identify the external host communicating with the compromised system.\n\nQuestion: What is the IP address of the command-and-control server?\n\nTo discover the IP address, use the following command on the victim host:\n\n`netstat -tuln`\n\nThis command will display active network connections. Look for connections to external IPs that are not part of your internal network. The IP address should be clearly visible in the output.",
+      "solution": "Check the network connections and logs on the victim host. The IP address of the command-and-control server is 192.168.90.5.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `netstat -tuln` command to check active network connections on the victim host. The IP address should be clearly visible in the output.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4443",
+      "answer_variable_name": null,
+      "content": "Determine which network port is used for suspicious command-and-control communication.\n\nQuestion: What is the port number used for the command-and-control communication?\n\nTo discover the port number, use the following command on the victim host:\n\n`netstat -tuln`\n\nThis command will display active network connections. Look for the port number associated with the external IP address identified in the previous task. The port number should be clearly visible in the output.",
+      "solution": "Investigate the network traffic and logs on the victim host. The port number used for the command-and-control communication is 4443.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `netstat -tuln` command to investigate network traffic and identify the port number associated with the external IP address. The port number should be clearly visible in the output.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Exfiltrated File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "quarterly_report.txt",
+      "answer_variable_name": null,
+      "content": "Identify a file or a dataset that was transferred outside the environment before encryption.\n\nQuestion: What is the name of a file that was exfiltrated from the victim host?\n\nTo discover the exfiltrated file, use the following command on the victim host:\n\n`grep -r 'quarterly_report.txt' /var/log/`\n\nThis command will search for references to the file in the system logs. The file name should be clearly visible in the output.",
+      "solution": "Analyze the logs and file access records on the victim host. The name of a file that was exfiltrated from the victim host is quarterly_report.txt.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `grep -r 'quarterly_report.txt' /var/log/` command to search for references to the file in the system logs. The file name should be clearly visible in the output.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

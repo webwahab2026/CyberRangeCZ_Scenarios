@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify the External Host",
+      "status": "pass",
+      "evidence": "IP address 192.168.90.5 is present in topology_yaml and provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "Port 4443 is used for command-and-control communication as per provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "File quarterly_report.txt is provisioned in the victim host",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the External Host",
+      "status": "pass",
+      "evidence": "The IP address requires investigation using netstat command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "The port number requires investigation using netstat command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "The file name requires investigation using grep command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the External Host",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (IP address) to be submitted",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (port number) to be submitted",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (filename) to be submitted",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the External Host",
+      "status": "pass",
+      "evidence": "Content does not expose the exact IP address or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "Content does not expose the exact port number or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Content does not expose the exact filename or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the External Host",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the External Host",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the External Host",
+      "status": "fail",
+      "evidence": "Only one hint is provided, which is near-spoiler and gives precise methodology/command",
+      "required_fix": "Add two more hints with conceptual and directional guidance"
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the Network Port",
+      "status": "fail",
+      "evidence": "Only one hint is provided, which is near-spoiler and gives precise methodology/command",
+      "required_fix": "Add two more hints with conceptual and directional guidance"
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Exfiltrated File",
+      "status": "fail",
+      "evidence": "Only one hint is provided, which is near-spoiler and gives precise methodology/command",
+      "required_fix": "Add two more hints with conceptual and directional guidance"
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the External Host",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using real provisioned tools/paths/services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using real provisioned tools/paths/services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using real provisioned tools/paths/services",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C9",
+      "severity": "major",
+      "component": "hint",
+      "level": "Identify the External Host",
+      "description": "Only one hint is provided, which is near-spoiler and gives precise methodology/command",
+      "fix": "Add two more hints with conceptual and directional guidance"
+    },
+    {
+      "condition": "C9",
+      "severity": "major",
+      "component": "hint",
+      "level": "Determine the Network Port",
+      "description": "Only one hint is provided, which is near-spoiler and gives precise methodology/command",
+      "fix": "Add two more hints with conceptual and directional guidance"
+    },
+    {
+      "condition": "C9",
+      "severity": "major",
+      "component": "hint",
+      "level": "Identify Exfiltrated File",
+      "description": "Only one hint is provided, which is near-spoiler and gives precise methodology/command",
+      "fix": "Add two more hints with conceptual and directional guidance"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify the External Host",
+      "current_flag": "192.168.90.5",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "IP address is present in topology_yaml and provisioning_files",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the Network Port",
+      "current_flag": "4443",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Port number is used for command-and-control communication as per provisioning_files",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Exfiltrated File",
+      "current_flag": "quarterly_report.txt",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "File is provisioned in the victim host",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the topology and provisioning files. The scenario requires the trainee to investigate a ransomware incident and identify indicators of compromise. The flags are valid and require completion of the intended tasks. However, the hints need to be improved to provide a hierarchical structure with conceptual, directional, and near-spoiler guidance."
+}
