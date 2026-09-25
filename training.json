@@ -1,0 +1,181 @@
+{
+  "title": "Adwind_jRAT_Incident_Response_Scenario_39d",
+  "description": "Investigate and respond to a security incident involving the Adwind/jRAT trojan on a victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected network connections and potential unauthorized access. Your task is to investigate and respond to this security incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation"
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for unauthorized or suspicious services running on the system. Enumerate running services and distinguish legitimate services from trojan-related services. Look for services that are not part of the standard system installation, have unusual names, or exhibit unexpected behavior such as high resource usage or network connections to unknown hosts. Pay particular attention to any services named 'network-diagnostics.timer'.",
+      "solution": "Check the status of all services and look for any that appear unusual or out of place. Use commands like `systemctl list-units --type=service` to list all services and `systemctl status <service_name>` to check the status of specific services.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the status of all services and look for any that appear unusual or out of place.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-units --type=service` to list all services and `systemctl status <service_name>` to check the status of specific services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services that are not part of the standard system installation or have unusual names. Pay particular attention to any services named 'network-diagnostics.timer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_enumeration",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Scheduled Task or Timer",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "Determine whether a scheduled task or timer is responsible for automatically executing the malware. Identify scheduled execution persistence mechanisms (e.g., cron, systemd timers, Windows Scheduled Tasks). Look for timers that are not part of the standard system installation, have unusual names, or are scheduled to run at unexpected times or intervals. Pay particular attention to any timers named 'network-diagnostics.timer'.",
+      "solution": "Examine the systemd timers and services to find any that might be related to the suspicious activity. Use commands like `systemctl list-timers` to list all timers and `systemctl status <timer_name>` to check the status of specific timers.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd timers and services to find any that might be related to the suspicious activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-timers` to list all timers and `systemctl status <timer_name>` to check the status of specific timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for timers that are not part of the standard system installation or have unusual names. Pay particular attention to any timers named 'network-diagnostics.timer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_enumeration",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malware Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/lib/.netd/install.log",
+      "answer_variable_name": null,
+      "content": "Locate files installed by the malware on the compromised host. Correlate suspicious activity with files introduced by the trojan. Look for files in unusual locations, with unusual names, or that have been recently modified or created, especially those that are hidden or have permissions that allow execution by unauthorized users. Pay particular attention to any files named '/usr/local/lib/.netd/install.log'.",
+      "solution": "Search for hidden directories and files that might contain malware components or collected data. Use commands like `find / -type d -name '.*' 2>/dev/null` to find hidden directories and `find / -type f -name '.*' 2>/dev/null` to find hidden files.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Search for hidden directories and files that might contain malware components or collected data.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `find / -type d -name '.*' 2>/dev/null` to find hidden directories and `find / -type f -name '.*' 2>/dev/null` to find hidden files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for files in unusual locations or with unusual names. Pay particular attention to any files named '/usr/local/lib/.netd/install.log'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_enumeration",
+          "prereq_state": [],
+          "cmd": "find / -type d -name '.*' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -type d -name '.*' 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

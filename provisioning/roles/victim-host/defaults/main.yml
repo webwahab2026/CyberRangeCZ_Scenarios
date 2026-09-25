@@ -1,0 +1,23 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.60.5", name: "dist-server"}
+- {ip: "192.168.60.10", name: "victim"}
+- {ip: "192.168.60.20", name: "c2-server"}
+packages_to_install:
+- openssh-server
+- netcat-openbsd
+- curl
+- wget
+files_to_copy:
+- readme.txt
+files_to_create:
+- name: Qcaq5e.jar
+  content: "Qcaq5e.jar"
+- name: c16519f1de64c6768c698de89549804c1223addd88964c57ee036f65d57fd39b
+  content: "c16519f1de64c6768c698de89549804c1223addd88964c57ee036f65d57fd39b"
+- name: project_notes.txt
+  content: "Internal project notes — do not share\n"
+- name: config_backup.txt
+  content: "db_host=localhost\ndb_user=admin\ndb_pass=s3cr3t\n"
