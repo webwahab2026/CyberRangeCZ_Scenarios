@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon.service' is discoverable through systemd services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bot-flood.service' is discoverable through systemd services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon.timer' is discoverable through systemd timers",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires investigation of systemd services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires investigation of systemd timers and services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The flag requires investigation of systemd timers",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Content explicitly states the flag is the service name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "Content explicitly states the flag is the service name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Content explicitly states the flag is the persistence identifier",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Content does not reveal the exact flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "Content does not reveal the exact flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Content does not reveal the exact flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Solution explains methodology, includes commands, and states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "Solution explains methodology, includes commands, and states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Solution explains methodology, includes commands, and states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Suspicious Beacon Service Discovery",
+      "description": "The flag 'bot-beacon.service' is not verified in the provisioning files or topology YAML",
+      "fix": "Verify the existence of 'bot-beacon.service' in the provisioning files or topology YAML"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Suspicious Flood Service Discovery",
+      "description": "The flag 'bot-flood.service' is not verified in the provisioning files or topology YAML",
+      "fix": "Verify the existence of 'bot-flood.service' in the provisioning files or topology YAML"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Persistence Discovery",
+      "description": "The flag 'bot-beacon.timer' is not verified in the provisioning files or topology YAML",
+      "fix": "Verify the existence of 'bot-beacon.timer' in the provisioning files or topology YAML"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Beacon Service Discovery",
+      "current_flag": "bot-beacon.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag is discoverable through systemd services",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious Flood Service Discovery",
+      "current_flag": "bot-flood.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag is discoverable through systemd services",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "bot-beacon.timer",
+      "flag_type": "persistence identifier",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag is discoverable through systemd timers",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the intended learning objectives. However, the flags need to be verified in the provisioning files or topology YAML to ensure they are discoverable and valid."
+}
