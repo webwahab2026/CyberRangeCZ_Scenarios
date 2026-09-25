@@ -1,0 +1,145 @@
+{
+  "title": "Linux_NyaDrop_Incident_Response_Scenario_c49",
+  "description": "Investigate and respond to a potential security incident involving the Linux/NyaDrop malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity. Your task is to investigate and respond to this potential security incident involving the Linux/NyaDrop malware."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the 192.168.50.0/24 network. Enter `start` to begin the investigation.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and is part of the 192.168.50.0/24 network. Enter `start` to begin the investigation."
+    },
+    {
+      "title": "Investigate Unusual Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "Investigate the unusual network activity on the target system. Identify and investigate an unauthorized or suspicious service running on the target system. Submit the port number used by the suspicious service.",
+      "solution": "Check the running services and network connections on the target system. The suspicious service is running on port 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine network connections and running services for unusual activity. Look for open ports and services that should not be running.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_network_activity",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep 4444",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp | grep 4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "nyadrop.service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. Identify persistence mechanisms (e.g., systemd, cron, scheduled task). Submit the name of the systemd service responsible for the suspicious activity.",
+      "solution": "Check the systemd services and timers on the target system. The systemd service and timer responsible for the suspicious activity are `nyadrop.service` and `nyadrop.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for persistence mechanisms such as systemd services or cron jobs. Check for any unusual services or timers that might be responsible for the suspicious activity.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "determine_persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files | grep nyadrop",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files | grep nyadrop",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate the file transfers or remote execution used to move between hosts. Correlate events across hosts to identify attacker lateral movement. Submit the name of the service used for lateral movement.",
+      "solution": "Check the logs and network connections on both the target and next-target systems. The service name, filename, or destination host used for lateral movement is `payload-transfer.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Review logs and network connections to identify any lateral movement between hosts. Look for any unusual file transfers or remote execution commands.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "journalctl -u payload-transfer.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u payload-transfer.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

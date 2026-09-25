@@ -1,0 +1,17 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: nyadrop
+  content: "nyadrop\n"
+- name: c3865eb1c211de6435d1352647c023c2606f9285d3304d54f17261a16bbec5ff
+  content: "c3865eb1c211de6435d1352647c023c2606f9285d3304d54f17261a16bbec5ff\n"
+- name: nya
+  content: "nya\n"
+packages_to_install:
+- openssh-server
