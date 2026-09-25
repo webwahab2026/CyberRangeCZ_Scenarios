@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Answer '4444' corresponds to the port used by the suspicious service in the provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The port number requires investigation of network activity and is not trivially available",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Content explicitly states to submit the port number of the suspicious service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Content does not expose the exact port number or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy: conceptual, directional, near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Answer 'lab-checkin.timer' corresponds to the systemd timer in the provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The timer name requires investigation of systemd timers and is not trivially available",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Content explicitly states to submit the name of the systemd timer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Content does not expose the exact timer name or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy: conceptual, directional, near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Answer 'payload-transfer.service' corresponds to the service in the provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The service name requires investigation of systemd services and is not trivially available",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Content explicitly states to submit the name of the service responsible for transferring files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Content does not expose the exact service name or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy: conceptual, directional, near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "other",
+      "severity": "major",
+      "component": "training",
+      "level": "Investigate Suspicious Network Activity",
+      "description": "The task description does not explicitly state the type of value to be submitted (port number)",
+      "fix": "Explicitly state in the content that the trainee needs to submit a port number."
+    },
+    {
+      "condition": "other",
+      "severity": "major",
+      "component": "training",
+      "level": "Analyze Persistence Mechanism",
+      "description": "The task description does not explicitly state the type of value to be submitted (systemd timer name)",
+      "fix": "Explicitly state in the content that the trainee needs to submit the name of the systemd timer."
+    },
+    {
+      "condition": "other",
+      "severity": "major",
+      "component": "training",
+      "level": "Investigate Lateral Movement",
+      "description": "The task description does not explicitly state the type of value to be submitted (service name)",
+      "fix": "Explicitly state in the content that the trainee needs to submit the name of the service responsible for transferring files."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Network Activity",
+      "current_flag": "4444",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port 4444 is used by the suspicious service in the provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze Persistence Mechanism",
+      "current_flag": "lab-checkin.timer",
+      "flag_type": "systemd timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The systemd timer 'lab-checkin.timer' is defined in the provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service 'payload-transfer.service' is defined in the provisioning files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The scenario covers the attack chain comprehensively and accurately. However, the task descriptions need to explicitly state the type of value to be submitted for each training level. The scenario is otherwise well-structured and provides a strong narrative with appropriate difficulty progression."
+}
