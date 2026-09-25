@@ -1,0 +1,182 @@
+{
+  "title": "Sednit_Xagent_Investigation_0e9",
+  "description": "You are an incident responder tasked with investigating a potential Sednit Xagent backdoor infection on a compromised network. The Sednit group is known for using Xagent for long-term monitoring and espionage. Your goal is to identify and mitigate the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify suspicious services and processes.",
+    "Investigate persistence mechanisms.",
+    "Analyze network communication for command-and-control (C2) activity.",
+    "Collect forensic evidence and contain the threat."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Sednit Xagent backdoor infection on a compromised network. The Sednit group is known for using Xagent for long-term monitoring and espionage. Your goal is to identify and mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation.",
+      "local_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "splm.dll.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual activity on the target host. Investigate the running services on the target host to identify any unauthorized or suspicious services. Ensure the service splm.dll.service is explicitly provisioned and discoverable via systemctl list-units --type=service.",
+      "solution": "To identify the suspicious service, you can use the command `systemctl list-units --type=service` to list all running services. Look for any services that seem out of place or unfamiliar. The suspicious service in this scenario is `splm.dll.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the running services and look for any that seem out of place or unfamiliar.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the service named `splm.dll.service` in the list of running services.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "splm.dll.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "splm.dll.service",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, determine how it is automatically started after a system reboot. Investigate the persistence mechanisms used by the service. Ensure the persistence mechanism splm.dll.service is explicitly provisioned and discoverable via systemctl list-unit-files.",
+      "solution": "To determine the persistence mechanism, you can use the command `systemctl list-unit-files` to list all systemd unit files. Look for the unit file associated with the suspicious service. The persistence mechanism in this scenario is the systemd service `splm.dll.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for systemd services or cron jobs that might be responsible for starting the service automatically.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-unit-files` to list all systemd unit files.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the unit file named `splm.dll.service` in the list of systemd unit files.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files",
+          "cmd_type": "bash-command",
+          "cmd_regex": "splm.dll.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be communicating with an external command-and-control server. Determine which network port is used for this communication. Ensure the C2 port 4444 is explicitly provisioned and discoverable via ss -tulnp.",
+      "solution": "To determine the network port used for C2 communication, you can use the command `ss -tulnp` to list all listening network ports. Look for the port associated with the suspicious service. The C2 port number in this scenario is 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the network connections and listen ports associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ss -tulnp` to list all listening network ports.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the port number 4444 in the list of listening network ports.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

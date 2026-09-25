@@ -1,0 +1,15 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: splm.dll
+  content: "splm.dll\n"
+- name: dd8facad6c0626b6c94e1cc891698d4982782a5564aae696a218c940b7b8d084
+  content: "dd8facad6c0626b6c94e1cc891698d4982782a5564aae696a218c940b7b8d084\n"
+packages_to_install:
+- openssh-server
