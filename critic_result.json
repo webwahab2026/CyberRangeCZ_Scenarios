@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Network Connections",
+      "status": "pass",
+      "evidence": "Answer '4444' corresponds to the port used by the c2-listener service as defined in the provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Analyze Persistence Mechanisms",
+      "status": "pass",
+      "evidence": "Answer 'lab-checkin.timer' matches the systemd timer defined in the c2-service role",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Answer 'payload-transfer.service' matches the service defined in the lateral-movement role",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Network Connections",
+      "status": "pass",
+      "evidence": "The port number is not directly available from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Analyze Persistence Mechanisms",
+      "status": "pass",
+      "evidence": "The timer name is not directly available from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The service name is not directly available from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Network Connections",
+      "status": "pass",
+      "evidence": "Content explicitly states to submit the suspicious port number",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Analyze Persistence Mechanisms",
+      "status": "pass",
+      "evidence": "Content explicitly states to submit the systemd timer name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Content explicitly states to submit the service name responsible for lateral movement",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Network Connections",
+      "status": "pass",
+      "evidence": "Content does not expose the port number 4444",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Analyze Persistence Mechanisms",
+      "status": "pass",
+      "evidence": "Content does not expose the timer name lab-checkin.timer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Content does not expose the service name payload-transfer.service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Network Connections",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Analyze Persistence Mechanisms",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable command, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Network Connections",
+      "status": "pass",
+      "evidence": "Solution flag '4444' matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Analyze Persistence Mechanisms",
+      "status": "pass",
+      "evidence": "Solution flag 'lab-checkin.timer' matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Solution flag 'payload-transfer.service' matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Network Connections",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Analyze Persistence Mechanisms",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Network Connections",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Analyze Persistence Mechanisms",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "other",
+      "severity": "major",
+      "component": "training",
+      "level": "Investigate Suspicious Network Connections",
+      "description": "The task description does not explicitly state that the answer should be a port number",
+      "fix": "Explicitly state in the content that the answer should be a port number"
+    },
+    {
+      "condition": "other",
+      "severity": "major",
+      "component": "training",
+      "level": "Analyze Persistence Mechanisms",
+      "description": "The task description does not explicitly state that the answer should be a systemd timer name",
+      "fix": "Explicitly state in the content that the answer should be a systemd timer name"
+    },
+    {
+      "condition": "other",
+      "severity": "major",
+      "component": "training",
+      "level": "Investigate Lateral Movement",
+      "description": "The task description does not explicitly state that the answer should be a service name",
+      "fix": "Explicitly state in the content that the answer should be a service name"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Network Connections",
+      "current_flag": "4444",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Port 4444 is used by the c2-listener service as defined in the provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze Persistence Mechanisms",
+      "current_flag": "lab-checkin.timer",
+      "flag_type": "systemd timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "lab-checkin.timer is defined in the c2-service role",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "payload-transfer.service is defined in the lateral-movement role",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The scenario covers the attack chain completely and accurately. The narrative is strong, and the difficulty progression is correct. However, the task descriptions need to explicitly state the type of answer expected."
+}

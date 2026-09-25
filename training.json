@@ -1,0 +1,181 @@
+{
+  "title": "Supreme_Backdoor_Factory_Incident_Response_Scenario_5c3",
+  "description": "Investigate and respond to a potential compromise by the Supreme Backdoor malware family.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected suspicious network activity originating from the target host (192.168.50.5). Initial analysis suggests potential compromise by the Supreme Backdoor malware family. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host (192.168.50.5) with the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to proceed.",
+      "local_content": "You have SSH access to the target host (192.168.50.5) with the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to proceed."
+    },
+    {
+      "title": "Investigate Suspicious Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you noticed unusual outbound connections from the target host. Investigate these connections to identify any suspicious activity. Submit the suspicious port number as your answer.",
+      "solution": "Check active network connections and review system logs for unusual outbound traffic patterns. The suspicious port used for outbound connections is 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Network connections can be investigated using various tools and commands. Consider what tools you have available and how they can help you identify suspicious network activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Review active network connections and system logs for unusual outbound traffic patterns.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'netstat -tuln' to check active network connections and look for any unusual outbound traffic.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanisms",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be persisting across reboots. Investigate how this service is being automatically started and determine the persistence method. Submit the systemd timer name as your answer.",
+      "solution": "Examine systemd services and timers that might be responsible for starting the suspicious service. The systemd timer responsible for the suspicious service is lab-checkin.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms can vary, but systemd services and timers are common methods used by malware to maintain persistence.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Examine systemd services and timers that might be responsible for starting the suspicious service.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-timers' to list all systemd timers and look for any suspicious entries.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "There is evidence suggesting that the attacker might be attempting to move laterally within the network. Investigate the target host for any signs of lateral movement activity. Submit the service name responsible for lateral movement as your answer.",
+      "solution": "Review system logs and check for any unusual file transfers or remote execution commands. The payload-transfer.service is responsible for lateral movement activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement often involves the use of services or processes that facilitate remote execution or file transfers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Review system logs and check for any unusual file transfers or remote execution commands.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-units --type=service' to list all services and look for any suspicious entries.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
