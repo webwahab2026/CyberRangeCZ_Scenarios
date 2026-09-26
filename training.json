@@ -1,0 +1,197 @@
+{
+  "title": "Rhombus_Botnet_Investigation_684",
+  "description": "You are an incident responder tasked with investigating a suspected Rhombus botnet infection on a Linux-based network. The botnet is known to target VPS and IoT devices, performing DDoS attacks and communicating with command-and-control (C2) servers. Your goal is to identify and mitigate the botnet activity.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify unauthorized or suspicious services responsible for periodic external communication.",
+    "Determine the persistence mechanisms used by the botnet.",
+    "Analyze network traffic to identify ports used by botnet communication.",
+    "Collect forensic evidence supporting the identified botnet activity.",
+    "Assess whether the observed activity is malicious or benign.",
+    "Block communication between the compromised host and the external C2 server.",
+    "Stop the malicious network flooding while minimizing disruption to legitimate traffic.",
+    "Safely terminate malicious execution while minimizing impact on legitimate services.",
+    "Remove the persistence mechanism used by the malicious service.",
+    "Remove the malicious executable and associated artifacts from the compromised system.",
+    "Verify that the botnet has been successfully removed and that no malicious communication or attack traffic remains."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a suspected Rhombus botnet infection on a Linux-based network. The botnet is known to target VPS and IoT devices, performing DDoS attacks and communicating with command-and-control (C2) servers. Your goal is to identify and mitigate the botnet activity."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox via the provided cloud environment. Use the following credentials to log in via SSH: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation.",
+      "local_content": "To access the local sandbox, use the following credentials to log in via SSH: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-RHOMBUS.sh4.service",
+      "answer_variable_name": null,
+      "content": "On the entry host (bot1), investigate the running services and identify any unauthorized or suspicious services that are responsible for periodic external communication. This could indicate beaconing behavior associated with botnet activity.",
+      "solution": "To identify the suspicious service, run the following command to list all systemd services:\n\n```bash\nsystemctl list-units --type=service --all\n```\n\nLook for any unusual or unauthorized services. The suspicious service in this scenario is named `bot-beacon-RHOMBUS.sh4.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or unauthorized services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-units --type=service --all` command to list all systemd services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service name contains 'bot-beacon' and 'RHOMBUS'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-RHOMBUS.sh4.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the persistence mechanisms used by the suspicious service identified in the previous task. Determine how the service is automatically started after reboot.",
+      "solution": "To determine the persistence mechanism, examine the systemd timers and services. The persistence mechanism in this scenario is a systemd timer named `bot-beacon-RHOMBUS.sh4.timer`.\n\nRun the following command to list all systemd timers:\n\n```bash\nsystemctl list-timers --all\n```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd timers and services to find any persistence mechanisms.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-timers --all` command to list all systemd timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The persistence mechanism name contains 'bot-beacon' and 'RHOMBUS'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "determine_persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Collect Forensic Evidence",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/lib/.botcache/beacon.log /var/lib/.botcache/flood.log",
+      "answer_variable_name": null,
+      "content": "Gather relevant logs, service information, process details, and network evidence demonstrating beaconing or flooding behavior. This evidence will support the identification of the botnet activity.",
+      "solution": "To collect forensic evidence, check the system logs and network traffic. The relevant logs in this scenario are located in `/var/lib/.botcache/beacon.log` and `/var/lib/.botcache/flood.log`.\n\nRun the following commands to view the logs:\n\n```bash\ncat /var/lib/.botcache/beacon.log\ncat /var/lib/.botcache/flood.log\n```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the system logs and network traffic to gather evidence.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "View the logs located in `/var/lib/.botcache/beacon.log` and `/var/lib/.botcache/flood.log`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The logs are located in a hidden directory named `.botcache`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "collect_forensic_evidence",
+          "prereq_state": [],
+          "cmd": "cat /var/lib/.botcache/beacon.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /var/lib/.botcache/beacon.log",
+          "optional": false
+        },
+        {
+          "state_name": "collect_forensic_evidence",
+          "prereq_state": [],
+          "cmd": "cat /var/lib/.botcache/flood.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /var/lib/.botcache/flood.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
