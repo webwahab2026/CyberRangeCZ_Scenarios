@@ -1,0 +1,181 @@
+{
+  "title": "Earth_Lusca_Incident_Response_f59",
+  "description": "Investigate and respond to a potential security incident involving the Earth Lusca malware family.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity potentially related to the Earth Lusca malware family. Your team has been tasked with investigating and responding to this potential security incident. The malware, known as KTLVdoor, is a backdoor that enables multiplatform intrusion, command and control (C2) communication, lateral movement, data exfiltration, and persistence."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "Local sandbox access is not required for this scenario. Use the following credentials to access the target host:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Suspicious Network Activity Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you've noticed unusual outbound connections from the target host (192.168.50.5) to an unknown destination. Investigate this activity and identify the service responsible for these connections. Note that 'bkd.service' is a malicious service used by the Earth Lusca malware family.",
+      "solution": "To identify the service responsible for the unusual outbound connections, you can check the systemd services and their associated network activity. The service name is bkd.service, which is a malicious service used by the Earth Lusca malware family.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and their associated network activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the systemctl command to list all active services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for any unfamiliar or recently added services, such as 'bkd.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Mechanism Analysis",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/bkd.service",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it maintains persistence on the system. Investigate the persistence mechanism and gather information about how it's configured to start automatically. Note that '/etc/systemd/system/bkd.service' is the persistence mechanism used by the Earth Lusca malware family.",
+      "solution": "To determine the persistence mechanism, examine the service unit file and its dependencies. The persistence mechanism is a systemd service, and its unit file path is /etc/systemd/system/bkd.service, which is used by the Earth Lusca malware family.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the service unit file and its dependencies.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the cat command to view the contents of the service unit file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the ExecStart and WantedBy directives in the unit file, which are used to maintain persistence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_analysis",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "next-target, payload-transfer.log, rsync over SSH",
+      "answer_variable_name": null,
+      "content": "You've discovered that the suspicious service is transferring files to another host in the network. Investigate this lateral movement activity and identify the destination host, the transferred files, and the mechanism used for the transfer. Note that 'next-target', 'payload-transfer.log', and 'rsync over SSH' are part of the lateral movement used by the Earth Lusca malware family.",
+      "solution": "To investigate the lateral movement activity, check the systemd timers and their associated scripts. The destination host is next-target, the transferred files are payload-transfer.log, and the transfer mechanism is rsync over SSH, which are part of the lateral movement used by the Earth Lusca malware family.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd timers and their associated scripts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the systemctl command to list all active timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for any unfamiliar or recently added timers, such as those related to 'next-target', 'payload-transfer.log', and 'rsync over SSH'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_analysis",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "payload-transfer.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
