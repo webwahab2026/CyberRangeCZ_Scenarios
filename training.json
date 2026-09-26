@@ -1,0 +1,181 @@
+{
+  "title": "Mirai_Worm_Investigation_1c6",
+  "description": "Investigate a Mirai worm compromise, focusing on identifying suspicious services, scheduled tasks, and files.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual activity, with multiple systems exhibiting signs of compromise. Your task is to investigate the incident, identify the affected systems, and determine the scope of the compromise."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the following systems:\n- **patient-zero** (IP: 192.168.90.5)\n- **host-a** (IP: 192.168.90.10)\n- **host-b** (IP: 192.168.90.20)\n- **attacker** (IP: 192.168.90.30)\n\nUse the following credentials to access these systems:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "Local sandbox access is not required for this scenario. Use the following credentials to access the systems:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the compromised host.\n\n**Hint:** Check the status of all services and look for any that appear unusual or unauthorized.\n\n**Question:** What is the name of the suspicious service running on the compromised host?",
+      "solution": "To identify the suspicious service, check the status of all services using the command `systemctl list-units --type=service`. Look for any services that appear unusual or unauthorized. The suspicious service is likely related to the worm's activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the status of all services using the command `systemctl list-units --type=service`.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any services that appear unusual or unauthorized.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is named `sysnet-monitor.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Scheduled Task",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "Determine whether a scheduled task or timer is responsible for automatically executing the worm.\n\n**Hint:** Investigate the systemd timers and services to find any that might be related to the suspicious activity.\n\n**Question:** What is the name of the timer or task responsible for the automatic execution of the worm?",
+      "solution": "To determine the scheduled task, investigate the systemd timers and services using the commands `systemctl list-timers` and `systemctl list-units --type=timer`. Look for any timers or tasks that might be related to the suspicious activity. The timer or task responsible for the automatic execution of the worm is likely related to the worm's persistence mechanism.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd timers and services using the commands `systemctl list-timers` and `systemctl list-units --type=timer`.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any timers or tasks that might be related to the suspicious activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The timer responsible for the automatic execution of the worm is named `sysnet-monitor.timer`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Worm Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm/worm.sh",
+      "answer_variable_name": null,
+      "content": "Locate files installed by the worm on the compromised host.\n\n**Hint:** Search for files in unusual or hidden directories that might be related to the worm's activity.\n\n**Question:** What is the name of the file installed by the worm on the compromised host?",
+      "solution": "To locate the worm files, search for files in unusual or hidden directories using the command `find / -name '*.sh' 2>/dev/null`. Look for any files that might be related to the worm's activity. The file installed by the worm is likely located in a hidden directory such as `/opt/.worm`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Search for files in unusual or hidden directories using the command `find / -name '*.sh' 2>/dev/null`.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any files that might be related to the worm's activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The file installed by the worm is located at `/opt/.worm/worm.sh`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "find_worm_files",
+          "prereq_state": [],
+          "cmd": "find / -name '*.sh' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -name '*.sh' 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
