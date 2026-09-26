@@ -1,0 +1,181 @@
+{
+  "title": "BlackTech_PLEAD_Backdoor_Investigation_813",
+  "description": "Investigate and respond to an incident involving the BlackTech PLEAD backdoor malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity potentially related to the BlackTech threat group. Your task is to investigate and respond to this incident involving the PLEAD backdoor malware."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host (192.168.50.5) with the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the target host (192.168.50.5) with the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation"
+    },
+    {
+      "title": "Investigate Suspicious Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you've noticed unusual outbound connections from the target host. Investigate these connections to identify any suspicious activity. The suspicious port being used for command and control communication is likely to be found using network monitoring tools. Submit the suspicious port number as your answer.",
+      "solution": "Check active network connections and review system logs for unusual outbound traffic patterns. The suspicious port being used for command and control communication is 4444.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check active network connections and review system logs for unusual outbound traffic patterns.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for unusual ports that are open and actively being used for communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command 'netstat -tuln' to list all active network connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Now that you've identified suspicious network activity, determine how the malicious process maintains persistence on the system. The persistence mechanism is likely to be found in system startup configurations or scheduled tasks. Submit the service name as your answer.",
+      "solution": "Examine system startup configurations and scheduled tasks that might be responsible for maintaining the malicious process. The persistence mechanism used by the malicious service is the systemd service payload-transfer.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine system startup configurations and scheduled tasks that might be responsible for maintaining the malicious process.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any unusual services or cron jobs that might be responsible for starting the malicious process.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command 'systemctl list-units --type=service' to list all active services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "Examine evidence of potential lateral movement from the target host to other systems in the network. The script used for lateral movement is likely to be found in system directories. Submit the script path as your answer.",
+      "solution": "Review logs and system artifacts that might indicate file transfers or remote execution to other hosts. The service or mechanism used for lateral movement is the rsync-based payload-transfer.sh script.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Review logs and system artifacts that might indicate file transfers or remote execution to other hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any scripts or binaries that might be responsible for transferring files or executing commands on remote hosts.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command 'find / -name \"*.sh\" 2>/dev/null' to search for all shell scripts on the system.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "find / -name \"*.sh\" 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -name \"*.sh\" 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
