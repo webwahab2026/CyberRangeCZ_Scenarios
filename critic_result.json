@@ -1,0 +1,238 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Connect to the target host using the provided credentials via SSH. Username: cyrano, Password: cyrano! Enter 'start' to begin."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Connect to the target host using the provided credentials via SSH. Username: cyrano, Password: cyrano! Enter 'start' to begin."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The answer 'vmware-sphere.service' corresponds to the service created in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires identifying the suspicious service, which is not directly available from the content or topology.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states to submit the name of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer and includes usable commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery",
+      "status": "pass",
+      "evidence": "The answer '443' corresponds to the port used in the provisioning files for the C2 communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery",
+      "status": "pass",
+      "evidence": "The flag requires identifying the C2 communication details, which is not directly available from the content or topology.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states to submit the port number used for the communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer and includes usable commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The answer 'payload-transfer.service' corresponds to the service created in the provisioning files for lateral movement.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The flag requires identifying the lateral movement activity, which is not directly available from the content or topology.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The content explicitly states to submit the name of the service involved in lateral movement.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer and includes usable commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The password in the cloud_content and local_content does not match the password in the provisioning files.",
+      "fix": "Ensure the password in the cloud_content and local_content matches the password in the provisioning files."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "vmware-sphere.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is created in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery",
+      "current_flag": "443",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port is used in the provisioning files for the C2 communication.",
+      "recommendation": ""
+    },
+    {
+      "level": "Lateral Movement Investigation",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is created in the provisioning files for lateral movement.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-structured and aligns with the provided sandbox environment. However, there is a major issue with the password in the cloud_content and local_content not matching the password in the provisioning files. This needs to be corrected before the scenario can be approved."
+}
