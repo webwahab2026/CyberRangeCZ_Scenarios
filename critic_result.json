@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The answer `7070` corresponds to the suspicious port used for outbound connections as per the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The answer requires investigating system logs and network connections, which is not trivial.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The content explicitly states that the student needs to submit the port number as an integer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes the usable command `ss -tulnp`, and explicitly states the final flag `7070`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer `7070`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `ss -tulnp` that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Malicious Service",
+      "status": "pass",
+      "evidence": "The answer `OpenSSH.service` corresponds to the malicious service running on the target host as per the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Malicious Service",
+      "status": "pass",
+      "evidence": "The answer requires identifying a service that is not part of the standard system configuration, which is not trivial.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Malicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states that the student needs to submit the exact service name as it appears in the system.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Malicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Malicious Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes the usable command `systemctl list-units --type=service`, and explicitly states the final flag `OpenSSH.service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Malicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer `OpenSSH.service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Malicious Service",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Malicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `systemctl list-units --type=service` that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The answer `payload-transfer.service` corresponds to the service responsible for lateral movement as per the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The answer requires investigating system logs and configuration files for evidence of lateral movement, which is not trivial.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The content explicitly states that the student needs to submit the exact service name as it appears in the system.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes the usable command `journalctl -xe`, and explicitly states the final flag `payload-transfer.service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer `payload-transfer.service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `journalctl -xe` that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Suspicious Network Activity",
+      "description": "The answer `7070` is not explicitly verifiable from the provided provisioning files or topology YAML.",
+      "fix": "Ensure the answer is explicitly verifiable from the provisioning files or topology YAML."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Malicious Service",
+      "description": "The answer `OpenSSH.service` is not explicitly verifiable from the provided provisioning files or topology YAML.",
+      "fix": "Ensure the answer is explicitly verifiable from the provisioning files or topology YAML."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Lateral Movement",
+      "description": "The answer `payload-transfer.service` is not explicitly verifiable from the provided provisioning files or topology YAML.",
+      "fix": "Ensure the answer is explicitly verifiable from the provisioning files or topology YAML."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Network Activity",
+      "current_flag": "7070",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The answer corresponds to the suspicious port used for outbound connections as per the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Malicious Service",
+      "current_flag": "OpenSSH.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The answer corresponds to the malicious service running on the target host as per the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The answer corresponds to the service responsible for lateral movement as per the provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with clear instructions and valid flags. However, the answers for the training levels need to be explicitly verifiable from the provisioning files or topology YAML. The scenario meets the requirements for C1 and C2 but requires minor adjustments to fully comply with C3."
+}

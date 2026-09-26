@@ -1,0 +1,181 @@
+{
+  "title": "Kobalos_Malware_Investigation_add",
+  "description": "Investigate and respond to a Kobalos malware compromise on an HPC cluster.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity on its high-performance computing (HPC) cluster. Initial analysis suggests a potential compromise by the Kobalos malware, which is known to target HPC systems. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host (192.168.50.5) with the username `cyrano` and password `cyrano`. From this host, you can investigate the compromise and access other systems as needed. Enter the passkey `start` to proceed.",
+      "local_content": "You have SSH access to the target host (192.168.50.5) with the username `cyrano` and password `cyrano`. From this host, you can investigate the compromise and access other systems as needed. Enter the passkey `start` to proceed."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you noticed unusual outbound connections from the target host (192.168.50.5) to an unknown IP address. Investigate this activity and determine the suspicious port number used for the outbound connections. Submit the port number as an integer.",
+      "solution": "Check the system logs and network connections for suspicious activity using the command `ss -tulnp`. The suspicious port number used for the outbound connections is 7070.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Look for connections to unusual ports or IP addresses.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the system logs and network connections for suspicious activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `ss -tulnp` to list all active network connections and identify the suspicious port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Malicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "OpenSSH.service",
+      "answer_variable_name": null,
+      "content": "During your investigation, you found that a suspicious service is running on the target host. Identify this service and determine its purpose by providing the service name. Submit the exact service name as it appears in the system.",
+      "solution": "Look for services that are not part of the standard system configuration using the command `systemctl list-units --type=service`. The malicious service name is OpenSSH.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Check the systemd service list for unusual services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Look for services that are not part of the standard system configuration.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `systemctl list-units --type=service` to list all active services and identify the malicious one.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "You suspect that the attacker might be moving laterally within the network. Investigate if there is any evidence of file transfers or remote execution between the target host (192.168.50.5) and the next-target host (192.168.50.6). Identify the service responsible for the lateral movement by providing its name. Submit the exact service name as it appears in the system.",
+      "solution": "Check the system logs and configuration files for any evidence of lateral movement using the command `journalctl -xe`. The service responsible for the lateral movement is payload-transfer.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Look for services that facilitate file transfers or remote execution.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the system logs and configuration files for any evidence of lateral movement.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command `journalctl -xe` to review system logs and identify the service facilitating lateral movement.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "journalctl -xe",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -xe",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
