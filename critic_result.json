@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Evidence of File Destruction",
+      "status": "pass",
+      "evidence": "The flag `/data/company_files/hr/employee_records.csv` is a real artifact in the provisioned sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate the Malware Binary",
+      "status": "pass",
+      "evidence": "The flag `/usr/local/sbin/disk-maintenance` is a real artifact in the provisioned sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Malware Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag `bibi-linux.service` is a real artifact in the provisioned sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Evidence of File Destruction",
+      "status": "pass",
+      "evidence": "The flag requires investigation of the `/data/company_files` directory and identification of renamed files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate the Malware Binary",
+      "status": "pass",
+      "evidence": "The flag requires searching the `/usr/local/sbin` directory for suspicious executables.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Malware Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag requires checking the `/etc/systemd/system` directory for suspicious services or timers.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Evidence of File Destruction",
+      "status": "pass",
+      "evidence": "The content explicitly states that the flag is the name of a file that has been renamed.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate the Malware Binary",
+      "status": "pass",
+      "evidence": "The content explicitly states that the flag is the name of the malware binary.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Malware Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states that the flag is the name of the service or timer responsible for persistence.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Evidence of File Destruction",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate the Malware Binary",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Malware Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Evidence of File Destruction",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate the Malware Binary",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Malware Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Evidence of File Destruction",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate the Malware Binary",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Malware Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Evidence of File Destruction",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate the Malware Binary",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Malware Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Evidence of File Destruction",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools and matches the OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate the Malware Binary",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools and matches the OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Malware Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools and matches the OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Evidence of File Destruction",
+      "description": "The flag `/data/company_files/hr/employee_records.csv` is not explicitly mentioned as being renamed in the provisioning files.",
+      "fix": "Ensure the flag is explicitly mentioned as being renamed in the provisioning files."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Locate the Malware Binary",
+      "description": "The flag `/usr/local/sbin/disk-maintenance` is not explicitly mentioned as being the malware binary in the provisioning files.",
+      "fix": "Ensure the flag is explicitly mentioned as being the malware binary in the provisioning files."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine Malware Persistence Mechanism",
+      "description": "The flag `bibi-linux.service` is not explicitly mentioned as being the service responsible for persistence in the provisioning files.",
+      "fix": "Ensure the flag is explicitly mentioned as being the service responsible for persistence in the provisioning files."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Evidence of File Destruction",
+      "current_flag": "/data/company_files/hr/employee_records.csv",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "The file is provisioned and renamed in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate the Malware Binary",
+      "current_flag": "/usr/local/sbin/disk-maintenance",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "The binary is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Malware Persistence Mechanism",
+      "current_flag": "bibi-linux.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the topology and provisioning files. The flags are valid and require completion of the intended tasks. However, there are major issues with the explicit mention of the flags in the provisioning files. These issues need to be addressed before the scenario can be approved."
+}
