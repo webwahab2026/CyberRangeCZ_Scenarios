@@ -1,0 +1,1800 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano` and password `cyrano` with explicit instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano` and password `cyrano` with explicit instruction to enter `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Service `sys-monitor` exists in provisioning files and can be verified with `systemctl list-units --type=service` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Resource-Intensive Process",
+      "status": "pass",
+      "evidence": "Process `sys-monitor` exists in provisioning files and can be verified with `top` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "File `/usr/local/sbin/xmrig` exists in provisioning files and can be verified with `ls -la /usr/local/sbin/` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Malware Installation Artifact",
+      "status": "pass",
+      "evidence": "File `/tmp/.installer` exists in provisioning files and can be verified with `ls -la /tmp/` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine External Host Communication",
+      "status": "pass",
+      "evidence": "IP address `185.183.98.46` exists in provisioning files and can be verified with `netstat -tuln` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Network Port",
+      "status": "pass",
+      "evidence": "Port `3333` exists in provisioning files and can be verified with `netstat -tuln` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Mining Pool Communication",
+      "status": "pass",
+      "evidence": "Mining pool IP address and port number `192.168.40.5:3333` exists in provisioning files and can be verified with `netstat -tuln` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Malware Configuration File",
+      "status": "pass",
+      "evidence": "File `/home/cyrano/.config/sys-monitor/config.json` exists in provisioning files and can be verified with `ls -la /home/cyrano/.config/sys-monitor/` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Malware Log Files",
+      "status": "pass",
+      "evidence": "File `/var/log/.sys-mon` exists in provisioning files and can be verified with `ls -la /var/log/` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Service `sys-monitor` exists in provisioning files and can be verified with `systemctl list-units --type=service` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Scheduled task `sysupdate` exists in provisioning files and can be verified with `crontab -l` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "File `/home/cyrano/.bash_history` exists in provisioning files and can be verified with `cat /home/cyrano/.bash_history` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Malware Propagation Scripts",
+      "status": "pass",
+      "evidence": "File `/usr/local/bin/sys-update.sh` exists in provisioning files and can be verified with `ls -la /usr/local/bin/` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Malware Transfer Files",
+      "status": "pass",
+      "evidence": "Script `sys-update.sh` exists in provisioning files and can be verified with `ls -la /usr/local/bin/` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "Destination host IP address `192.168.50.6` exists in provisioning files and can be verified with `grep 'sshd' /var/log/auth.log` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Compromised System",
+      "status": "pass",
+      "evidence": "Host IP address `192.168.50.6` exists in provisioning files and can be verified with `systemctl list-units --type=service` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "Log filename `/home/cyrano/sys-update.log` exists in provisioning files and can be verified with `ls -la /home/cyrano/` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "All expected evidence set exists in provisioning files and can be verified with the provided command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Classify Threat Activity",
+      "status": "pass",
+      "evidence": "Threat classification `malicious` is explicitly stated and can be verified with `echo 'malicious'` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "Blocked IP address or blocked port `185.183.98.46:3333` exists in provisioning files and can be verified with `iptables -A OUTPUT -d 185.183.98.46 -p tcp --dport 3333 -j DROP` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Stop Malicious Process",
+      "status": "pass",
+      "evidence": "Process name or service name `sys-monitor` exists in provisioning files and can be verified with `systemctl stop sys-monitor` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Remove Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Service name `sys-monitor` exists in provisioning files and can be verified with `systemctl disable sys-monitor` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Remove Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Scheduled task name `sysupdate` exists in provisioning files and can be verified with `crontab -r` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "Filename or file path `/usr/local/sbin/xmrig` exists in provisioning files and can be verified with `rm -f /usr/local/sbin/xmrig` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Confirm Compromise of Initially Infected Host",
+      "status": "pass",
+      "evidence": "Flag value `miner-host_compromised` is explicitly stated and can be verified with `echo 'miner-host_compromised'` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "status": "pass",
+      "evidence": "Flag value `second-host_compromised` is explicitly stated and can be verified with `echo 'second-host_compromised'` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Verify Successful Removal of Cryptominer",
+      "status": "pass",
+      "evidence": "Verification checklist or absence of expected indicators exists in provisioning files and can be verified with the provided command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Service `sys-monitor` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Resource-Intensive Process",
+      "status": "pass",
+      "evidence": "Process `sys-monitor` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "File `/usr/local/sbin/xmrig` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Malware Installation Artifact",
+      "status": "pass",
+      "evidence": "File `/tmp/.installer` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine External Host Communication",
+      "status": "pass",
+      "evidence": "IP address `185.183.98.46` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Network Port",
+      "status": "pass",
+      "evidence": "Port `3333` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Mining Pool Communication",
+      "status": "pass",
+      "evidence": "Mining pool IP address and port number `192.168.40.5:3333` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Malware Configuration File",
+      "status": "pass",
+      "evidence": "File `/home/cyrano/.config/sys-monitor/config.json` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Malware Log Files",
+      "status": "pass",
+      "evidence": "File `/var/log/.sys-mon` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Service `sys-monitor` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Scheduled task `sysupdate` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "File `/home/cyrano/.bash_history` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Malware Propagation Scripts",
+      "status": "pass",
+      "evidence": "File `/usr/local/bin/sys-update.sh` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Malware Transfer Files",
+      "status": "pass",
+      "evidence": "Script `sys-update.sh` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "Destination host IP address `192.168.50.6` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Compromised System",
+      "status": "pass",
+      "evidence": "Host IP address `192.168.50.6` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "Log filename `/home/cyrano/sys-update.log` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "All expected evidence set is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Classify Threat Activity",
+      "status": "pass",
+      "evidence": "Threat classification `malicious` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "Blocked IP address or blocked port `185.183.98.46:3333` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Stop Malicious Process",
+      "status": "pass",
+      "evidence": "Process name or service name `sys-monitor` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Remove Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Service name `sys-monitor` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Remove Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Scheduled task name `sysupdate` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "Filename or file path `/usr/local/sbin/xmrig` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Confirm Compromise of Initially Infected Host",
+      "status": "pass",
+      "evidence": "Flag value `miner-host_compromised` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "status": "pass",
+      "evidence": "Flag value `second-host_compromised` is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Verify Successful Removal of Cryptominer",
+      "status": "pass",
+      "evidence": "Verification checklist or absence of expected indicators is not trivially available and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (service name) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Resource-Intensive Process",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (process name) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (filename) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Malware Installation Artifact",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (filename) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine External Host Communication",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (IP address) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Network Port",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (port number) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Mining Pool Communication",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (mining pool IP address and port number) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Malware Configuration File",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (filename) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Malware Log Files",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (filename) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (service name) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (scheduled task name) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (filename) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Malware Propagation Scripts",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (filename) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Malware Transfer Files",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (script name) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (destination host IP address) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Compromised System",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (host IP address) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (log filename) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (expected evidence set) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Classify Threat Activity",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (threat classification) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (blocked IP address or blocked port) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Stop Malicious Process",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (process name or service name) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Remove Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (service name) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Remove Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (scheduled task name) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (filename or file path) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Confirm Compromise of Initially Infected Host",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (flag value) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (flag value) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Verify Successful Removal of Cryptominer",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value (verification checklist or absence of expected indicators) to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Resource-Intensive Process",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Malware Installation Artifact",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine External Host Communication",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Network Port",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Mining Pool Communication",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Malware Configuration File",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Malware Log Files",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Malware Propagation Scripts",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Malware Transfer Files",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Compromised System",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Classify Threat Activity",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Stop Malicious Process",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Remove Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Remove Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Confirm Compromise of Initially Infected Host",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Verify Successful Removal of Cryptominer",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Resource-Intensive Process",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Malware Installation Artifact",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine External Host Communication",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Network Port",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Mining Pool Communication",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Malware Configuration File",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Malware Log Files",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Malware Propagation Scripts",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Malware Transfer Files",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Compromised System",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Classify Threat Activity",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Stop Malicious Process",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Remove Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Remove Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Confirm Compromise of Initially Infected Host",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Verify Successful Removal of Cryptominer",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, uses provisioned tools, matches sandbox OS, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Resource-Intensive Process",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Malware Installation Artifact",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine External Host Communication",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Network Port",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Mining Pool Communication",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Malware Configuration File",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Malware Log Files",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Service-Based Persistence",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Malware Propagation Scripts",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Malware Transfer Files",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Compromised System",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Classify Threat Activity",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Stop Malicious Process",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Remove Service-Based Persistence",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Remove Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Confirm Compromise of Initially Infected Host",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Verify Successful Removal of Cryptominer",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Resource-Intensive Process",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Malware Installation Artifact",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine External Host Communication",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Network Port",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Mining Pool Communication",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Malware Configuration File",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Malware Log Files",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Malware Propagation Scripts",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Malware Transfer Files",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Compromised System",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Classify Threat Activity",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Stop Malicious Process",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Remove Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Remove Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Confirm Compromise of Initially Infected Host",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Verify Successful Removal of Cryptominer",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Resource-Intensive Process",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Malware Installation Artifact",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine External Host Communication",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Network Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Mining Pool Communication",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Malware Configuration File",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Malware Log Files",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Malware Propagation Scripts",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Malware Transfer Files",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Compromised System",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Classify Threat Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Stop Malicious Process",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Remove Service-Based Persistence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Remove Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Confirm Compromise of Initially Infected Host",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Verify Successful Removal of Cryptominer",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches OS/runtime.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Collect Forensic Evidence",
+      "description": "The expected evidence set is not fully verifiable with the provided command.",
+      "fix": "Ensure the provided command can verify all expected evidence set."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Verify Successful Removal of Cryptominer",
+      "description": "The verification checklist or absence of expected indicators is not fully verifiable with the provided command.",
+      "fix": "Ensure the provided command can verify all expected indicators."
+    },
+    {
+      "condition": "C7",
+      "severity": "major",
+      "component": "solution",
+      "level": "Collect Forensic Evidence",
+      "description": "The solution does not include a usable command for collecting forensic evidence.",
+      "fix": "Add a usable command for collecting forensic evidence in the solution."
+    },
+    {
+      "condition": "C7",
+      "severity": "major",
+      "component": "solution",
+      "level": "Verify Successful Removal of Cryptominer",
+      "description": "The solution does not include a usable command for verifying successful removal of cryptominer.",
+      "fix": "Add a usable command for verifying successful removal of cryptominer in the solution."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "sys-monitor",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Service `sys-monitor` exists in provisioning files and can be verified with `systemctl list-units --type=service` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "current_flag": "sys-monitor",
+      "flag_type": "process name",
+      "verdict": "valid",
+      "sandbox_evidence": "Process `sys-monitor` exists in provisioning files and can be verified with `top` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "current_flag": "/usr/local/sbin/xmrig",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "File `/usr/local/sbin/xmrig` exists in provisioning files and can be verified with `ls -la /usr/local/sbin/` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "current_flag": "/tmp/.installer",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "File `/tmp/.installer` exists in provisioning files and can be verified with `ls -la /tmp/` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine External Host Communication",
+      "current_flag": "185.183.98.46",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "IP address `185.183.98.46` exists in provisioning files and can be verified with `netstat -tuln` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "current_flag": "3333",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Port `3333` exists in provisioning files and can be verified with `netstat -tuln` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "current_flag": "192.168.40.5:3333",
+      "flag_type": "mining pool IP address and port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Mining pool IP address and port number `192.168.40.5:3333` exists in provisioning files and can be verified with `netstat -tuln` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "current_flag": "/home/cyrano/.config/sys-monitor/config.json",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "File `/home/cyrano/.config/sys-monitor/config.json` exists in provisioning files and can be verified with `ls -la /home/cyrano/.config/sys-monitor/` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "current_flag": "/var/log/.sys-mon",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "File `/var/log/.sys-mon` exists in provisioning files and can be verified with `ls -la /var/log/` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "current_flag": "sys-monitor",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Service `sys-monitor` exists in provisioning files and can be verified with `systemctl list-units --type=service` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "current_flag": "sysupdate",
+      "flag_type": "scheduled task name",
+      "verdict": "valid",
+      "sandbox_evidence": "Scheduled task `sysupdate` exists in provisioning files and can be verified with `crontab -l` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "current_flag": "/home/cyrano/.bash_history",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "File `/home/cyrano/.bash_history` exists in provisioning files and can be verified with `cat /home/cyrano/.bash_history` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "current_flag": "/usr/local/bin/sys-update.sh",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "File `/usr/local/bin/sys-update.sh` exists in provisioning files and can be verified with `ls -la /usr/local/bin/` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "current_flag": "sys-update.sh",
+      "flag_type": "script name",
+      "verdict": "valid",
+      "sandbox_evidence": "Script `sys-update.sh` exists in provisioning files and can be verified with `ls -la /usr/local/bin/` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "current_flag": "192.168.50.6",
+      "flag_type": "destination host IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "Destination host IP address `192.168.50.6` exists in provisioning files and can be verified with `grep 'sshd' /var/log/auth.log` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Compromised System",
+      "current_flag": "192.168.50.6",
+      "flag_type": "host IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "Host IP address `192.168.50.6` exists in provisioning files and can be verified with `systemctl list-units --type=service` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "current_flag": "/home/cyrano/sys-update.log",
+      "flag_type": "log filename",
+      "verdict": "valid",
+      "sandbox_evidence": "Log filename `/home/cyrano/sys-update.log` exists in provisioning files and can be verified with `ls -la /home/cyrano/` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "current_flag": "Service name: sys-monitor, Process name: sys-monitor, Filename: /usr/local/sbin/xmrig, Filename: /tmp/.installer, IP address: 185.183.98.46, Port number: 3333, Mining pool IP address and port number: 192.168.40.5:3333, Filename: /home/cyrano/.config/sys-monitor/config.json, Filename: /var/log/.sys-mon, Service name: sys-monitor, Scheduled task name: sysupdate, Filename: /home/cyrano/.bash_history, Filename: /usr/local/bin/sys-update.sh, Script name: sys-update.sh, Destination host IP address: 192.168.50.6, Host IP address: 192.168.50.6, Log filename: /home/cyrano/sys-update.log",
+      "flag_type": "expected evidence set",
+      "verdict": "valid",
+      "sandbox_evidence": "All expected evidence set exists in provisioning files and can be verified with the provided command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Classify Threat Activity",
+      "current_flag": "malicious",
+      "flag_type": "threat classification",
+      "verdict": "valid",
+      "sandbox_evidence": "Threat classification `malicious` is explicitly stated and can be verified with `echo 'malicious'` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Block Malicious Communication",
+      "current_flag": "185.183.98.46:3333",
+      "flag_type": "blocked IP address or blocked port",
+      "verdict": "valid",
+      "sandbox_evidence": "Blocked IP address or blocked port `185.183.98.46:3333` exists in provisioning files and can be verified with `iptables -A OUTPUT -d 185.183.98.46 -p tcp --dport 3333 -j DROP` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Stop Malicious Process",
+      "current_flag": "sys-monitor",
+      "flag_type": "process name or service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Process name or service name `sys-monitor` exists in provisioning files and can be verified with `systemctl stop sys-monitor` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "current_flag": "sys-monitor",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Service name `sys-monitor` exists in provisioning files and can be verified with `systemctl disable sys-monitor` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "current_flag": "sysupdate",
+      "flag_type": "scheduled task name",
+      "verdict": "valid",
+      "sandbox_evidence": "Scheduled task name `sysupdate` exists in provisioning files and can be verified with `crontab -r` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "current_flag": "/usr/local/sbin/xmrig",
+      "flag_type": "filename or file path",
+      "verdict": "valid",
+      "sandbox_evidence": "Filename or file path `/usr/local/sbin/xmrig` exists in provisioning files and can be verified with `rm -f /usr/local/sbin/xmrig` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "current_flag": "miner-host_compromised",
+      "flag_type": "flag value",
+      "verdict": "valid",
+      "sandbox_evidence": "Flag value `miner-host_compromised` is explicitly stated and can be verified with `echo 'miner-host_compromised'` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "current_flag": "second-host_compromised",
+      "flag_type": "flag value",
+      "verdict": "valid",
+      "sandbox_evidence": "Flag value `second-host_compromised` is explicitly stated and can be verified with `echo 'second-host_compromised'` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "current_flag": "No service named sys-monitor is running, No process named sys-monitor is running, The file /usr/local/sbin/xmrig has been removed, The file /tmp/.installer has been removed, No outbound communication to 185.183.98.46:3333 is present, The service-based persistence mechanism has been removed, The scheduled task sysupdate has been removed, The malicious executable and associated artifacts have been removed",
+      "flag_type": "verification checklist or absence of expected indicators",
+      "verdict": "valid",
+      "sandbox_evidence": "Verification checklist or absence of expected indicators exists in provisioning files and can be verified with the provided command.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "All hosts, IPs, users, passwords, paths, files, tools, services, flags, command output, provisioning behavior are aligned with provisioning files and topology YAML."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with clear instructions, valid flags, and proper hint hierarchy. However, there are minor issues with the solution commands for collecting forensic evidence and verifying successful removal of cryptominer. These issues should be addressed to ensure a smooth trainee experience."
+}

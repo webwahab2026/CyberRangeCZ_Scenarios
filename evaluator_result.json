@@ -1,0 +1,1639 @@
+{
+  "verdict": "approved",
+  "checklist_results": [
+    {
+      "level": "ACCESS_LEVEL",
+      "item": "access_level.credentials_mentioned",
+      "status": "pass",
+      "detail": "Username and password are explicitly mentioned in both cloud_content and local_content."
+    },
+    {
+      "level": "ACCESS_LEVEL",
+      "item": "access_level.passkey_mentioned",
+      "status": "pass",
+      "detail": "The passkey 'start' is explicitly mentioned in both cloud_content and local_content."
+    },
+    {
+      "level": "Investigate Suspicious Services",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sys-monitor' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Investigate Suspicious Services",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'sys-monitor' is not obvious and requires investigation."
+    },
+    {
+      "level": "Investigate Suspicious Services",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Investigate Suspicious Services",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Investigate Suspicious Services",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Investigate Suspicious Services",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Investigate Suspicious Services",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Investigate Suspicious Services",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Investigate Suspicious Services",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Investigate Suspicious Services",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sys-monitor' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'sys-monitor' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Resource-Intensive Process",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/usr/local/sbin/xmrig' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '/usr/local/sbin/xmrig' is not obvious and requires investigation."
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/tmp/.installer' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '/tmp/.installer' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Malware Installation Artifact",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Determine External Host Communication",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '185.183.98.46' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Determine External Host Communication",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '185.183.98.46' is not obvious and requires investigation."
+    },
+    {
+      "level": "Determine External Host Communication",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Determine External Host Communication",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Determine External Host Communication",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Determine External Host Communication",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Determine External Host Communication",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Determine External Host Communication",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Determine External Host Communication",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Determine External Host Communication",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '3333' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '3333' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Suspicious Network Port",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '192.168.40.5:3333' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '192.168.40.5:3333' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Mining Pool Communication",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/home/cyrano/.config/sys-monitor/config.json' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '/home/cyrano/.config/sys-monitor/config.json' is not obvious and requires investigation."
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Locate Malware Configuration File",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/var/log/.sys-mon' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '/var/log/.sys-mon' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Malware Log Files",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sys-monitor' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'sys-monitor' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Service-Based Persistence",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sysupdate' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'sysupdate' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/home/cyrano/.bash_history' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '/home/cyrano/.bash_history' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/usr/local/bin/sys-update.sh' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '/usr/local/bin/sys-update.sh' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Malware Propagation Scripts",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sys-update.sh' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'sys-update.sh' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Malware Transfer Files",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '192.168.50.6' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '192.168.50.6' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Compromised System",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '192.168.50.6' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Compromised System",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '192.168.50.6' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Compromised System",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Compromised System",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Compromised System",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Compromised System",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Compromised System",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Compromised System",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Compromised System",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Compromised System",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/home/cyrano/sys-update.log' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '/home/cyrano/sys-update.log' is not obvious and requires investigation."
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag set is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag set is not obvious and requires investigation."
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag values themselves."
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flags and explicitly states the flag values."
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag values stated in the solution are consistent with the values in the answer."
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flags are not fabricated and correspond to artifacts in the sandbox."
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flags are not revealed in the task description."
+    },
+    {
+      "level": "Classify Threat Activity",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'malicious' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Classify Threat Activity",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'malicious' is not obvious and requires investigation."
+    },
+    {
+      "level": "Classify Threat Activity",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Classify Threat Activity",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Classify Threat Activity",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Classify Threat Activity",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Classify Threat Activity",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Classify Threat Activity",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Classify Threat Activity",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Classify Threat Activity",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Block Malicious Communication",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '185.183.98.46:3333' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Block Malicious Communication",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '185.183.98.46:3333' is not obvious and requires investigation."
+    },
+    {
+      "level": "Block Malicious Communication",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Block Malicious Communication",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Block Malicious Communication",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Block Malicious Communication",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Block Malicious Communication",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Block Malicious Communication",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Block Malicious Communication",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Block Malicious Communication",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Stop Malicious Process",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sys-monitor' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Stop Malicious Process",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'sys-monitor' is not obvious and requires investigation."
+    },
+    {
+      "level": "Stop Malicious Process",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Stop Malicious Process",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Stop Malicious Process",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Stop Malicious Process",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Stop Malicious Process",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Stop Malicious Process",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Stop Malicious Process",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Stop Malicious Process",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sys-monitor' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'sys-monitor' is not obvious and requires investigation."
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Remove Service-Based Persistence",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sysupdate' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'sysupdate' is not obvious and requires investigation."
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Remove Scheduled Task Persistence",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/usr/local/sbin/xmrig' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag '/usr/local/sbin/xmrig' is not obvious and requires investigation."
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'miner-host_compromised' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'miner-host_compromised' is not obvious and requires investigation."
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Confirm Compromise of Initially Infected Host",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'second-host_compromised' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag 'second-host_compromised' is not obvious and requires investigation."
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Confirm Compromise of Laterally Infected Host",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag set is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag set is not obvious and requires investigation."
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "item": "training_level.flag_type_mentioned",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag values themselves."
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "item": "training_level.solution_contains_flag",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flags and explicitly states the flag values."
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag values stated in the solution are consistent with the values in the answer."
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flags are not fabricated and correspond to artifacts in the sandbox."
+    },
+    {
+      "level": "Verify Successful Removal of Cryptominer",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flags are not revealed in the task description."
+    }
+  ],
+  "issues": [],
+  "summary": "The scenario meets all quality criteria. All flags are genuine, not obvious, and properly described in the task content. The solution and hints are well-structured and actionable. The ACCESS_LEVEL credentials and passkey are correctly mentioned."
+}
