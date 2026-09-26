@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Answer 'ssld.service' corresponds to the service running on port 4444 as per provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Answer '/etc/systemd/system/ssld.service' matches the systemd service unit file in provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate Malicious File",
+      "status": "pass",
+      "evidence": "Answer '/home/cyrano/ssld' matches the file created in the provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The answer requires checking running services and network connections",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer requires examining systemd service files and timers",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Malicious File",
+      "status": "pass",
+      "evidence": "The answer requires looking for unusual files in the home directory",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted: 'service name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted: 'systemd service unit file name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Malicious File",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted: 'file name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Malicious File",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Malicious File",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Malicious File",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, Hint 3 is near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, Hint 3 is near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Malicious File",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, Hint 3 is near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools and matching OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools and matching OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Malicious File",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools and matching OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Suspicious Services",
+      "description": "The answer 'ssld.service' is not explicitly stated as the service running on port 4444 in the provisioning files",
+      "fix": "Verify the service name 'ssld.service' is explicitly stated in the provisioning files"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine Persistence Mechanism",
+      "description": "The answer '/etc/systemd/system/ssld.service' is not explicitly stated as the systemd service unit file in the provisioning files",
+      "fix": "Verify the systemd service unit file path is explicitly stated in the provisioning files"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Malicious File",
+      "description": "The answer '/home/cyrano/ssld' is not explicitly stated as the file created in the provisioning files",
+      "fix": "Verify the file path '/home/cyrano/ssld' is explicitly stated in the provisioning files"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "ssld.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Service 'ssld.service' is running on port 4444 as per provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "/etc/systemd/system/ssld.service",
+      "flag_type": "systemd service unit file name",
+      "verdict": "valid",
+      "sandbox_evidence": "Systemd service unit file '/etc/systemd/system/ssld.service' is created in the provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Malicious File",
+      "current_flag": "/home/cyrano/ssld",
+      "flag_type": "file name",
+      "verdict": "valid",
+      "sandbox_evidence": "File '/home/cyrano/ssld' is created in the provisioning files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. However, there are major issues with the flag answers not being explicitly stated in the provisioning files. These issues need to be addressed before the scenario can be approved."
+}

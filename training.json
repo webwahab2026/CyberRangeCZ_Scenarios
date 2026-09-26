@@ -1,0 +1,169 @@
+{
+  "title": "WHIRLPOOL_Malware_Investigation_a6d",
+  "description": "Investigate and respond to a WHIRLPOOL malware compromise on a Barracuda Email Security Gateway device.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Barracuda Email Security Gateway (ESG) device in your network has been compromised by the WHIRLPOOL malware, a Linux ELF reverse shell variant. Your task is to investigate and respond to this security incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Hostname: target\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "Local sandbox access is not required for this scenario. Use the following credentials to access the target host:\n- Hostname: target\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "ssld.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for suspicious services or processes.\n\n**Question:** What is the name of the suspicious service running on port 4444?",
+      "solution": "To find the suspicious service running on port 4444, you can use the following commands:\n\n1. Check running services:\n   ```bash\n   sudo systemctl list-units --type=service\n   ```\n\n2. Check network connections:\n   ```bash\n   sudo ss -tulnp\n   ```\n\nThe suspicious service is named `ssld.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "sudo systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "sudo ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/ssld.service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service maintains persistence on the target host.\n\n**Question:** What is the name of the systemd service unit file responsible for the persistence of the suspicious service?",
+      "solution": "To determine the persistence mechanism, you can examine systemd service files and timers:\n\n1. List all systemd service files:\n   ```bash\n   ls /etc/systemd/system/\n   ```\n\n2. Check the contents of the suspicious service file:\n   ```bash\n   sudo cat /etc/systemd/system/ssld.service\n   ```\n\nThe systemd service unit file responsible for the persistence of the suspicious service is named `ssld.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine systemd service files and timers.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "list_service_files",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/systemd/system/",
+          "optional": false
+        },
+        {
+          "state_name": "check_service_file",
+          "prereq_state": [],
+          "cmd": "sudo cat /etc/systemd/system/ssld.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo cat /etc/systemd/system/ssld.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Malicious File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/ssld",
+      "answer_variable_name": null,
+      "content": "Investigate the file associated with the suspicious service.\n\n**Question:** What is the name of the file that the suspicious service is using for its malicious activities?",
+      "solution": "To investigate the file associated with the suspicious service, you can look for unusual files in the home directory of the user cyrano:\n\n1. List files in the home directory:\n   ```bash\n   ls -la /home/cyrano/\n   ```\n\n2. Check the contents of the suspicious file:\n   ```bash\n   cat /home/cyrano/ssld\n   ```\n\nThe file that the suspicious service is using for its malicious activities is named `ssld`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for unusual files in the home directory of the user cyrano.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "list_home_directory",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /home/cyrano/",
+          "optional": false
+        },
+        {
+          "state_name": "check_suspicious_file",
+          "prereq_state": [],
+          "cmd": "cat /home/cyrano/ssld",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /home/cyrano/ssld",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
