@@ -1,0 +1,205 @@
+{
+  "title": "BlackTech_PLEAD_Backdoor_Investigation_f12",
+  "description": "Investigate and respond to an incident involving the BlackTech threat group's PLEAD backdoor malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity potentially related to the BlackTech threat group. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nEnter the passkey 'start' to proceed.",
+      "local_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nEnter the passkey 'start' to proceed."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you noticed unusual outbound connections from the target host. Investigate this activity and identify any suspicious services or processes that might be responsible. Look specifically for the service named 'bkd.service' and submit this service name as your answer.",
+      "solution": "To investigate suspicious network activity, you should check running services and network connections on the target host. Use commands like `netstat -tuln` and `ps aux` to identify any suspicious services or processes, specifically looking for 'bkd.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and network connections on the target host.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `netstat -tuln` and `ps aux` to identify any suspicious services or processes, specifically looking for 'bkd.service'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services that are listening on unusual ports or have high network activity, particularly focusing on 'bkd.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service 'bkd.service', determine how it maintains persistence on the system. Investigate the startup mechanisms and configuration files. Look specifically for the service named 'bkd.service' and submit this service name as your answer.",
+      "solution": "To analyze the persistence mechanism, look for systemd services or cron jobs that might be responsible for starting the suspicious service 'bkd.service'. Use commands like `systemctl list-unit-files` and `crontab -l` to identify any suspicious startup mechanisms.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for systemd services or cron jobs that might be responsible for starting the suspicious service 'bkd.service'.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-unit-files` and `crontab -l` to identify any suspicious startup mechanisms related to 'bkd.service'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the contents of `/etc/systemd/system/` for any suspicious service files related to 'bkd.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "crontab -l",
+          "cmd_type": "bash-command",
+          "cmd_regex": "crontab -l",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Examine the target host for evidence of lateral movement. Determine if the attacker has attempted to move to other systems within the network. Look specifically for the service named 'payload-transfer.service' and submit this service name as your answer.",
+      "solution": "To investigate lateral movement, check for any unusual file transfers or remote execution attempts. Use commands like `ls -la /home/cyrano/.ssh` and `grep -r 'ssh' /var/log/` to identify any evidence of lateral movement, specifically looking for 'payload-transfer.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check for any unusual file transfers or remote execution attempts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `ls -la /home/cyrano/.ssh` and `grep -r 'ssh' /var/log/` to identify any evidence of lateral movement, specifically looking for 'payload-transfer.service'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for any unusual SSH keys or remote connections in the logs related to 'payload-transfer.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/.ssh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /home/cyrano/.ssh",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "grep -r 'ssh' /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r 'ssh' /var/log/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
