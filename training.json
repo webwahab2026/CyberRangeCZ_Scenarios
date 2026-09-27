@@ -1,0 +1,164 @@
+{
+  "title": "Tsunami_Kaiten_Backdoor_Investigation_7dc",
+  "description": "You are an incident responder tasked with investigating a compromised Linux server that has been infected with the Tsunami/Kaiten backdoor. This malware is known for its IRC/Bot capabilities, including flooder and backdoor functionalities. Your goal is to identify and mitigate the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services and processes.",
+    "Determine persistence mechanisms used by the malware.",
+    "Analyze network communications for command and control (C2) activity.",
+    "Collect forensic evidence and contain the threat."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised Linux server that has been infected with the Tsunami/Kaiten backdoor. This malware is known for its IRC/Bot capabilities, including flooder and backdoor functionalities. Your goal is to identify and mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the provided credentials. Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation.",
+      "local_content": "Access the target host via SSH using the provided credentials. Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "tsunami_service",
+      "answer_variable_name": null,
+      "content": "While monitoring the server, you noticed unusual network activity. Investigate the running services on the target host to identify any unauthorized or suspicious services. The flag you are looking for is the name of the suspicious service.",
+      "solution": "Use the command `systemctl list-units --type=service` to list all running services. Look for any services that seem out of place or unfamiliar. The suspicious service is `tsunami_service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Start by examining the list of running services to identify any that appear suspicious or out of place.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "kaiten_persistence",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, determine how it is automatically started after a system reboot. This will help you understand the persistence mechanism used by the malware. The flag you are looking for is the name of the persistence mechanism.",
+      "solution": "Use the command `systemctl list-unit-files | grep -i bash` to identify the persistence mechanism. The persistence mechanism is `kaiten_persistence`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Consider common persistence mechanisms such as systemd services, cron jobs, or other scheduled tasks.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-unit-files | grep -i bash` to identify the persistence mechanism.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files | grep -i bash",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files | grep -i bash",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "5555",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be communicating with an external command and control (C2) server. Identify the network port used for this communication to better understand the threat.",
+      "solution": "Use the command `ss -tulnp | grep -i bash` to identify the network port used for C2 communication. The port number used for C2 communication is `5555`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Focus on identifying the network port that the suspicious service is using for its communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ss -tulnp | grep -i bash` to identify the network port used for C2 communication.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep -i bash",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp | grep -i bash",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
