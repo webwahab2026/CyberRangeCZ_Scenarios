@@ -1,0 +1,246 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Determine the C2 Server",
+      "status": "pass",
+      "evidence": "Answer '192.168.90.5' corresponds to the C2 server IP in topology_yaml and provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the C2 Server",
+      "status": "pass",
+      "evidence": "Answer requires investigation of network connections and logs",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the C2 Server",
+      "status": "pass",
+      "evidence": "Content explicitly states the answer is an IP address",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the C2 Server",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the C2 Server",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the C2 Server",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the C2 Server",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the C2 Server",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Answer 'sensitive_data.zip' corresponds to the exfiltrated file in provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Answer requires examination of logs and network activity",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Content explicitly states the answer is a file name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Exfiltrated File",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Ransom Note",
+      "status": "pass",
+      "evidence": "Answer '/home/cyrano/RANSOM_NOTE.txt' corresponds to the ransom note path in provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Ransom Note",
+      "status": "pass",
+      "evidence": "Answer requires investigation of filesystem artifacts",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Ransom Note",
+      "status": "pass",
+      "evidence": "Content explicitly states the answer is a path",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Ransom Note",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Ransom Note",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Ransom Note",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Ransom Note",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Ransom Note",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "C1.1 and C1.2 pass, but C1.3 and C1.4 fail because local_content does not contain explicit username and password",
+      "fix": "Ensure local_content explicitly contains the actual username and password values"
+    },
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "C2.1 and C2.2 pass, but C2.2 fails because local_content does not explicitly instruct entering 'start'",
+      "fix": "Ensure local_content explicitly instructs the trainee to enter 'start'"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Determine the C2 Server",
+      "current_flag": "192.168.90.5",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "C2 server IP in topology_yaml and provisioning_files",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Exfiltrated File",
+      "current_flag": "sensitive_data.zip",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "Exfiltrated file in provisioning_files",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Ransom Note",
+      "current_flag": "/home/cyrano/RANSOM_NOTE.txt",
+      "flag_type": "path",
+      "verdict": "valid",
+      "sandbox_evidence": "Ransom note path in provisioning_files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. However, the local_content in ACCESS_LEVEL does not explicitly contain the username, password, and instruction to enter 'start', which must be fixed before approval."
+}

@@ -1,0 +1,163 @@
+{
+  "title": "Linux_P2P_Ransom_Botnet_Investigation_896",
+  "description": "Investigate a compromised Linux system infected with a P2P Ransom botnet, identify indicators of compromise, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has been compromised by a Linux P2P Ransom botnet. This malware combines ransomware capabilities with botnet functionality, targeting Linux systems. It uses a peer-to-peer (P2P) network for communication and command and control (C2) purposes, making it resilient to traditional takedown methods.\n\nYour task is to investigate the compromised system, identify the indicators of compromise, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nTo begin the investigation, enter 'start'.",
+      "local_content": "Local sandbox access is not required for this scenario.\n\nYou have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nTo begin the investigation, enter 'start'."
+    },
+    {
+      "title": "Determine the C2 Server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.5",
+      "answer_variable_name": null,
+      "content": "Determine the external host communicating with the compromised system.\n\nQuestion: What is the IP address of the command-and-control server?\n\nHint: Investigate network connections and logs to identify suspicious outbound communication.",
+      "solution": "To determine the C2 server, investigate network connections and logs on the victim host. Look for suspicious outbound connections to external IPs. The C2 server IP address can be found in the logs or network connections.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Network Connections",
+          "content": "Check network connections using commands like `netstat -tuln` or `ss -tuln`. Look for suspicious outbound connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Log Investigation",
+          "content": "Investigate logs in `/var/log/` for suspicious outbound connections. Look for logs related to network activity.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_server_identified",
+          "prereq_state": [],
+          "cmd": "grep -i 'CONNECTING c2=' /var/log/ransom-transmission.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "CONNECTING c2=([0-9.]+)",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Exfiltrated File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sensitive_data.zip",
+      "answer_variable_name": null,
+      "content": "Identify a file or dataset that was transferred outside the environment before encryption.\n\nQuestion: What is the name of a file that was exfiltrated from the victim host?\n\nHint: Examine logs and network activity to determine what data was exfiltrated.",
+      "solution": "To identify the exfiltrated file, examine logs and network activity on the victim host. Look for logs related to data transfer or exfiltration. The exfiltrated file name can be found in the logs or network activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Exfiltration Logs",
+          "content": "Check the exfiltration log at `/var/log/ransom-exfil.log` for details about the exfiltrated file.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Network Activity",
+          "content": "Investigate network activity using commands like `tcpdump` or `wireshark` to identify exfiltrated data.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "exfiltrated_file_identified",
+          "prereq_state": [],
+          "cmd": "grep -i 'COMPLETE src=' /var/log/ransom-exfil.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "COMPLETE src=([^/]+)",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Ransom Note",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/RANSOM_NOTE.txt",
+      "answer_variable_name": null,
+      "content": "Locate the ransom note left on the compromised system.\n\nQuestion: What is the path to the ransom note?\n\nHint: Investigate filesystem artifacts generated following encryption.",
+      "solution": "To locate the ransom note, investigate filesystem artifacts on the victim host. Look for files named `RANSOM_NOTE.txt` or similar in the home directory of the user. The ransom note path can be found in the logs or by searching the filesystem.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Filesystem Search",
+          "content": "Search the filesystem for the ransom note using commands like `find / -name 'RANSOM_NOTE.txt' 2>/dev/null`.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Log Investigation",
+          "content": "Investigate logs in `/var/log/ransom-encrypt.log` for the path to the ransom note.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "ransom_note_located",
+          "prereq_state": [],
+          "cmd": "grep -i 'NOTE_DROPPED=' /var/log/ransom-encrypt.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "NOTE_DROPPED=([^\n]+)",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
