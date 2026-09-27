@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The flag `systemkernelservicedefender.service` is discoverable via `systemctl list-units --type=service` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The flag requires investigation of systemd services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: a service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The hint hierarchy is correctly structured with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Analyze Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag `80` is discoverable via `cat /etc/systemd/system/systemkernelservicedefender.service` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Analyze Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag requires analysis of the service unit file.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Analyze Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: a port number.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Analyze Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Analyze Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Analyze Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Analyze Suspicious Service",
+      "status": "pass",
+      "evidence": "The hint hierarchy is correctly structured with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Analyze Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The flag `payload-transfer.service` is discoverable via `systemctl list-units --type=service` command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The flag requires investigation of scripts or services facilitating lateral movement.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: a service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "The hint hierarchy is correctly structured with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Suspicious Network Activity",
+      "description": "The flag `systemkernelservicedefender.service` is not explicitly stated as the final flag in the solution.",
+      "fix": "Explicitly state the final flag in the solution."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Analyze Suspicious Service",
+      "description": "The flag `80` is not explicitly stated as the final flag in the solution.",
+      "fix": "Explicitly state the final flag in the solution."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Lateral Movement",
+      "description": "The flag `payload-transfer.service` is not explicitly stated as the final flag in the solution.",
+      "fix": "Explicitly state the final flag in the solution."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Network Activity",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag is discoverable via `systemctl list-units --type=service` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze Suspicious Service",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag is discoverable via `cat /etc/systemd/system/systemkernelservicedefender.service` command.",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag is discoverable via `systemctl list-units --type=service` command.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-structured and aligns with the provided MISP event, security profile, and sandbox environment. However, the solutions for each training level need to explicitly state the final flag to fully comply with the requirements."
+}
