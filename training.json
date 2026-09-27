@@ -1,0 +1,181 @@
+{
+  "title": "Linux_Rakos_Backdoor_Investigation_0bd",
+  "description": "Investigate and respond to a Linux/Rakos backdoor malware incident.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity on its Linux servers. Initial analysis suggests a possible compromise by the Linux/Rakos backdoor malware. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target server with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the target server with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate Suspicious Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "While monitoring the target server, you've noticed unusual outbound connections to a high port number. Investigate these connections to determine if they're malicious. Look for connections to unusual or unexpected IP addresses and ports, especially those that are not part of the standard services. Pay particular attention to port 4444.",
+      "solution": "To investigate suspicious network connections, you can use tools like `netstat`, `ss`, or `lsof` to check for listening ports and active connections. Look for any unusual ports or connections to unknown IP addresses.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the network connections and listening ports on the target server.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `netstat -tuln`, `ss -tuln`, or `lsof -i` to identify suspicious network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for connections to unusual or unexpected IP addresses and ports, especially those that are not part of the standard services. Pay particular attention to port 4444.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Suspicious Process",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "You've identified a suspicious process running on the target server. Analyze this process to determine its purpose and origin. Look for unusual processes and examine their command lines, paths, and parent processes. Pay particular attention to the process named payload-transfer.sh.",
+      "solution": "To analyze a suspicious process, you can use tools like `ps`, `top`, or `htop` to identify the process name, path, and parent process. Additionally, you can use `strings` or `file` to examine the binary for more information.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for unusual processes and examine their command lines, paths, and parent processes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `ps aux`, `top`, or `htop` to identify suspicious processes. Then, use `strings` or `file` to analyze the binary.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Pay attention to processes that are running unexpectedly or those that have unusual command lines or paths. Look specifically for the process named payload-transfer.sh.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "analyze_suspicious_process",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "You suspect that the attacker might be attempting to move laterally within the network. Investigate the target server for any signs of lateral movement. Check for any unusual file transfers or remote command executions. Pay particular attention to the file /etc/systemd/system/payload-transfer.timer.",
+      "solution": "To investigate lateral movement, you can check for unusual file transfers or remote command executions. Look for any suspicious cron jobs, scheduled tasks, or remote connections.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check for any unusual file transfers or remote command executions.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `crontab -l`, `ps aux`, or `netstat -tuln` to identify any suspicious activities related to lateral movement.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for any scheduled tasks or cron jobs that might be executing remote commands or transferring files. Pay particular attention to the file /etc/systemd/system/payload-transfer.timer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "crontab -l",
+          "cmd_type": "bash-command",
+          "cmd_regex": "crontab -l",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
