@@ -1,0 +1,181 @@
+{
+  "title": "Sednit_Dropper_Investigation_df3",
+  "description": "Investigate a compromised system to identify and analyze the Sednit dropper and its associated artifacts.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Sednit group is known for using sophisticated malware toolkits designed for espionage and long-term monitoring of targeted systems. One of their tools, Seduploader, is a dropper used to deliver other malicious payloads such as Xagent and Xtunnel. Your task is to investigate a compromised system to identify and analyze the Sednit dropper and its associated artifacts."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation"
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the compromised host. Check the systemd service files in the /etc/systemd/system directory for any unusual or recently created services.",
+      "solution": "Check the systemd service files in the /etc/systemd/system directory for any unusual or recently created services.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd services are managed through service files located in the /etc/systemd/system directory. These files define how services should be started, stopped, and managed.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Actionable Hint",
+          "content": "Use the 'ls' command to list the service files in the /etc/systemd/system directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for services that were recently created or modified, as these could indicate malicious activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/systemd/system",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Scheduled Task",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.timer",
+      "answer_variable_name": null,
+      "content": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity. Look for timer files in the /etc/systemd/system directory that correspond to the suspicious service identified in the previous task.",
+      "solution": "Look for timer files in the /etc/systemd/system directory that correspond to the suspicious service identified in the previous task.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Systemd timers are used to schedule tasks at specific intervals. Timer files are typically located in the /etc/systemd/system directory and have a .timer extension.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Actionable Hint",
+          "content": "Use the 'ls' command to list the timer files in the /etc/systemd/system directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for timers that correspond to the suspicious service identified in the previous task, as these could indicate automated malicious activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "ls /etc/systemd/system/*.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls /etc/systemd/system/*.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malicious Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/tmp/.session",
+      "answer_variable_name": null,
+      "content": "Locate files introduced onto the system by the malicious software. Investigate unusual or hidden directories, especially those created around the time of the suspected compromise.",
+      "solution": "Investigate unusual or hidden directories, especially those created around the time of the suspected compromise.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Malicious software often creates files in unusual or hidden directories to avoid detection. These directories can be found using the 'ls' command with appropriate options.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Actionable Hint",
+          "content": "Use the 'ls -la' command to list all files and directories, including hidden ones, in the /tmp directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for directories or files that were created around the time of the suspected compromise, as these could indicate the presence of malicious software.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_directories",
+          "prereq_state": [],
+          "cmd": "ls -la /tmp/.session",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /tmp/.session",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

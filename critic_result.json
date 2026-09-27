@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The answer 'session-mgr.service' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The answer 'session-mgr.timer' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Malicious Files",
+      "status": "pass",
+      "evidence": "The answer '/tmp/.session' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to discover the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to discover the timer responsible for the periodic execution of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Malicious Files",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to discover the directory created to conceal malicious files or payloads.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to find the name of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to find the name of the timer responsible for the periodic execution of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Malicious Files",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to find the name of the directory created to conceal malicious files or payloads.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Malicious Files",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Malicious Files",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Malicious Files",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure, providing conceptual, directional, and near-spoiler information without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure, providing conceptual, directional, and near-spoiler information without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Malicious Files",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure, providing conceptual, directional, and near-spoiler information without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The hints contain usable commands that use real provisioned tools/paths/services and match the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The hints contain usable commands that use real provisioned tools/paths/services and match the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Malicious Files",
+      "status": "pass",
+      "evidence": "The hints contain usable commands that use real provisioned tools/paths/services and match the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Suspicious Service",
+      "description": "The flag 'session-mgr.service' is not explicitly stated as the answer in the provisioning files or topology yaml.",
+      "fix": "Ensure the flag is explicitly stated as the answer in the provisioning files or topology yaml."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine Scheduled Task",
+      "description": "The flag 'session-mgr.timer' is not explicitly stated as the answer in the provisioning files or topology yaml.",
+      "fix": "Ensure the flag is explicitly stated as the answer in the provisioning files or topology yaml."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Locate Malicious Files",
+      "description": "The flag '/tmp/.session' is not explicitly stated as the answer in the provisioning files or topology yaml.",
+      "fix": "Ensure the flag is explicitly stated as the answer in the provisioning files or topology yaml."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "session-mgr.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact verified from provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Scheduled Task",
+      "current_flag": "session-mgr.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact verified from provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Malicious Files",
+      "current_flag": "/tmp/.session",
+      "flag_type": "directory name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact verified from provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-aligned with the Sednit dropper investigation. The training levels are coherent and the flags are valid. However, the flags are not explicitly stated as the answers in the provisioning files or topology yaml, which needs to be addressed."
+}
