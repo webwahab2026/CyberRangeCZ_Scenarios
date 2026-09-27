@@ -1,0 +1,163 @@
+{
+  "title": "XOR.DDoS_Incident_Response_Scenario_512",
+  "description": "Investigate and respond to a potential compromise by the XOR.DDoS malware family, specifically the Groundhog backdoor.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity on its Linux servers. Initial analysis suggests a potential compromise by the XOR.DDoS malware family, specifically the Groundhog backdoor. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target server with the username `cyrano` and password `cyrano`. The target server's IP address is `192.168.50.5`. Enter `start` to begin the scenario.",
+      "local_content": "Local sandbox access is not required for this scenario. You have SSH access to the target server with the username `cyrano` and password `cyrano`. The target server's IP address is `192.168.50.5`. Enter `start` to begin the scenario."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "You have noticed unusual outbound network connections from the target server. Investigate these connections to identify any suspicious activity. Submit the port number used for the suspicious connection.",
+      "solution": "Check the network connections and recent logs for any unusual patterns. The suspicious port is 4444 and the destination IP address is 192.168.50.5.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the network connections and recent logs for any unusual patterns.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for connections to port 4444 and the IP address 192.168.50.5.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_investigation",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep 4444",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp | grep 4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious activity is maintained across reboots. Identify the persistence mechanism used by the malware. Submit the systemd service unit file name associated with the suspicious activity.",
+      "solution": "Look for systemd services or cron jobs that might be related to the suspicious activity. The systemd service unit file associated with the suspicious activity is `bkd.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for systemd services or cron jobs that might be related to the suspicious activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the systemd service unit files for any suspicious services.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_analysis",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep bkd",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service | grep bkd",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Check for any evidence of lateral movement from the target server to other hosts in the network. Submit the service name responsible for lateral movement.",
+      "solution": "Examine logs and system configurations for any signs of remote access or file transfers. The service responsible for lateral movement is `payload-transfer.service` and the destination host is `next-target`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine logs and system configurations for any signs of remote access or file transfers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services that transfer files to other hosts.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep payload-transfer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service | grep payload-transfer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

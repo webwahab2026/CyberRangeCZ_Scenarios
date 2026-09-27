@@ -1,0 +1,46 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The answer `4444` corresponds to the port used by the `bkd.service` listener on the target server.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The port number `4444` is not directly available from the content or topology and requires investigation.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee must submit the port number used for the suspicious connection.",
+      "required_fix": ""
+    },
+    {
+      "condition": " "
+    }
+  ]
+}
