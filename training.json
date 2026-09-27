@@ -1,0 +1,164 @@
+{
+  "title": "Linux_NyaDrop_Backdoor_Investigation_0f4",
+  "description": "Investigate and respond to a Linux/NyaDrop backdoor infection on an IoT device network. Your goal is to identify the malicious activity, contain the threat, and remove all traces of the malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Malware analysis",
+    "Incident response",
+    "Threat containment",
+    "Digital forensics"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are part of the incident response team for a company that manages a network of IoT devices. Recent monitoring has detected unusual network activity on one of the devices. Your task is to investigate this activity, identify the source of the problem, and take appropriate action to mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Username: investigator, Password: SecurePass123. Enter 'start' to begin the investigation.",
+      "local_content": "Access the target host (IP: 192.168.50.5) via SSH using the provided credentials. Username: investigator, Password: SecurePass123. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from the target host. Investigate the running services on the target host to identify any unauthorized or suspicious services.\n\n**Question:** What is the name of the suspicious service running on the target host?",
+      "solution": "To identify the suspicious service, you can use the `systemctl list-units --type=service` command to list all running services. Look for any services that seem out of place or have unusual configurations. The suspicious service in this scenario is named `payload-transfer.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any services that seem out of place or have unusual configurations.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-units --type=service` command to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, determine how it is being automatically started after reboot. Understanding the persistence mechanism is crucial for complete removal of the malware.\n\n**Question:** What is the persistence mechanism used by the suspicious service?",
+      "solution": "To determine the persistence mechanism, examine the systemd service files and timers associated with the suspicious service. The persistence mechanism in this scenario is the `payload-transfer.timer` which schedules the `payload-transfer.service` to run periodically.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd service files and timers to understand how the service is scheduled to run.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-timers` command to list all systemd timers.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be communicating with an external command-and-control (C2) server. Identify the network port used for this communication to help contain the threat.\n\n**Question:** Which network port is used for the suspicious communication?",
+      "solution": "To identify the network port used for the suspicious communication, investigate the network connections and listen ports associated with the suspicious service. The network port used in this scenario is `4444`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the network connections and listen ports associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ss -tulnp` command to list all listening ports.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
