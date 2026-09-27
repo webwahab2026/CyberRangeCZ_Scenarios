@@ -1,0 +1,238 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The answer 'network-diagnostics.timer' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The answer 'network-diagnostics.timer' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Malware Files",
+      "status": "pass",
+      "evidence": "The answer '/var/lib/.netd/install.log' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to enumerate running services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to identify scheduled execution persistence mechanisms.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Malware Files",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to locate files installed by the malware.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'Identify the service name 'network-diagnostics.timer''.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'Identify the timer name 'network-diagnostics.timer''.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Malware Files",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'Identify the file path '/var/lib/.netd/install.log''.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Malware Files",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Malware Files",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Malware Files",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Malware Files",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Malware Files",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The scenario does not require local sandbox access, which may limit the trainee's ability to fully explore the environment.",
+      "fix": "Consider providing local sandbox access or clearly stating the limitations of the scenario."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "network-diagnostics.timer",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Scheduled Task or Timer",
+      "current_flag": "network-diagnostics.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Malware Files",
+      "current_flag": "/var/lib/.netd/install.log",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario meets most of the required conditions and provides a coherent and accurate training experience. However, the lack of local sandbox access may limit the trainee's ability to fully explore the environment."
+}
