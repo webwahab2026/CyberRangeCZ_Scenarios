@@ -1,0 +1,217 @@
+{
+  "title": "Rhombus_Botnet_Investigation_eb2",
+  "description": "You are an incident responder tasked with investigating a suspected Rhombus botnet infection on a Linux-based network. The botnet is known to target VPS and IoT devices, acting as a dropper for additional malware and engaging in DDoS activities. Your goal is to identify and mitigate the botnet activity.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify unauthorized or suspicious services responsible for periodic external communication.",
+    "Distinguish malicious traffic generation services from legitimate network services.",
+    "Identify persistence mechanisms used by the botnet.",
+    "Analyze network traffic to identify ports used by botnet communication.",
+    "Determine the target of the flooding activity.",
+    "Collect forensic evidence supporting the identified botnet activity.",
+    "Correlate collected evidence to classify the observed behavior as botnet activity or legitimate system behavior."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a suspected Rhombus botnet infection on a Linux-based network. The botnet is known to target VPS and IoT devices, acting as a dropper for additional malware and engaging in DDoS activities. Your goal is to identify and mitigate the botnet activity."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox via the provided cloud environment. Use the following credentials to log in via SSH: `username: cyrano`, `password: cyrano`. Enter 'start' to begin.",
+      "local_content": "Access the local sandbox via SSH using the following credentials: `username: cyrano`, `password: cyrano`. Enter 'start' to begin."
+    },
+    {
+      "title": "Suspicious Beacon Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-RHOMBUS.service",
+      "answer_variable_name": null,
+      "content": "Investigate the host `bot1` and identify an unauthorized or suspicious service responsible for periodic external communication. This service is likely associated with botnet activity.",
+      "solution": "To identify the suspicious service, you can use the following commands:\n\n1. List all running services:\n   ```bash\n   systemctl list-units --type=service\n   ```\n\n2. Look for any unusual or recently created services, particularly those named `bot-beacon-RHOMBUS`.\n\n3. Check the service details:\n   ```bash\n   systemctl status bot-beacon-RHOMBUS.service\n   ```\n\nThe service name is `bot-beacon-RHOMBUS.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or recently created services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with names that include 'bot' or 'beacon'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The service name starts with 'bot-' and includes 'beacon'. Use the command `systemctl list-units --type=service` to list all services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "service_details",
+          "prereq_state": [],
+          "cmd": "systemctl status bot-beacon-RHOMBUS.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bot-beacon-RHOMBUS.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious Flood Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood-RHOMBUS.service",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic on `bot1`. This service is likely part of the botnet's DDoS capabilities.",
+      "solution": "To identify the suspicious flood service, you can use the following commands:\n\n1. List all running services:\n   ```bash\n   systemctl list-units --type=service\n   ```\n\n2. Look for any unusual or recently created services, particularly those named `bot-flood-RHOMBUS`.\n\n3. Check the service details:\n   ```bash\n   systemctl status bot-flood-RHOMBUS.service\n   ```\n\nThe service name is `bot-flood-RHOMBUS.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd services and network connections for any suspicious activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with names that include 'flood' or 'bot'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The service name starts with 'bot-' and includes 'flood'. Use the command `systemctl list-units --type=service` to list all services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "service_details",
+          "prereq_state": [],
+          "cmd": "systemctl status bot-flood-RHOMBUS.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bot-flood-RHOMBUS.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-RHOMBUS.timer, bot-flood-RHOMBUS.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious services identified in the previous tasks are automatically started after reboot on `bot1`.",
+      "solution": "To identify the persistence mechanisms, you can use the following commands:\n\n1. List all systemd timers:\n   ```bash\n   systemctl list-timers\n   ```\n\n2. Look for any unusual or recently created timers, particularly those named `bot-beacon-RHOMBUS.timer` or `bot-flood-RHOMBUS.timer`.\n\n3. Check the timer details:\n   ```bash\n   systemctl status bot-beacon-RHOMBUS.timer\n   systemctl status bot-flood-RHOMBUS.timer\n   ```\n\nThe persistence mechanisms are `bot-beacon-RHOMBUS.timer` and `bot-flood-RHOMBUS.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd timers and services for any persistence mechanisms.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with names that include 'bot' or 'beacon'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The timer name starts with 'bot-' and includes 'beacon'. Use the command `systemctl list-timers` to list all timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        },
+        {
+          "state_name": "timer_details",
+          "prereq_state": [],
+          "cmd": "systemctl status bot-beacon-RHOMBUS.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bot-beacon-RHOMBUS.timer",
+          "optional": false
+        },
+        {
+          "state_name": "timer_details",
+          "prereq_state": [],
+          "cmd": "systemctl status bot-flood-RHOMBUS.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bot-flood-RHOMBUS.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
