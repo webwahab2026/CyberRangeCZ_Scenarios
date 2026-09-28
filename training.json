@@ -1,0 +1,181 @@
+{
+  "title": "Sofacy_Fysbis_Investigation_ca8",
+  "description": "Investigate and respond to a potential compromise by the Sofacy group's Fysbis malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate suspicious network activity",
+    "Analyze persistence mechanisms",
+    "Examine potential lateral movement"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity potentially related to the Sofacy group's Fysbis malware. Your task is to investigate and respond to this potential compromise."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nTo begin, enter the passkey 'start'.",
+      "local_content": "Local sandbox access is not required for this scenario. To begin, enter the passkey 'start' using the credentials:\n- Username: cyrano\n- Password: cyrano"
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious_service",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you noticed unusual outbound connections from the target host to port 80. Investigate this activity and identify the name of the suspicious service responsible for these connections. Submit the service name as your answer.",
+      "solution": "Check running services and their network connections using the command 'ss -tulnp'. The name of the suspicious service should be identified and submitted as the answer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and their network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'ss -tulnp' to list all running services and their network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command 'ss -tulnp' and look for the service with unusual outbound connections to port 80. Submit the service name as your answer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious_timer",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it maintains persistence on the system. Investigate the system's startup mechanisms to find the name of the service or timer responsible for automatically starting this service. Submit the service or timer name as your answer.",
+      "solution": "Check systemd services and timers using the command 'systemctl list-unit-files --type=service'. The name of the persistence mechanism (service or timer) should be identified and submitted as the answer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check systemd services and timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'systemctl list-unit-files --type=service' to list all systemd services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command 'systemctl list-unit-files --type=service' and look for the service responsible for maintaining persistence. Submit the service or timer name as your answer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "malicious_rsync",
+      "answer_variable_name": null,
+      "content": "Examine the target host for evidence of lateral movement. Determine the name of the service responsible for transferring files to other hosts in the network. Submit the service name, filename, or destination host as your answer.",
+      "solution": "Check for file transfer services and their logs using the command 'grep -r 'rsync' /var/log/'. The name of the service, filename, or destination host should be identified and submitted as the answer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check for file transfer services and their logs.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'grep -r 'rsync' /var/log/' to search for file transfer activities in the logs.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command 'grep -r 'rsync' /var/log/' and look for the service responsible for lateral movement. Submit the service name, filename, or destination host as your answer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_check",
+          "prereq_state": [],
+          "cmd": "grep -r 'rsync' /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -r 'rsync' /var/log/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
