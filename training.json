@@ -1,0 +1,181 @@
+{
+  "title": "Earth_Lusca_Incident_Response_4d2",
+  "description": "Investigate and respond to a potential Earth Lusca malware (KTLVdoor backdoor) incident.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity potentially related to the Earth Lusca malware family, specifically the KTLVdoor backdoor. Your team has been tasked with investigating and responding to this potential security incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "Local sandbox access is not required for this scenario. Use the following credentials to access the target host:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you've noticed unusual outbound connections from the target host. Investigate the host to identify any unauthorized or suspicious services that might be responsible for this activity. Submit the service name.",
+      "solution": "To identify suspicious services, you can use commands like `netstat -tulnp` or `ss -tulnp` to list all running services and their associated processes. Look for any services that are not part of the standard system configuration or that are using unusual ports.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and their associated processes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `netstat -tulnp` or `ss -tulnp` to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services that are not part of the standard system configuration or that are using unusual ports.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "53",
+      "answer_variable_name": null,
+      "content": "Now that you've identified a suspicious service, determine which network port it's using for communication. This information is crucial for containing the threat. Submit the port number.",
+      "solution": "To determine the network port used by the suspicious service, you can examine the service configuration and network connections. Use commands like `netstat -tulnp` or `ss -tulnp` to identify the port number associated with the service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the service configuration and network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `netstat -tulnp` or `ss -tulnp` to identify the port number associated with the service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the port number in the output of the commands.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_port_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "You suspect that the attacker might be attempting to move laterally within the network. Investigate the target host for any evidence of file transfers or remote execution to other hosts. Submit the service name.",
+      "solution": "To investigate lateral movement, check for any scheduled tasks or services that might be transferring files to other hosts. Use commands like `crontab -l` to list scheduled tasks or `systemctl list-timers` to list systemd timers. Additionally, check the contents of directories like `/tmp` or `/var/tmp` for any suspicious files.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check for any scheduled tasks or services that might be transferring files to other hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `crontab -l` or `systemctl list-timers` to list scheduled tasks or systemd timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for any services that might be transferring files to other hosts.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "crontab -l",
+          "cmd_type": "bash-command",
+          "cmd_regex": "crontab -l",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
