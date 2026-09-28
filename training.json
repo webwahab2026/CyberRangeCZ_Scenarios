@@ -1,0 +1,181 @@
+{
+  "title": "KAITEN_Botnet_Investigation_2b3",
+  "description": "Investigate and respond to unusual traffic patterns and potential security incidents caused by the KAITEN botnet.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identifying suspicious services",
+    "Understanding botnet behavior",
+    "Determining persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and potential security incidents. Your task is to investigate and respond to these issues."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the bot1 host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the bot1 host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation"
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication.\n\n**Question:** What is the name of the suspicious service that is beaconing to an external server?",
+      "solution": "To identify the suspicious service, check the running services and look for any unusual or unauthorized services that might be communicating externally. The service name is `bot-beacon.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the running services and look for any unusual or unauthorized services that might be communicating externally.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Investigate the systemd services to find any suspicious services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is likely named something related to bot activity and is set to run periodically.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Abnormal Traffic Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.service",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic.\n\n**Question:** What is the name of the service generating abnormal volumes of network traffic?",
+      "solution": "To identify the service generating abnormal volumes of network traffic, investigate the network traffic patterns and look for any services that might be generating excessive traffic. The service name is `bot-flood.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the network traffic patterns and look for any services that might be generating excessive traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the systemd timers to identify any services that might be generating excessive traffic.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The service generating abnormal traffic is likely named something related to flooding and is controlled by a timer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-flood.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot.\n\n**Question:** What is the persistence mechanism used by the suspicious service?",
+      "solution": "To determine the persistence mechanism, check the systemd services and timers to identify how the suspicious service is being started automatically. The persistence mechanism is a systemd timer named `system-update-checker.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and timers to identify how the suspicious service is being started automatically.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any systemd timers that might be responsible for starting the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The persistence mechanism is likely a timer that runs a service disguised as a system update checker.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "system-update-checker.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
