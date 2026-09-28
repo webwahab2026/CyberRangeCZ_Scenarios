@@ -1,0 +1,181 @@
+{
+  "title": "Umbreon_Rootkit_Investigation_8a6",
+  "description": "Investigate and respond to a Umbreon Linux rootkit infection.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identifying unauthorized shared library injection",
+    "Detecting modifications to system-wide preload configuration",
+    "Locating hidden files or directories"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a Pok\u00e9mon-themed Linux rootkit that targets both x86 and ARM systems. It is designed to hide processes, files, and network connections from system administrators and security tools. The rootkit uses various techniques to maintain persistence and evade detection. Your task is to investigate the compromised systems and respond to the incident. This scenario will guide you through the steps of identifying and mitigating the Umbreon rootkit infection. You will start by gaining access to the compromised systems and then proceed to investigate various aspects of the rootkit's presence."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim and victim2 hosts as the user cyrano with the password cyrano. The attacker host is not accessible. To begin the investigation, open a terminal and use the following command to access the victim host: ssh cyrano@victim. Enter the password cyrano when prompted. Repeat the process to access the victim2 host. Enter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim and victim2 hosts as the user cyrano with the password cyrano. The attacker host is not accessible. To begin the investigation, open a terminal and use the following command to access the victim host: ssh cyrano@victim. Enter the password cyrano when prompted. Repeat the process to access the victim2 host. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Evidence of Shared Library Injection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for signs of unauthorized shared library injection. Look for evidence that a shared library has been loaded into system processes without proper authorization.",
+      "solution": "Check the loaded libraries for system processes and look for any unusual or unauthorized libraries. The hidden flag is the name of the shared library that has been injected.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the loaded libraries for system processes and look for any unusual or unauthorized libraries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the 'ldd' command to list shared libraries for a specific binary, such as 'ldd /bin/ls'.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command 'ldd /bin/ls' to check the shared libraries loaded by the 'ls' binary.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ldd /bin/ls",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ldd /bin/ls",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Modifications to System-Wide Preload Configuration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "Examine the victim host for modifications to the system-wide preload configuration. Look for any unauthorized entries that could be used to load malicious code at system startup.",
+      "solution": "Check the preload configuration file for any unusual or unauthorized entries. The hidden flag is the path to the preload configuration file that has been modified.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the preload configuration file for any unusual or unauthorized entries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the 'cat' command to display the contents of the preload configuration file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command 'cat /etc/ld.so.preload' to inspect the preload configuration file.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Hidden Files or Directories",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf/config",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for hidden files or directories that are not visible through standard system utilities. These could be used to store malicious code or configuration data.",
+      "solution": "Use alternative forensic techniques to uncover hidden files or directories. The hidden flag is the path to a hidden file or directory that has been located.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use alternative forensic techniques to uncover hidden files or directories.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the 'ls' command with the '-la' options to list all files, including hidden ones.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command 'ls -la /etc/.kit_conf' to list the contents of the hidden directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /etc/.kit_conf",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /etc/.kit_conf",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
