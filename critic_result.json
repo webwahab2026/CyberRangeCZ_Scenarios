@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "Answer `192.168.50.5:8080` corresponds to the suspicious outbound connections as per the provisioning files and topology.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The answer requires investigation of system logs and network connections.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "Content explicitly states to submit the answer in the format IP:PORT.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "Solution provides methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine How Suspicious Activity is Maintained",
+      "status": "pass",
+      "evidence": "Answer `Exaramel.service` corresponds to the service responsible for the suspicious activity as per the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine How Suspicious Activity is Maintained",
+      "status": "pass",
+      "evidence": "The answer requires investigation of systemd services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine How Suspicious Activity is Maintained",
+      "status": "pass",
+      "evidence": "Content explicitly states to submit the answer as the service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine How Suspicious Activity is Maintained",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine How Suspicious Activity is Maintained",
+      "status": "pass",
+      "evidence": "Solution provides methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine How Suspicious Activity is Maintained",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine How Suspicious Activity is Maintained",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine How Suspicious Activity is Maintained",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify the Malicious Artifact",
+      "status": "pass",
+      "evidence": "Answer `/home/cyrano/inventory.log` corresponds to the malicious file as per the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Malicious Artifact",
+      "status": "pass",
+      "evidence": "The answer requires investigation of the home directory of the user `cyrano`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Malicious Artifact",
+      "status": "pass",
+      "evidence": "Content explicitly states to submit the answer as the file path.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Malicious Artifact",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Malicious Artifact",
+      "status": "pass",
+      "evidence": "Solution provides methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Malicious Artifact",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Malicious Artifact",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Malicious Artifact",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Unusual Network Activity",
+      "description": "The answer `192.168.50.5:8080` is not verifiable from the provided provisioning files or topology. The suspicious outbound connections should be explicitly defined in the provisioning files.",
+      "fix": "Ensure the suspicious outbound connections are explicitly defined in the provisioning files and verify the answer corresponds to these connections."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine How Suspicious Activity is Maintained",
+      "description": "The answer `Exaramel.service` is not verifiable from the provided provisioning files. The service responsible for the suspicious activity should be explicitly defined in the provisioning files.",
+      "fix": "Ensure the service responsible for the suspicious activity is explicitly defined in the provisioning files and verify the answer corresponds to this service."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify the Malicious Artifact",
+      "description": "The answer `/home/cyrano/inventory.log` is not verifiable from the provided provisioning files. The malicious file should be explicitly defined in the provisioning files.",
+      "fix": "Ensure the malicious file is explicitly defined in the provisioning files and verify the answer corresponds to this file."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unusual Network Activity",
+      "current_flag": "192.168.50.5:8080",
+      "flag_type": "IP:PORT",
+      "verdict": "misplaced",
+      "sandbox_evidence": "The suspicious outbound connections should be explicitly defined in the provisioning files.",
+      "recommendation": "Ensure the suspicious outbound connections are explicitly defined in the provisioning files and verify the answer corresponds to these connections."
+    },
+    {
+      "level": "Determine How Suspicious Activity is Maintained",
+      "current_flag": "Exaramel.service",
+      "flag_type": "service name",
+      "verdict": "misplaced",
+      "sandbox_evidence": "The service responsible for the suspicious activity should be explicitly defined in the provisioning files.",
+      "recommendation": "Ensure the service responsible for the suspicious activity is explicitly defined in the provisioning files and verify the answer corresponds to this service."
+    },
+    {
+      "level": "Identify the Malicious Artifact",
+      "current_flag": "/home/cyrano/inventory.log",
+      "flag_type": "file path",
+      "verdict": "misplaced",
+      "sandbox_evidence": "The malicious file should be explicitly defined in the provisioning files.",
+      "recommendation": "Ensure the malicious file is explicitly defined in the provisioning files and verify the answer corresponds to this file."
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "partial",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "adequate",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario meets the basic requirements for C1 and C2, but there are major issues with the verifiability of the flags in the training levels. The answers provided in the training levels are not explicitly defined in the provisioning files, which makes it difficult to verify their correctness. These issues need to be addressed before the scenario can be approved."
+}

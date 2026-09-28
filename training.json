@@ -1,0 +1,181 @@
+{
+  "title": "Sandworm_Exaramel_Incident_Response_Scenario_e6c",
+  "description": "Investigate and respond to a potential compromise by the Sandworm group using the Exaramel backdoor.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity, including unexpected outbound connections. Initial analysis suggests potential compromise by the Sandworm group using the Exaramel backdoor. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and has the IP address `192.168.50.5`. To begin, enter the passkey `start`.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and has the IP address `192.168.50.5`. To begin, enter the passkey `start`."
+    },
+    {
+      "title": "Investigate Unusual Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.50.5:8080",
+      "answer_variable_name": null,
+      "content": "Investigate the unusual network activity on the target system. What is the destination IP address and port of the suspicious outbound connections? Submit the answer in the format IP:PORT.",
+      "solution": "To identify the suspicious outbound connections, use the following command to check the system logs and network connections:\n\n`sudo lsof -i -P -n | grep ESTABLISHED`\n\nThe destination IP address and port of the suspicious outbound connections is `192.168.50.5:8080`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the system logs and network connections to identify any unusual outbound traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any unusual entries in the system logs that indicate outbound connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `sudo lsof -i -P -n | grep ESTABLISHED` to check the system logs and network connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "sudo lsof -i -P -n | grep ESTABLISHED",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo lsof -i -P -n | grep ESTABLISHED",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine How Suspicious Activity is Maintained",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "Exaramel.service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious activity is maintained on the target system. What is the name of the service responsible for the suspicious activity? Submit the answer as the service name.",
+      "solution": "To find the service responsible for the suspicious activity, use the following command to investigate the systemd services:\n\n`sudo systemctl list-units --type=service`\n\nThe name of the service responsible for the suspicious activity is `Exaramel.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd services and cron jobs to find any unusual entries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any unusual services or cron jobs that might be responsible for the suspicious activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `sudo systemctl list-units --type=service` to investigate the systemd services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "sudo systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Malicious Artifact",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/inventory.log",
+      "answer_variable_name": null,
+      "content": "Identify the malicious artifact associated with the suspicious activity. What is the path to the malicious file? Submit the answer as the file path.",
+      "solution": "To identify the malicious artifact, use the following command to look for unusual files in the home directory of the user `cyrano`:\n\n`ls -la /home/cyrano`\n\nThe path to the malicious file is `/home/cyrano/inventory.log`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for unusual files in the home directory of the user `cyrano` and check the file permissions and ownership.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the file permissions and ownership to identify any unusual files that might be malicious.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ls -la /home/cyrano` to look for unusual files in the home directory of the user `cyrano`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /home/cyrano",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
