@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Access the target host (192.168.50.5) via SSH using the provided credentials (username: cyrano, password: cyrano). Enter 'start' to begin the investigation."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Access the target host (192.168.50.5) via SSH using the provided credentials (username: cyrano, password: cyrano). Enter 'start' to begin the investigation."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate unusual network connections",
+      "status": "pass",
+      "evidence": "The answer '192.168.40.5' corresponds to the C2 server IP address in the topology and provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate unusual network connections",
+      "status": "pass",
+      "evidence": "The answer requires investigation of network connections and is not directly available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate unusual network connections",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to submit the IP address of the suspicious destination.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate unusual network connections",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate unusual network connections",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate unusual network connections",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate unusual network connections",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate unusual network connections",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Analyze suspicious process",
+      "status": "pass",
+      "evidence": "The answer 'payload-transfer.sh' corresponds to the script created in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Analyze suspicious process",
+      "status": "pass",
+      "evidence": "The answer requires investigation of the process and is not directly available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Analyze suspicious process",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to submit the filename of the suspicious process.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Analyze suspicious process",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Analyze suspicious process",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Analyze suspicious process",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Analyze suspicious process",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Analyze suspicious process",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate data exfiltration",
+      "status": "pass",
+      "evidence": "The answer '/home/cyrano/payload-transfer.log' corresponds to the log file created in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate data exfiltration",
+      "status": "pass",
+      "evidence": "The answer requires investigation of data exfiltration and is not directly available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate data exfiltration",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to submit the file path of the evidence.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate data exfiltration",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate data exfiltration",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate data exfiltration",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate data exfiltration",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate data exfiltration",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate unusual network connections",
+      "description": "The answer '192.168.40.5' is not explicitly verifiable from the provided topology or provisioning files.",
+      "fix": "Ensure the answer is explicitly verifiable from the sandbox artifacts."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Analyze suspicious process",
+      "description": "The answer 'payload-transfer.sh' is not explicitly verifiable from the provided topology or provisioning files.",
+      "fix": "Ensure the answer is explicitly verifiable from the sandbox artifacts."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate data exfiltration",
+      "description": "The answer '/home/cyrano/payload-transfer.log' is not explicitly verifiable from the provided topology or provisioning files.",
+      "fix": "Ensure the answer is explicitly verifiable from the sandbox artifacts."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate unusual network connections",
+      "current_flag": "192.168.40.5",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address corresponds to the C2 server in the topology and provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze suspicious process",
+      "current_flag": "payload-transfer.sh",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "The filename corresponds to the script created in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate data exfiltration",
+      "current_flag": "/home/cyrano/payload-transfer.log",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The file path corresponds to the log file created in the provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the topology and provisioning files. However, the answers for the training levels need to be explicitly verifiable from the sandbox artifacts. The scenario follows a logical progression and covers the intended attack chain accurately."
+}

@@ -1,0 +1,181 @@
+{
+  "title": "CDRThief_Investigation_0f9",
+  "description": "Investigate unusual network activity on a VoIP platform and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The VoIP platform has been experiencing unusual network activity. As an incident responder, your task is to investigate and contain the threat. The primary system under investigation is the target host (192.168.50.5), which is running a Linknat VOS2009 softswitch. You have access to the system as user 'cyrano' with password 'cyrano'."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (192.168.50.5) via SSH using the provided credentials (username: cyrano, password: cyrano). Enter 'start' to begin the investigation.",
+      "local_content": "Access the target host (192.168.50.5) via SSH using the provided credentials (username: cyrano, password: cyrano). Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate unusual network connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5",
+      "answer_variable_name": null,
+      "content": "While monitoring the target system, you noticed unusual outbound network connections. Investigate these connections to identify any suspicious activity. Submit the IP address of the suspicious destination.",
+      "solution": "Check the system logs for recent network connections using the command 'netstat -tuln' and look for any unusual destinations or patterns. The suspicious connection is to the C2 server (192.168.40.5) on port 4444. The final flag is the IP address of the C2 server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the system logs for recent network connections using the command 'netstat -tuln' and look for any unusual destinations or patterns.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for connections to the C2 server on port 4444.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious connection is likely to a command and control server. Focus your investigation on connections to non-standard ports.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze suspicious process",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "You've identified a suspicious network connection. Now, investigate the process responsible for this connection. Determine its behavior and any associated files. Submit the filename of the suspicious process.",
+      "solution": "Use process investigation tools to analyze the suspicious process and its network activity. Identify the process name and its associated files, including any unusual file paths or behaviors. The final flag is the filename of the suspicious process.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use process investigation tools to analyze the suspicious process and its network activity. You can use the command 'ps aux' to list all running processes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Identify the process name and its associated files, including any unusual file paths or behaviors.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious process is likely a script or executable with unusual permissions or ownership. Check the process details carefully.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate data exfiltration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/payload-transfer.log",
+      "answer_variable_name": null,
+      "content": "Evidence suggests that sensitive data might be exfiltrated from the system. Investigate the system to find any evidence of data exfiltration. Submit the file path of the evidence.",
+      "solution": "Check for any unusual file transfers or network traffic that might indicate data exfiltration. Identify evidence of data exfiltration, such as unusual file transfers or network traffic to the C2 server. The final flag is the file path of the evidence.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check for any unusual file transfers or network traffic that might indicate data exfiltration. You can use the command 'tcpdump' to monitor network traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Identify evidence of data exfiltration, such as unusual file transfers or network traffic to the C2 server.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for log files or other artifacts that might indicate data being sent to an external server. Pay attention to file paths and timestamps.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
