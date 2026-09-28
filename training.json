@@ -1,0 +1,145 @@
+{
+  "title": "BiBi-Linux_Wiper_Incident_Response_Scenario_b68",
+  "description": "Investigate a BiBi-Linux Wiper incident, identify the cause, and assess the impact.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The company has detected unusual activity on its internal systems. Initial reports indicate that critical files have been destroyed or corrupted. Your task is to investigate the incident, identify the cause, and assess the impact."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the workstation host with the username `cyrano` and password `cyrano`. From there, you can investigate the system and any connected hosts. Enter `start` to begin.",
+      "local_content": "You have SSH access to the workstation host with the username `cyrano` and password `cyrano`. From there, you can investigate the system and any connected hosts. Enter `start` to begin."
+    },
+    {
+      "title": "Identify Evidence of File Destruction",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/data/company_files/hr/employee_records.csv",
+      "answer_variable_name": null,
+      "content": "Investigate the workstation host and look for signs of file destruction. Pay attention to file modifications, unusual filenames, and any indicators of malicious activity. Ensure the flag is explicitly renamed in the provisioning files to match the scenario's narrative.",
+      "solution": "Check the contents of the `/data/company_files` directory and look for any files that have been modified or renamed in an unusual way. The hidden flag is the name of a file that has been renamed as part of the destructive activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the contents of the `/data/company_files` directory and look for any files that have been modified or renamed in an unusual way.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /data/company_files",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /data/company_files",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate the Malware Binary",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/sbin/disk-maintenance",
+      "answer_variable_name": null,
+      "content": "Search the workstation host for any suspicious executables or binaries that might be responsible for the file destruction. Look for recently modified files, unusual file paths, or files with suspicious permissions. Ensure the flag is explicitly marked as suspicious or recently modified in the provisioning files to match the scenario's narrative.",
+      "solution": "Check the `/usr/local/sbin` directory for any recently modified executables. The hidden flag is the name of the malware binary responsible for the destructive activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the `/usr/local/sbin` directory for any recently modified executables.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /usr/local/sbin",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /usr/local/sbin",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Malware Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bibi-linux.service",
+      "answer_variable_name": null,
+      "content": "Investigate the workstation host for any persistence mechanisms that might be responsible for automatically executing the malware. Look for scheduled tasks, services, or startup scripts that could trigger the malware. Ensure the flag is explicitly marked as suspicious or recently added in the provisioning files to match the scenario's narrative.",
+      "solution": "Check the contents of the `/etc/systemd/system` directory for any suspicious services or timers. The hidden flag is the name of the service or timer responsible for the malware's persistence.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the contents of the `/etc/systemd/system` directory for any suspicious services or timers.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /etc/systemd/system",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /etc/systemd/system",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
