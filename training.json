@@ -1,0 +1,205 @@
+{
+  "title": "Adwind_jRAT_Incident_Response_Scenario_e78",
+  "description": "Investigate and respond to a potential security incident involving the Adwind/jRAT trojan on a victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected network connections and suspicious process activity. Your task is to investigate and respond to this potential security incident involving the Adwind/jRAT trojan."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate Unauthorized Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.service",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for unauthorized or suspicious services that may indicate trojan activity. Enumerate running services and identify any that appear unauthorized or suspicious.",
+      "solution": "Check both active services and systemd timers that might be responsible for scheduled execution. Look for unusual services like network-diagnostics.service and net-diag-health.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check both active services and systemd timers that might be responsible for scheduled execution.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services that are not part of the standard system configuration.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command 'systemctl list-units --type=service' to list all active services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_enumeration",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "timer_enumeration",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Credential Harvesting Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/lib/.netd/harvester.sh",
+      "answer_variable_name": null,
+      "content": "Analyze the victim host for evidence of credential harvesting activity. Identify any components or scripts responsible for collecting authentication credentials.",
+      "solution": "Investigate unusual files in the user's home directory and system directories. Look for scripts that collect sensitive information.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate unusual files in the user's home directory and system directories.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for scripts that might be collecting sensitive information.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command 'ls -la /home/cyrano' to list files in the user's home directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_enumeration",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /home/cyrano",
+          "optional": false
+        },
+        {
+          "state_name": "script_analysis",
+          "prereq_state": [],
+          "cmd": "cat /usr/local/lib/.netd/harvester.sh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /usr/local/lib/.netd/harvester.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Command-and-Control Infrastructure",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "1033",
+      "answer_variable_name": null,
+      "content": "Determine the command-and-control infrastructure communicating with the compromised host. Identify the external host and ports used for command-and-control communication.",
+      "solution": "Examine network connections and logs for unusual outbound traffic patterns. Look for connections to the C2 server on ports 1033 and 5555.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine network connections and logs for unusual outbound traffic patterns.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for connections to external servers on non-standard ports.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command 'netstat -tuln' to list active network connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_connections",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        },
+        {
+          "state_name": "log_analysis",
+          "prereq_state": [],
+          "cmd": "cat /var/lib/.netd/harvest.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /var/lib/.netd/harvest.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

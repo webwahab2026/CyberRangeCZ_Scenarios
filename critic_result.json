@@ -1,0 +1,238 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The answer 'network-diagnostics.service' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to enumerate running services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to identify unauthorized or suspicious services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The answer '/usr/local/lib/.netd/harvester.sh' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to investigate unusual files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to identify components or scripts responsible for collecting authentication credentials.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The answer '1033' corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task to examine network connections and logs.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to identify the external host and ports used for command-and-control communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "other",
+      "severity": "minor",
+      "component": "sandbox",
+      "level": "N/A",
+      "description": "The scenario design and training JSON should be aligned with the provided MISP event, security profile, topology, and Ansible configuration.",
+      "fix": "Ensure all tasks are based on the realistic artifacts and services present in the sandbox environment."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unauthorized Services",
+      "current_flag": "network-diagnostics.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze Credential Harvesting Activity",
+      "current_flag": "/usr/local/lib/.netd/harvester.sh",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Command-and-Control Infrastructure",
+      "current_flag": "1033",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario meets most requirements but has a minor issue with alignment between the scenario design and training JSON with the provided MISP event, security profile, topology, and Ansible configuration. All flags are valid and the scenario is well-structured."
+}

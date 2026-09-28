@@ -1,0 +1,219 @@
+{
+  "generated_at_utc": "2026-09-28T00:07:24.124927+00:00",
+  "user_inputs": {
+    "scenario_type": "Exercise",
+    "difficulty_level": "Intermediate",
+    "cybersecurity_approach": "Defence-oriented",
+    "nice_role": "Incident Response",
+    "number_of_tasks": 3,
+    "question_response": "true",
+    "hints": "true",
+    "threat_name": "OSINT - Spam Campaign Delivers Cross-platform Remote Access Trojan Adwind",
+    "mitre_attack_techniques": [],
+    "environment_constraints": null,
+    "hybrid_sandbox": false,
+    "evaluate": true
+  },
+  "agent_1": {
+    "model_used": "",
+    "query_generated": "OSINT - Spam Campaign Delivers Cross-platform Remote Access Trojan Adwind"
+  },
+  "retrieval": {
+    "retrieved_events": {
+      "event_uuid": "59663a31-f174-44a6-adb7-4339950d210f",
+      "event_id": "678",
+      "event_info": "OSINT - Spam Campaign Delivers Cross-platform Remote Access Trojan Adwind",
+      "galaxies": [
+        {
+          "cluster_description": "Backdoor:Java/Adwind is a Java archive (.JAR) file that drops a malicious component onto the machines and runs as a backdoor. When active, it is capable of stealing user information and may also be used to distribute other malware. ",
+          "cluster_value": "Adwind RAT",
+          "description": "remote administration tool or remote access tool (RAT), also called sometimes remote access trojan, is a piece of software or programming that allows a remote \"operator\" to control a system as if they have physical access to that system.",
+          "name": "RAT",
+          "type": "rat"
+        },
+        {
+          "cluster_description": "According to trusted third-party reporting, HIDDEN COBRA actors have likely been using FALLCHILL malware since 2016 to target the aerospace, telecommunications, and finance industries. The malware is a fully functional RAT with multiple commands that the actors can issue from a command and control (C2) server to a victim\u2019s system via dual proxies. FALLCHILL typically infects a system as a file dropped by other HIDDEN COBRA malware or as a file downloaded unknowingly by users when visiting sites compromised by HIDDEN COBRA actors. HIDDEN COBRA actors use an external tool or dropper to install the FALLCHILL malware-as-a-service to establish persistence. Because of this, additional HIDDEN COBRA malware may be present on systems compromised with FALLCHILL.",
+          "cluster_value": "FALLCHILL",
+          "description": "remote administration tool or remote access tool (RAT), also called sometimes remote access trojan, is a piece of software or programming that allows a remote \"operator\" to control a system as if they have physical access to that system.",
+          "name": "RAT",
+          "type": "rat"
+        },
+        {
+          "cluster_description": "The EFF/Lookout report describes CrossRat as a \u201cnewly discovered desktop surveillanceware tool\u2026which is able to target Windows, OSX, and Linux.\u201d",
+          "cluster_value": "CrossRat",
+          "description": "remote administration tool or remote access tool (RAT), also called sometimes remote access trojan, is a piece of software or programming that allows a remote \"operator\" to control a system as if they have physical access to that system.",
+          "name": "RAT",
+          "type": "rat"
+        }
+      ],
+      "tags": [
+        "tlp:white",
+        "osint:source-type=\"blog-post\"",
+        "misp-galaxy:rat=\"Adwind RAT\""
+      ],
+      "event_attributes": [
+        {
+          "category": "Network activity",
+          "comment": "Files and URLs related to Adwind/jRAT",
+          "type": "url",
+          "value": "http://www.employersfinder.com/2017-MYBA-Charter.Agreement.pif"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Files and URLs related to Adwind/jRAT",
+          "type": "url",
+          "value": "http://ccb-ba.adv.br/wp-admin/network/ok/index.php"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Related C&C servers:",
+          "type": "url",
+          "value": "http://vacanzaimmobiliare.it/testla/WebPanel/post.php"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "Related C&C servers - Port 1033",
+          "type": "ip-dst|port",
+          "value": "174.127.99.234|1033"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "text",
+          "value": "Cybercriminals are opportunists. As other operating systems (OS) are more widely used, they, too, would diversify their targets, tools, and techniques in order to cash in on more victims. That\u00e2\u20ac\u2122s the value proposition of malware that can adapt and cross over different platforms. And when combined with a business model that can commercially peddle this malware to other bad guys, the impact becomes more pervasive.\r\n\r\nCase in point: Adwind/jRAT, which Trend Micro detects as JAVA_ADWIND. It\u00e2\u20ac\u2122s a cross-platform remote access Trojan (RAT) that can be run on any machine installed with Java, including Windows, Mac OSX, Linux, and Android.\r\n\r\nUnsurprisingly we saw it resurface in another spam campaign. This time, however, it\u00e2\u20ac\u2122s mainly targeting enterprises in the aerospace industry, with Switzerland, Ukraine, Austria, and the US the most affected countries.\r\n\r\nAdwind operators are active\r\nThe spam campaign actually corresponds to our telemetry for JAVA_ADWIND. In fact, the malware has had a steady increase in detections since the start of the year. From a mere 5,286 in January 2017, it surged to 117,649 in June. It\u00e2\u20ac\u2122s notable, too, that JAVA_ADWIND detections from May to June, 2017 increased by 107%, indicating that cybercriminals are actively pushing and distributing the malware.\r\n\r\nAdwind/jRAT can steal credentials, record and harvest keystrokes, take pictures or screenshots, film and retrieve videos, and exfiltrate data. Adwind iterations were used to target banks and Danish businesses, and even turned infected machines into botnets.\r\n\r\nNotorious as a multiplatform do-it-yourself RAT, Adwind has many aliases: jRAT, Universal Remote Control Multi-Platform (UNRECOM), AlienSpy, Frutas, and JSocket. In 2014 we found an Android version of Adwind/jRAT modified to add a cryptocurrency-mining capability. The fact that it\u00e2\u20ac\u2122s sold as a service means this threat can be deployed by more cybercriminals who can customize their own builds and equip them with diverse functionalities."
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "https://blog.trendmicro.com/trendlabs-security-intelligence/spam-remote-access-trojan-adwind-jrat/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "JAVA_ADWIND.AUJC",
+          "type": "sha256",
+          "value": "97d585b6aff62fb4e43e7e6a5f816dcd7a14be11a88b109a9ba9e8cd4c456eb9"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "JAVA_ADWIND.JEJPCO",
+          "type": "sha256",
+          "value": "c16519f1de64c6768c698de89549804c1223addd88964c57ee036f65d57fd39b"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "TROJ_DLOADR.AUSUDT",
+          "type": "sha256",
+          "value": "3fc826ce8eb9e69b3c384b84351b7af63f558f774dc547fccc23d2f9788ebab4"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Files and URLs related to Adwind/jRAT",
+          "type": "url",
+          "value": "https://nup.pw/Qcaq5e.jar"
+        },
+        {
+          "category": "Network activity",
+          "comment": "Files and URLs related to Adwind/jRAT",
+          "type": "url",
+          "value": "https://nup.pw/e2BXtK.exe"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "JAVA_ADWIND.AUJC - Xchecked via VT: 97d585b6aff62fb4e43e7e6a5f816dcd7a14be11a88b109a9ba9e8cd4c456eb9",
+          "type": "sha1",
+          "value": "9ce4518ebcb5be6d1f0b5477fa00c26860fe9a68"
+        },
+        {
+          "category": "External analysis",
+          "comment": "TROJ_DLOADR.AUSUDT - Xchecked via VT: 3fc826ce8eb9e69b3c384b84351b7af63f558f774dc547fccc23d2f9788ebab4",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/3fc826ce8eb9e69b3c384b84351b7af63f558f774dc547fccc23d2f9788ebab4/analysis/1499861768/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "TROJ_DLOADR.AUSUDT - Xchecked via VT: 3fc826ce8eb9e69b3c384b84351b7af63f558f774dc547fccc23d2f9788ebab4",
+          "type": "md5",
+          "value": "51f9e895441dffdf8e47c83208f85993"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "TROJ_DLOADR.AUSUDT - Xchecked via VT: 3fc826ce8eb9e69b3c384b84351b7af63f558f774dc547fccc23d2f9788ebab4",
+          "type": "sha1",
+          "value": "6f15724ae6cf1dee7cf8380694f45f3e7769ebed"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "BKDR64_AGENT.TYUCT",
+          "type": "sha256",
+          "value": "705325922cffac1bca8b1854913176f8b2df83a70e0df0c8d683ec56c6632ddb"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "BKDR64_AGENT.TYUCT - Xchecked via VT: 705325922cffac1bca8b1854913176f8b2df83a70e0df0c8d683ec56c6632ddb",
+          "type": "sha1",
+          "value": "0eb986bdc1c922a60d81040652d0e67dff3c5ab2"
+        },
+        {
+          "category": "External analysis",
+          "comment": "JAVA_ADWIND.JEJPCO - Xchecked via VT: c16519f1de64c6768c698de89549804c1223addd88964c57ee036f65d57fd39b",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/c16519f1de64c6768c698de89549804c1223addd88964c57ee036f65d57fd39b/analysis/1499871432/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "JAVA_ADWIND.JEJPCO - Xchecked via VT: c16519f1de64c6768c698de89549804c1223addd88964c57ee036f65d57fd39b",
+          "type": "md5",
+          "value": "41c6aae5e303e7f3118af6a3ca2566a8"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "JAVA_ADWIND.JEJPCO - Xchecked via VT: c16519f1de64c6768c698de89549804c1223addd88964c57ee036f65d57fd39b",
+          "type": "sha1",
+          "value": "4f8e8bfea6846c11bb4b58eb07788bea61eadca0"
+        },
+        {
+          "category": "External analysis",
+          "comment": "JAVA_ADWIND.AUJC - Xchecked via VT: 97d585b6aff62fb4e43e7e6a5f816dcd7a14be11a88b109a9ba9e8cd4c456eb9",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/97d585b6aff62fb4e43e7e6a5f816dcd7a14be11a88b109a9ba9e8cd4c456eb9/analysis/1499851519/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "JAVA_ADWIND.AUJC - Xchecked via VT: 97d585b6aff62fb4e43e7e6a5f816dcd7a14be11a88b109a9ba9e8cd4c456eb9",
+          "type": "md5",
+          "value": "781fb531354d6f291f1ccab48da6d39f"
+        },
+        {
+          "category": "External analysis",
+          "comment": "BKDR64_AGENT.TYUCT - Xchecked via VT: 705325922cffac1bca8b1854913176f8b2df83a70e0df0c8d683ec56c6632ddb",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/705325922cffac1bca8b1854913176f8b2df83a70e0df0c8d683ec56c6632ddb/analysis/1499247775/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "BKDR64_AGENT.TYUCT - Xchecked via VT: 705325922cffac1bca8b1854913176f8b2df83a70e0df0c8d683ec56c6632ddb",
+          "type": "md5",
+          "value": "829510245185976bd3e423dd8c55c683"
+        }
+      ],
+      "objects": [],
+      "reports": []
+    }
+  },
+  "agent_2": {
+    "model_used": "mistral-small3.2:latest",
+    "retrieved_nice_information": "nice_info",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent2 file)'"
+    }
+  },
+  "agent_3": {
+    "model_used": "mistral-small3.2:latest",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent3 file)'"
+    }
+  }
+}
