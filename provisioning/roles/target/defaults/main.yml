@@ -1,0 +1,17 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: xmrig.so
+  content: "xmrig.so\n"
+- name: 937842811b9e2eb87c4c19354a1a790315f2669eea58b63264f751de4da5438d
+  content: "937842811b9e2eb87c4c19354a1a790315f2669eea58b63264f751de4da5438d\n"
+- name: xmrig.so
+  content: "xmrig.so\n"
+packages_to_install:
+- openssh-server
