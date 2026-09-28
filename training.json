@@ -1,0 +1,181 @@
+{
+  "title": "Xbash_Incident_Response_0a8",
+  "description": "Investigate and contain the Xbash malware threat in a Linux environment.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity potentially related to the Xbash malware family. As an incident responder, your task is to investigate and contain this threat. Xbash is known to combine botnet, ransomware, and coinmining capabilities, targeting both Linux and Windows systems. It can delete databases, create ransom messages, and demand Bitcoin payments for data recovery."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host (192.168.50.5) with the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the target host (192.168.50.5) with the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the target host, you've noticed unusual network activity. Investigate the host to identify any unauthorized or suspicious services running.",
+      "solution": "Use commands like `ps aux`, `netstat -tuln`, or `ss -tuln` to identify suspicious services. Look for any services that are not part of the standard system configuration.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and their associated processes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `ps aux`, `netstat -tuln`, or `ss -tuln` to identify suspicious services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is not a standard system service and has an unusual name.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "Now that you've identified a suspicious service, determine which network port it's using for communication. This information is crucial for containing the threat.",
+      "solution": "Use commands like `netstat -tuln`, `ss -tuln`, or `lsof -i` to identify the network port used by the suspicious service. Look for any ports that are not part of the standard system configuration.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate network connections and open ports associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `netstat -tuln`, `ss -tuln`, or `lsof -i` to identify the network port used by the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The port number is in the ephemeral port range and is not a well-known service port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "Evidence suggests that the attacker might be attempting to move laterally within the network. Investigate the target host to find any signs of file transfers or remote execution to other hosts.",
+      "solution": "Check for any scheduled tasks, cron jobs, or other mechanisms that might facilitate lateral movement. Use commands like `crontab -l`, `ls -la /etc/cron*`, or `ps aux | grep -i ssh` to identify any signs of lateral movement.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check for any scheduled tasks, cron jobs, or other mechanisms that might facilitate lateral movement.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `crontab -l`, `ls -la /etc/cron*`, or `ps aux | grep -i ssh` to identify any signs of lateral movement.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for scripts or executables that are not part of the standard system configuration.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "crontab -l",
+          "cmd_type": "bash-command",
+          "cmd_regex": "crontab -l",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
