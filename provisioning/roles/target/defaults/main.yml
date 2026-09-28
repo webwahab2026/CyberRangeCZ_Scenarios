@@ -1,0 +1,15 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: 2859b86854018bb4db2226e1ff14a4de4aa0187cd563c705d4ae1dbda0c07086
+  content: "2859b86854018bb4db2226e1ff14a4de4aa0187cd563c705d4ae1dbda0c07086\n"
+- name: SoftwareSync.plist
+  content: "SoftwareSync.plist\n"
+packages_to_install:
+- openssh-server
