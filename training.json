@@ -1,0 +1,181 @@
+{
+  "title": "KrustyLoader_Investigation_124",
+  "description": "Investigate the victim host for any unauthorized or suspicious services running on the system.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "KrustyLoader is a Rust-based malware linked to Ivanti ConnectSecure compromises. It is designed to download and execute a Sliver backdoor. The malware shares almost 100% code similarity among its samples and is used to deliver additional payloads. Your credentials are:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have been granted access to the victim host in the network. Your credentials are:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have been granted access to the victim host in the network. Your credentials are:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation"
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.service",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for any unauthorized or suspicious services running on the system. Enumerate running services and distinguish legitimate services from malicious ones.",
+      "solution": "Check the status of all services and look for any that appear unusual or unauthorized. Use commands like `systemctl list-units --type=service` to list all services and `systemctl status <service_name>` to check the status of a specific service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the status of all services and look for any that appear unusual or unauthorized.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-units --type=service` to list all services and `systemctl status <service_name>` to check the status of a specific service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is likely to be named 'session-mgr.service'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Scheduled Task or Timer",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.timer",
+      "answer_variable_name": null,
+      "content": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity on the victim host. Identify scheduled execution persistence mechanisms (e.g., cron, systemd timers, Windows Scheduled Tasks).",
+      "solution": "Examine the systemd timers and services to find any that might be related to the suspicious activity. Use commands like `systemctl list-timers` to list all timers and `systemctl status <timer_name>` to check the status of a specific timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd timers and services to find any that might be related to the suspicious activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-timers` to list all timers and `systemctl status <timer_name>` to check the status of a specific timer.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The timer you are looking for is named 'session-mgr.timer'.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malware Artifacts",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/tmp/.session/rat.sh",
+      "answer_variable_name": null,
+      "content": "Locate files introduced onto the victim system by the malicious software. Correlate suspicious activity with newly created files and identify malware artifacts.",
+      "solution": "Investigate the /tmp/.session directory for any suspicious files. Use commands like `ls -la /tmp/.session` to list the contents of the directory and `cat /tmp/.session/<filename>` to view the contents of a specific file.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the /tmp/.session directory for any suspicious files.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `ls -la /tmp/.session` to list the contents of the directory and `cat /tmp/.session/<filename>` to view the contents of a specific file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The malicious file is named 'rat.sh' and is located in the /tmp/.session directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_identification",
+          "prereq_state": [],
+          "cmd": "ls -la /tmp/.session",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /tmp/.session",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

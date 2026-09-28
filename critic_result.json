@@ -1,0 +1,240 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: cyrano, Password: cyrano, Enter 'start' to begin the investigation."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: cyrano, Password: cyrano, Enter 'start' to begin the investigation."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The service 'session-mgr.service' is provisioned and accessible.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The flag requires enumeration of services and identification of suspicious ones.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content explicitly states the flag type: 'Service name'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer: 'session-mgr.service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The timer 'session-mgr.timer' is provisioned and accessible.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The flag requires examination of systemd timers and services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The content explicitly states the flag type: 'Timer or task name'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer: 'session-mgr.timer'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Scheduled Task or Timer",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Malware Artifacts",
+      "status": "pass",
+      "evidence": "The file '/tmp/.session/rat.sh' is provisioned and accessible.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Malware Artifacts",
+      "status": "pass",
+      "evidence": "The flag requires investigation of the /tmp/.session directory.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Malware Artifacts",
+      "status": "pass",
+      "evidence": "The content explicitly states the flag type: 'Filename'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Malware Artifacts",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Malware Artifacts",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Malware Artifacts",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer: '/tmp/.session/rat.sh'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Malware Artifacts",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Malware Artifacts",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "other",
+      "severity": "minor",
+      "component": "training",
+      "level": "Introduction",
+      "description": "The INFO_LEVEL content does not explicitly state the need to enter 'start' to begin the investigation.",
+      "fix": "Add explicit instruction to enter 'start' in the INFO_LEVEL content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "session-mgr.service",
+      "flag_type": "Service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned and accessible.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Scheduled Task or Timer",
+      "current_flag": "session-mgr.timer",
+      "flag_type": "Timer or task name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer is provisioned and accessible.",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Malware Artifacts",
+      "current_flag": "/tmp/.session/rat.sh",
+      "flag_type": "Filename",
+      "verdict": "valid",
+      "sandbox_evidence": "The file is provisioned and accessible.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The sandbox topology and provisioning files align with the training levels."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario meets most requirements but needs a minor adjustment to explicitly state the 'start' instruction in the INFO_LEVEL content."
+}
