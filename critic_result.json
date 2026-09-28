@@ -1,0 +1,246 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Unusual CPU Usage",
+      "status": "pass",
+      "evidence": "The answer `sys-monitor` corresponds to the service responsible for abnormal CPU utilization as provisioned in the sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Unusual CPU Usage",
+      "status": "pass",
+      "evidence": "The answer requires checking running services and processes to identify the service responsible for abnormal CPU utilization.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Unusual CPU Usage",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to identify the service responsible for abnormal CPU utilization.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Unusual CPU Usage",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Unusual CPU Usage",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Unusual CPU Usage",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Unusual CPU Usage",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Unusual CPU Usage",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools and matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Network Communication",
+      "status": "pass",
+      "evidence": "The answer `185.183.98.46` corresponds to the external IP address the suspicious service is communicating with as provisioned in the sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Network Communication",
+      "status": "pass",
+      "evidence": "The answer requires examining network connections to identify the external IP address the suspicious service is communicating with.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Network Communication",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to identify the external IP address the suspicious service is communicating with.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Network Communication",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Network Communication",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Network Communication",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Network Communication",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Network Communication",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools and matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer `sys-monitor` corresponds to the system service used to ensure the malicious software runs automatically after a reboot as provisioned in the sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer requires checking system service configurations to identify the system service used to ensure the malicious software runs automatically after a reboot.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to identify the system service used to ensure the malicious software runs automatically after a reboot.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools and matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The scenario does not explicitly state the username and password in the cloud_content and local_content fields.",
+      "fix": "Explicitly state the username and password in both cloud_content and local_content fields."
+    },
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The scenario does not explicitly instruct the trainee to enter the passkey `start` in both cloud_content and local_content fields.",
+      "fix": "Explicitly instruct the trainee to enter the passkey `start` in both cloud_content and local_content fields."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unusual CPU Usage",
+      "current_flag": "sys-monitor",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service `sys-monitor` is provisioned in the sandbox and is responsible for abnormal CPU utilization.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Network Communication",
+      "current_flag": "185.183.98.46",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address `185.183.98.46` is the external IP address the suspicious service is communicating with as provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Persistence Mechanism",
+      "current_flag": "sys-monitor",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service `sys-monitor` is used to ensure the malicious software runs automatically after a reboot as provisioned in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-aligned with the provided MISP event, security profile, topology, and Ansible configuration. The tasks are designed to guide students through investigating a cryptocurrency mining threat. However, the scenario does not explicitly state the username and password in the cloud_content and local_content fields, and it does not explicitly instruct the trainee to enter the passkey `start` in both fields. These issues need to be addressed before the scenario can be approved."
+}

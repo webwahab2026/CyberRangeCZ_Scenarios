@@ -1,0 +1,181 @@
+{
+  "title": "XMRig_Cryptominer_Investigation_226",
+  "description": "Investigate unusual CPU usage on Linux servers potentially caused by cryptocurrency mining activity.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Investigation of cryptocurrency mining activity",
+    "Analysis of system services and processes"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual CPU usage on several Linux servers. Initial analysis suggests potential cryptocurrency mining activity. Your task is to investigate and contain this threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the miner-host system with the username `cyrano` and password `cyrano`. From this system, you can investigate the local host and potentially other connected systems. Enter `start` to begin.",
+      "local_content": "You have SSH access to the miner-host system with the username `cyrano` and password `cyrano`. From this system, you can investigate the local host and potentially other connected systems. Enter `start` to begin."
+    },
+    {
+      "title": "Investigate Unusual CPU Usage",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor",
+      "answer_variable_name": null,
+      "content": "Investigate the unusual CPU usage on the miner-host system by checking running services and processes. Identify the service responsible for the abnormal CPU utilization.",
+      "solution": "Check running services and processes to identify any unusual or unauthorized activity. The service responsible for the abnormal CPU utilization is `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and processes to identify any unusual or unauthorized activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any services or processes that are consuming an unusually high amount of CPU resources.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ps aux | grep -i 'sys-monitor'` to check for the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "ps aux | grep -i 'sys-monitor'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux.*grep -i 'sys-monitor'",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Network Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "185.183.98.46",
+      "answer_variable_name": null,
+      "content": "Investigate the network communication associated with the suspicious service by examining network connections. Identify the external IP address the suspicious service is communicating with.",
+      "solution": "Examine network connections and analyze traffic patterns to identify suspicious communication. The external IP address the suspicious service is communicating with is `185.183.98.46`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine network connections using tools like `netstat` or `ss` to identify suspicious communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any connections to external IP addresses that are not part of the organization's network.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `netstat -tuln | grep -i '185.183.98.46'` to check for suspicious network connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "netstat -tuln | grep -i '185.183.98.46'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln.*grep -i '185.183.98.46'",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor",
+      "answer_variable_name": null,
+      "content": "Investigate how the malicious service maintains persistence on the system by checking system service configurations. Identify the system service used to ensure the malicious software runs automatically after a reboot.",
+      "solution": "Check system service configurations and look for any unauthorized or suspicious services. The system service used to ensure the malicious software runs automatically after a reboot is `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check system service configurations using `systemctl` or `service` commands to identify any unauthorized or suspicious services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any services that are set to start automatically at boot and are related to the suspicious activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl list-units --type=service | grep -i 'sys-monitor'` to check for suspicious services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep -i 'sys-monitor'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service.*grep -i 'sys-monitor'",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
