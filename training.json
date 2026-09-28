@@ -1,0 +1,181 @@
+{
+  "title": "Linux_AirDropBot_Botnet_Investigation_7f7",
+  "description": "Investigate and respond to unusual traffic patterns and potential security incidents in a network with Linux-based systems.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and potential security incidents. Your task is to investigate and respond to these issues. The network consists of several Linux-based systems, including a command-and-control server, compromised bots, and a victim system. Use the provided access credentials to log in to the systems and perform your investigation."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox in cloud using the following credentials: Username: cyrano, Password: cyrano, Access Method: SSH. Enter 'start' to begin the investigation.",
+      "local_content": "Access the local sandbox using the following credentials: Username: cyrano, Password: cyrano, Access Method: SSH. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-cloudprocess.timer",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication. Enumerate running services using `systemctl list-timers` and identify beaconing behavior associated with botnet activity.",
+      "solution": "Check the systemd services and look for any unusual or recently created services. The suspicious service is likely named 'bot-beacon-cloudprocess.timer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or recently created services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services related to network diagnostics or system health beacons.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is likely related to periodic tasks and may have a name indicating its malicious intent.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon-cloudprocess.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Abnormal Traffic Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood-cloudprocess.timer",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic. Enumerate running services using `systemctl list-timers` and distinguish malicious traffic generation services from legitimate network services.",
+      "solution": "Examine the network connections and look for any services that are generating excessive traffic. The service responsible for generating abnormal traffic is likely named 'bot-flood-cloudprocess.timer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the network connections and look for any services that are generating excessive traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services related to network flooding or DDoS attacks.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The service generating abnormal traffic is likely related to flooding activities and may have a name indicating its malicious intent.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "traffic_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-flood-cloudprocess.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. Identify persistence mechanisms (e.g., systemd, cron, scheduled task, registry) using `systemctl list-timers`.",
+      "solution": "Investigate the systemd timers and services to find any persistence mechanisms. The persistence mechanism is likely the 'system-update-checker.timer' service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd timers and services to find any persistence mechanisms.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services related to system updates or health checks.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The persistence mechanism is likely a timer service that runs periodically and may have a name indicating its role in maintaining the malicious activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "system-update-checker.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
