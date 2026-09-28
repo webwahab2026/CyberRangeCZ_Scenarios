@@ -1,0 +1,181 @@
+{
+  "title": "CrossRAT_Investigation_dbd",
+  "description": "Investigate a potential CrossRAT malware infection in the organization's network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity on its internal systems. Your team has been tasked with investigating a potential CrossRAT malware infection. CrossRAT is a cross-platform implant capable of targeting Windows, OSX, and Linux systems. It can manipulate the file system, take screenshots, run arbitrary DLLs for secondary infection on Windows, and gain persistence on the infected system. It connects to a C2 server for tasking and exfiltration."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is connected to other systems in the network that may also be compromised. Enter `start` to begin the investigation.",
+      "local_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is connected to other systems in the network that may also be compromised. Enter `start` to begin the investigation."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "java.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the target system, you've noticed unusual network activity. Investigate the running services on the target system to identify any unauthorized or suspicious services. Ensure the service `java.service` is explicitly provisioned and verifiable in the sandbox environment.",
+      "solution": "To identify suspicious services, you can use the `systemctl list-units --type=service` command. Look for any services that seem out of place or unfamiliar. The suspicious service in this case is `java.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the list of running services and look for any that seem out of place or unfamiliar.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl` command to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The command `systemctl list-units --type=service` will help you identify the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "java.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "java.service",
+      "answer_variable_name": null,
+      "content": "Now that you've identified a suspicious service, determine how it is automatically started after reboot. This will help you understand how the malware maintains persistence on the system. Ensure the persistence mechanism via `java.service` is explicitly provisioned and verifiable in the sandbox environment.",
+      "solution": "To determine how the service is automatically started, you can use the `systemctl status java.service` command. This will show you the unit file and the configuration that causes the service to start automatically. The persistence identifier is `java.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd configuration to find out how the service is set to start automatically.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl` command to check the status of the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The command `systemctl status java.service` will provide the necessary information about the service's persistence mechanism.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl status java.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "java.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2223",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be communicating with an external server. Determine which network port is used for this communication to better understand the malware's behavior and contain the threat. Ensure the C2 port `2223` is explicitly provisioned and verifiable in the sandbox environment.",
+      "solution": "To determine the network port used for communication, you can use the `ss -tulnp` command. This will show you the network connections associated with the suspicious service. The C2 port number is `2223`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the network connections associated with the suspicious service to identify the port being used.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ss` command to list all network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The command `ss -tulnp` will help you identify the port used for C2 communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "2223",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
