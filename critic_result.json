@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The IP address 192.168.90.5 is provisioned in the topology and can be discovered through network connections.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The IP address requires investigation through network connections and logs.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is an IP address.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact IP address.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Command-and-Control Server",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The port 4443 is provisioned in the topology and can be discovered through network traffic.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The port number requires investigation through network traffic.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is a port number.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact port number.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the Command-and-Control Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify the Exfiltration Server",
+      "status": "pass",
+      "evidence": "The IP address 192.168.90.20 is provisioned in the topology and can be discovered through outbound network traffic.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Exfiltration Server",
+      "status": "pass",
+      "evidence": "The IP address requires investigation through outbound network traffic.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Exfiltration Server",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is an IP address.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Exfiltration Server",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact IP address.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Exfiltration Server",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Exfiltration Server",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Exfiltration Server",
+      "status": "pass",
+      "evidence": "The hints follow a logical hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Exfiltration Server",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify the Command-and-Control Server",
+      "description": "The flag 192.168.90.5 is not explicitly verified in the provisioning files or topology.",
+      "fix": "Ensure the flag is explicitly verified in the provisioning files or topology."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine the Command-and-Control Port",
+      "description": "The flag 4443 is not explicitly verified in the provisioning files or topology.",
+      "fix": "Ensure the flag is explicitly verified in the provisioning files or topology."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify the Exfiltration Server",
+      "description": "The flag 192.168.90.20 is not explicitly verified in the provisioning files or topology.",
+      "fix": "Ensure the flag is explicitly verified in the provisioning files or topology."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify the Command-and-Control Server",
+      "current_flag": "192.168.90.5",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address is provisioned in the topology and can be discovered through network connections.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the Command-and-Control Port",
+      "current_flag": "4443",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port is provisioned in the topology and can be discovered through network traffic.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify the Exfiltration Server",
+      "current_flag": "192.168.90.20",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address is provisioned in the topology and can be discovered through outbound network traffic.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-structured and covers the attack chain comprehensively. However, the flags need to be explicitly verified in the provisioning files or topology to ensure they are discoverable."
+}

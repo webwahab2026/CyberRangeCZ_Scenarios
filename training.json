@@ -1,0 +1,181 @@
+{
+  "title": "Linux_P2P_Ransom_Botnet_Investigation_f3b",
+  "description": "Investigate a ransomware incident on a Linux system, identify indicators of compromise, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has been compromised by the Linux P2P Ransom botnet ransomware. Your task is to investigate the incident, identify the indicators of compromise, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation"
+    },
+    {
+      "title": "Identify the Command-and-Control Server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.5",
+      "answer_variable_name": null,
+      "content": "Identify the command-and-control server IP address used by the ransomware.\n\nHint: Check network connections and logs for suspicious outbound connections.\n\nQuestion: What is the IP address of the command-and-control server?",
+      "solution": "To identify the command-and-control server IP address, you can check the network connections and logs for suspicious outbound connections. The ransomware uses the IP address 192.168.90.5 for command-and-control communication. Ensure that the IP address is discoverable through network connections or logs in the provisioning files.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check network connections and logs for suspicious outbound connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for connections to an unusual IP address.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command 'netstat -tuln' to list all active network connections and look for suspicious IP addresses.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Command-and-Control Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4443",
+      "answer_variable_name": null,
+      "content": "Determine which network port is used for suspicious command-and-control communication.\n\nHint: Investigate network traffic to identify unusual ports used by the ransomware.\n\nQuestion: What is the port number used for command-and-control communication?",
+      "solution": "To determine the network port used for suspicious command-and-control communication, you can investigate network traffic to identify unusual ports used by the ransomware. The ransomware uses port 4443 for command-and-control communication. Ensure that the port is discoverable through network traffic in the provisioning files.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate network traffic to identify unusual ports used by the ransomware.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for connections to an unusual port.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command 'netstat -tuln' to list all active network connections and look for unusual ports.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Exfiltration Server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.20",
+      "answer_variable_name": null,
+      "content": "Identify the external host receiving sensitive data from the compromised system.\n\nHint: Analyze outbound network traffic to identify the exfiltration infrastructure.\n\nQuestion: What is the IP address of the exfiltration server?",
+      "solution": "To identify the external host receiving sensitive data from the compromised system, you can analyze outbound network traffic to identify the exfiltration infrastructure. The ransomware uses the IP address 192.168.90.20 for exfiltration. Ensure that the IP address is discoverable through outbound network traffic in the provisioning files.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Analyze outbound network traffic to identify the exfiltration infrastructure.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for connections to an unusual IP address.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command 'netstat -tuln' to list all active network connections and look for suspicious IP addresses.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
