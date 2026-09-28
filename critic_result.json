@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The answer 'mirai-service' corresponds to the suspicious service created by the trojan-install role.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The answer 'mirai-timer' corresponds to the timer created by the trojan-install role.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Suspicious Files",
+      "status": "pass",
+      "evidence": "The answer '/usr/local/lib/.netd/revshell.sh' corresponds to the reverse shell script created by the trojan-revshell role.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The flag requires identifying the suspicious service 'mirai-service' which is not directly available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The flag requires identifying the suspicious timer 'mirai-timer' which is not directly available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Suspicious Files",
+      "status": "pass",
+      "evidence": "The flag requires locating the suspicious file '/usr/local/lib/.netd/revshell.sh' which is not directly available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content explicitly states to identify unauthorized or suspicious services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The content explicitly states to identify scheduled tasks or timers responsible for unauthorized processes.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Suspicious Files",
+      "status": "pass",
+      "evidence": "The content explicitly states to locate files installed by unauthorized processes.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer 'mirai-service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer 'mirai-timer'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Suspicious Files",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer '/usr/local/lib/.netd/revshell.sh'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The solution explains how to enumerate services and identify suspicious ones, includes usable commands, and explicitly states the final flag 'mirai-service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The solution explains how to examine timers and identify suspicious ones, includes usable commands, and explicitly states the final flag 'mirai-timer'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Suspicious Files",
+      "status": "pass",
+      "evidence": "The solution explains how to search for suspicious files, includes usable commands, and explicitly states the final flag '/usr/local/lib/.netd/revshell.sh'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The final flag in the solution 'mirai-service' matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The final flag in the solution 'mirai-timer' matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Suspicious Files",
+      "status": "pass",
+      "evidence": "The final flag in the solution '/usr/local/lib/.netd/revshell.sh' matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, and Hint 3 is near-spoiler but does not reveal the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Scheduled Tasks",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, and Hint 3 is near-spoiler but does not reveal the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Suspicious Files",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, and Hint 3 is near-spoiler but does not reveal the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses provisioned tools and matches the OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Scheduled Tasks",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses provisioned tools and matches the OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Suspicious Files",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses provisioned tools and matches the OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Suspicious Services",
+      "description": "The flag 'mirai-service' is not explicitly verifiable from the provisioning files or topology.",
+      "fix": "Ensure the flag corresponds to a real artifact in the provisioning files or topology."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Scheduled Tasks",
+      "description": "The flag 'mirai-timer' is not explicitly verifiable from the provisioning files or topology.",
+      "fix": "Ensure the flag corresponds to a real artifact in the provisioning files or topology."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Locate Suspicious Files",
+      "description": "The flag '/usr/local/lib/.netd/revshell.sh' is not explicitly verifiable from the provisioning files or topology.",
+      "fix": "Ensure the flag corresponds to a real artifact in the provisioning files or topology."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "mirai-service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is created by the trojan-install role.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Scheduled Tasks",
+      "current_flag": "mirai-timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer is created by the trojan-install role.",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Suspicious Files",
+      "current_flag": "/usr/local/lib/.netd/revshell.sh",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The file is created by the trojan-revshell role.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario meets most requirements but has major issues with flag verifiability. Ensure all flags correspond to real artifacts in the provisioning files or topology."
+}
