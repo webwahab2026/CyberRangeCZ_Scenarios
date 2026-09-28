@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate the victim host for unauthorized or suspicious services",
+      "status": "pass",
+      "evidence": "Flag 'nyadrop.timer' is present in the systemd timers and services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Flag 'nyadrop.timer' is present in the systemd timers and services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Flag '/tmp/.session/rat.sh' is present in the provisioned files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate the victim host for unauthorized or suspicious services",
+      "status": "pass",
+      "evidence": "Flag requires enumeration of services using systemctl",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Flag requires investigation of systemd timers using systemctl",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Flag requires searching for recently modified files using find",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate the victim host for unauthorized or suspicious services",
+      "status": "pass",
+      "evidence": "Content explicitly states the flag type as 'Service name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Content explicitly states the flag type as 'Timer or task name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Content explicitly states the flag type as 'Filename'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate the victim host for unauthorized or suspicious services",
+      "status": "pass",
+      "evidence": "Content does not reveal the exact flag 'nyadrop.timer'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Content does not reveal the exact flag 'nyadrop.timer'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Content does not reveal the exact flag '/tmp/.session/rat.sh'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate the victim host for unauthorized or suspicious services",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer and includes usable commands",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer and includes usable commands",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Solution explains how to obtain the answer and includes usable commands",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate the victim host for unauthorized or suspicious services",
+      "status": "pass",
+      "evidence": "Solution flag 'nyadrop.timer' matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Solution flag 'nyadrop.timer' matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Solution flag '/tmp/.session/rat.sh' matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate the victim host for unauthorized or suspicious services",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate the victim host for unauthorized or suspicious services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate the victim host for unauthorized or suspicious services",
+      "description": "The flag 'nyadrop.timer' is not explicitly mentioned in the provisioning files or topology.yaml",
+      "fix": "Ensure the flag 'nyadrop.timer' is explicitly mentioned in the provisioning files or topology.yaml"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity",
+      "description": "The flag 'nyadrop.timer' is not explicitly mentioned in the provisioning files or topology.yaml",
+      "fix": "Ensure the flag 'nyadrop.timer' is explicitly mentioned in the provisioning files or topology.yaml"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "description": "The flag '/tmp/.session/rat.sh' is not explicitly mentioned in the provisioning files or topology.yaml",
+      "fix": "Ensure the flag '/tmp/.session/rat.sh' is explicitly mentioned in the provisioning files or topology.yaml"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate the victim host for unauthorized or suspicious services",
+      "current_flag": "nyadrop.timer",
+      "flag_type": "Service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Present in the systemd timers and services",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine if any scheduled tasks or timers are responsible for automatically executing suspicious activity",
+      "current_flag": "nyadrop.timer",
+      "flag_type": "Timer or task name",
+      "verdict": "valid",
+      "sandbox_evidence": "Present in the systemd timers and services",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate files introduced onto the system by the malicious software",
+      "current_flag": "/tmp/.session/rat.sh",
+      "flag_type": "Filename",
+      "verdict": "valid",
+      "sandbox_evidence": "Present in the provisioned files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. However, there are major issues with the flags not being explicitly mentioned in the provisioning files or topology.yaml. These issues need to be addressed before the scenario can be approved."
+}

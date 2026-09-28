@@ -1,0 +1,52 @@
+name: linux/nyadrop
+
+hosts:
+  - name: staging-server
+    base_box:
+      image: ubuntu-noble-x86_64
+      man_user: ubuntu
+    flavor: standard.small
+
+  - name: victim
+    base_box:
+      image: ubuntu-noble-x86_64
+      man_user: ubuntu
+    flavor: standard.small
+
+  - name: c2-server
+    base_box:
+      image: ubuntu-noble-x86_64
+      man_user: ubuntu
+    flavor: standard.small
+
+routers:
+  - name: router
+    base_box:
+      image: debian-12-x86_64
+      man_user: debian
+    flavor: standard.small
+
+networks:
+  - name: dropper-switch
+    cidr: 192.168.120.0/24
+    accessible_by_user: True
+
+net_mappings:
+  - host: staging-server
+    network: dropper-switch
+    ip: 192.168.120.5
+
+  - host: victim
+    network: dropper-switch
+    ip: 192.168.120.10
+
+  - host: c2-server
+    network: dropper-switch
+    ip: 192.168.120.20
+
+router_mappings:
+  - router: router
+    network: dropper-switch
+    ip: 192.168.120.1
+
+groups: []
