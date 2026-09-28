@@ -1,0 +1,145 @@
+{
+  "title": "Sofacy_Fysbis_Backdoor_Investigation_a7a",
+  "description": "Investigate and respond to a Sofacy group compromise using their Fysbis Linux backdoor.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Sofacy group using their Fysbis Linux backdoor. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised system and any connected hosts. Enter `start` to begin.",
+      "local_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised system and any connected hosts. Enter `start` to begin."
+    },
+    {
+      "title": "Investigate Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for suspicious services or processes. What is the name of the suspicious service running on the target host?",
+      "solution": "Check running services and look for anything unusual or unauthorized. The suspicious service is named `bkd.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Consider examining the system's active services to identify any anomalies.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemd timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service maintains persistence on the target host. What is the persistence mechanism used by the suspicious service?",
+      "solution": "Investigate systemd services and timers that might be responsible for starting the suspicious service. The persistence mechanism is a systemd timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Explore the system's boot and startup configurations to understand how services are initiated.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemd timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Suspicious File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "Identify the file associated with the suspicious service and analyze its behavior. What is the name of the file associated with the suspicious service?",
+      "solution": "Look for unusual files in the home directory of the user and analyze their contents and permissions. The file associated with the suspicious service is named `lab-checkin.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Search for unusual files that might be related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_files",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
