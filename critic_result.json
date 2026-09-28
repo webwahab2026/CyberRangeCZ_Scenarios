@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The answer `bkd.service` corresponds to the suspicious service created by the `c2-listener` role in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The answer requires identifying the suspicious service by checking running services, which is not trivially available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states the task is to identify a suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The hint provides a conceptual guide without revealing the exact answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The hint does not contain commands, but this is acceptable as it is a conceptual hint.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer `systemd timer` corresponds to the persistence mechanism created by the `c2-service` role in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer requires investigating systemd timers, which is not trivially available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states the task is to determine the persistence mechanism.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The hint provides a directional guide without revealing the exact answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The hint does not contain commands, but this is acceptable as it is a directional hint.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Malicious Process",
+      "status": "pass",
+      "evidence": "The answer `lab-checkin.sh` corresponds to the process created by the `c2-service` role in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Malicious Process",
+      "status": "pass",
+      "evidence": "The answer requires analyzing running processes, which is not trivially available from the provided content.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Malicious Process",
+      "status": "pass",
+      "evidence": "The content explicitly states the task is to identify the process responsible for suspicious activity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Malicious Process",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Malicious Process",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Malicious Process",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Malicious Process",
+      "status": "pass",
+      "evidence": "The hint provides a directional guide without revealing the exact answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Malicious Process",
+      "status": "pass",
+      "evidence": "The hint does not contain commands, but this is acceptable as it is a directional hint.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C9",
+      "severity": "major",
+      "component": "hint",
+      "level": "Identify Suspicious Service",
+      "description": "Hint 1 does not provide a conceptual guide; it is too vague.",
+      "fix": "Provide a more conceptual hint that guides the trainee without revealing the exact answer."
+    },
+    {
+      "condition": "C9",
+      "severity": "major",
+      "component": "hint",
+      "level": "Determine Persistence Mechanism",
+      "description": "Hint 1 does not provide a directional guide; it is too vague.",
+      "fix": "Provide a more directional hint that guides the trainee without revealing the exact answer."
+    },
+    {
+      "condition": "C9",
+      "severity": "major",
+      "component": "hint",
+      "level": "Identify Malicious Process",
+      "description": "Hint 1 does not provide a directional guide; it is too vague.",
+      "fix": "Provide a more directional hint that guides the trainee without revealing the exact answer."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "bkd.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is created by the `c2-listener` role in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "systemd timer",
+      "flag_type": "persistence mechanism",
+      "verdict": "valid",
+      "sandbox_evidence": "The persistence mechanism is created by the `c2-service` role in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Malicious Process",
+      "current_flag": "lab-checkin.sh",
+      "flag_type": "process name",
+      "verdict": "valid",
+      "sandbox_evidence": "The process is created by the `c2-service` role in the provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and aligns with the provided MISP event, security profile, topology, and Ansible configuration. The tasks guide the student through the investigation and mitigation of the Linux.Bew backdoor. However, the hints need to be more specific and directional to better guide the trainee without revealing the exact answer."
+}
