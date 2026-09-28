@@ -1,0 +1,3984 @@
+{
+  "generated_at_utc": "2026-09-28T01:40:31.541148+00:00",
+  "user_inputs": {
+    "scenario_type": "Exercise",
+    "difficulty_level": "Intermediate",
+    "cybersecurity_approach": "Defence-oriented",
+    "nice_role": "Incident Response",
+    "number_of_tasks": 3,
+    "question_response": "true",
+    "hints": "true",
+    "threat_name": "Linux/Mirai-Fbot - New actor on propagation",
+    "mitre_attack_techniques": [],
+    "environment_constraints": null,
+    "hybrid_sandbox": false,
+    "evaluate": true
+  },
+  "agent_1": {
+    "model_used": "",
+    "query_generated": "Linux/Mirai-Fbot - New actor on propagation"
+  },
+  "retrieval": {
+    "retrieved_events": {
+      "event_uuid": "5ea98601-c03c-4025-a31b-4171950d210f",
+      "event_id": "1180",
+      "event_info": "Linux/Mirai-Fbot - New actor on propagation",
+      "galaxies": [],
+      "tags": [
+        "tlp:white",
+        "circl:incident-classification=\"malware\"",
+        "malware_classification:malware-category=\"Botnet\"",
+        "Mirai"
+      ],
+      "event_attributes": [
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "109.12.132.60"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "104.10.132.5"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "103.219.208.53"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.65.168.137"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.65.157.99"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.64.227.197"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.36.228.129"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.36.216.177"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.245.248.204"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.175.68.145"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.175.170.130"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.173.162.203"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.172.81.208"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.170.83.8"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.165.147.83"
+        },
+        {
+          "category": "Internal reference",
+          "comment": "The new actor threat analysis report",
+          "type": "link",
+          "value": "https://blog.malwaremustdie.org/2020/02/mmd-0065-2021-linuxmirai-fbot-re.html#newactor"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.119.119.184"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.118.224.99"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.118.221.71"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.118.113.181"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.73.225.234"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.253.6.234"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.251.217.76"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.250.132.102"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.248.151.66"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.222.186.39"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.172.3.180"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "110.86.180.57"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "110.18.202.37"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "110.17.133.230"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "109.75.203.65"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "109.120.31.14"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.24.62.219"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.223.140.209"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.221.1.58"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.91.248.36"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.255.251.146"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.255.229.90"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.255.161.54"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.254.226.228"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.254.225.175"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.116.128.48"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.80.247.175"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.250.212.137"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.184.237.244"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.119.84.173"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.119.62.204"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.119.244.49"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.48.106.124"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.210.69.40"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.113.99.172"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "115.55.22.29"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "115.50.65.9"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.44.63.209"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.44.123.94"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.40.236.123"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.40.174.82"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.40.146.85"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.39.23.192"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.38.5.189"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.38.27.166"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.36.23.99"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.32.164.94"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.26.84.241"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.237.90.227"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.236.92.141"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.236.249.151"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.236.248.227"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.102.177.229"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.34.213.140"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.32.217.60"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.166.65.133"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.141.128.241"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "117.85.138.66"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "117.190.236.52"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.77.73.247"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.49.180.239"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.49.129.160"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.48.60.194"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.48.56.94"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "125.40.185.55"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "125.224.63.188"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "124.89.175.190"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "123.5.177.204"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "123.201.22.13"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "123.10.131.47"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "122.142.177.109"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "122.121.19.138"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "122.100.154.51"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "121.61.65.135"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "121.254.110.175"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "121.179.78.218"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "121.155.91.149"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "121.150.181.111"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "120.224.50.166"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.99.247.211"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.217.190"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.194.84"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.194.20"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.145.67"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.35.52.223"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.229.100.142"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "170.244.191.233"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "168.70.92.39"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "158.174.167.34"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "158.174.137.99"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "157.52.51.136"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "157.122.114.107"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "153.232.92.227"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "149.34.7.154"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "146.247.159.122"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "14.47.28.139"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "180.94.171.237"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "180.94.170.211"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "180.94.158.248"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "180.137.147.238"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "179.219.205.66"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "178.45.202.216"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "178.165.73.143"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "178.141.196.118"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "178.137.7.195"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "177.10.150.182"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "177.10.149.152"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "176.74.211.31"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "176.192.161.242"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "174.21.151.43"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.223.194"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.217.83"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "196.3.193.45"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "194.14.48.241"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "191.241.165.56"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "191.240.202.60"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "188.243.243.117"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "188.191.14.70"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "188.151.72.137"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "188.148.191.22"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "187.102.57.47"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "186.195.154.62"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "184.81.88.16"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "183.145.209.27"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "182.237.180.129"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "182.19.133.192"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "182.110.82.196"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "181.222.55.113"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.191.170.40"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.173.234.8"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.164.53.85"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.164.51.152"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.103.209.119"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.102.109.142"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.102.100.90"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "212.154.92.246"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "211.193.46.173"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "210.90.158.230"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "207.244.165.159"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "205.238.27.27"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "203.218.245.67"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "203.218.158.75"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "202.30.9.183"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "2.249.176.128"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.77.70.18"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.77.36.216"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.77.160.89"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.73.99.125"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.73.87.64"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.73.82.17"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.73.75.229"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.73.5.137"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.240.104.244"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.32.44.74"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.31.116.216"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.27.247.69"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.250.32.122"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.250.30.122"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.250.135.155"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.250.10.155"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.124.51.149"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.124.27.140"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.124.26.110"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.124.23.158"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.124.215.131"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.124.2.83"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.124.121.82"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "220.95.241.19"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "220.246.181.190"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "220.141.65.43"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "220.129.54.249"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.79.167.131"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.79.129.162"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.78.145.177"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.78.1.53"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.77.87.48"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.18.159.36"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.18.111.20"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.18.104.74"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.17.80.136"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.17.159.3"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.17.116.106"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.17.114.61"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.16.228.74"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.16.158.24"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.16.101.133"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "222.236.153.117"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "222.141.44.104"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "222.139.224.207"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.235.143.149"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.225.191.101"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.225.124.158"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.226.48.72"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.226.189.116"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.225.108.185"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "31.210.230.51"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "31.208.63.69"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "31.132.221.155"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.96.233.64"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.73.218.238"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.29.8.104"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.201.7.91"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.188.197.236"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.16.141.127"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.109.186.79"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "24.48.220.3"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "24.137.101.211"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.18.228.26"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.234.238.132"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.200.154.36"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.2.3.81"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.2.159.35"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.2.124.197"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.2.123.7"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.119.158.31"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.102.166.171"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "39.89.146.43"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "39.77.118.106"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.234.201.241"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.230.84.219"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.230.107.134"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.229.83.146"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.228.64.148"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.228.109.119"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.246.108.12"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.174.90.13"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.169.210.252"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "59.115.140.243"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "58.176.235.227"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "58.16.10.59"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "58.153.207.146"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "5.227.139.80"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "5.227.138.243"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "46.72.148.129"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "46.59.17.98"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "46.233.228.31"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "46.118.105.79"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.98.51.170"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.98.140.196"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.235.62.203"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "77.70.80.234"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "77.106.106.191"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "74.82.238.2"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "73.185.241.75"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "72.51.106.39"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "71.215.108.225"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "69.194.22.71"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "68.187.55.167"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "68.183.87.54"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.244.121.21"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.227.232.105"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.224.78.124"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.224.129.142"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.223.234.31"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.246.221.236"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.246.212.185"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "85.225.27.72"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "85.225.26.223"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "84.237.164.60"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "84.237.164.20"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "84.210.146.41"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "83.226.241.253"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "83.226.184.184"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "83.226.108.68"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "82.193.115.159"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "81.230.173.135"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "81.225.53.179"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "81.224.99.28"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "79.138.51.128"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "78.84.67.181"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "78.84.115.162"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "78.108.21.246"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.162.123.63"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.161.125.53"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.119.147.226"
+        },
+        {
+          "category": "Network activity",
+          "comment": "The FBOT C2",
+          "type": "ip-src",
+          "value": "5.206.227.18"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "94.255.187.210"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "94.244.103.90"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "94.242.186.245"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "93.103.140.118"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "91.233.40.215"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "91.205.154.102"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "91.200.183.38"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "91.153.26.132"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "91.126.237.212"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "90.224.44.84"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "87.116.78.218"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "85.229.171.73"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.24.149.133"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.220.207.110"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.175.67.241"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.175.173.54"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.175.170.70"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.174.95.160"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.174.5.145"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.173.171.169"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.172.240.62"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.172.232.5"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.172.232.24"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.171.182.120"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.169.89.210"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.169.71.145"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.168.207.142"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.162.144.35"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.170.124.118"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "110.18.203.66"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "109.225.118.170"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "109.160.30.253"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "108.58.84.76"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "106.37.196.11"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "106.117.227.67"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "106.116.118.111"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "104.162.26.90"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "103.90.189.162"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "103.240.66.158"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "103.226.186.130"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "100.35.19.5"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.55.187.93"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.36.235.225"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "1.36.196.235"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.253.29.134"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.253.182.18"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.252.9.187"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.252.75.95"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.251.120.18"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.250.224.119"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.250.21.7"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.248.196.251"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.241.138.59"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.241.118.155"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.225.54.70"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.225.53.214"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.183.193.97"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.170.84.199"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.170.125.86"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.170.124.155"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.116.88.41"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.116.132.40"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.110.184.200"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.104.219.93"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.66.77.99"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.238.227.95"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.213.95.6"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.197.205.242"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.197.108.193"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.194.133.13"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.119.236.165"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.119.186.231"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.119.116.130"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "112.118.211.17"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.254.36.53"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "111.253.63.165"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.157.128.26"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.91.251.43"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.91.248.113"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.88.26.56"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.88.26.101"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.88.25.39"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.85.41.38"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.85.41.225"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.255.235.192"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.255.229.146"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.254.236.115"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.252.33.159"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.252.19.131"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.186.94.118"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.14.133.38"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "113.116.90.212"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.40.96.64"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.40.253.253"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.40.241.137"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.40.182.112"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.40.17.115"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.39.182.69"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.39.177.10"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.39.160.71"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.38.43.95"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.38.106.97"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.27.118.174"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.26.76.5"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.26.196.199"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.26.146.66"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.24.110.68"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.233.196.10"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.168.76.194"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.168.165.162"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.166.153.160"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.165.158.123"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.161.135.37"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.86.191.100"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.77.73.253"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.49.115.134"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "116.10.132.14"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "115.63.63.17"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "115.59.117.73"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.45.78.11"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.45.72.27"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.43.171.24"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.41.89.137"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "114.41.28.117"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "122.6.216.31"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "122.142.177.186"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "122.121.156.151"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "122.100.194.19"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "121.61.87.17"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "121.61.67.54"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "121.162.225.226"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "121.132.132.3"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "120.43.35.141"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.99.254.61"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.97.43.230"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.237.193.57"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.196.219.149"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "119.136.88.217"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.169.42.170"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "118.169.39.99"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "156.200.102.25"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "150.116.233.246"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "149.34.4.162"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "14.199.238.164"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "137.186.107.194"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "136.143.45.226"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "130.204.185.78"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "125.44.229.197"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "125.41.83.58"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "124.89.174.111"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "123.8.167.146"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "123.244.90.49"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "123.183.3.205"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "123.175.118.150"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "123.175.118.133"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "123.152.50.45"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.149.114"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.149.113"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.148.82"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.147.97"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.145.81"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.145.161"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.242.156.147"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.217.71.4"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.214.223.146"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.113.74.181"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.112.44.96"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "170.244.190.45"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "168.70.107.96"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "162.229.179.69"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "161.81.38.145"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "159.224.112.227"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.219.115"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.216.155"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.195.86"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.195.53"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.195.210"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.195.21"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.195.134"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.194.86"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.194.250"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.193.97"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.193.153"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.193.14"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.192.252"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.192.198"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.192.191"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.192.125"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "188.194.184.98"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "185.71.117.107"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "185.165.125.123"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "183.15.91.96"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "183.15.91.211"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "183.15.90.141"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "183.108.165.57"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "183.101.174.80"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "182.189.253.29"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "182.189.206.164"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "182.119.3.224"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "182.113.208.142"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "178.136.100.214"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "176.113.35.7"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "176.103.200.12"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "171.38.222.179"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.164.63.122"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.164.53.88"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.164.19.143"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.164.120.118"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.103.172.80"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.102.197.10"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "212.71.13.34"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "211.67.66.214"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "210.209.255.2"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "210.179.39.240"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "2.36.67.225"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "191.240.202.216"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "190.215.159.118"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "188.68.10.181"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "188.243.37.3"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "188.223.140.52"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.124.75.99"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.124.207.47"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "220.185.222.215"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "220.185.198.4"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "220.143.13.199"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "220.143.0.202"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "220.137.4.67"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "220.137.0.205"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.91.133.237"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.79.76.176"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "219.78.254.188"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.73.52.150"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.250.250.77"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.250.122.235"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.191.239.218"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "218.166.46.43"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.211.45.41"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.188.45.207"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.188.40.196"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.109.230.91"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.109.209.96"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "24.225.157.133"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.27.111.76"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.19.46.48"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.18.222.177"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.18.149.226"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.18.146.9"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.17.65.130"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.16.244.43"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "223.16.208.49"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "222.139.222.254"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "221.157.208.119"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.233.109.186"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.233.107.47"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.232.168.113"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.231.216.40"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.230.86.123"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.229.164.12"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.228.80.40"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.228.213.250"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.226.44.88"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "31.28.199.145"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "31.208.243.189"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "31.163.140.22"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.76.204.186"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.70.16.212"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.4.23.135"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "27.24.36.88"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.2.130.92"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.113.113.250"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "37.203.19.92"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "37.157.115.119"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "37.112.41.235"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.35.76.158"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.239.78.43"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.239.72.171"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.239.48.155"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.239.119.139"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.237.193.129"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.236.89.79"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.236.123.165"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.235.115.128"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.234.71.198"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "36.234.250.249"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "58.152.248.231"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "58.152.235.21"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "50.195.129.121"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "49.159.7.17"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "45.125.44.59"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.98.214.64"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.98.108.154"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.3.114.197"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.233.136.162"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.231.64.28"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.225.42.29"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.225.233.115"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.2.254.236"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.2.233.137"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.2.221.66"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "42.2.182.39"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.246.66.149"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.246.237.19"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.246.236.210"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.246.220.103"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.246.211.114"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.246.199.101"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.246.184.131"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.176.247.145"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "60.176.246.141"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "59.30.123.182"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "59.173.194.165"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "58.58.7.106"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "58.247.38.54"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "58.245.89.205"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "58.224.13.206"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "58.153.26.30"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "83.15.64.117"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "81.227.25.219"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "81.225.152.131"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "80.203.72.9"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "77.172.202.113"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "77.109.50.43"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "71.215.203.200"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "67.167.111.14"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "65.99.166.28"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.93.157.82"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.53.40.90"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.53.200.245"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.230.96.73"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.227.118.178"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.224.131.205"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "61.223.116.86"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "91.126.189.210"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "90.85.7.149"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "89.35.140.5"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "89.254.231.159"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "88.252.205.250"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "87.97.233.206"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "87.253.87.3"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "87.120.210.122"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "86.206.210.193"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "85.24.210.122"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "85.224.196.195"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "83.68.225.108"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "83.255.14.179"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "83.252.167.16"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "83.234.54.120"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "83.17.170.105"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "98.128.130.63"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "95.51.0.173"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "95.47.148.8"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "95.43.39.17"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "95.183.119.46"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "94.74.109.9"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "94.34.36.86"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "94.253.57.147"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "94.245.21.142"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "94.242.190.161"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "93.77.35.159"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "93.171.172.98"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "91.214.232.52"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "91.212.173.37"
+        },
+        {
+          "category": "Network activity",
+          "comment": "New actor's Mirai FBOT botnet infected IoT nodes (IPv4 addresses)",
+          "type": "ip-dst",
+          "value": "91.126.47.110"
+        }
+      ],
+      "objects": [],
+      "reports": []
+    }
+  },
+  "agent_2": {
+    "model_used": "mistral-small3.2:latest",
+    "retrieved_nice_information": "nice_info",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent2 file)'"
+    }
+  },
+  "agent_3": {
+    "model_used": "mistral-small3.2:latest",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent3 file)'"
+    }
+  }
+}
