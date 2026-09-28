@@ -1,0 +1,181 @@
+{
+  "title": "CoinMiner_Investigation_Scenario_b79",
+  "description": "Investigate unauthorized cryptocurrency mining activity on Linux servers.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The IT department has received reports of unusually high CPU usage on several Linux servers in the network. Initial checks suggest this might be caused by unauthorized cryptocurrency mining activity. Your task is to investigate these systems, identify the source of the problem, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the following systems with the username `cyrano` and password `cyrano`:\n- `miner-host` (192.168.50.5)\n- `second-host` (192.168.50.6)\n\nTo begin the investigation, enter the passkey: `start`.",
+      "local_content": "Local sandbox access is not required for this scenario. You have SSH access to the following systems with the username `cyrano` and password `cyrano`:\n- `miner-host` (192.168.50.5)\n- `second-host` (192.168.50.6)\n\nTo begin the investigation, enter the passkey: `start`."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sh.service",
+      "answer_variable_name": null,
+      "content": "Investigate the `miner-host` system and identify any unauthorized or suspicious services running. The suspicious service is explicitly provisioned and discoverable via systemctl commands.",
+      "solution": "Check the status of all system services and look for any that appear unusual or out of place. The suspicious service is `sh.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Review the list of active services and look for any that seem out of place or unauthorized.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use systemctl to list all active services.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command `systemctl list-units --type=service` to list all active services.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sh.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Process",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sh",
+      "answer_variable_name": null,
+      "content": "On the `miner-host` system, identify the process responsible for the abnormal CPU or resource utilization. The process is explicitly provisioned and discoverable via ps aux commands.",
+      "solution": "Use process monitoring tools to examine running processes and their resource consumption. The process responsible is `sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the running processes and their resource usage to identify any unusual activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use process monitoring tools to list all running processes.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command `ps aux` to list all running processes.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "process_check",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "Determine which network port is used for suspicious outbound communication from the `miner-host` system. The port is explicitly provisioned and discoverable via netstat -tuln commands.",
+      "solution": "Investigate active network connections and look for unusual or unexpected outbound traffic. The port used is `80`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the active network connections to identify any unusual outbound traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use network monitoring tools to list all active connections.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command `netstat -tuln` to list all active network connections.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "network_check",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "80",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

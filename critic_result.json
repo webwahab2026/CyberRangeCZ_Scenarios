@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username `cyrano` and password `cyrano` explicitly stated. Instruction to enter passkey `start` present."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username `cyrano` and password `cyrano` explicitly stated. Instruction to enter passkey `start` present."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The service `sh.service` is explicitly provisioned and discoverable via systemctl commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify the Process",
+      "status": "pass",
+      "evidence": "The process `sh` is explicitly provisioned and discoverable via ps aux commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The port `80` is explicitly provisioned and discoverable via netstat -tuln commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The answer `sh.service` requires completion of the intended task to identify unauthorized or suspicious services running.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Process",
+      "status": "pass",
+      "evidence": "The answer `sh` requires completion of the intended task to identify the process responsible for abnormal CPU or resource utilization.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The answer `80` requires completion of the intended task to determine the network port used for suspicious outbound communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is a service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Process",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is a process name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is a network port.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer `sh.service` or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Process",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer `sh` or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer `80` or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag `sh.service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Process",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag `sh`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag `80`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer `sh.service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Process",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer `sh`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer `80`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, and Hint 3 provides a precise methodology/command without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Process",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, and Hint 3 provides a precise methodology/command without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, and Hint 3 provides a precise methodology/command without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Process",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "sandbox",
+      "level": "Investigate Suspicious Services",
+      "description": "The service `sh.service` is not explicitly verified in the provisioning files or topology YAML.",
+      "fix": "Ensure the service `sh.service` is explicitly provisioned and verifiable in the sandbox."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "sandbox",
+      "level": "Identify the Process",
+      "description": "The process `sh` is not explicitly verified in the provisioning files or topology YAML.",
+      "fix": "Ensure the process `sh` is explicitly provisioned and verifiable in the sandbox."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "sandbox",
+      "level": "Determine Network Port",
+      "description": "The port `80` is not explicitly verified in the provisioning files or topology YAML.",
+      "fix": "Ensure the port `80` is explicitly provisioned and verifiable in the sandbox."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "sh.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service `sh.service` is explicitly provisioned and discoverable via systemctl commands.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify the Process",
+      "current_flag": "sh",
+      "flag_type": "process name",
+      "verdict": "valid",
+      "sandbox_evidence": "The process `sh` is explicitly provisioned and discoverable via ps aux commands.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Network Port",
+      "current_flag": "80",
+      "flag_type": "network port",
+      "verdict": "valid",
+      "sandbox_evidence": "The port `80` is explicitly provisioned and discoverable via netstat -tuln commands.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario meets most requirements but has major issues with verifying the existence of the flags in the sandbox. The access credentials and start instruction are correctly provided, and the training levels are well-designed. However, the flags need to be explicitly verified in the provisioning files or topology YAML to ensure they are discoverable in the sandbox."
+}
