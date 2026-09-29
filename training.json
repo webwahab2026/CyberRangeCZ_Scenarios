@@ -1,0 +1,145 @@
+{
+  "title": "Sofacy_Fysbis_Backdoor_Investigation_ced",
+  "description": "Investigate and respond to a Sofacy Fysbis Linux backdoor compromise in the target network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify suspicious services and processes",
+    "Determine persistence mechanisms",
+    "Locate associated files or executables"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Sofacy group using their Fysbis Linux backdoor. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised system and any connected hosts. Enter `start` to begin.",
+      "local_content": "You have SSH access to the target host with the username `cyrano` and password `cyrano`. From there, you can investigate the compromised system and any connected hosts. Enter `start` to begin."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for suspicious services or processes. What is the name of the suspicious service running on the target host?",
+      "solution": "Check running services and look for anything unusual or unauthorized. The suspicious service is named `bkd.service`. Verify the existence of `bkd.service` in the provisioning files or topology.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Check running services for unusual or unauthorized entries",
+          "content": "Check running services and look for anything unusual or unauthorized.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service maintains persistence on the target host. What is the name of the persistence mechanism used by the suspicious service?",
+      "solution": "Investigate systemd services and timers that might be responsible for starting the suspicious service. The persistence mechanism is a systemd timer named `lab-checkin.timer`. Verify the existence of `lab-checkin.timer` in the provisioning files or topology.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Investigate systemd timers for persistence mechanisms",
+          "content": "Investigate systemd services and timers that might be responsible for starting the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Associated File or Executable",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "Identify the file or executable associated with the suspicious service. What is the path to the file or executable associated with the suspicious service?",
+      "solution": "Look for unusual files in the system directories or user home directories that might be related to the suspicious service. The path to the file or executable is `/usr/local/bin/lab-checkin.sh`. Verify the existence of `/usr/local/bin/lab-checkin.sh` in the provisioning files or topology.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Search system directories for unusual files",
+          "content": "Look for unusual files in the system directories or user home directories that might be related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_files",
+          "prereq_state": [],
+          "cmd": "find / -name 'lab-checkin.sh' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/usr/local/bin/lab-checkin.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
