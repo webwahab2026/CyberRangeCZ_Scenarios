@@ -1,0 +1,246 @@
+{
+  "coherence_score": 6,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: investigator, Password: SecurePass123, Enter 'start' to begin."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: investigator, Password: SecurePass123, Enter 'start' to begin."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bkd.service' corresponds to the suspicious service in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bkd.service' corresponds to the persistence mechanism in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag '80' corresponds to the C2 port in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires investigation of running services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The flag requires investigation of persistence mechanisms.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag requires investigation of network traffic.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit (service name).",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit (service name).",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit (port number).",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The username and password in the scenario design do not match those in the training JSON.",
+      "fix": "Update the username and password in the scenario design to match those in the training JSON."
+    },
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The passkey 'start' is not explicitly mentioned in the scenario design.",
+      "fix": "Add the passkey 'start' explicitly in the scenario design."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "bkd.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to the suspicious service in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "bkd.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to the persistence mechanism in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to the C2 port in the provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and aligns with the sandbox environment. However, there are discrepancies between the scenario design and the training JSON regarding the username and password, and the passkey 'start' is not explicitly mentioned in the scenario design. These issues need to be addressed."
+}
