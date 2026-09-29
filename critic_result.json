@@ -1,0 +1,252 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": false,
+      "password_present": false,
+      "start_instruction_present": true,
+      "evidence": "Contains instruction to enter `start` but lacks explicit username and password."
+    },
+    "c1_status": "fail",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C1",
+      "level": "ACCESS_LEVEL",
+      "status": "fail",
+      "evidence": "local_content lacks explicit username and password.",
+      "required_fix": "Add explicit username and password to local_content."
+    },
+    {
+      "condition": "C2",
+      "level": "ACCESS_LEVEL",
+      "status": "pass",
+      "evidence": "Both cloud_content and local_content explicitly instruct to enter `start`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Answer `payload-transfer.service` corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted (service name).",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command matching the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Answer `payload-transfer.timer` corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted (persistence identifier).",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command matching the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Answer `/usr/local/bin/payload-transfer.sh` corresponds to a real sandbox artifact verified from provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted (script path).",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Hint hierarchy follows the required structure.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command matching the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "local_content lacks explicit username and password.",
+      "fix": "Add explicit username and password to local_content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "payload-transfer.timer",
+      "flag_type": "persistence identifier",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Lateral Movement Investigation",
+      "current_flag": "/usr/local/bin/payload-transfer.sh",
+      "flag_type": "script path",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified from provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with valid flags and proper hint hierarchy. However, it fails C1 due to missing explicit username and password in local_content. This issue needs to be addressed before approval."
+}
