@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The answer 'bot-beacon.service' corresponds to a real sandbox artifact verified from provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Flood Service",
+      "status": "pass",
+      "evidence": "The answer 'bot-flood.service' corresponds to a real sandbox artifact verified from provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer 'system-update-checker.timer' corresponds to a real sandbox artifact verified from provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Flood Service",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer requires completion of the intended task",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'service name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Flood Service",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'service name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'timer name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Flood Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Flood Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Flood Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Flood Service",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Flood Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Suspicious Service",
+      "description": "The answer 'bot-beacon.service' is not explicitly verified in the topology_yaml",
+      "fix": "Ensure the answer is explicitly verified in the topology_yaml"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Flood Service",
+      "description": "The answer 'bot-flood.service' is not explicitly verified in the topology_yaml",
+      "fix": "Ensure the answer is explicitly verified in the topology_yaml"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine Persistence Mechanism",
+      "description": "The answer 'system-update-checker.timer' is not explicitly verified in the topology_yaml",
+      "fix": "Ensure the answer is explicitly verified in the topology_yaml"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "bot-beacon.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified in provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Flood Service",
+      "current_flag": "bot-flood.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified in provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "system-update-checker.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "Verified in provisioning files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the topology and provisioning files. The scenario requires explicit verification of the answers in the topology_yaml to fully comply with the C3 condition."
+}
