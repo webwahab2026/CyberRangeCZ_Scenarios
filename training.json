@@ -1,0 +1,145 @@
+{
+  "title": "Sofacy_Fysbis_Backdoor_Investigation_9fe",
+  "description": "Investigate and respond to a potential compromise involving the Sofacy group's Fysbis Linux backdoor.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate suspicious network activity",
+    "Analyze persistence mechanisms",
+    "Identify lateral movement"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity potentially related to the Sofacy group's Fysbis Linux backdoor. Your task is to investigate and respond to this potential compromise."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host (192.168.50.5) with the username 'cyrano' and password 'cyrano'. From this host, you can access the next-target host (192.168.50.6) using SSH. Enter 'start' to progress to the training levels.",
+      "local_content": "You have SSH access to the target host (192.168.50.5) with the username 'cyrano' and password 'cyrano'. From this host, you can access the next-target host (192.168.50.6) using SSH. Enter 'start' to progress to the training levels."
+    },
+    {
+      "title": "Investigate Suspicious Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "While monitoring network traffic, you noticed unusual outbound connections from the target host to port 80. Investigate this activity and determine if it's related to the Sofacy Fysbis backdoor. The hidden flag is the name of the systemd timer responsible for the outbound connections.",
+      "solution": "Check running services and systemd timers that might be responsible for this network activity. The hidden flag is lab-checkin.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Check systemd timers for suspicious activity",
+          "content": "Check running services and systemd timers that might be responsible for this network activity.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_network_activity",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.service",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it maintains persistence on the system. Investigate the persistence mechanism and document your findings. The hidden flag is the name of the systemd service responsible for the persistence.",
+      "solution": "Look for systemd service files and timers that might be responsible for starting the suspicious service. The hidden flag is lab-checkin.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Examine systemd service files for persistence",
+          "content": "Look for systemd service files and timers that might be responsible for starting the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "analyze_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Examine the target host for evidence of lateral movement to other systems in the network. Identify any file transfers or remote execution attempts that might indicate the attacker is moving laterally. The hidden flag is the name of the service that indicates lateral movement.",
+      "solution": "Check for rsync processes, SSH connections, and file transfer logs that might indicate lateral movement. The hidden flag is payload-transfer.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Search for rsync processes and file transfers",
+          "content": "Check for rsync processes, SSH connections, and file transfer logs that might indicate lateral movement.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_lateral_movement",
+          "prereq_state": [],
+          "cmd": "ps aux | grep rsync",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux | grep rsync",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

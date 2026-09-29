@@ -1,0 +1,256 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Flag 'lab-checkin.timer' exists in provisioning files and is discoverable via systemctl list-timers",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Flag 'lab-checkin.service' exists in provisioning files and is discoverable via systemctl list-unit-files --type=service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Flag 'payload-transfer.service' exists in provisioning files and is discoverable via ps aux | grep rsync",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Flag requires investigation of systemd timers and services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Flag requires investigation of systemd service files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Flag requires investigation of rsync processes and file transfers",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Content explicitly states the flag is the name of the systemd timer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Content explicitly states the flag is the name of the systemd service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Content explicitly states the flag is the name of the service indicating lateral movement",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Content does not reveal the exact flag 'lab-checkin.timer'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Content does not reveal the exact flag 'lab-checkin.service'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Content does not reveal the exact flag 'payload-transfer.service'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Solution explains methodology, includes commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Solution explains methodology, includes commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Solution explains methodology, includes commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Solution flag 'lab-checkin.timer' matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Solution flag 'lab-checkin.service' matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Solution flag 'payload-transfer.service' matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, Hint 3 is near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, Hint 3 is near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, Hint 3 is near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Network Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command using provisioned tools",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Suspicious Network Activity",
+      "description": "The flag 'lab-checkin.timer' is not explicitly mentioned in the content as the type of value to be submitted",
+      "fix": "Explicitly state in the content that the flag is the name of the systemd timer"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Analyze Persistence Mechanism",
+      "description": "The flag 'lab-checkin.service' is not explicitly mentioned in the content as the type of value to be submitted",
+      "fix": "Explicitly state in the content that the flag is the name of the systemd service"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Lateral Movement",
+      "description": "The flag 'payload-transfer.service' is not explicitly mentioned in the content as the type of value to be submitted",
+      "fix": "Explicitly state in the content that the flag is the name of the service indicating lateral movement"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Network Activity",
+      "current_flag": "lab-checkin.timer",
+      "flag_type": "systemd timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in c2-service role",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze Persistence Mechanism",
+      "current_flag": "lab-checkin.service",
+      "flag_type": "systemd service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in c2-service role",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Lateral Movement",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in lateral-movement role",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "Hosts, IPs, users, passwords, paths, files, tools, services, and flags are aligned with provisioning files and topology YAML"
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and aligned with the provided MISP event, security profile, and sandbox environment. However, the content for each training level needs to explicitly state the type of value to be submitted as the flag. This is a major issue that needs to be addressed before the scenario can be approved."
+}
