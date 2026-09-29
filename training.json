@@ -1,0 +1,181 @@
+{
+  "title": "Sofacy_Fysbis_Backdoor_Investigation_f0f",
+  "description": "Investigate and respond to a Sofacy group compromise using the Fysbis backdoor on a Linux system.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Sofacy group using the Fysbis backdoor. Your task is to investigate and respond to this incident. The Fysbis backdoor is a modular Linux trojan/backdoor that implements plug-in and controller modules as distinct classes. It includes both 32-bit and 64-bit versions of Executable and Linking Format (ELF) binaries. Fysbis can install itself to a victim system with or without root privileges."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can SSH into the `next-target` host using the same credentials. Enter `start` to proceed.",
+      "local_content": "You have access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can SSH into the `next-target` host using the same credentials. Enter `start` to proceed."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "Investigate the `target` host and identify any unauthorized or suspicious services running on the system.",
+      "solution": "Check the systemd services and look for any services that seem out of place or have unusual configurations. The hidden flag is the name of the suspicious service: systemkernelservicedefender.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any services that seem out of place or have unusual configurations.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all services.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run `systemctl status systemkernelservicedefender.service` to inspect the suspicious service.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service identified in the previous task is automatically started after a reboot.",
+      "solution": "Examine the systemd service files and timers to see how the service is configured to start automatically. The hidden flag is the name of the systemd service or persistence identifier: systemkernelservicedefender.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd service files and timers to see how the service is configured to start automatically.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-unit-files --type=service` to list all service files.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run `systemctl cat systemkernelservicedefender.service` to inspect the service file.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Suspicious Process",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "ncat",
+      "answer_variable_name": null,
+      "content": "Identify the process responsible for the suspicious activity on the `target` host.",
+      "solution": "Use process monitoring tools to identify any unusual processes and their associated network connections. The hidden flag is the name of the suspicious process: ncat.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use process monitoring tools to identify any unusual processes and their associated network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ps aux` to list all running processes.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run `netstat -tulnp | grep ncat` to check network connections related to the suspicious process.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ps aux",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
