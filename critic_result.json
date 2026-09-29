@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The flag `bkd.service` corresponds to the service defined in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag `systemd timer` matches the systemd timer defined in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious File",
+      "status": "pass",
+      "evidence": "The flag `/usr/local/bin/lab-checkin.sh` matches the script defined in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The flag requires investigating services using `systemctl list-units --type=service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag requires investigating systemd timers using `systemctl list-timers`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious File",
+      "status": "pass",
+      "evidence": "The flag requires listing files in `/usr/local/bin/` using `ls -la /usr/local/bin/`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: the name of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: the persistence mechanism.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious File",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: the path to the executable or file.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag `bkd.service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag `systemd timer`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious File",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag `/usr/local/bin/lab-checkin.sh`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology and the command `systemctl list-units --type=service` to find the flag `bkd.service`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology and the command `systemctl list-timers` to find the flag `systemd timer`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious File",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology and the command `ls -la /usr/local/bin/` to find the flag `/usr/local/bin/lab-checkin.sh`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The solution flag `bkd.service` matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution flag `systemd timer` matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious File",
+      "status": "pass",
+      "evidence": "The solution flag `/usr/local/bin/lab-checkin.sh` matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, and Hint 3 is near-spoiler but does not reveal the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, and Hint 3 is near-spoiler but does not reveal the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious File",
+      "status": "pass",
+      "evidence": "Hint 1 is conceptual, Hint 2 is directional, and Hint 3 is near-spoiler but does not reveal the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `systemctl list-units --type=service` that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `systemctl list-timers` that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious File",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command `ls -la /usr/local/bin/` that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Suspicious Services",
+      "description": "The flag `bkd.service` is not explicitly identified as a flag in the provisioning files, but this is expected and valid.",
+      "fix": "No action required."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine Persistence Mechanism",
+      "description": "The flag `systemd timer` is not explicitly identified as a flag in the provisioning files, but this is expected and valid.",
+      "fix": "No action required."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Suspicious File",
+      "description": "The flag `/usr/local/bin/lab-checkin.sh` is not explicitly identified as a flag in the provisioning files, but this is expected and valid.",
+      "fix": "No action required."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "bkd.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service `bkd.service` is defined in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "systemd timer",
+      "flag_type": "persistence mechanism",
+      "verdict": "valid",
+      "sandbox_evidence": "The systemd timer is defined in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Suspicious File",
+      "current_flag": "/usr/local/bin/lab-checkin.sh",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The file `/usr/local/bin/lab-checkin.sh` is defined in the provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The scenario requires explicit credentials and the passkey `start` to progress. All flags are valid and require completion of the intended tasks. The hints and solutions are appropriate and match the sandbox OS. The scenario is ready for approval once the minor issues are addressed."
+}
