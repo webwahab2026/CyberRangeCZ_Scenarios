@@ -1,0 +1,254 @@
+{
+  "coherence_score": 7,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The service `systemkernelservicedefender.service` is provisioned and discoverable via systemctl commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag requires investigation of systemd services and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: the service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The hint hierarchy is correctly structured with increasing specificity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The systemd timer `lab-checkin.timer` is provisioned and discoverable via systemctl commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag requires investigation of systemd timers and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: the systemd timer name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The hint hierarchy is correctly structured with increasing specificity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The service `payload-transfer.service` is provisioned and discoverable via systemctl commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The flag requires investigation of systemd services and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: the service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The hint hierarchy is correctly structured with increasing specificity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses provisioned tools.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Suspicious Service",
+      "description": "The service `systemkernelservicedefender.service` is not explicitly mentioned in the provisioning files or topology.",
+      "fix": "Ensure the service is explicitly provisioned and documented."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine Persistence Mechanism",
+      "description": "The systemd timer `lab-checkin.timer` is not explicitly mentioned in the provisioning files or topology.",
+      "fix": "Ensure the timer is explicitly provisioned and documented."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Lateral Movement",
+      "description": "The service `payload-transfer.service` is not explicitly mentioned in the provisioning files or topology.",
+      "fix": "Ensure the service is explicitly provisioned and documented."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is discoverable via systemctl commands.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "lab-checkin.timer",
+      "flag_type": "systemd timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer is discoverable via systemctl commands.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Lateral Movement",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is discoverable via systemctl commands.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-structured and aligns with the provided MISP event, security profile, topology, and Ansible configuration. However, there are major issues related to the explicit provisioning and documentation of the services and timers used as flags. These issues need to be addressed before the scenario can be approved."
+}
