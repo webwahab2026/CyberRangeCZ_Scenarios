@@ -1,0 +1,145 @@
+{
+  "title": "Sofacy_Fysbis_Backdoor_Investigation_e74",
+  "description": "Investigate a Sofacy group compromise using the Fysbis backdoor in a target network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Sofacy group using the Fysbis backdoor. Your task is to investigate the compromise, identify the indicators of compromise (IOCs), and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. Enter the passkey `start` to proceed. From there, you can investigate the compromise and move laterally to other hosts if necessary.",
+      "local_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. Enter the passkey `start` to proceed. From there, you can investigate the compromise and move laterally to other hosts if necessary."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the `target` host. Enumerate running services and distinguish legitimate from suspicious services.",
+      "solution": "Check the systemd services and look for any unusual or unauthorized services. The service name `systemkernelservicedefender.service` should be identified as suspicious. Use the command `systemctl list-units --type=service` to list all services and identify the suspicious one.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or unauthorized services.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemkernelservicedefender.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. Identify persistence mechanisms (e.g., systemd, cron, scheduled task).",
+      "solution": "Investigate the systemd service configuration and look for any unusual or unauthorized configurations. The persistence mechanism should be identified as a systemd service unit file located at `/etc/systemd/system/systemkernelservicedefender.service`. Use the command `cat /etc/systemd/system/systemkernelservicedefender.service` to view the service configuration.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd service configuration and look for any unusual or unauthorized configurations.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/systemkernelservicedefender.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/etc/systemd/system/systemkernelservicedefender.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malicious Artifact",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/lab-checkin.sh",
+      "answer_variable_name": null,
+      "content": "Locate the executable or file associated with the suspicious activity. Correlate processes with files on disk and identify malicious artifacts.",
+      "solution": "Check the service configuration and look for any unusual or unauthorized executable paths. The executable or file associated with the suspicious activity should be identified as `/usr/local/bin/lab-checkin.sh`. Use the command `ps aux | grep systemkernelservicedefender` to identify the malicious artifact.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the service configuration and look for any unusual or unauthorized executable paths.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "malicious_artifact",
+          "prereq_state": [],
+          "cmd": "ps aux | grep systemkernelservicedefender",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/usr/local/bin/lab-checkin.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
