@@ -1,0 +1,145 @@
+{
+  "title": "2026-10-08_Umbreon_Rootkit_Investigation_3b6",
+  "description": "Investigate and respond to a Linux rootkit infection on the victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a Pok\u00e9mon-themed Linux rootkit that targets both x86 and ARM systems. It is designed to hide its presence and manipulate system processes, making it difficult to detect and remove. The rootkit uses various techniques to maintain persistence and evade detection. Your task is to investigate and respond to this rootkit infection on the victim host."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host's IP address is `192.168.50.5`. You can also access the victim2 host with the same credentials and IP address `192.168.50.6`. To begin, enter the passkey `start`.",
+      "local_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host's IP address is `192.168.50.5`. You can also access the victim2 host with the same credentials and IP address `192.168.50.6`. To begin, enter the passkey `start`."
+    },
+    {
+      "title": "Identify evidence that a shared library has been injected into system processes",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host to find evidence of unauthorized shared library injection. Look for indicators that a malicious library is being loaded into system processes.",
+      "solution": "Check the loaded libraries for each process and look for any suspicious or unauthorized libraries. Use the command `ldd /path/to/binary` to check the loaded libraries for a specific process. The unauthorized shared library that has been injected into system processes is `libsysmon.so.1`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the loaded libraries for each process and look for any suspicious or unauthorized libraries.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ldd /path/to/binary",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ldd /path/to/binary",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine whether a system-wide preload configuration has been modified to execute unauthorized code",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Examine the victim host for any modifications to the system-wide preload configuration that could allow unauthorized code to be executed.",
+      "solution": "Check the contents of the `/etc/ld.so.preload` file for any suspicious entries. Use the command `cat /etc/ld.so.preload` to view the contents of the file. The content of the `/etc/ld.so.preload` file that indicates unauthorized code execution is `/lib/x86_64-linux-gnu/libsysmon.so.1`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the contents of the `/etc/ld.so.preload` file for any suspicious entries.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate files or directories concealed from normal system utilities",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf",
+      "answer_variable_name": null,
+      "content": "Search the victim host for any hidden files or directories that may have been created or modified by the rootkit.",
+      "solution": "Look for files or directories with unusual names or permissions that are not typically found on a standard Linux system. Use the command `ls -la /etc` to list all files and directories in the `/etc` directory. The name of the hidden directory that contains rootkit configuration files is `/etc/.kit_conf`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for files or directories with unusual names or permissions that are not typically found on a standard Linux system.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /etc",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /etc",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
