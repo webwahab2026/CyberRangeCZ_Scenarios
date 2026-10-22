@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The flag 'network-diagnostics.service' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The flag '/usr/local/lib/.netd/harvester.sh' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The flag '1033' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to enumerate running services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify credential harvesting scripts.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify command-and-control communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to be submitted: 'service name'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to be submitted: 'path to script'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to be submitted: 'port number'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The solution explains the methodology, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The solution explains the methodology, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The solution explains the methodology, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Unauthorized Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Analyze Credential Harvesting Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Command-and-Control Infrastructure",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Investigate Unauthorized Services",
+      "description": "The flag 'network-diagnostics.service' is not explicitly identified as a flag in the provisioning files.",
+      "fix": "Explicitly identify the flag in the provisioning files."
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Analyze Credential Harvesting Activity",
+      "description": "The flag '/usr/local/lib/.netd/harvester.sh' is not explicitly identified as a flag in the provisioning files.",
+      "fix": "Explicitly identify the flag in the provisioning files."
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Determine Command-and-Control Infrastructure",
+      "description": "The flag '1033' is not explicitly identified as a flag in the provisioning files.",
+      "fix": "Explicitly identify the flag in the provisioning files."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unauthorized Services",
+      "current_flag": "network-diagnostics.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is created in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze Credential Harvesting Activity",
+      "current_flag": "/usr/local/lib/.netd/harvester.sh",
+      "flag_type": "path to script",
+      "verdict": "valid",
+      "sandbox_evidence": "The script is created in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Command-and-Control Infrastructure",
+      "current_flag": "1033",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port is used for command-and-control communication in the provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The scenario covers the attack chain comprehensively and accurately. The narrative is strong, and the difficulty progression is correct. However, the flags are not explicitly identified as such in the provisioning files, which is a minor issue."
+}
