@@ -1,0 +1,163 @@
+{
+  "title": "2026-10-22_Umbreon_Rootkit_Investigation_31d",
+  "description": "Investigate and respond to an incident involving the Umbreon rootkit on a compromised network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a sophisticated Linux rootkit that provides backdoor access to attackers. It targets both Intel and ARM processors and is designed to hide its presence while manipulating system processes and files. Your task is to investigate and respond to an incident involving this rootkit on a compromised network."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the victim host (IP: 192.168.50.5) using the provided credentials. Username: investigator, Password: Umbreon2023!",
+      "local_content": "Access the victim host (IP: 192.168.50.5) using the provided credentials. Username: investigator, Password: Umbreon2023!"
+    },
+    {
+      "title": "Identify Evidence of Shared Library Injection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for signs of unauthorized shared library injection. Look for unusual libraries loaded into system processes that could indicate rootkit activity.",
+      "solution": "Check the loaded libraries for system processes and look for any suspicious or unfamiliar entries. The hidden flag is the identifier of the shared library used for injection.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the loaded libraries for system processes and look for any suspicious or unfamiliar entries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `ldd` or `lsof` to inspect loaded libraries.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ldd /bin/ls",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ldd /bin/ls",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Modifications to System-Wide Preload Configuration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "Examine the victim host for any modifications to the system-wide preload configuration. This could indicate an attempt to load unauthorized code during system startup.",
+      "solution": "Inspect the preload configuration file and look for any unusual or unexpected entries. The hidden flag is the identifier of the preload configuration.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Inspect the preload configuration file and look for any unusual or unexpected entries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the contents of `/etc/ld.so.preload`.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /etc/ld.so.preload",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/ld.so.preload",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Hidden Files or Directories",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf",
+      "answer_variable_name": null,
+      "content": "Search the victim host for any hidden files or directories that may have been concealed by the rootkit. These could contain valuable information about the rootkit's activities.",
+      "solution": "Use alternative forensic techniques to uncover hidden artifacts that standard utilities might miss. The hidden flag is the identifier of the hidden artifact.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use alternative forensic techniques to uncover hidden artifacts that standard utilities might miss.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `ls -la` or `find` to search for hidden files.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
