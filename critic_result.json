@@ -1,0 +1,256 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon.service' corresponds to a real sandbox artifact in provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Abnormal Network Traffic Service",
+      "status": "pass",
+      "evidence": "The flag 'bot-flood.service' corresponds to a real sandbox artifact in provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon.timer' corresponds to a real sandbox artifact in provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the suspicious service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Abnormal Network Traffic Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the service generating abnormal network traffic",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to determine the persistence mechanism",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is the name of the suspicious service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Abnormal Network Traffic Service",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is the name of the service generating abnormal network traffic",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is the name of the persistence mechanism",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Abnormal Network Traffic Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Abnormal Network Traffic Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Abnormal Network Traffic Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented with conceptual, directional, and near-spoiler hints",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Abnormal Network Traffic Service",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented with conceptual, directional, and near-spoiler hints",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented with conceptual, directional, and near-spoiler hints",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Abnormal Network Traffic Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Identify Suspicious Service",
+      "description": "The solution is penalized, which might discourage trainees from using it",
+      "fix": "Consider making the solution non-penalized or provide a clear explanation why it is penalized"
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Identify Abnormal Network Traffic Service",
+      "description": "The solution is penalized, which might discourage trainees from using it",
+      "fix": "Consider making the solution non-penalized or provide a clear explanation why it is penalized"
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Determine Persistence Mechanism",
+      "description": "The solution is penalized, which might discourage trainees from using it",
+      "fix": "Consider making the solution non-penalized or provide a clear explanation why it is penalized"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "bot-beacon.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned in the sandbox",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Abnormal Network Traffic Service",
+      "current_flag": "bot-flood.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned in the sandbox",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "bot-beacon.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer is provisioned in the sandbox",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The sandbox is well-aligned with the scenario design and training JSON"
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and meets most of the required conditions. However, the solutions for the training levels are penalized, which might discourage trainees from using them. Consider making the solutions non-penalized or provide a clear explanation why they are penalized."
+}
