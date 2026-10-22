@@ -1,0 +1,205 @@
+{
+  "title": "2026-10-22_Sandworm_Exaramel_Incident_Response_Scenario_3d2",
+  "description": "Investigate and respond to a security incident involving the Exaramel backdoor on a target system.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity and potential unauthorized access. Your task is to investigate and respond to this security incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system's IP address is `192.168.50.5`. Enter `start` to begin the scenario.",
+      "local_content": "Local sandbox access is not required for this scenario. You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system's IP address is `192.168.50.5`. Enter `start` to begin the scenario."
+    },
+    {
+      "title": "Investigate Unusual Network Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "Exaramel.service",
+      "answer_variable_name": null,
+      "content": "The target system has shown suspicious outbound network connections. Your task is to identify and investigate any unauthorized or suspicious services running on the system.",
+      "solution": "Check the running services and network connections on the target system using commands like `systemctl list-units --type=service` and `ss -tulnp`. The hidden flag is the name of the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the running services and network connections on the target system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-units --type=service` to list all services and `ss -tulnp` to list network connections.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Try running `systemctl list-units --type=service` to list all services and examine their statuses.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/Exaramel.service",
+      "answer_variable_name": null,
+      "content": "Now that you have identified the suspicious service, you need to find out how it maintains persistence on the system. Investigate the persistence mechanisms used by the service.",
+      "solution": "Look for systemd services, cron jobs, or other scheduled tasks that might be responsible for starting the suspicious service using commands like `systemctl list-unit-files --state=enabled` and `crontab -l`. The hidden flag is the name of the persistence mechanism or the service unit file.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for systemd services, cron jobs, or other scheduled tasks that might be responsible for starting the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-unit-files --state=enabled` to list enabled systemd services and `crontab -l` to list cron jobs.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Try running `systemctl list-unit-files --state=enabled` to list enabled systemd services and examine their paths.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --state=enabled",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --state=enabled",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "crontab -l",
+          "cmd_type": "bash-command",
+          "cmd_regex": "crontab -l",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "Investigate any evidence of lateral movement from the target system to other systems in the network. Look for file transfers, remote execution, or other indicators of lateral movement.",
+      "solution": "Check the logs and systemd timers for any evidence of file transfers or remote execution using commands like `journalctl -xe` and `systemctl list-timers`. The hidden flag is the name of the service or script responsible for lateral movement.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the logs and systemd timers for any evidence of file transfers or remote execution.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `journalctl -xe` to view system logs and `systemctl list-timers` to list systemd timers.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Try running `journalctl -xe` to view system logs and look for any unusual entries.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "journalctl -xe",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -xe",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

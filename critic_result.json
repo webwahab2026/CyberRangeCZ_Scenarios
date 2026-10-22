@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The flag `Exaramel.service` corresponds to the suspicious service created in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag `/etc/systemd/system/Exaramel.service` corresponds to the persistence mechanism created in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The flag `payload-transfer.service` corresponds to the lateral movement service created in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The flag requires identifying the suspicious service using commands like `systemctl list-units --type=service` and `ss -tulnp`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag requires investigating persistence mechanisms using commands like `systemctl list-unit-files --state=enabled` and `crontab -l`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The flag requires investigating lateral movement using commands like `journalctl -xe` and `systemctl list-timers`.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The content explicitly states that the flag is the name of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states that the flag is the name of the persistence mechanism or the service unit file.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The content explicitly states that the flag is the name of the service or script responsible for lateral movement.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The content does not expose the exact flag or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way and includes usable commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way and includes usable commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way and includes usable commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Unusual Network Activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Lateral Movement",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Investigate Unusual Network Activity",
+      "description": "The flag `Exaramel.service` is not explicitly identified as a flag in the provisioning files.",
+      "fix": "Explicitly identify the flag in the provisioning files."
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Determine Persistence Mechanism",
+      "description": "The flag `/etc/systemd/system/Exaramel.service` is not explicitly identified as a flag in the provisioning files.",
+      "fix": "Explicitly identify the flag in the provisioning files."
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Identify Lateral Movement",
+      "description": "The flag `payload-transfer.service` is not explicitly identified as a flag in the provisioning files.",
+      "fix": "Explicitly identify the flag in the provisioning files."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unusual Network Activity",
+      "current_flag": "Exaramel.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to the suspicious service created in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "/etc/systemd/system/Exaramel.service",
+      "flag_type": "service unit file",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to the persistence mechanism created in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Lateral Movement",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to the lateral movement service created in the provisioning files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The scenario follows a logical progression and covers the intended attack chain accurately. However, the flags are not explicitly identified as such in the provisioning files, which is a minor issue."
+}
