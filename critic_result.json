@@ -1,0 +1,256 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon-xnxnxnxnxnxnxnxnx86_64xnxn.service' corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bot-flood-xnxnxnxnxnxnxnxnx86_64xnxn.service' corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon-xnxnxnxnxnxnxnxnx86_64xnxn.timer' corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to discover the service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to discover the service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to discover the timer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'timer'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way and includes usable commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way and includes usable commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way and includes usable commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with increasing specificity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with increasing specificity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with increasing specificity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Flood Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Suspicious Beacon Service Discovery",
+      "description": "The flag 'bot-beacon-xnxnxnxnxnxnxnxnx86_64xnxn.service' is not explicitly identified as a flag in the provisioning files, but this is expected and valid.",
+      "fix": "No action required."
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Suspicious Flood Service Discovery",
+      "description": "The flag 'bot-flood-xnxnxnxnxnxnxnxnx86_64xnxn.service' is not explicitly identified as a flag in the provisioning files, but this is expected and valid.",
+      "fix": "No action required."
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Persistence Discovery",
+      "description": "The flag 'bot-beacon-xnxnxnxnxnxnxnxnx86_64xnxn.timer' is not explicitly identified as a flag in the provisioning files, but this is expected and valid.",
+      "fix": "No action required."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Beacon Service Discovery",
+      "current_flag": "bot-beacon-xnxnxnxnxnxnxnxnx86_64xnxn.service",
+      "flag_type": "service",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned in the bot-beacon role.",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious Flood Service Discovery",
+      "current_flag": "bot-flood-xnxnxnxnxnxnxnxnx86_64xnxn.service",
+      "flag_type": "service",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned in the bot-flood role.",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "bot-beacon-xnxnxnxnxnxnxnxnx86_64xnxn.timer",
+      "flag_type": "timer",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer is provisioned in the bot-beacon role.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The topology and provisioning files align with the training JSON."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The scenario is coherent and meets the requirements for C1-C10. However, there are minor issues related to flag identification in the provisioning files, which are expected and valid. The scenario is ready for approval once these minor issues are addressed."
+}
