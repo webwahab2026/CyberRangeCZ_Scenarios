@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-22_XOR.DDoS_Incident_Response_a56",
+  "description": "You are an incident responder tasked with investigating and responding to an XOR.DDoS malware infection on a Linux-based host. The malware is designed to force infected hosts to participate in large DDoS attack campaigns. Your goal is to identify the malicious activity, contain the threat, and remove the malware from the infected host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating and responding to an XOR.DDoS malware infection on a Linux-based host. The malware is designed to force infected hosts to participate in large DDoS attack campaigns. Your goal is to identify the malicious activity, contain the threat, and remove the malware from the infected host."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox in the cloud, use the following credentials: username: trainee, password: trainee123. Enter 'start' to begin the training.",
+      "local_content": "To access the local sandbox, use the following credentials: username: trainee, password: trainee123. Enter 'start' to begin the training."
+    },
+    {
+      "title": "Identify and investigate an unauthorized or suspicious service running on the host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from the target host. Your task is to identify and investigate any unauthorized or suspicious services running on the host that could be responsible for this activity.",
+      "solution": "Check the list of running services and look for any that are not part of the standard system configuration. The hidden flag is the name of the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider the methods used to identify unauthorized or suspicious services on a system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Actionable Hint",
+          "content": "Use the command 'systemctl list-units --type=service' to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for services that are not part of the standard system configuration or have unusual names.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine how the suspicious service is automatically started after reboot",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "You have identified a suspicious service running on the host. Your next task is to determine how this service is automatically started after a system reboot.",
+      "solution": "Check the systemd service files and timers to see if the suspicious service is configured to start automatically. The hidden flag is the name of the systemd service or persistence identifier.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Think about the mechanisms that can be used to automatically start services after a system reboot.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Actionable Hint",
+          "content": "Use the command 'systemctl list-unit-files --type=service' to list all service unit files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for service unit files that are enabled and have unusual names or paths.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate the executable or file associated with the suspicious activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/log/local-inventory/inventory.log",
+      "answer_variable_name": null,
+      "content": "You have identified the suspicious service and its persistence mechanism. Your next task is to locate the executable or file associated with this suspicious activity.",
+      "solution": "Check the process information and look for the executable path associated with the suspicious service. The hidden flag is the filename or file path of the malicious executable.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Consider the methods used to locate executables or files associated with suspicious activity on a system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Actionable Hint",
+          "content": "Use the command 'ps aux' to list all running processes and their associated executables.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Methodology Hint",
+          "content": "Look for processes that have unusual executable paths or names.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
