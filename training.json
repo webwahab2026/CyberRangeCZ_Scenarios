@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-22_Linux.Bew_Backdoor_Investigation_e5f",
+  "description": "Investigate and contain the Linux.Bew backdoor threat on Linux servers.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate suspicious network connections",
+    "Analyze persistence mechanisms",
+    "Investigate lateral movement"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity on its Linux servers. As an incident responder, your task is to investigate and contain the threat. The malware in question is known as Linux.Bew, a backdoor designed for Bitcoin mining that establishes communication with a command and control server and performs lateral movement within the network."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target server with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano\n\nTo proceed, enter the passkey 'start'.",
+      "local_content": "Local sandbox access is not required for this scenario. To proceed, enter the passkey 'start' using the credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter the passkey 'start' to continue."
+    },
+    {
+      "title": "Investigate Suspicious Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "443",
+      "answer_variable_name": null,
+      "content": "While monitoring the target server, you've noticed unusual outbound network connections. Investigate these connections to identify any suspicious activity.",
+      "solution": "Check the network connections and listening ports on the target server. The suspicious port used for C2 communication is 443.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Network connections can reveal communication with command and control servers. Look for unusual ports and IP addresses.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the network connections and listening ports on the target server.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'ss -tulnp' to list all network connections and listening ports.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.service",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be persistent across reboots. Investigate how this service maintains persistence on the target server.",
+      "solution": "Examine the systemd services and timers on the target server. The persistence mechanism is a systemd timer and service for payload transfer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Persistence mechanisms often involve scheduled tasks or services that run at startup. Check systemd services and timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Examine the systemd services and timers on the target server.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-timers' to list all systemd timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_systemd_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "Evidence suggests that the attacker may be attempting to move laterally within the network. Investigate any file transfers or remote execution used to move between hosts.",
+      "solution": "Check the systemd services and scripts related to file transfers on the target server. The lateral movement mechanism is a systemd service and script for payload transfer to next-target.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Lateral movement often involves scripts or services that transfer files or execute commands remotely. Check systemd services and related scripts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Directional Hint",
+          "content": "Check the systemd services and scripts related to file transfers on the target server.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "Use the command 'systemctl list-units --type=service' to list all systemd services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_lateral_movement",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
