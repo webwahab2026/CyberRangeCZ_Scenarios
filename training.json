@@ -1,0 +1,145 @@
+{
+  "title": "2026-10-22_Sednit_Xagent_Investigation_3d1",
+  "description": "Investigate a compromised network where the Sednit group's Xagent malware has been detected. Identify the malware's presence, understand its behavior, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Sednit group, also known as APT29, is a sophisticated cyber espionage group believed to be operating out of Russia. They are known for targeting government agencies, diplomatic institutions, and research organizations. Their primary malware, Xagent, is a backdoor used for espionage purposes.\n\nIn this scenario, you will investigate a compromised network where the Sednit group's Xagent malware has been detected. Your goal is to identify the malware's presence, understand its behavior, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Hostname: target\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "Local sandbox access is not required for this scenario. Use the following credentials to access the target host:\n- Hostname: target\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lg3.exe.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from the target host. Investigate the host to identify any unauthorized or suspicious services running.",
+      "solution": "To identify the suspicious service, you can use the following command:\n\n`systemctl list-units --type=service --state=running`\n\nThe service name is lg3.exe.service. This is the final flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Check running services for suspicious activity",
+          "content": "Check the running services and their associated processes.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lg3.exe.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, determine how it is automatically started after reboot. This will help you understand the malware's persistence mechanism.",
+      "solution": "To determine the persistence mechanism, you can use the following command:\n\n`systemctl list-timers`\n\nThe persistence identifier is lab-checkin.timer. This is the final flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Investigate systemd timers for persistence",
+          "content": "Investigate systemd services and timers.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be communicating with an external command-and-control (C2) server. Determine which network port is used for this communication.",
+      "solution": "To determine the network port used for C2 communication, you can use the following command:\n\n`ss -tulnp`\n\nThe C2 port number is 4444. This is the final flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Investigate network connections for C2 communication",
+          "content": "Investigate the service configuration and network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "4444",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
