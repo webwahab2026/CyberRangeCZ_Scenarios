@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-22_Linux.Mirai_Incident_Response_59a",
+  "description": "Investigate and respond to a potential Linux.Mirai trojan incident on a victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected outbound network connections and elevated CPU usage. Your task is to investigate and respond to this potential security incident involving the Linux.Mirai trojan."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.service",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for unauthorized or suspicious services that may indicate trojan activity. The flag 'network-diagnostics.service' should be explicitly identified in the provisioning files.",
+      "solution": "Check running services and their associated processes for anything unusual or unexpected. The service name associated with the trojan's persistence mechanism is `network-diagnostics.service`.",
+      "solution_penalized": false,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and their associated processes for anything unusual or unexpected.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run `systemctl status network-diagnostics.service` to inspect the suspicious service.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "network-diagnostics.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Scheduled Tasks",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "Determine if any scheduled tasks or timers are responsible for automatically executing the malware on the victim host. The flag 'network-diagnostics.timer' should be explicitly identified in the provisioning files.",
+      "solution": "Investigate systemd timers and services that may be triggering malicious activity. The name of the timer or task responsible for executing the trojan's components is `network-diagnostics.timer`.",
+      "solution_penalized": false,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate systemd timers and services that may be triggering malicious activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-timers` to list all active timers.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run `systemctl status network-diagnostics.timer` to inspect the suspicious timer.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "network-diagnostics.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Reverse Shell Component",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/lib/.netd/revshell.sh",
+      "answer_variable_name": null,
+      "content": "Identify the component responsible for providing unauthorized remote shell access to the victim host. The flag '/usr/local/lib/.netd/revshell.sh' should be explicitly identified in the provisioning files.",
+      "solution": "Look for scripts or processes that establish connections to external hosts on unusual ports. The script name or process responsible for maintaining reverse shell access is `/usr/local/lib/.netd/revshell.sh`.",
+      "solution_penalized": false,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for scripts or processes that establish connections to external hosts on unusual ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ps aux | grep -i netcat` to identify suspicious processes.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run `cat /usr/local/lib/.netd/revshell.sh` to inspect the reverse shell script.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "reverse_shell_check",
+          "prereq_state": [],
+          "cmd": "ps aux | grep -i netcat",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/usr/local/lib/.netd/revshell.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
