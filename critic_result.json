@@ -1,0 +1,256 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The service 'network-diagnostics.service' is provisioned in the sandbox",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Examine Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The timer 'network-diagnostics.timer' is provisioned in the sandbox",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Malware Components",
+      "status": "pass",
+      "evidence": "The file 'net-diag-installer.sh' is provisioned in the sandbox",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The service name is not trivially available from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Examine Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The timer name is not trivially available from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Malware Components",
+      "status": "pass",
+      "evidence": "The filename is not trivially available from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: 'service name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Examine Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: 'timer or task name'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Malware Components",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: 'filename'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Examine Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Malware Components",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Examine Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Malware Components",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Examine Scheduled Tasks",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Malware Components",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy: conceptual, directional, near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Examine Scheduled Tasks",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy: conceptual, directional, near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Malware Components",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy: conceptual, directional, near-spoiler",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Examine Scheduled Tasks",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Malware Components",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Investigate Suspicious Services",
+      "description": "The solution does not explicitly state the final flag in the first sentence",
+      "fix": "Explicitly state the final flag at the beginning of the solution"
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Examine Scheduled Tasks",
+      "description": "The solution does not explicitly state the final flag in the first sentence",
+      "fix": "Explicitly state the final flag at the beginning of the solution"
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Locate Malware Components",
+      "description": "The solution does not explicitly state the final flag in the first sentence",
+      "fix": "Explicitly state the final flag at the beginning of the solution"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "network-diagnostics.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned in the sandbox",
+      "recommendation": ""
+    },
+    {
+      "level": "Examine Scheduled Tasks",
+      "current_flag": "network-diagnostics.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer is provisioned in the sandbox",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Malware Components",
+      "current_flag": "net-diag-installer.sh",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "The file is provisioned in the sandbox",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "All required hosts, IPs, users, passwords, paths, files, tools, services, and flags are aligned with the training JSON and scenario design"
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario meets most requirements but has minor issues with the solution content. The access credentials and start instruction are correctly provided, and all flags are valid and non-trivial. The hints and commands are appropriate, but the solutions should explicitly state the final flag at the beginning."
+}

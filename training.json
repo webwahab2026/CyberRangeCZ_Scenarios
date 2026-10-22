@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-22_XorDDoS_Incident_Response_Scenario_fea",
+  "description": "Investigate and respond to a potential security incident involving the XorDDoS Trojan on a victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected outbound network connections and suspicious scheduled tasks. Your task is to investigate and respond to this potential security incident involving the XorDDoS Trojan."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano\n\nEnter the passkey 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano\n\nEnter the passkey 'start' to begin the investigation."
+    },
+    {
+      "title": "Investigate Suspicious Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.service",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for unauthorized or suspicious services that may indicate malware activity.",
+      "solution": "The service name associated with the suspicious activity is network-diagnostics.service. Check running services and their associated processes to identify any anomalies. Use the command 'systemctl list-units --type=service' to list all services.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and their associated processes to identify any anomalies.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'systemctl list-units --type=service' to list all services.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command 'systemctl list-units --type=service | grep -i network' to filter services related to network diagnostics.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "network-diagnostics.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Examine Scheduled Tasks",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "Determine if any scheduled tasks or timers are responsible for automatically executing potentially malicious code on the victim host.",
+      "solution": "The name of the timer or task responsible for the scheduled execution is network-diagnostics.timer. Examine the systemd timers and services to find any unusual scheduled tasks. Use the command 'systemctl list-timers' to list all timers.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd timers and services to find any unusual scheduled tasks.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'systemctl list-timers' to list all timers.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command 'systemctl list-timers | grep -i network' to filter timers related to network diagnostics.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_check",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "network-diagnostics.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malware Components",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "net-diag-installer.sh",
+      "answer_variable_name": null,
+      "content": "Locate files installed by the malware on the compromised host to understand the extent of the infection.",
+      "solution": "The filename of a key component installed by the malware is net-diag-installer.sh. Search for hidden or unusual directories and files that may contain malware components. Use the command 'find / -name \"net-diag-installer.sh\" 2>/dev/null' to locate the file.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Search for hidden or unusual directories and files that may contain malware components.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command 'find / -name \"net-diag-installer.sh\" 2>/dev/null' to locate the file.",
+          "hint_penalty": 0,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Run the command 'find / -name \"net-diag-installer.sh\" 2>/dev/null | grep -i net-diag' to filter files related to network diagnostics.",
+          "hint_penalty": 0,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_search",
+          "prereq_state": [],
+          "cmd": "find / -name 'net-diag-installer.sh' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "net-diag-installer.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
