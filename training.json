@@ -1,0 +1,163 @@
+{
+  "title": "2026-10-22_Xbash_Incident_Response_63b",
+  "description": "Investigate and respond to a potential Xbash malware infection combining ransomware, coinmining, and botnet capabilities.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual network activity on its Linux-based systems. Initial analysis suggests a potential Xbash malware infection, which combines ransomware, coinmining, and botnet capabilities. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) using the provided credentials. Username: admin, Password: admin123. Start by connecting via SSH.",
+      "local_content": "Access the target host (IP: 192.168.50.5) using the provided credentials. Username: admin, Password: admin123. Start by connecting via SSH."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Investigate the target host for any unauthorized or suspicious services running. Identify any services that appear out of place or exhibit unusual behavior.",
+      "solution": "Check the systemd services and running processes using commands like `systemctl list-units --type=service` and `ps aux`. Look for any services or processes that are not part of the standard system configuration.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and running processes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-units --type=service` and `ps aux` to identify suspicious services.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/systemd/system/bkd.service",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service identified in the previous task is automatically started after reboot. Investigate the persistence mechanisms used.",
+      "solution": "Look for systemd service files and timers using commands like `systemctl list-unit-files --state=enabled` and `ls /etc/systemd/system/*.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for systemd service files and timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-unit-files --state=enabled` and `ls /etc/systemd/system/*.timer` to identify persistence mechanisms.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --state=enabled",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --state=enabled",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/payload-transfer.log",
+      "answer_variable_name": null,
+      "content": "Identify any file transfers or remote execution used to move between hosts. Investigate the lateral movement techniques employed by the attacker.",
+      "solution": "Check the rsync logs and SSH connections using commands like `grep rsync /var/log/syslog` and `last`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the rsync logs and SSH connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `grep rsync /var/log/syslog` and `last` to identify lateral movement techniques.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "grep rsync /var/log/syslog",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep rsync /var/log/syslog",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
