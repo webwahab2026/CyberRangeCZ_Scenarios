@@ -1,0 +1,169 @@
+{
+  "title": "2026-10-22_Mirai_Botnet_Investigation_17e",
+  "description": "Investigate and mitigate Mirai botnet activity within the sandbox environment.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual traffic patterns and performance degradation. Your task is to investigate and identify the source of these issues."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the bot1 host with the following credentials:\n- Username: cyrano\n- Password: cyrano\nEnter 'start' to begin.",
+      "local_content": "Local sandbox access is not required for this scenario. Use the provided credentials (Username: cyrano, Password: cyrano) and enter 'start' to begin."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication.\n\n**Question:** What is the name of the suspicious service that communicates with an external host?",
+      "solution": "Check the systemd services and look for any unusual or recently created services. Use the command `systemctl list-units --type=service` to list all services. The service name should be 'bot-beacon.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or recently created services.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon.service",
+          "optional": false
+        },
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl status bot-beacon.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-beacon.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Network Flooding Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.service",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic.\n\n**Question:** What is the name of the service that is generating high volumes of network traffic?",
+      "solution": "Examine the systemd services and look for any services that might be responsible for network flooding. Use the command `systemctl list-units --type=service` to list all services. The service name should be 'bot-flood.service'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd services and look for any services that might be responsible for network flooding.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-flood.service",
+          "optional": false
+        },
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl status bot-flood.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "bot-flood.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemd timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot.\n\n**Question:** What is the persistence mechanism used by the suspicious service?",
+      "solution": "Investigate the systemd timers and look for any timers associated with the suspicious service. Use the command `systemctl list-timers` to list all timers. The persistence mechanism should be 'systemd timer'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd timers and look for any timers associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemd timer",
+          "optional": false
+        },
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl status bot-beacon.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemd timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
