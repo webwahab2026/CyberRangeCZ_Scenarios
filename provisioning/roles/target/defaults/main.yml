@@ -1,0 +1,15 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: DB-Drop.php
+  content: "DB-Drop.php\n"
+- name: a739f44390037b3d0a3942cd43d161a7c45fd7e7
+  content: "a739f44390037b3d0a3942cd43d161a7c45fd7e7\n"
+packages_to_install:
+- openssh-server
