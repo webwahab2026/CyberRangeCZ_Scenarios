@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "The flag '-bash.service' corresponds to a real sandbox artifact in provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag '-bash.service' corresponds to a real sandbox artifact in provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate File Transfers",
+      "status": "pass",
+      "evidence": "The flag 'payload-transfer.service' corresponds to a real sandbox artifact in provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to obtain",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to obtain",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate File Transfers",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to obtain",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit (service name)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit (service name)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate File Transfers",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit (service name)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate File Transfers",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate File Transfers",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer, includes usable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate File Transfers",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with increasing specificity",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with increasing specificity",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate File Transfers",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly structured with increasing specificity",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate File Transfers",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate Unusual Network Connections",
+      "description": "The flag '-bash.service' is not explicitly identified as a flag in the provisioning files, but this is expected and valid.",
+      "fix": "No action required."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine Persistence Mechanism",
+      "description": "The flag '-bash.service' is not explicitly identified as a flag in the provisioning files, but this is expected and valid.",
+      "fix": "No action required."
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Investigate File Transfers",
+      "description": "The flag 'payload-transfer.service' is not explicitly identified as a flag in the provisioning files, but this is expected and valid.",
+      "fix": "No action required."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unusual Network Connections",
+      "current_flag": "-bash.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in provisioning_files",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Persistence Mechanism",
+      "current_flag": "-bash.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in provisioning_files",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate File Transfers",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in provisioning_files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The scenario meets all mandatory requirements for C1-C10. However, there are major issues related to the flags not being explicitly identified in the provisioning files, though this is expected and valid. The scenario is ready for approval once these issues are addressed."
+}
