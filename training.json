@@ -1,0 +1,145 @@
+{
+  "title": "2026-10-28_Mirai_Trojan_Investigation_Scenario_b2e",
+  "description": "Investigate the Mirai trojan infection on a victim host, including its persistence mechanisms, network connections, and hidden directories.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate systemd timers for suspicious scheduled tasks",
+    "Examine system logs for unauthorized network connections",
+    "Identify hidden or unusual directories containing malware components"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has exhibited unusual behavior, including unexpected outbound network connections and elevated CPU usage. Your task is to investigate and determine the cause of this activity."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- IP Address: 192.168.60.10\n- Username: cyrano\n- Password: cyrano"
+    },
+    {
+      "title": "Investigate Systemd Timers",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "network-diagnostics.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the systemd timers on the victim host to identify any suspicious scheduled tasks.",
+      "solution": "Use the `systemctl list-timers` command to list all active timers and examine their associated services. The hidden flag is the name of the suspicious timer responsible for executing the malware.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl list-timers` command to list all active timers and examine their associated services.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Examine System Logs",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.60.20",
+      "answer_variable_name": null,
+      "content": "Examine the system logs to identify any unusual or unauthorized network connections.",
+      "solution": "Check the logs in `/var/log/syslog` for any suspicious outbound connections, especially those involving netcat or similar networking tools. The hidden flag is the IP address of the command-and-control server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the logs in `/var/log/syslog` for any suspicious outbound connections, especially those involving netcat or similar networking tools.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /var/log/syslog",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /var/log/syslog",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate File System",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/lib/.netd",
+      "answer_variable_name": null,
+      "content": "Investigate the file system for any hidden or unusual directories that may contain malware components.",
+      "solution": "Look for directories with unusual names or those located in non-standard locations, especially those owned by root. The hidden flag is the name of the hidden directory used by the malware.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for directories with unusual names or those located in non-standard locations, especially those owned by root.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "find / -type d -name '.*' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -type d -name '.*' 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

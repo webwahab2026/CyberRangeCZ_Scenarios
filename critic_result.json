@@ -1,0 +1,229 @@
+{
+  "coherence_score": 9,
+  "verdict": "approved",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "provisioning/roles/trojan-install/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "provisioning/roles/trojan-install/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Systemd Timers",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "provisioning/roles/trojan-install/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "provisioning/roles/trojan-install/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Examine System Logs",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate File System",
+      "status": "pass",
+      "evidence": "provisioning/roles/victim-host/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate File System",
+      "status": "pass",
+      "evidence": "provisioning/roles/victim-host/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate File System",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate File System",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate File System",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate File System",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate File System",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate File System",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    }
+  ],
+  "issues": [],
+  "flag_review": [
+    {
+      "level": "Investigate Systemd Timers",
+      "current_flag": "network-diagnostics.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/trojan-install/tasks/main.yml",
+      "recommendation": ""
+    },
+    {
+      "level": "Examine System Logs",
+      "current_flag": "192.168.60.20",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/trojan-install/tasks/main.yml",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate File System",
+      "current_flag": "/var/lib/.netd",
+      "flag_type": "directory name",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/victim-host/tasks/main.yml",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with clear tasks and accurate provisioning. All flags are valid and non-trivial, and the hints and solutions are appropriate. The access credentials and passkey instructions are correctly provided."
+}
