@@ -1,0 +1,254 @@
+{
+  "coherence_score": 9,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "provisioning/roles/lateral-movement/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "provisioning/roles/lateral-movement/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "provisioning/roles/c2-listener/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Suspicious Service Discovery",
+      "description": "The flag 'suspicious-service' is not explicitly labeled as a flag in the provisioning files.",
+      "fix": "Ensure the flag is explicitly labeled or clearly identifiable in the provisioning files."
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Persistence Discovery",
+      "description": "The flag 'persistence-mechanism' is not explicitly labeled as a flag in the provisioning files.",
+      "fix": "Ensure the flag is explicitly labeled or clearly identifiable in the provisioning files."
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "C2 Communication Discovery (Port)",
+      "description": "The flag '7070' is not explicitly labeled as a flag in the provisioning files.",
+      "fix": "Ensure the flag is explicitly labeled or clearly identifiable in the provisioning files."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "suspicious-service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/lateral-movement/tasks/main.yml",
+      "recommendation": "Ensure the flag is explicitly labeled or clearly identifiable in the provisioning files."
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "persistence-mechanism",
+      "flag_type": "persistence mechanism identifier",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/lateral-movement/tasks/main.yml",
+      "recommendation": "Ensure the flag is explicitly labeled or clearly identifiable in the provisioning files."
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "7070",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/c2-listener/tasks/main.yml",
+      "recommendation": "Ensure the flag is explicitly labeled or clearly identifiable in the provisioning files."
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The flags are valid but not explicitly labeled in the provisioning files. The scenario covers the attack chain completely and accurately, with a strong narrative and correct difficulty progression."
+}
