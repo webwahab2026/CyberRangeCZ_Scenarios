@@ -1,0 +1,145 @@
+{
+  "title": "2026-10-28_Mirai_Okiru_Worm_Investigation_fa9",
+  "description": "Investigate and contain the Mirai Okiru worm threat in the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The network has experienced unusual activity, with multiple systems exhibiting suspicious behavior. Your task is to investigate and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the following systems with the username `cyrano` and password `cyrano`:\n- patient-zero (192.168.90.5)\n- host-a (192.168.90.10)\n- host-b (192.168.90.20)\n- attacker (192.168.90.30)",
+      "local_content": "Local sandbox access is not required for this scenario. Type the passkey 'start' and press ENTER to proceed."
+    },
+    {
+      "title": "Investigate Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "Investigate the suspicious service running on patient-zero that appears to be communicating with an external host.\n\n**Question:** What is the name of the suspicious service?",
+      "solution": "Check the systemd services and look for any unusual or unauthorized services. The suspicious service is named `sysnet-monitor.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or unauthorized services.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sysnet-monitor.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Automatic Execution Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "Determine the mechanism used by the worm to automatically execute on the compromised hosts.\n\n**Question:** What is the name of the scheduled task or timer responsible for the automatic execution of the worm?",
+      "solution": "Investigate the systemd timers and look for any unusual or unauthorized timers. The scheduled task is named `sysnet-monitor.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the systemd timers and look for any unusual or unauthorized timers.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sysnet-monitor.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Worm Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm",
+      "answer_variable_name": null,
+      "content": "Locate the files installed by the worm on the compromised host patient-zero.\n\n**Question:** What is the name of the directory used to conceal worm components or propagation artifacts?",
+      "solution": "Search for hidden or unusual directories that may contain worm-related files. The directory is named `/opt/.worm`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Search for hidden or unusual directories that may contain worm-related files.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_directories",
+          "prereq_state": [],
+          "cmd": "ls -la /opt/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "/opt/.worm",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
