@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-28_Sofacy_Fysbis_Backdoor_Investigation_8a4",
+  "description": "You are an incident responder tasked with investigating a potential compromise involving the Sofacy group's Fysbis backdoor on a Linux-based network. The Fysbis malware is known to be a modular Linux trojan/backdoor that implements plug-in and controller modules as distinct classes. It includes both 32-bit and 64-bit versions of ELF binaries and can install itself with or without root privileges. Your goal is to identify and investigate the suspicious activity, determine the extent of the compromise, and take appropriate containment measures.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential compromise involving the Sofacy group's Fysbis backdoor on a Linux-based network. The Fysbis malware is known to be a modular Linux trojan/backdoor that implements plug-in and controller modules as distinct classes. It includes both 32-bit and 64-bit versions of ELF binaries and can install itself with or without root privileges. Your goal is to identify and investigate the suspicious activity, determine the extent of the compromise, and take appropriate containment measures."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. ENTER the exact passkey 'start' to proceed to training levels.",
+      "local_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano. ENTER the exact passkey 'start' to proceed to training levels."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the network, you noticed unusual outbound connections from the target host. Investigate the target host to identify any unauthorized or suspicious services running on the system.",
+      "solution": "To identify suspicious services, you can use commands like `systemctl list-units --type=service` or `ps aux` to list all running services. Look for any services that seem out of place or unfamiliar. Additionally, you can use `netstat -tuln` to check for any unusual network connections.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the running services and look for any that seem out of place or unfamiliar.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-units --type=service` or `ps aux` to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services with unusual names or those that are not part of standard system services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.timer",
+      "answer_variable_name": null,
+      "content": "You have identified a suspicious service running on the target host. Determine how this service is automatically started after a system reboot.",
+      "solution": "To identify persistence mechanisms, you can examine the systemd services and timers. Use commands like `systemctl list-unit-files --type=service` to list all systemd services and `systemctl list-timers` to list all systemd timers. Look for any services or timers related to the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd services and timers to find any related to the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `systemctl list-unit-files --type=service` and `systemctl list-timers` to identify persistence mechanisms.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for timers that trigger the suspicious service or services that depend on it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-unit-files --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-unit-files --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "The suspicious service appears to be communicating with an external command-and-control (C2) server. Determine which network port is used for this communication.",
+      "solution": "To identify the network port used for C2 communication, you can use commands like `netstat -tuln` or `ss -tuln` to list all network connections. Look for any unusual connections to external IP addresses or domains. Additionally, you can use tools like `tcpdump` to capture and analyze network traffic.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the network connections and listen ports to identify any unusual activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use commands like `netstat -tuln` or `ss -tuln` to list all network connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for connections to external IP addresses or domains that are not part of your network.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "c2_communication_discovery",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

@@ -1,0 +1,229 @@
+{
+  "coherence_score": 9,
+  "verdict": "approved",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "systemkernelservicedefender.service is created by provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The flag is not given or trivially derived from content, topology, supplied IP/hostname/credentials, or other already-visible connection data.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states to find the service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands compatible with sandbox OS/tools, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "payload-transfer.timer is created by provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The flag is not given or trivially derived from content, topology, supplied IP/hostname/credentials, or other already-visible connection data.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states to find the timer name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands compatible with sandbox OS/tools, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The port 80 is created by provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag is not given or trivially derived from content, topology, supplied IP/hostname/credentials, or other already-visible connection data.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content explicitly states to find the network port.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands compatible with sandbox OS/tools, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "systemkernelservicedefender.service is created by provisioning",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "payload-transfer.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "payload-transfer.timer is created by provisioning",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "80",
+      "flag_type": "network port",
+      "verdict": "valid",
+      "sandbox_evidence": "The port 80 is created by provisioning",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with clear objectives and progressive difficulty. All flags are valid and the hints are progressively revealing. The access credentials and passkey instructions are correctly provided."
+}
