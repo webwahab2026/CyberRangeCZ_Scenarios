@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-28_Umbreon_Rootkit_Investigation_7f2",
+  "description": "Investigate and analyze the Umbreon rootkit on compromised Linux systems.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a Linux rootkit designed to hide its presence and manipulate system processes. It uses various techniques to evade detection and can be used to facilitate other malicious activities. This scenario focuses on investigating and analyzing the Umbreon rootkit on compromised Linux systems."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You are provided with SSH access to the victim host as the user `cyrano` with the password `cyrano`. From there, you can investigate the system and any connected hosts. To proceed to the training levels, ENTER, TYPE, or SUBMIT the exact passkey 'start'.",
+      "local_content": "You are provided with SSH access to the victim host as the user `cyrano` with the password `cyrano`. From there, you can investigate the system and any connected hosts. To proceed to the training levels, ENTER, TYPE, or SUBMIT the exact passkey 'start'."
+    },
+    {
+      "title": "Identify Evidence of Shared Library Injection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "Investigate the victim host for signs of unauthorized shared library injection. Look for indicators that malicious code has been loaded into system processes.",
+      "solution": "1. List all processes and their loaded libraries using the `ldd` command.\n2. Look for any unusual or unauthorized libraries in the output.\n3. Use the `lsof` command to verify the presence of suspicious libraries.\n4. Example command: `ldd /path/to/binary`",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the loaded libraries for each process and look for any unusual or unauthorized libraries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ldd` command to list the libraries loaded by each process.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for suspicious libraries in the output of the `ldd` command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine System-Wide Preload Configuration Modification",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "Examine the system-wide preload configuration to see if it has been tampered with. Look for any unauthorized libraries that have been added to the preload list.",
+      "solution": "1. Check the contents of the preload configuration file using the `cat` command.\n2. Look for any suspicious entries in the file.\n3. Use the `ls` command to verify the file's existence and permissions.\n4. Example command: `cat /etc/ld.so.preload`",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the contents of the preload configuration file and look for any suspicious entries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `cat` command to view the contents of the preload configuration file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for suspicious entries in the output of the `cat` command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Concealed Files or Directories",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf/config",
+      "answer_variable_name": null,
+      "content": "Search the victim host for any hidden files or directories that are not visible through standard system utilities. These could be used to store malicious artifacts or configuration data.",
+      "solution": "1. Use alternative methods to list files and directories, such as `ls -la` or `find`.\n2. Look for any hidden files or directories in the output.\n3. Use the `stat` command to verify the attributes of suspicious files.\n4. Example command: `ls -la /etc`",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use alternative methods to list files and directories, as standard utilities may be compromised.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ls -la` command to list all files and directories, including hidden ones.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for hidden files or directories in the output of the `ls -la` command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

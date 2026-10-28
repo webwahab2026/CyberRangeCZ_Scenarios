@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Evidence of Shared Library Injection",
+      "status": "pass",
+      "evidence": "provisioning/roles/rootkit-installer/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Evidence of Shared Library Injection",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Evidence of Shared Library Injection",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Evidence of Shared Library Injection",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Evidence of Shared Library Injection",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Evidence of Shared Library Injection",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Evidence of Shared Library Injection",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Evidence of Shared Library Injection",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine System-Wide Preload Configuration Modification",
+      "status": "pass",
+      "evidence": "provisioning/roles/rootkit-installer/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine System-Wide Preload Configuration Modification",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine System-Wide Preload Configuration Modification",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine System-Wide Preload Configuration Modification",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine System-Wide Preload Configuration Modification",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine System-Wide Preload Configuration Modification",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine System-Wide Preload Configuration Modification",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine System-Wide Preload Configuration Modification",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Concealed Files or Directories",
+      "status": "pass",
+      "evidence": "provisioning/roles/rootkit-installer/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Concealed Files or Directories",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Concealed Files or Directories",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Concealed Files or Directories",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Concealed Files or Directories",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Concealed Files or Directories",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Concealed Files or Directories",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Concealed Files or Directories",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C9",
+      "severity": "minor",
+      "component": "hint",
+      "level": "Identify Evidence of Shared Library Injection",
+      "description": "H3 hint does not include a usable command.",
+      "fix": "Add a usable command to the H3 hint."
+    },
+    {
+      "condition": "C9",
+      "severity": "minor",
+      "component": "hint",
+      "level": "Determine System-Wide Preload Configuration Modification",
+      "description": "H3 hint does not include a usable command.",
+      "fix": "Add a usable command to the H3 hint."
+    },
+    {
+      "condition": "C9",
+      "severity": "minor",
+      "component": "hint",
+      "level": "Locate Concealed Files or Directories",
+      "description": "H3 hint does not include a usable command.",
+      "fix": "Add a usable command to the H3 hint."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Evidence of Shared Library Injection",
+      "current_flag": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "flag_type": "path",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/rootkit-installer/tasks/main.yml",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine System-Wide Preload Configuration Modification",
+      "current_flag": "/etc/ld.so.preload",
+      "flag_type": "path",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/rootkit-installer/tasks/main.yml",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate Concealed Files or Directories",
+      "current_flag": "/etc/.kit_conf/config",
+      "flag_type": "path",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/rootkit-installer/tasks/main.yml",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and aligns with the provided topology and provisioning files. The flags are valid and the hints need minor adjustments to include usable commands. The access credentials and passkey instructions are correctly implemented."
+}
