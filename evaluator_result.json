@@ -1,0 +1,242 @@
+{
+  "verdict": "needs_revision",
+  "checklist_results": [
+    {
+      "level": "ACCESS_LEVEL",
+      "item": "access_level.credentials_mentioned",
+      "status": "pass",
+      "detail": "Username and password are explicitly mentioned in both cloud_content and local_content."
+    },
+    {
+      "level": "ACCESS_LEVEL",
+      "item": "access_level.passkey_mentioned",
+      "status": "pass",
+      "detail": "The passkey 'start' is explicitly mentioned in both cloud_content and local_content."
+    },
+    {
+      "level": "Identify the Command-and-Control Server",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '192.168.1.100' is mentioned in the answer field."
+    },
+    {
+      "level": "Identify the Command-and-Control Server",
+      "item": "training_level.flag_not_obvious",
+      "status": "fail",
+      "detail": "The flag '192.168.1.100' is the IP address of the c2-server, which is already stated in the topology_yaml and provisioning_files."
+    },
+    {
+      "level": "Identify the Command-and-Control Server",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description specifies to submit the IP address of the command-and-control server."
+    },
+    {
+      "level": "Identify the Command-and-Control Server",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value."
+    },
+    {
+      "level": "Identify the Command-and-Control Server",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution provides clear methodology and explicitly states the flag value."
+    },
+    {
+      "level": "Identify the Command-and-Control Server",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value in the solution is consistent with the answer field."
+    },
+    {
+      "level": "Identify the Command-and-Control Server",
+      "item": "training_level.hint_hierarchy",
+      "status": "fail",
+      "detail": "Hint 1 is conceptual, but Hint 2 and Hint 3 do not follow the required hierarchy."
+    },
+    {
+      "level": "Identify the Command-and-Control Server",
+      "item": "training_level.hints_actionable",
+      "status": "fail",
+      "detail": "Hint 3 does not include concrete commands."
+    },
+    {
+      "level": "Identify the Command-and-Control Server",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag corresponds to an artifact present in the topology_yaml and provisioning_files."
+    },
+    {
+      "level": "Identify the Command-and-Control Server",
+      "item": "training_level.flag_not_revealed_in_description",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value."
+    },
+    {
+      "level": "Determine the Exfiltration Port",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '5678' is mentioned in the answer field."
+    },
+    {
+      "level": "Determine the Exfiltration Port",
+      "item": "training_level.flag_not_obvious",
+      "status": "fail",
+      "detail": "The flag '5678' is the port used by the ransomware-keysrv service, which is stated in the provisioning_files."
+    },
+    {
+      "level": "Determine the Exfiltration Port",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description specifies to submit the network port used for data exfiltration."
+    },
+    {
+      "level": "Determine the Exfiltration Port",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value."
+    },
+    {
+      "level": "Determine the Exfiltration Port",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution provides clear methodology and explicitly states the flag value."
+    },
+    {
+      "level": "Determine the Exfiltration Port",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value in the solution is consistent with the answer field."
+    },
+    {
+      "level": "Determine the Exfiltration Port",
+      "item": "training_level.hint_hierarchy",
+      "status": "fail",
+      "detail": "Hint 1 is conceptual, but Hint 2 and Hint 3 do not follow the required hierarchy."
+    },
+    {
+      "level": "Determine the Exfiltration Port",
+      "item": "training_level.hints_actionable",
+      "status": "fail",
+      "detail": "Hint 3 does not include concrete commands."
+    },
+    {
+      "level": "Determine the Exfiltration Port",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag corresponds to an artifact present in the topology_yaml and provisioning_files."
+    },
+    {
+      "level": "Determine the Exfiltration Port",
+      "item": "training_level.flag_not_revealed_in_description",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value."
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/home/cyrano/RANSOM_NOTE.txt' is mentioned in the answer field."
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not trivially visible and requires investigation."
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description specifies to submit the full path to the ransom note."
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value."
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution provides clear methodology and explicitly states the flag value."
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value in the solution is consistent with the answer field."
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint 1 is conceptual, Hint 2 points to a specific file, and Hint 3 almost gives away the methodology."
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hint 2 includes a concrete command."
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag corresponds to an artifact present in the topology_yaml and provisioning_files."
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "item": "training_level.flag_not_revealed_in_description",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value."
+    }
+  ],
+  "issues": [
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify the Command-and-Control Server",
+      "description": "The flag '192.168.1.100' is the IP address of the c2-server, which is already stated in the topology_yaml and provisioning_files.",
+      "fix": "Change the flag to a value that is not trivially visible without doing the task."
+    },
+    {
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine the Exfiltration Port",
+      "description": "The flag '5678' is the port used by the ransomware-keysrv service, which is stated in the provisioning_files.",
+      "fix": "Change the flag to a value that is not trivially visible without doing the task."
+    },
+    {
+      "severity": "minor",
+      "component": "hints",
+      "level": "Identify the Command-and-Control Server",
+      "description": "Hint 2 and Hint 3 do not follow the required hierarchy.",
+      "fix": "Revise the hints to follow the required hierarchy."
+    },
+    {
+      "severity": "minor",
+      "component": "hints",
+      "level": "Identify the Command-and-Control Server",
+      "description": "Hint 3 does not include concrete commands.",
+      "fix": "Revise Hint 3 to include concrete commands."
+    },
+    {
+      "severity": "minor",
+      "component": "hints",
+      "level": "Determine the Exfiltration Port",
+      "description": "Hint 2 and Hint 3 do not follow the required hierarchy.",
+      "fix": "Revise the hints to follow the required hierarchy."
+    },
+    {
+      "severity": "minor",
+      "component": "hints",
+      "level": "Determine the Exfiltration Port",
+      "description": "Hint 3 does not include concrete commands.",
+      "fix": "Revise Hint 3 to include concrete commands."
+    }
+  ],
+  "summary": "The scenario has several major issues related to the flags in the 'Identify the Command-and-Control Server' and 'Determine the Exfiltration Port' levels. The flags are too obvious and can be found without doing the task. Additionally, there are minor issues with the hint hierarchy and actionability in these levels. The 'Locate the Ransom Note' level meets all the requirements."
+}
