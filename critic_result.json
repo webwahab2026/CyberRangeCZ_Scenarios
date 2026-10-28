@@ -1,0 +1,238 @@
+{
+  "coherence_score": 9,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "192.168.90.5 is the IP address of the c2-server in topology_yaml and provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The IP address is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the IP address of the command-and-control server",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The hints progress from conceptual to precise method without revealing the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command matching provisioned tools and OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "4443 is the port used for the ransom-keysrv service in provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The port number is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the port number used for command-and-control communication",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The hints progress from conceptual to precise method without revealing the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command matching provisioned tools and OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify the External Host Receiving Sensitive Data",
+      "status": "pass",
+      "evidence": "192.168.90.20 is the IP address of the exfil-server in topology_yaml and provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the External Host Receiving Sensitive Data",
+      "status": "pass",
+      "evidence": "The IP address is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the External Host Receiving Sensitive Data",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the IP address of the exfiltration server",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the External Host Receiving Sensitive Data",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the External Host Receiving Sensitive Data",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the External Host Receiving Sensitive Data",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the External Host Receiving Sensitive Data",
+      "status": "pass",
+      "evidence": "The hints progress from conceptual to precise method without revealing the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the External Host Receiving Sensitive Data",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command matching provisioned tools and OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The username and password are present but not explicitly instructed to ENTER the exact passkey 'start'",
+      "fix": "Explicitly instruct the trainee to ENTER the exact passkey 'start' to proceed to training levels."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify the Command-and-Control Server IP Address",
+      "current_flag": "192.168.90.5",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address is the c2-server in topology_yaml and provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "current_flag": "4443",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port number is used for the ransom-keysrv service in provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify the External Host Receiving Sensitive Data",
+      "current_flag": "192.168.90.20",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address is the exfil-server in topology_yaml and provisioning files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The only issue is the lack of explicit instruction to ENTER the exact passkey 'start' to proceed to training levels. The flags are valid and the hints progress appropriately."
+}
