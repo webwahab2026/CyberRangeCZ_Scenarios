@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-28_Xbash_Ransomware_Incident_Response_Scenario_0f8",
+  "description": "Investigate the Xbash ransomware incident, identify indicators of compromise, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has been compromised by the Xbash ransomware. This malware combines ransomware, coinmining, and self-propagation capabilities, targeting both Linux and Windows systems. It spreads by attacking weak passwords and unpatched vulnerabilities. The malware is data-destructive, deleting Linux-based databases as part of its ransomware capabilities.\n\nYour task is to investigate the incident, identify the indicators of compromise, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nTo proceed to the training levels, ENTER the exact passkey 'start'.\n\nYou can use this access to investigate the system and gather evidence.",
+      "local_content": "To proceed to the training levels, ENTER the exact passkey 'start'.\n\nYou have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nYou can use this access to investigate the system and gather evidence."
+    },
+    {
+      "title": "Identify the Command-and-Control Server IP Address",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.5",
+      "answer_variable_name": null,
+      "content": "Identify the command-and-control server IP address used by the ransomware.\n\n**Hint:** Check the network connections and logs on the victim host to find any suspicious outbound connections.\n\n**Question:** What is the IP address of the command-and-control server?",
+      "solution": "To identify the command-and-control server IP address, you need to investigate the network connections and logs on the victim host. Look for any suspicious outbound connections that might indicate communication with a command-and-control server.\n\n1. SSH into the victim host using the provided credentials.\n2. Use commands like `netstat -tuln` or `ss -tuln` to check for suspicious outbound connections.\n3. Examine log files such as `/var/log/syslog` or `/var/log/auth.log` for any unusual network activity.\n4. Identify the IP address associated with the suspicious connections.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for any unusual outbound connections that might indicate communication with a command-and-control server.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Examine log files such as `/var/log/syslog` or `/var/log/auth.log` for unusual network activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for connections to IP addresses that are not part of your internal network.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "Determine the network port used for suspicious command-and-control communication.\n\n**Hint:** Investigate the network traffic and logs to identify the port associated with the ransomware's command-and-control communication.\n\n**Question:** What is the port number used for the command-and-control communication?",
+      "solution": "To determine the network port used for suspicious command-and-control communication, you need to investigate the network traffic and logs on the victim host. Look for any suspicious outbound connections that might indicate communication with a command-and-control server.\n\n1. SSH into the victim host using the provided credentials.\n2. Use commands like `netstat -tuln` or `ss -tuln` to check for suspicious outbound connections.\n3. Examine log files such as `/var/log/syslog` or `/var/log/auth.log` for any unusual network activity.\n4. Identify the port number associated with the suspicious connections.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for any unusual outbound connections that might indicate communication with a command-and-control server.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Examine log files such as `/var/log/syslog` or `/var/log/auth.log` for unusual network activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for non-standard ports that are commonly used by malware.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify a File or Dataset That Was Transferred Outside the Environment Before Encryption",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "exfiltrated_data.txt",
+      "answer_variable_name": null,
+      "content": "Identify a file or dataset that was transferred outside the environment before encryption.\n\n**Hint:** Analyze the logs, file access records, and network activity to determine what data was exfiltrated.\n\n**Question:** What is the name of a file or dataset that was exfiltrated?",
+      "solution": "To identify a file or dataset that was transferred outside the environment before encryption, you need to analyze the logs, file access records, and network activity on the victim host. Look for any evidence of data exfiltration.\n\n1. SSH into the victim host using the provided credentials.\n2. Examine log files such as `/var/log/syslog` or `/var/log/auth.log` for any unusual file access or network activity.\n3. Use commands like `ls -la` or `find / -name \"*.txt\"` to identify any files that were accessed or modified.\n4. Check the exfiltration logs at `/var/log/ransom-exfil.log` for any files that were transferred to the exfil-server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for any unusual file access or network activity that might indicate data exfiltration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Examine log files such as `/var/log/syslog` or `/var/log/auth.log` for unusual network activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for files that were accessed or modified around the time of the exfiltration.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /var/log/ransom-exfil.log",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /var/log/ransom-exfil.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
