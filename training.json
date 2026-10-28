@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-28_KrustyLoader_Incident_Response_Scenario_55e",
+  "description": "Investigate a KrustyLoader malware compromise on a victim host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "KrustyLoader is a Rust-based malware linked to Ivanti ConnectSecure compromises. It is designed to download and execute a Sliver backdoor. The malware exploits vulnerabilities CVE-2024-21887 and CVE-2023-46805 to achieve unauthenticated remote code execution."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You are an incident responder with access to the victim host `victim` (IP: 192.168.120.10) using the credentials:\n- Username: cyrano\n- Password: cyrano\n\nTo start the scenario, ENTER the passkey 'start'.",
+      "local_content": "You are an incident responder with access to the victim host `victim` (IP: 192.168.120.10) using the credentials:\n- Username: cyrano\n- Password: cyrano\n\nTo start the scenario, ENTER the passkey 'start'."
+    },
+    {
+      "title": "Investigate Suspicious Scheduled Task",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.timer",
+      "answer_variable_name": null,
+      "content": "While reviewing the victim host, you notice unusual system behavior. Investigate the scheduled tasks or timers to identify any suspicious or unauthorized execution mechanisms.",
+      "solution": "Check systemd timers and services for any unusual entries. Look for the `session-mgr.timer` and `session-mgr.service` files in `/etc/systemd/system/`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check systemd timers and services for any unusual entries.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers and services that might have been recently added or modified.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Focus on the `/etc/systemd/system/` directory for any suspicious files.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_scheduled_tasks",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "session-mgr.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Suspicious Dropped Files",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/tmp/.session/rat.sh",
+      "answer_variable_name": null,
+      "content": "Examine the victim host for any files that appear to have been introduced by malicious software. Focus on directories that may have been created to conceal malicious files or payloads.",
+      "solution": "Look for recently created directories and files, especially those in unusual locations. Check the `/tmp/.session` directory for suspicious files.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for recently created directories and files, especially those in unusual locations.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Pay attention to directories like `/tmp/` which are commonly used to store temporary files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check for hidden directories or files within `/tmp/`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_dropped_files",
+          "prereq_state": [],
+          "cmd": "ls -la /tmp/.session",
+          "cmd_type": "bash-command",
+          "cmd_regex": "rat.sh|stealer.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Remote Access Component",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "6060",
+      "answer_variable_name": null,
+      "content": "Determine if there is a component responsible for establishing unauthorized remote access on the victim host. Analyze any scripts or executables that might be used for this purpose.",
+      "solution": "Investigate scripts in suspicious directories and check their contents for remote access functionality. The `rat.sh` script in `/tmp/.session` is responsible for establishing remote access.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate scripts in suspicious directories and check their contents for remote access functionality.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for scripts that might be establishing network connections or listening on specific ports.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the contents of the `rat.sh` script in `/tmp/.session/` for any suspicious network activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_remote_access",
+          "prereq_state": [],
+          "cmd": "cat /tmp/.session/rat.sh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "nc -w 10 \"c2-server\" \"6060\"",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
