@@ -1,0 +1,246 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "sys-monitor.service is created and running on miner-host",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The service name is not given or trivially derived from content, topology, supplied IP/hostname/credentials, or other already-visible connection data.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content explicitly states to find the service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands compatible with sandbox OS/tools, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify High CPU Usage Process",
+      "status": "pass",
+      "evidence": "sys-monitor process is created and running on miner-host",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify High CPU Usage Process",
+      "status": "pass",
+      "evidence": "The process name is not given or trivially derived from content, topology, supplied IP/hostname/credentials, or other already-visible connection data.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify High CPU Usage Process",
+      "status": "pass",
+      "evidence": "The content explicitly states to find the process name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify High CPU Usage Process",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify High CPU Usage Process",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands compatible with sandbox OS/tools, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify High CPU Usage Process",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify High CPU Usage Process",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify High CPU Usage Process",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "Port 80 is used for suspicious outbound communication from the miner-host system.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "The port number is not given or trivially derived from content, topology, supplied IP/hostname/credentials, or other already-visible connection data.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "The content explicitly states to find the port number.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands compatible with sandbox OS/tools, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The username and password are not explicitly stated in the scenario_design.",
+      "fix": "Explicitly state the username and password in the scenario_design."
+    },
+    {
+      "condition": "C2",
+      "severity": "minor",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The instruction to enter the passkey 'start' is not explicitly stated in the scenario_design.",
+      "fix": "Explicitly state the instruction to enter the passkey 'start' in the scenario_design."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "sys-monitor.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is created and running on miner-host.",
+      "recommendation": "No changes needed."
+    },
+    {
+      "level": "Identify High CPU Usage Process",
+      "current_flag": "sys-monitor",
+      "flag_type": "process name",
+      "verdict": "valid",
+      "sandbox_evidence": "The process is created and running on miner-host.",
+      "recommendation": "No changes needed."
+    },
+    {
+      "level": "Determine Suspicious Outbound Communication",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Port 80 is used for suspicious outbound communication from the miner-host system.",
+      "recommendation": "No changes needed."
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training_json, topology_yaml, and provisioning_files are well-aligned. The access credentials and passkey instructions are explicitly stated in the training_json but not in the scenario_design. All flags are valid and the hints are progressively more revealing. The scenario covers the attack chain completely and accurately, with a strong narrative and correct difficulty progression."
+}
