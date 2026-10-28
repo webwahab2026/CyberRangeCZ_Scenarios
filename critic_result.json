@@ -1,0 +1,252 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": false,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "fail"
+  },
+  "condition_review": [
+    {
+      "condition": "C1",
+      "level": "ACCESS_LEVEL",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C2",
+      "level": "ACCESS_LEVEL",
+      "status": "fail",
+      "evidence": "training_json",
+      "required_fix": "Add explicit instruction to ENTER or TYPE the passkey 'start' in cloud_content."
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "provisioning/roles/miner-dropper/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "provisioning/roles/miner-dropper/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Analyze network connections on miner-host",
+      "status": "pass",
+      "evidence": "provisioning/roles/miner-worker/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Analyze network connections on miner-host",
+      "status": "pass",
+      "evidence": "provisioning/roles/miner-worker/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Analyze network connections on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Analyze network connections on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Analyze network connections on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Analyze network connections on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Analyze network connections on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Analyze network connections on miner-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate lateral movement to second-host",
+      "status": "pass",
+      "evidence": "provisioning/roles/miner-spreader/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate lateral movement to second-host",
+      "status": "pass",
+      "evidence": "provisioning/roles/miner-spreader/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate lateral movement to second-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate lateral movement to second-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate lateral movement to second-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate lateral movement to second-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate lateral movement to second-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate lateral movement to second-host",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "Missing explicit instruction to ENTER or TYPE the passkey 'start' in cloud_content.",
+      "fix": "Add explicit instruction to ENTER or TYPE the passkey 'start' in cloud_content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "current_flag": "sys-monitor.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/miner-dropper/tasks/main.yml",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze network connections on miner-host",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/pool-listener/tasks/main.yml",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate lateral movement to second-host",
+      "current_flag": "/usr/local/bin/sys-update.sh",
+      "flag_type": "script path",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/miner-spreader/tasks/main.yml",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the provisioning files. The main issue is the missing explicit instruction to ENTER or TYPE the passkey 'start' in the cloud_content of the ACCESS_LEVEL. All flags are valid and the scenario covers the attack chain accurately."
+}
