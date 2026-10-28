@@ -1,0 +1,238 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "systemkernelservicedefender.service is explicitly created in provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires investigation of running services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content asks for the name of the suspicious service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Port 80 is explicitly created in provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag requires investigation of network activity",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content asks for the network port used for suspicious communication",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "payload-transfer.sh is explicitly created in provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The flag requires investigation of lateral movement",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The content asks for the name of the script or service used for lateral movement",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The password in the scenario design does not match the password in the training_json",
+      "fix": "Ensure the password in the scenario design matches the password in the training_json"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "systemkernelservicedefender.service is explicitly created in provisioning",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Port 80 is explicitly created in provisioning",
+      "recommendation": ""
+    },
+    {
+      "level": "Lateral Movement Investigation",
+      "current_flag": "payload-transfer.sh",
+      "flag_type": "script name",
+      "verdict": "valid",
+      "sandbox_evidence": "payload-transfer.sh is explicitly created in provisioning",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and covers the attack chain accurately. The flags are valid and the hints are progressively revealing. The only issue is a discrepancy in the password between the scenario design and the training_json."
+}

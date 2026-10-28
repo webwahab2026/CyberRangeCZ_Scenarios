@@ -1,0 +1,182 @@
+{
+  "title": "2026-10-28_Sofacy_Fysbis_Backdoor_Investigation_d47",
+  "description": "You are an incident responder tasked with investigating a potential compromise involving the Sofacy group's Fysbis Linux backdoor. The backdoor is known to establish command and control (C2) communication and exfiltrate data. Your mission is to investigate the compromised hosts, identify the malicious activity, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services and processes",
+    "Analyze network communication for signs of C2 activity",
+    "Investigate lateral movement techniques",
+    "Contain and eradicate the threat"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential compromise involving the Sofacy group's Fysbis Linux backdoor. The backdoor is known to establish command and control (C2) communication and exfiltrate data. Your mission is to investigate the compromised hosts, identify the malicious activity, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host (IP: 192.168.50.5) using SSH with the username 'cyrano' and password 'Sofacy@2023'.",
+      "local_content": "Access the target host (IP: 192.168.50.5) using SSH with the username 'cyrano' and password 'Sofacy@2023'."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "While monitoring the target host, you notice unusual network activity. Investigate the running services on the target host and identify any suspicious or unauthorized services.",
+      "solution": "To identify the suspicious service, you can use the following command:\n\n```bash\nsystemctl list-units --type=service --all\n```\n\nLook for any services that seem out of place or unfamiliar. The suspicious service is named `systemkernelservicedefender.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the status of all running services and look for any that seem out of place or unfamiliar.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-units --type=service --all` command to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Filter the list of services by their status to narrow down the suspicious ones.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "Now that you've identified the suspicious service, investigate its network activity. Determine which network port is used for the suspicious communication.",
+      "solution": "To determine the network port used for the suspicious communication, you can use the following command:\n\n```bash\nss -tulnp | grep systemkernelservicedefender\n```\n\nThe service is listening on port 80.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the network connections associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ss -tulnp | grep systemkernelservicedefender` command to examine the network connections associated with the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the port number in the output of the command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep systemkernelservicedefender",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp | grep systemkernelservicedefender",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Lateral Movement Investigation",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "Investigate if the attacker has moved laterally from the target host to other hosts in the network. Look for evidence of file transfers or remote execution.",
+      "solution": "To investigate lateral movement, you can use the following command:\n\n```bash\nps aux | grep -i transfer\n```\n\nThe script used for lateral movement is named `payload-transfer.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check for any scripts or services that transfer files between hosts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ps aux | grep -i transfer` command to check for any scripts or services that transfer files between hosts.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for any processes that contain the word 'transfer' in their name or command line.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "lateral_movement_investigation",
+          "prereq_state": [],
+          "cmd": "ps aux | grep -i transfer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux | grep -i transfer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
