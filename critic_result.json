@@ -1,0 +1,238 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "provisioning/roles/c2-listener/defaults/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Unusual Network Connections",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "provisioning/roles/c2-listener/defaults/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Analyze Persistence Mechanism",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate Lateral Movement Indicators",
+      "status": "pass",
+      "evidence": "provisioning/roles/lateral-movement/tasks/main.yml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Lateral Movement Indicators",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Lateral Movement Indicators",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Lateral Movement Indicators",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Lateral Movement Indicators",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Lateral Movement Indicators",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Lateral Movement Indicators",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Lateral Movement Indicators",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Analyze Persistence Mechanism",
+      "description": "The flag 'systemkernelservicedefender.service' is not explicitly labeled as a flag in the provisioning files.",
+      "fix": "Ensure the flag is explicitly labeled or clearly identifiable as a flag in the provisioning files."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Unusual Network Connections",
+      "current_flag": "80",
+      "flag_type": "port",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/c2-listener/defaults/main.yml",
+      "recommendation": "The flag is valid and matches the provisioned port."
+    },
+    {
+      "level": "Analyze Persistence Mechanism",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/c2-listener/defaults/main.yml",
+      "recommendation": "The flag is valid and matches the provisioned service name."
+    },
+    {
+      "level": "Investigate Lateral Movement Indicators",
+      "current_flag": "/usr/local/bin/payload-transfer.sh",
+      "flag_type": "script path",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/lateral-movement/tasks/main.yml",
+      "recommendation": "The flag is valid and matches the provisioned script path."
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and aligns with the provided MISP event, security profile, and sandbox environment. Each task focuses on investigating the Sofacy Fysbis backdoor while adhering to the constraints and requirements specified. The only issue identified is the need to explicitly label the flag in the provisioning files."
+}

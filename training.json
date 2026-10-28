@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-28_Sofacy_Fysbis_Backdoor_Investigation_466",
+  "description": "Investigate and respond to a Sofacy Fysbis Linux backdoor compromise in the target network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Sofacy group using their Fysbis Linux backdoor. Your task is to investigate and respond to this incident.\n\n**Hint**: Focus on unusual services, persistent processes, and network connections that don't match normal operational patterns."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target host with the following credentials:\n- Host: target (192.168.50.5)\n- Username: cyrano\n- Password: cyrano",
+      "local_content": "To proceed to the training levels, ENTER or TYPE the exact passkey 'start' and SUBMIT it. Local sandbox access is not required for this scenario."
+    },
+    {
+      "title": "Investigate Unusual Network Connections",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "Investigate unusual network connections on the target host.\n\n**Objective**: Identify suspicious network activity that may indicate command and control communication.\n\n**Question**: What port is being used for suspicious outbound connections?",
+      "solution": "To identify suspicious network activity, you can use tools like `netstat` or `ss` to check active network connections. Look for unusual destinations or ports that don't match normal operational patterns.\n\n**Hint**: Check active network connections and look for unusual destinations or ports.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `netstat -tuln` or `ss -tuln` to list active network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for connections to unexpected IP addresses or ports.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `netstat -tuln | grep ESTABLISHED` to filter established connections and identify suspicious ports.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_network_connections",
+          "prereq_state": [],
+          "cmd": "netstat -tuln",
+          "cmd_type": "bash-command",
+          "cmd_regex": "netstat -tuln",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "Analyze the persistence mechanism of the suspicious service.\n\n**Objective**: Determine how the malicious service maintains persistence on the system.\n\n**Question**: What is the name of the systemd service responsible for maintaining persistence?",
+      "solution": "To analyze the persistence mechanism, examine systemd service files and look for recently created or modified services. You can use commands like `systemctl list-units --type=service` to list all services and `systemctl status <service_name>` to check the status and details of a specific service.\n\n**Hint**: Examine systemd service files and look for recently created or modified services.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the status and details of a specific service using `systemctl status <service_name>`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl list-unit-files --state=enabled` to list enabled services and identify suspicious ones.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "check_systemd_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Lateral Movement Indicators",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/payload-transfer.sh",
+      "answer_variable_name": null,
+      "content": "Investigate lateral movement indicators.\n\n**Objective**: Identify evidence of lateral movement from the target host to other systems.\n\n**Question**: What script is responsible for transferring files to another host?",
+      "solution": "To investigate lateral movement indicators, look for scripts in common directories that might be used for file transfers or remote execution. You can use commands like `find / -name '*.sh' 2>/dev/null` to search for scripts and `cat <script_name>` to view the contents of a specific script.\n\n**Hint**: Look for scripts in common directories that might be used for file transfers or remote execution.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `find / -name '*.sh' 2>/dev/null` to search for scripts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "View the contents of a specific script using `cat <script_name>`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `grep -r 'scp' /usr/local/bin/` to search for scripts containing 'scp' which might indicate file transfers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "search_for_scripts",
+          "prereq_state": [],
+          "cmd": "find / -name '*.sh' 2>/dev/null",
+          "cmd_type": "bash-command",
+          "cmd_regex": "find / -name '*.sh' 2>/dev/null",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
