@@ -1,0 +1,189 @@
+{
+  "title": "2026-10-28_Linux_Coinminer_Incident_Response_Scenario_0c4",
+  "description": "Investigate and respond to a cryptocurrency mining incident on Linux servers.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of high CPU usage",
+    "Detection of cryptocurrency mining malware",
+    "Containment and remediation of threats"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The organization has detected unusual CPU usage patterns on several Linux servers. Initial investigations suggest potential cryptocurrency mining activity. Your task is to investigate and respond to this incident."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the miner-host system with the username 'cyrano' and password 'cyrano'. From this system, you can investigate the local host and potentially other connected systems. Enter the passkey 'start' to proceed.",
+      "local_content": "You have SSH access to the miner-host system with the username 'cyrano' and password 'cyrano'. From this system, you can investigate the local host and potentially other connected systems. Enter the passkey 'start' to proceed."
+    },
+    {
+      "title": "Investigate the unusual CPU usage on miner-host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor",
+      "answer_variable_name": null,
+      "content": "You've noticed consistently high CPU usage on miner-host. Investigate this system to identify any unauthorized or suspicious services, processes, or network communications that might be causing this abnormal resource consumption.",
+      "solution": "Check running services and processes, looking for anything unusual or unauthorized. Also examine network connections for suspicious outbound traffic. The systemd service name used for persistence is 'sys-monitor'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check running services and processes, looking for anything unusual or unauthorized. Also examine network connections for suspicious outbound traffic.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the 'top' or 'htop' command to identify processes consuming the most CPU resources.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the systemd service status with 'systemctl status' command to identify any suspicious services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_miner_host",
+          "prereq_state": [],
+          "cmd": "systemctl status sys-monitor",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status sys-monitor",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate potential lateral movement to second-host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "scp /usr/local/sbin/python cyrano@second-host:/tmp/.sys-mon && ssh cyrano@second-host \"sudo mv /tmp/.sys-mon /usr/local/sbin/python && sudo chmod 755 /usr/local/sbin/python\"",
+      "answer_variable_name": null,
+      "content": "Your investigation of miner-host revealed evidence of cryptocurrency mining activity. Now check if this malware has spread to other systems in the network. Specifically, investigate second-host for signs of compromise.",
+      "solution": "Examine SSH logs and authentication records for evidence of unauthorized access or lateral movement. The SSH command used to spread the malware to second-host is 'scp /usr/local/sbin/python cyrano@second-host:/tmp/.sys-mon && ssh cyrano@second-host \"sudo mv /tmp/.sys-mon /usr/local/sbin/python && sudo chmod 755 /usr/local/sbin/python\"'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine SSH logs and authentication records for evidence of unauthorized access or lateral movement.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the last login times and IP addresses of users on second-host.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for any unusual files or processes on second-host that match those found on miner-host.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_second_host",
+          "prereq_state": [],
+          "cmd": "ssh cyrano@second-host 'systemctl status sys-monitor'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ssh cyrano@second-host 'systemctl status sys-monitor'",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain and remediate the cryptomining activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor",
+      "answer_variable_name": null,
+      "content": "You've confirmed that both miner-host and second-host are compromised with cryptocurrency mining malware. Now contain and remediate this threat to prevent further resource consumption and potential spread.",
+      "solution": "Consider terminating malicious processes, disabling persistence mechanisms, and removing malicious artifacts. The systemd service name that was disabled or removed is 'sys-monitor'.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Consider terminating malicious processes, disabling persistence mechanisms, and removing malicious artifacts.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the 'systemctl stop' command to terminate the malicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the 'systemctl disable' command to prevent the malicious service from starting at boot.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "remediate_miner_host",
+          "prereq_state": [],
+          "cmd": "systemctl stop sys-monitor && systemctl disable sys-monitor",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl stop sys-monitor && systemctl disable sys-monitor",
+          "optional": false
+        },
+        {
+          "state_name": "remediate_second_host",
+          "prereq_state": [],
+          "cmd": "ssh cyrano@second-host 'systemctl stop sys-monitor && systemctl disable sys-monitor'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ssh cyrano@second-host 'systemctl stop sys-monitor && systemctl disable sys-monitor'",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}

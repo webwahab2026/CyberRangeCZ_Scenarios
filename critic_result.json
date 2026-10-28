@@ -1,0 +1,246 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "The systemd service name 'sys-monitor' is created and used for persistence in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "The trainee needs to investigate running services and processes to identify the systemd service name 'sys-monitor'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the systemd service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer 'sys-monitor'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag 'sys-monitor'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "The hints progress from conceptual to directional to precise method without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command 'systemctl status sys-monitor'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Investigate potential lateral movement to second-host",
+      "status": "pass",
+      "evidence": "The SSH command used to spread the malware is created in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate potential lateral movement to second-host",
+      "status": "pass",
+      "evidence": "The trainee needs to investigate SSH logs and authentication records to identify the SSH command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate potential lateral movement to second-host",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the SSH command used to spread the malware.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate potential lateral movement to second-host",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer 'scp /usr/local/sbin/python cyrano@second-host:/tmp/.sys-mon && ssh cyrano@second-host \"sudo mv /tmp/.sys-mon /usr/local/sbin/python && sudo chmod 755 /usr/local/sbin/python\"'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate potential lateral movement to second-host",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate potential lateral movement to second-host",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate potential lateral movement to second-host",
+      "status": "pass",
+      "evidence": "The hints progress from conceptual to directional to precise method without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate potential lateral movement to second-host",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command 'ssh cyrano@second-host 'systemctl status sys-monitor''.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Contain and remediate the cryptomining activity",
+      "status": "pass",
+      "evidence": "The systemd service name 'sys-monitor' is created and used for persistence in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Contain and remediate the cryptomining activity",
+      "status": "pass",
+      "evidence": "The trainee needs to disable or remove the systemd service 'sys-monitor' to remediate the threat.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Contain and remediate the cryptomining activity",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the systemd service name that was disabled or removed.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Contain and remediate the cryptomining activity",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer 'sys-monitor'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Contain and remediate the cryptomining activity",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag 'sys-monitor'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Contain and remediate the cryptomining activity",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Contain and remediate the cryptomining activity",
+      "status": "pass",
+      "evidence": "The hints progress from conceptual to directional to precise method without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Contain and remediate the cryptomining activity",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command 'systemctl stop sys-monitor && systemctl disable sys-monitor'.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The username and password are explicitly provided in the training_json.",
+      "fix": "Ensure the username and password are explicitly provided in the scenario_design and topology_yaml."
+    },
+    {
+      "condition": "C2",
+      "severity": "minor",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The passkey 'start' is explicitly instructed to be entered in the training_json.",
+      "fix": "Ensure the passkey 'start' is explicitly instructed to be entered in the scenario_design and topology_yaml."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate the unusual CPU usage on miner-host",
+      "current_flag": "sys-monitor",
+      "flag_type": "systemd service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The systemd service name 'sys-monitor' is created and used for persistence in the provisioning files.",
+      "recommendation": "No changes needed."
+    },
+    {
+      "level": "Investigate potential lateral movement to second-host",
+      "current_flag": "scp /usr/local/sbin/python cyrano@second-host:/tmp/.sys-mon && ssh cyrano@second-host \"sudo mv /tmp/.sys-mon /usr/local/sbin/python && sudo chmod 755 /usr/local/sbin/python\"",
+      "flag_type": "SSH command",
+      "verdict": "valid",
+      "sandbox_evidence": "The SSH command used to spread the malware is created in the provisioning files.",
+      "recommendation": "No changes needed."
+    },
+    {
+      "level": "Contain and remediate the cryptomining activity",
+      "current_flag": "sys-monitor",
+      "flag_type": "systemd service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The systemd service name 'sys-monitor' is created and used for persistence in the provisioning files.",
+      "recommendation": "No changes needed."
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training_json, topology_yaml, and provisioning files are well-aligned. The access credentials and passkey instructions are explicitly provided. All flags are valid and non-trivial. The hints and solutions are accurate and progressive. The scenario covers the attack chain completely and accurately, with a strong narrative and correct difficulty progression."
+}
