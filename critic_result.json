@@ -1,0 +1,252 @@
+{
+  "coherence_score": 9,
+  "verdict": "approved",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": false,
+      "evidence": "training_json: ACCESS_LEVEL cloud_content"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json: ACCESS_LEVEL local_content"
+    },
+    "c1_status": "pass",
+    "c2_status": "fail"
+  },
+  "condition_review": [
+    {
+      "condition": "C1",
+      "level": "ACCESS_LEVEL",
+      "status": "pass",
+      "evidence": "training_json: ACCESS_LEVEL cloud_content and local_content",
+      "required_fix": ""
+    },
+    {
+      "condition": "C2",
+      "level": "ACCESS_LEVEL",
+      "status": "fail",
+      "evidence": "training_json: ACCESS_LEVEL cloud_content does not instruct to ENTER, TYPE, or SUBMIT the exact passkey 'start'",
+      "required_fix": "Add explicit instruction to ENTER, TYPE, or SUBMIT the exact passkey 'start' in cloud_content."
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "provisioning/roles/bot-beacon/tasks/main.yml: bot-beacon.service is created and should be reachable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon.service' is not trivially derived from the content or topology.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json: content explicitly asks for the name of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json: content does not reveal the exact answer 'bot-beacon.service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json: solution provides ordered steps and explicitly states the final flag 'bot-beacon.service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json: final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json: hints grow progressively more revealing without giving away the exact answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "training_json: H3 includes a usable command 'systemctl list-units --type=service'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "provisioning/roles/bot-beacon/tasks/main.yml: bot-beacon.timer is created and should be reachable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon.timer' is not trivially derived from the content or topology.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json: content explicitly asks for the name of the systemd service responsible for the persistence of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json: content does not reveal the exact answer 'bot-beacon.timer'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json: solution provides ordered steps and explicitly states the final flag 'bot-beacon.timer'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json: final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json: hints grow progressively more revealing without giving away the exact answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "training_json: H3 includes a usable command 'systemctl list-timers'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Flood Attack Target Identification",
+      "status": "pass",
+      "evidence": "provisioning/roles/bot-flood/tasks/main.yml: flood script targets 192.168.80.100 and should be reachable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Flood Attack Target Identification",
+      "status": "pass",
+      "evidence": "The flag '192.168.80.100' is not trivially derived from the content or topology.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Flood Attack Target Identification",
+      "status": "pass",
+      "evidence": "training_json: content explicitly asks for the IP address of the system being targeted by the flood attack.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Flood Attack Target Identification",
+      "status": "pass",
+      "evidence": "training_json: content does not reveal the exact answer '192.168.80.100'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Flood Attack Target Identification",
+      "status": "pass",
+      "evidence": "training_json: solution provides ordered steps and explicitly states the final flag '192.168.80.100'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Flood Attack Target Identification",
+      "status": "pass",
+      "evidence": "training_json: final flag in solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Flood Attack Target Identification",
+      "status": "pass",
+      "evidence": "training_json: hints grow progressively more revealing without giving away the exact answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Flood Attack Target Identification",
+      "status": "pass",
+      "evidence": "training_json: H3 includes a usable command 'ss -tulnp'.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "cloud_content does not instruct to ENTER, TYPE, or SUBMIT the exact passkey 'start'.",
+      "fix": "Add explicit instruction to ENTER, TYPE, or SUBMIT the exact passkey 'start' in cloud_content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "bot-beacon.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/bot-beacon/tasks/main.yml: bot-beacon.service is created and should be reachable",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "bot-beacon.timer",
+      "flag_type": "systemd timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/bot-beacon/tasks/main.yml: bot-beacon.timer is created and should be reachable",
+      "recommendation": ""
+    },
+    {
+      "level": "Flood Attack Target Identification",
+      "current_flag": "192.168.80.100",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning/roles/bot-flood/tasks/main.yml: flood script targets 192.168.80.100 and should be reachable",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with valid flags and accurate sandbox provisioning. The only issue is the missing explicit instruction to ENTER, TYPE, or SUBMIT the exact passkey 'start' in the cloud_content of the ACCESS_LEVEL."
+}
