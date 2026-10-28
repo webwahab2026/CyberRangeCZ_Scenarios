@@ -1,0 +1,238 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": false,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": false,
+      "password_present": false,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "fail"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate Suspicious Services",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Process",
+      "status": "pass",
+      "evidence": "provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Process",
+      "status": "pass",
+      "evidence": "provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Process",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Process",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Process",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Process",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Process",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Process",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Suspicious Outbound Communication",
+      "status": "pass",
+      "evidence": "training_json",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "Missing explicit instruction to enter the passkey 'start' in local_content.",
+      "fix": "Add explicit instruction to enter the passkey 'start' in local_content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate Suspicious Services",
+      "current_flag": "sys-monitor",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Suspicious Process",
+      "current_flag": "sys-monitor",
+      "flag_type": "process name",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Suspicious Outbound Communication",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "provisioning files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The main issue is the missing explicit instruction to enter the passkey 'start' in the local_content of the ACCESS_LEVEL. All flags are valid and the scenario covers the attack chain accurately."
+}
