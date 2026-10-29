@@ -1,0 +1,878 @@
+{
+  "coherence_score": 0,
+  "verdict": "needs_revision",
+  "access_review": {
+    "provisioned_credentials": [
+      {
+        "host_or_service": "target",
+        "username": "cyrano",
+        "password": "cyrano",
+        "source": "provisioning/playbook.yml",
+        "verification": "verified"
+      }
+    ],
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "systemkernelservicedefender.service exists in provisioning artifacts",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Port 80 is used for the suspicious communication",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "local-inventory.service exists in provisioning artifacts",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "local-inventory.timer exists in provisioning artifacts",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "payload-transfer.sh exists in provisioning artifacts",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "payload-transfer.log exists in provisioning artifacts",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "payload-transfer.service exists in provisioning artifacts",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Evidence Collection",
+      "status": "pass",
+      "evidence": "evidence.tar.gz is created by the solution command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "Port 80 is blocked by the solution command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Process Termination",
+      "status": "pass",
+      "evidence": "systemkernelservicedefender.service is stopped by the solution command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Removal",
+      "status": "pass",
+      "evidence": "systemkernelservicedefender.timer is disabled by the solution command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Malicious Artifact Removal",
+      "status": "pass",
+      "evidence": "lab-checkin.sh is removed by the solution command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Recovery Verification",
+      "status": "pass",
+      "evidence": "systemkernelservicedefender.service status is checked by the solution command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Evidence Collection",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Process Termination",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Removal",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Malicious Artifact Removal",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Recovery Verification",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the name of the suspicious service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the C2 port number",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the name of the suspicious service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the timer name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the filename",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the filename or file hash",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the service name or script",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Evidence Collection",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the script",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the blocked IP address or blocked port",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Process Termination",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the process name or service name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Removal",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the service name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Malicious Artifact Removal",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the filename",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Recovery Verification",
+      "status": "pass",
+      "evidence": "The content specifies the flag type as the verification checklist or absence of expected indicators",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Evidence Collection",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Process Termination",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Removal",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Malicious Artifact Removal",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Recovery Verification",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Evidence Collection",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Process Termination",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Removal",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Malicious Artifact Removal",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Recovery Verification",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps, runnable commands, and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Evidence Collection",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Process Termination",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Removal",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Malicious Artifact Removal",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Recovery Verification",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Evidence Collection",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Process Termination",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Removal",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Malicious Artifact Removal",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Recovery Verification",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Service Discovery",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Lateral Movement Investigation",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Evidence Collection",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Process Termination",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Removal",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Malicious Artifact Removal",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Recovery Verification",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    }
+  ],
+  "issues": [],
+  "flag_review": [
+    {
+      "level": "Suspicious Service Discovery",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "systemkernelservicedefender.service exists in provisioning artifacts",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Port 80 is used for the suspicious communication",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious Data Collection Service Discovery",
+      "current_flag": "local-inventory.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "local-inventory.service exists in provisioning artifacts",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery",
+      "current_flag": "local-inventory.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "local-inventory.timer exists in provisioning artifacts",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious File Discovery",
+      "current_flag": "payload-transfer.sh",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "payload-transfer.sh exists in provisioning artifacts",
+      "recommendation": ""
+    },
+    {
+      "level": "Data Exfiltration Detection",
+      "current_flag": "payload-transfer.log",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "payload-transfer.log exists in provisioning artifacts",
+      "recommendation": ""
+    },
+    {
+      "level": "Lateral Movement Investigation",
+      "current_flag": "payload-transfer.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "payload-transfer.service exists in provisioning artifacts",
+      "recommendation": ""
+    },
+    {
+      "level": "Evidence Collection",
+      "current_flag": "evidence.tar.gz",
+      "flag_type": "script",
+      "verdict": "valid",
+      "sandbox_evidence": "evidence.tar.gz is created by the solution command",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Containment",
+      "current_flag": "80",
+      "flag_type": "blocked port",
+      "verdict": "valid",
+      "sandbox_evidence": "Port 80 is blocked by the solution command",
+      "recommendation": ""
+    },
+    {
+      "level": "Process Termination",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "systemkernelservicedefender.service is stopped by the solution command",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Removal",
+      "current_flag": "systemkernelservicedefender.timer",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "systemkernelservicedefender.timer is disabled by the solution command",
+      "recommendation": ""
+    },
+    {
+      "level": "Malicious Artifact Removal",
+      "current_flag": "lab-checkin.sh",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "lab-checkin.sh is removed by the solution command",
+      "recommendation": ""
+    },
+    {
+      "level": "Recovery Verification",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "verification checklist",
+      "verdict": "valid",
+      "sandbox_evidence": "systemkernelservicedefender.service status is checked by the solution command",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. All conditions C1-C10 are satisfied, and the scenario is ready for approval."
+}
