@@ -1,0 +1,17 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: dbus-inotifier
+  content: "dbus-inotifier\n"
+- name: 8bca0031f3b691421cb15f9c6e71ce193355d2d8cf2b190438b6962761d0c6bb
+  content: "8bca0031f3b691421cb15f9c6e71ce193355d2d8cf2b190438b6962761d0c6bb\n"
+- name: dbus-inotifier
+  content: "dbus-inotifier\n"
+packages_to_install:
+- openssh-server

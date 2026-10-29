@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-29_Sofacy_Fysbis_Backdoor_Investigation_b4c",
+  "description": "Investigate and respond to a potential compromise involving the Sofacy Fysbis backdoor trojan.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target system has exhibited unusual network activity, including intermittent connections to an unknown external server. Initial analysis suggests the presence of a backdoor trojan known as Fysbis, associated with the Sofacy malware family. Your task is to investigate and respond to this potential compromise."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target system with the username `cyrano` and password `cyrano`. The target system is named `target` and has the IP address `192.168.50.5`.",
+      "local_content": "Local sandbox access is not required for this scenario. SSH credentials are provided in the cloud content section. Use the same credentials as provided in the cloud content section. Enter the passkey `start` to proceed to the training levels."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "dbus-notifier.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the target system. Enumerate running services and distinguish legitimate from suspicious services.",
+      "solution": "Check the systemd services and look for any unusual or unauthorized services. The service name `dbus-notifier.service` should be identified as suspicious.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the systemd services and look for any unusual or unauthorized services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-units --type=service` to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services that are not part of the standard system packages or have unusual names.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "dbus-notifier.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "dbus-notifier.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. Identify persistence mechanisms (e.g., systemd, cron, scheduled task).",
+      "solution": "Examine the systemd service files and timers. The persistence mechanism should be identified as the systemd service `dbus-notifier.service` and its associated timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the systemd service files and timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl list-timers` to list all active timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for timers that are associated with the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "dbus-notifier.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate Malicious Artifact",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/home/cyrano/dbus-inotifier",
+      "answer_variable_name": null,
+      "content": "Locate the executable or file associated with the suspicious activity. Correlate processes with files on disk and identify malicious artifacts.",
+      "solution": "Investigate the files in the home directory of the user `cyrano`. The file `/home/cyrano/dbus-inotifier` should be identified as associated with the suspicious activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Investigate the files in the home directory of the user `cyrano`.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ls -la /home/cyrano/` to list all files in the directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for files that are not part of the standard system packages or have unusual names.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "malicious_artifact",
+          "prereq_state": [],
+          "cmd": "ls -la /home/cyrano/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "dbus-inotifier",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
