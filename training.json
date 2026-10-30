@@ -1,0 +1,163 @@
+{
+  "title": "2026-10-30_Kobalos_Malware_Investigation_007",
+  "description": "You are an incident responder tasked with investigating a potential Kobalos malware infection in a high-performance computing (HPC) environment. Kobalos is a complex malware that targets HPC clusters and other high-profile systems, providing remote access, credential stealing, and lateral movement capabilities. Your goal is to identify and mitigate the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux commands (systemctl, cat)",
+    "Basic networking knowledge (ports, services)"
+  ],
+  "outcomes": [
+    "Usage of systemctl for service management",
+    "Identifying suspicious services",
+    "Analyzing service configuration files"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential Kobalos malware infection in a high-performance computing (HPC) environment. Kobalos is a complex malware that targets HPC clusters and other high-profile systems, providing remote access, credential stealing, and lateral movement capabilities. Your goal is to identify and mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano.",
+      "local_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "While monitoring the target host, you notice unusual network activity. Investigate the running services on the target host to identify any unauthorized or suspicious services that might be communicating with an external command-and-control (C2) server. The flag is the name of the suspicious service.",
+      "solution": "systemctl list-units --type=service | grep -i suspicious",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for unfamiliar service names or misspellings of legitimate services. Services with unusual descriptions or startup behavior may also indicate suspicious activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-units --type=service` command to list all running services.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service | grep -i suspicious",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service | grep -i suspicious",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "7070",
+      "answer_variable_name": null,
+      "content": "Now that you have identified a suspicious service, determine which network port is used for the suspicious communication. This information is crucial for understanding the attack vector and planning mitigation strategies. The flag is the port number used for the suspicious communication.",
+      "solution": "cat /etc/systemd/system/lab-checkin.timer | grep -i port",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Inspect the service's configuration file to find the port number specified in the ExecStart command.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "The service configuration file is located at `/etc/systemd/system/lab-checkin.timer`.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/lab-checkin.timer | grep -i port",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /etc/systemd/system/lab-checkin.timer | grep -i port",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "lab-checkin.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service is automatically started after reboot. Identifying the persistence mechanism is essential for removing the malware and preventing reinfection. The flag is the name of the timer used for persistence.",
+      "solution": "systemctl list-timers | grep -i lab-checkin.timer",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for timers or other persistence mechanisms associated with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-timers` command to list all timers.",
+          "hint_penalty": 1,
+          "order": 1
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers | grep -i lab-checkin.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers | grep -i lab-checkin.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
