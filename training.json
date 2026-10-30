@@ -1,0 +1,183 @@
+{
+  "title": "2026-10-30_Sofacy_Fysbis_Backdoor_Investigation_1f6",
+  "description": "Investigate a compromised Linux host with Sofacy Fysbis backdoor and take appropriate containment measures.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Enumerate and analyze system services to identify unauthorized components.",
+    "Investigate network connections and service configurations to detect suspicious communication.",
+    "Discover and disable persistence mechanisms.",
+    "Collect and preserve forensic evidence.",
+    "Apply appropriate containment measures to prevent further unauthorized activity."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Scenario Background",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual network activity involving a Linux host in your environment. Initial analysis suggests the presence of a backdoor associated with the Sofacy group, specifically the Fysbis malware. Your task is to investigate the compromised host, identify the malicious components, and take appropriate containment measures.\n\n**Learning Objectives:**\n- Enumerate and analyze system services to identify unauthorized components.\n- Investigate network connections and service configurations to detect suspicious communication.\n- Discover and disable persistence mechanisms.\n- Collect and preserve forensic evidence.\n- Apply appropriate containment measures to prevent further unauthorized activity."
+    },
+    {
+      "title": "Access the Compromised Host",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the compromised host `target` (IP: 192.168.50.5) via SSH using the following credentials:\n\n- **Username:** `cyrano`\n- **Password:** `cyrano`\n\nTo proceed to the training levels, TYPE the exact passkey `start` and press ENTER.",
+      "local_content": "Access the compromised host `target` (IP: 192.168.50.5) via SSH using the following credentials:\n\n- **Username:** `cyrano`\n- **Password:** `cyrano`\n\nTo proceed to the training levels, TYPE the exact passkey `start` and press ENTER."
+    },
+    {
+      "title": "Identify the Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.\n\n**Question:** What is the name of the suspicious service responsible for the unauthorized activity?",
+      "solution": "To identify the suspicious service, use systemd commands to list all services and look for any that appear unusual or unauthorized. The service responsible for the unauthorized activity is `systemkernelservicedefender.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use systemd commands to list all services and look for any that appear unusual or unauthorized.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the status of all services using `systemctl status` and look for any services that are not part of the standard system installation.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is named `systemkernelservicedefender.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemkernelservicedefender.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.\n\n**Question:** What is the network port associated with the suspicious service?",
+      "solution": "To determine the network port associated with the suspicious service, use network enumeration commands to identify listening ports and correlate them with the suspicious service. The network port associated with the suspicious service is `80`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use network enumeration commands to identify listening ports and correlate them with the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ss` command to list all listening ports and their associated processes.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The network port associated with the suspicious service is `80`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "determine_network_port",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "80",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the System Information Collection Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the service responsible for this activity.\n\n**Question:** What is the name of the service responsible for collecting system information?",
+      "solution": "To identify the service responsible for collecting system information, look for services that are periodically executed and check their configurations for suspicious behavior. The service responsible for collecting system information is `local-inventory.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for services that are periodically executed and check their configurations for suspicious behavior.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `systemctl list-timers` command to list all timers and look for any that are not part of the standard system installation.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The service responsible for collecting system information is `local-inventory.timer`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_system_information_collection_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "local-inventory.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
