@@ -1,0 +1,169 @@
+{
+  "title": "2026-10-30_Sofacy_Fysbis_Backdoor_Investigation_c85",
+  "description": "Investigate and respond to a Sofacy group compromise using the Fysbis Linux backdoor.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The target network has been compromised by the Sofacy group using the Fysbis Linux backdoor. Your task is to investigate and respond to this incident. The Fysbis malware is a modular Linux backdoor that implements plug-in and controller modules as distinct classes. It can install itself with or without root privileges, increasing the options available to an adversary when selecting accounts for installation. The malware includes both 32-bit and 64-bit versions of ELF binaries."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can SSH to `next-target` using the same credentials. Enter the passkey `start` to proceed.",
+      "local_content": "You have access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can SSH to `next-target` using the same credentials. Enter the passkey `start` to proceed."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the `target` host that communicates with an external command-and-control (C2) server.",
+      "solution": "Check the running services and look for any that seem out of place or have unusual configurations. The hidden flag is the name of the suspicious service: systemkernelservicedefender.service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for services that might be communicating with external servers.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service",
+          "optional": false
+        },
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl status systemkernelservicedefender.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status systemkernelservicedefender.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine C2 Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "Determine which network port is used for the suspicious communication identified in the previous task.",
+      "solution": "Inspect the C2 service definitions and pay particular attention to `ExecStart`, which specifies the command launched by the service with a port number as an argument. The hidden flag is the C2 port number.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Examine the service configuration for the suspicious service to find the port number.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_identification",
+          "prereq_state": [],
+          "cmd": "systemctl cat systemkernelservicedefender.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat systemkernelservicedefender.service",
+          "optional": false
+        },
+        {
+          "state_name": "port_identification",
+          "prereq_state": [],
+          "cmd": "grep -E 'ExecStart' /etc/systemd/system/systemkernelservicedefender.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -E 'ExecStart' /etc/systemd/system/systemkernelservicedefender.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Information Collection Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the `target` host that runs at boot and every hour thereafter for information collection.",
+      "solution": "Check the running services and look for any that seem out of place or have unusual configurations. The hidden flag is the name of the suspicious service: local-inventory.timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for services that might be collecting information at regular intervals.",
+          "hint_penalty": 0,
+          "order": 0
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers",
+          "optional": false
+        },
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl status local-inventory.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status local-inventory.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

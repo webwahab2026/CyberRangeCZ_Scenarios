@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter passkey `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag `systemkernelservicedefender.service` corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to be submitted: the name of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure: Hint 1 is conceptual, Hint 2 is directional, and Hint 3 is near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses real provisioned tools/paths/services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine C2 Port",
+      "status": "pass",
+      "evidence": "The flag `80` corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine C2 Port",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the C2 port.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine C2 Port",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to be submitted: the C2 port number.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine C2 Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine C2 Port",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine C2 Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine C2 Port",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure: Hint 1 is conceptual, Hint 2 is directional, and Hint 3 is near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine C2 Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses real provisioned tools/paths/services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Information Collection Service",
+      "status": "pass",
+      "evidence": "The flag `local-inventory.timer` corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Information Collection Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Information Collection Service",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to be submitted: the name of the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Information Collection Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Information Collection Service",
+      "status": "pass",
+      "evidence": "The solution explains how to obtain the answer in a step-by-step way, includes usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Information Collection Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Information Collection Service",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure: Hint 1 is conceptual, Hint 2 is directional, and Hint 3 is near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Information Collection Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses real provisioned tools/paths/services.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C9",
+      "severity": "minor",
+      "component": "hint",
+      "level": "Identify Suspicious Service",
+      "description": "Hint 1 does not provide enough directional guidance; it should name specific files, tools, services, or locations.",
+      "fix": "Update Hint 1 to provide more specific guidance."
+    },
+    {
+      "condition": "C9",
+      "severity": "minor",
+      "component": "hint",
+      "level": "Determine C2 Port",
+      "description": "Hint 1 does not provide enough directional guidance; it should name specific files, tools, services, or locations.",
+      "fix": "Update Hint 1 to provide more specific guidance."
+    },
+    {
+      "condition": "C9",
+      "severity": "minor",
+      "component": "hint",
+      "level": "Identify Information Collection Service",
+      "description": "Hint 1 does not provide enough directional guidance; it should name specific files, tools, services, or locations.",
+      "fix": "Update Hint 1 to provide more specific guidance."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is defined in the provisioning files and matches the expected behavior.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine C2 Port",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port number is defined in the provisioning files and matches the expected behavior.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Information Collection Service",
+      "current_flag": "local-inventory.timer",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is defined in the provisioning files and matches the expected behavior.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-structured and meets most of the required conditions. However, the hints in each training level need to provide more specific guidance to fully comply with C9. The scenario is otherwise well-aligned with the intended learning objectives and sandbox environment."
+}
