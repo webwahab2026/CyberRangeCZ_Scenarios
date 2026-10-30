@@ -1,0 +1,189 @@
+{
+  "title": "2026-10-30_Sofacy_Fysbis_Backdoor_Investigation_6a8",
+  "description": "You are an incident responder tasked with investigating a potential compromise involving the Sofacy group's Fysbis backdoor on a Linux-based network. Your goal is to identify and analyze the malicious activity, contain the threat, and ensure the system is secure.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify and investigate suspicious services.",
+    "Determine network ports used for suspicious communication.",
+    "Analyze logs and network traffic for evidence of data exfiltration.",
+    "Identify and remove persistence mechanisms.",
+    "Collect forensic evidence supporting the identified malicious activity."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a potential compromise involving the Sofacy group's Fysbis backdoor on a Linux-based network. Your goal is to identify and analyze the malicious activity, contain the threat, and ensure the system is secure."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano.",
+      "local_content": "Access the target host via SSH using the following credentials: Username: cyrano, Password: cyrano."
+    },
+    {
+      "title": "Suspicious Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "systemkernelservicedefender.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service running on the target host that communicates with an external server. The flag is the name of the suspicious service.",
+      "solution": "To identify the suspicious service, run the command `systemctl list-units --type=service` and look for the service named `systemkernelservicedefender.service`. This command lists all running services, and the suspicious service stands out due to its unusual name and description.",
+      "solution_penalized": false,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Check the running services and look for any that seem out of place or have unusual descriptions.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Use the `systemctl` command to list all running services. The suspicious service will have an unusual name.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The suspicious service is named `systemkernelservicedefender.service`. Use `systemctl list-units --type=service` to find it.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemkernelservicedefender.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "systemctl list-units --type=service"
+      ],
+      "commands_required": true
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "Determine which network port is used for the suspicious communication identified in the previous task. The flag is the port number.",
+      "solution": "To determine the port used for the suspicious communication, inspect the service configuration file located at `/etc/systemd/system/systemkernelservicedefender.service` and look for the `ExecStart` line, which specifies the port number as an argument. The port number is the flag you need to find.",
+      "solution_penalized": false,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Examine the service configuration for the suspicious service to find the port number.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "Use the `cat` command to view the contents of the service configuration file at `/etc/systemd/system/systemkernelservicedefender.service`. Look for the `ExecStart` line.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The port number is specified as an argument in the `ExecStart` line of the service configuration file. It is `80`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "cat /etc/systemd/system/systemkernelservicedefender.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "80",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "cat /etc/systemd/system/systemkernelservicedefender.service"
+      ],
+      "commands_required": true
+    },
+    {
+      "title": "Evidence Collection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/local-inventory.sh",
+      "answer_variable_name": null,
+      "content": "Collect forensic evidence supporting the identified malicious activity, including logs, process information, service configuration, and network evidence. The flag is the path to the script used for evidence collection.",
+      "solution": "To collect forensic evidence, run the script `/usr/local/bin/local-inventory.sh` which will gather relevant logs, process information, service configuration, and network evidence. The path to the script is the flag you need to find.",
+      "solution_penalized": false,
+      "hints": [
+        {
+          "title": "Conceptual Hint",
+          "content": "Look for logs and configuration files related to the suspicious service and any network connections it makes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Intermediate Hint",
+          "content": "The script for evidence collection is located in the `/usr/local/bin/` directory. Use the `ls` command to list the contents of this directory.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Near-Spoiler Hint",
+          "content": "The script for evidence collection is named `local-inventory.sh` and is located at `/usr/local/bin/local-inventory.sh`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "evidence_collection",
+          "prereq_state": [],
+          "cmd": "/usr/local/bin/local-inventory.sh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "inventory.log",
+          "optional": false
+        }
+      ],
+      "expected_commands": [
+        "/usr/local/bin/local-inventory.sh"
+      ],
+      "commands_required": true
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
