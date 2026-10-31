@@ -1,0 +1,246 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "sysnet-monitor.service is a valid service created by provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag requires investigation of services to identify the worm-related service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content specifies to submit the service name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hints progress from conceptual to directional to precise method",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "H3 includes a usable command matching provisioned tools and OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "sysnet-monitor.timer is a valid timer created by provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The flag requires investigation of timers to identify the worm-related timer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The content specifies to submit the timer or task name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "Hints progress from conceptual to directional to precise method",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Scheduled Task",
+      "status": "pass",
+      "evidence": "H3 includes a usable command matching provisioned tools and OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate Worm Files",
+      "status": "pass",
+      "evidence": "/opt/.worm is a valid directory created by provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate Worm Files",
+      "status": "pass",
+      "evidence": "The flag requires investigation of directories to identify the worm-related files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate Worm Files",
+      "status": "pass",
+      "evidence": "The content specifies to submit the filename",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate Worm Files",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate Worm Files",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate Worm Files",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate Worm Files",
+      "status": "pass",
+      "evidence": "Hints progress from conceptual to directional to precise method",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate Worm Files",
+      "status": "pass",
+      "evidence": "H3 includes a usable command matching provisioned tools and OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "Username and password in training_json do not match scenario_design",
+      "fix": "Update training_json to match scenario_design credentials"
+    },
+    {
+      "condition": "C2",
+      "severity": "minor",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "Passkey instruction in training_json does not match scenario_design",
+      "fix": "Update training_json to match scenario_design passkey instruction"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "sysnet-monitor.service",
+      "flag_type": "Service name",
+      "verdict": "valid",
+      "sandbox_evidence": "sysnet-monitor.service is created by provisioning",
+      "recommendation": "No changes needed"
+    },
+    {
+      "level": "Determine Scheduled Task",
+      "current_flag": "sysnet-monitor.timer",
+      "flag_type": "Timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "sysnet-monitor.timer is created by provisioning",
+      "recommendation": "No changes needed"
+    },
+    {
+      "level": "Locate Worm Files",
+      "current_flag": "/opt/.worm",
+      "flag_type": "Filename",
+      "verdict": "valid",
+      "sandbox_evidence": "/opt/.worm is created by provisioning",
+      "recommendation": "No changes needed"
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with valid flags and proper hint progression. Minor issues with access credentials and passkey instruction need to be addressed."
+}
