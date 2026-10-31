@@ -1,0 +1,19 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.90.5", name: "c2-server"}
+- {ip: "192.168.90.10", name: "victim"}
+- {ip: "192.168.90.20", name: "exfil-server"}
+packages_to_install:
+- openssh-server
+- openssl
+- netcat-openbsd
+- rsync
+files_to_copy:
+- quarterly_report.txt
+- employee_data.csv
+- passwords.txt
+files_to_create:
+- name: 49281571f626154f3a0ed979e6c3d154ca72a5b8
+  content: "49281571f626154f3a0ed979e6c3d154ca72a5b8\n"

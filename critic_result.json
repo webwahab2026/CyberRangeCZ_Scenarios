@@ -1,0 +1,229 @@
+{
+  "coherence_score": 9,
+  "verdict": "approved",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "192.168.90.5 is explicitly mentioned in the training_json and matches the topology_yaml",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The content explicitly states to find the command-and-control server IP address",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing without giving away the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Command-and-Control Server IP Address",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command that matches the provisioned tools and OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "4443 is explicitly mentioned in the training_json and matches the provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The content explicitly states to find the network port used for suspicious command-and-control communication",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing without giving away the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command that matches the provisioned tools and OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate the Ransom Note",
+      "status": "pass",
+      "evidence": "/home/cyrano/RANSOM_NOTE.txt is explicitly mentioned in the training_json and matches the provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate the Ransom Note",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate the Ransom Note",
+      "status": "pass",
+      "evidence": "The content explicitly states to find the ransom note filename",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate the Ransom Note",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate the Ransom Note",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate the Ransom Note",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate the Ransom Note",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing without giving away the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate the Ransom Note",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command that matches the provisioned tools and OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [],
+  "flag_review": [
+    {
+      "level": "Identify the Command-and-Control Server IP Address",
+      "current_flag": "192.168.90.5",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address is explicitly mentioned in the training_json and matches the topology_yaml",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the Network Port Used for Suspicious Command-and-Control Communication",
+      "current_flag": "4443",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port number is explicitly mentioned in the training_json and matches the provisioning files",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate the Ransom Note",
+      "current_flag": "/home/cyrano/RANSOM_NOTE.txt",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "The filename is explicitly mentioned in the training_json and matches the provisioning files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training_json, topology_yaml, and provisioning files are well-aligned. All conditions C1-C10 are satisfied, and the flags are valid. The scenario is ready for deployment."
+}
