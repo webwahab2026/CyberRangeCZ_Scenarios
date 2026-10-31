@@ -1,0 +1,229 @@
+{
+  "coherence_score": 9,
+  "verdict": "approved",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify the external host communicating with the compromised system",
+      "status": "pass",
+      "evidence": "192.168.90.5 is the IP of c2-server in topology_yaml and provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the external host communicating with the compromised system",
+      "status": "pass",
+      "evidence": "The flag requires analyzing network connections and identifying the ransomware command-and-control server",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the external host communicating with the compromised system",
+      "status": "pass",
+      "evidence": "The content specifies to identify the ransomware command-and-control server",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the external host communicating with the compromised system",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the external host communicating with the compromised system",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the external host communicating with the compromised system",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the external host communicating with the compromised system",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing without giving away the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the external host communicating with the compromised system",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command compatible with the sandbox OS/tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine which network port is used for suspicious command-and-control communication",
+      "status": "pass",
+      "evidence": "4443 is the port used for the ransomware key server in provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine which network port is used for suspicious command-and-control communication",
+      "status": "pass",
+      "evidence": "The flag requires investigating network traffic to identify ports used by the ransomware",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine which network port is used for suspicious command-and-control communication",
+      "status": "pass",
+      "evidence": "The content specifies to identify ports used by the ransomware",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine which network port is used for suspicious command-and-control communication",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine which network port is used for suspicious command-and-control communication",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine which network port is used for suspicious command-and-control communication",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine which network port is used for suspicious command-and-control communication",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing without giving away the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine which network port is used for suspicious command-and-control communication",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command compatible with the sandbox OS/tools",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify the external host receiving sensitive data from the compromised system",
+      "status": "pass",
+      "evidence": "192.168.90.20 is the IP of exfil-server in topology_yaml and provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the external host receiving sensitive data from the compromised system",
+      "status": "pass",
+      "evidence": "The flag requires analyzing outbound network traffic to identify the exfiltration infrastructure",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the external host receiving sensitive data from the compromised system",
+      "status": "pass",
+      "evidence": "The content specifies to identify the exfiltration infrastructure",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the external host receiving sensitive data from the compromised system",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the external host receiving sensitive data from the compromised system",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the external host receiving sensitive data from the compromised system",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the external host receiving sensitive data from the compromised system",
+      "status": "pass",
+      "evidence": "The hints grow progressively more revealing without giving away the final answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the external host receiving sensitive data from the compromised system",
+      "status": "pass",
+      "evidence": "The third hint includes a usable command compatible with the sandbox OS/tools",
+      "required_fix": ""
+    }
+  ],
+  "issues": [],
+  "flag_review": [
+    {
+      "level": "Identify the external host communicating with the compromised system",
+      "current_flag": "192.168.90.5",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address is explicitly set in topology_yaml and provisioning_files",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine which network port is used for suspicious command-and-control communication",
+      "current_flag": "4443",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port number is explicitly set in provisioning_files",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify the external host receiving sensitive data from the compromised system",
+      "current_flag": "192.168.90.20",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The IP address is explicitly set in topology_yaml and provisioning_files",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with clear objectives and tasks. All flags are valid and require non-trivial steps to obtain. The hints are progressively revealing without giving away the final answer. The scenario aligns well with the provided topology and provisioning files."
+}

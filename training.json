@@ -1,0 +1,181 @@
+{
+  "title": "2026-10-31_Ransomware_Incident_Response_Scenario_705",
+  "description": "Investigate a ransomware incident, identify the threat, and contain the damage on a compromised Linux system.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host in your network has been compromised by ransomware. Your task is to investigate the incident, identify the threat, and contain the damage. The victim host is running a Linux operating system and has been exhibiting unusual network activity. Your goal is to understand the scope of the compromise, identify the command and control infrastructure, and prevent further data exfiltration."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nTo proceed to the training levels, ENTER or TYPE the exact passkey 'start' and SUBMIT it.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nTo proceed to the training levels, ENTER or TYPE the exact passkey 'start' and SUBMIT it."
+    },
+    {
+      "title": "Identify the external host communicating with the compromised system",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.5",
+      "answer_variable_name": null,
+      "content": "Analyze network connections and identify the ransomware command-and-control server.",
+      "solution": "1. Check active network connections using the command: `netstat -tuln`.\n2. Look for suspicious outbound connections, particularly those to external IP addresses.\n3. Use the command `ss -tulnp` to get more detailed information about the connections.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `netstat -tuln` to check active network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for suspicious outbound connections, particularly those to external IP addresses.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ss -tulnp` to get more detailed information about the connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine which network port is used for suspicious command-and-control communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4443",
+      "answer_variable_name": null,
+      "content": "Investigate network traffic to identify ports used by the ransomware.",
+      "solution": "1. Use the command `netstat -tuln` to list all active connections and their ports.\n2. Look for unusual ports that are open and being used for outbound connections.\n3. Use the command `ss -tulnp` to get more detailed information about the ports and processes using them.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `netstat -tuln` to list all active connections and their ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for unusual ports that are open and being used for outbound connections.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ss -tulnp` to get more detailed information about the ports and processes using them.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the external host receiving sensitive data from the compromised system",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.90.20",
+      "answer_variable_name": null,
+      "content": "Analyze outbound network traffic to identify the exfiltration infrastructure.",
+      "solution": "1. Use the command `netstat -tuln` to list all active connections.\n2. Look for connections to external IP addresses that indicate data exfiltration.\n3. Use the command `ss -tulnp` to get more detailed information about the connections and the processes involved.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `netstat -tuln` to list all active connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for connections to external IP addresses that indicate data exfiltration.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ss -tulnp` to get more detailed information about the connections and the processes involved.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
