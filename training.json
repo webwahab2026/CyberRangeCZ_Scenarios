@@ -1,0 +1,172 @@
+{
+  "title": "2026-11-02_Rhombus_Botnet_Investigation_685",
+  "description": "Investigate and contain a Rhombus botnet infection on compromised systems.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identifying unauthorized services",
+    "Investigating suspicious network traffic",
+    "Analyzing persistence mechanisms"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Rhombus botnet is a Linux DDoS botnet targeting VPS and IoT devices. It has persistence and dropper capabilities but does not perform lateral movement or data exfiltration. This scenario focuses on investigating and containing a Rhombus botnet infection on compromised systems."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the bot1 host with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the scenario.",
+      "local_content": "Local sandbox access is not required for this scenario. Use the following credentials to access the bot1 host:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the scenario."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Identify and investigate an unauthorized or suspicious service responsible for periodic external communication.",
+      "solution": "1. Log in to bot1 using the provided credentials: `ssh cyrano@bot1`\n2. List all running services: `systemctl list-units --type=service --all`\n3. Look for suspicious services, particularly those with unusual names or descriptions\n4. Investigate the suspicious service by checking its status: `systemctl status <service_name>`\n5. Examine the service's configuration file, typically located in `/etc/systemd/system/`\n6. The hidden flag is the name of the suspicious service: bot-beacon.service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the service status with `systemctl status <service_name>`",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Fourth hint title",
+          "content": "The hidden flag is the name of the suspicious service",
+          "hint_penalty": 3,
+          "order": 3
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Network Flooding Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.service",
+      "answer_variable_name": null,
+      "content": "Identify the service responsible for generating abnormal volumes of network traffic.",
+      "solution": "1. On bot1, list all running services: `systemctl list-units --type=service --all`\n2. Look for another suspicious service, different from the one identified in TRAINING_LEVEL 1\n3. Investigate the suspicious service by checking its status: `systemctl status <service_name>`\n4. Examine the service's configuration file, typically located in `/etc/systemd/system/`\n5. The hidden flag is the name of the suspicious service responsible for network flooding: bot-flood.service",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions related to network activity",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the service status with `systemctl status <service_name>`",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Fourth hint title",
+          "content": "The hidden flag is the name of the suspicious service",
+          "hint_penalty": 3,
+          "order": 3
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "system-update-checker.timer",
+      "answer_variable_name": null,
+      "content": "Determine how the suspicious service identified in TRAINING_LEVEL 1 is automatically started after reboot.",
+      "solution": "1. On bot1, investigate the persistence mechanism of the suspicious service identified in TRAINING_LEVEL 1\n2. Check for systemd timers associated with the service: `systemctl list-timers --all`\n3. Look for timers with names related to the suspicious service\n4. Examine the timer configuration file, typically located in `/etc/systemd/system/`\n5. The hidden flag is the name of the timer unit file (without the .timer extension): system-update-checker.timer",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all systemd timers",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with names related to the suspicious service",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the timer configuration file in `/etc/systemd/system/`",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Fourth hint title",
+          "content": "The hidden flag is the name of the timer unit file (without the .timer extension)",
+          "hint_penalty": 3,
+          "order": 3
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
