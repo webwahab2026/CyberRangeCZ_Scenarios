@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "systemkernelservicedefender.service is a service created by provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The service is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the service name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Port 80 is a port used by the service created by provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The port is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the network port",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "local-inventory.service is a service created by provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The service is not trivially derived from the content or topology",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the service name",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "H3 includes a usable command",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify Suspicious Service",
+      "description": "The flag 'systemkernelservicedefender.service' is not explicitly labeled as a flag in the provisioning files",
+      "fix": "Explicitly label the flag in the provisioning files"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Determine Network Port",
+      "description": "The flag '80' is not explicitly labeled as a flag in the provisioning files",
+      "fix": "Explicitly label the flag in the provisioning files"
+    },
+    {
+      "condition": "C3",
+      "severity": "major",
+      "component": "flag",
+      "level": "Identify System Information Collection Service",
+      "description": "The flag 'local-inventory.service' is not explicitly labeled as a flag in the provisioning files",
+      "fix": "Explicitly label the flag in the provisioning files"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is created by provisioning and is reachable",
+      "recommendation": "Explicitly label the flag in the provisioning files"
+    },
+    {
+      "level": "Determine Network Port",
+      "current_flag": "80",
+      "flag_type": "network port",
+      "verdict": "valid",
+      "sandbox_evidence": "The port is used by the service created by provisioning and is reachable",
+      "recommendation": "Explicitly label the flag in the provisioning files"
+    },
+    {
+      "level": "Identify System Information Collection Service",
+      "current_flag": "local-inventory.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is created by provisioning and is reachable",
+      "recommendation": "Explicitly label the flag in the provisioning files"
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and covers the attack chain accurately. The flags are valid but need to be explicitly labeled in the provisioning files. The hints and solutions are well-structured and provide clear guidance."
+}
