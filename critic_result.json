@@ -1,0 +1,229 @@
+{
+  "coherence_score": 9,
+  "verdict": "approved",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "training_json"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "systemkernelservicedefender.service is explicitly created in provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from content, topology, or connection data",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the name of the suspicious service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing without giving the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "H3 includes a usable command matching provisioned tools and OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Port 80 is explicitly created in provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from content, topology, or connection data",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the network port associated with the suspicious service",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing without giving the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "H3 includes a usable command matching provisioned tools and OS",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "local-inventory.service is explicitly created in provisioning",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The flag is not trivially derived from content, topology, or connection data",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly asks for the name of the service responsible for collecting system information",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not reveal the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides ordered steps and explicitly states the final flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "Hints grow progressively more revealing without giving the exact answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "H3 includes a usable command matching provisioned tools and OS",
+      "required_fix": ""
+    }
+  ],
+  "issues": [],
+  "flag_review": [
+    {
+      "level": "Suspicious C2 Service Discovery",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "systemkernelservicedefender.service is explicitly created in provisioning",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Port 80 is explicitly created in provisioning",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious Data Collection Service Discovery",
+      "current_flag": "local-inventory.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "local-inventory.service is explicitly created in provisioning",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with clear objectives and progressive difficulty. All flags are valid and non-trivial, and the hints are appropriately structured. The access credentials and passkey instructions are correctly provided."
+}
