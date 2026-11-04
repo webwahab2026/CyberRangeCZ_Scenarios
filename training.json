@@ -1,0 +1,188 @@
+{
+  "title": "2026-11-04_Umbreon_Rootkit_Investigation_66c",
+  "description": "Investigate a compromised system to identify and analyze the Umbreon rootkit.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Rootkit detection techniques",
+    "System process analysis",
+    "Hidden file and directory identification",
+    "System configuration analysis"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Umbreon rootkit is a Linux rootkit that targets both x86 and ARM systems. It is designed to hide its presence and provide backdoor access to the attacker. The rootkit includes components for hiding processes, files, and network connections. In this scenario, you will investigate a compromised system to identify and analyze the Umbreon rootkit."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the username `cyrano` and password `cyrano`. The victim host is connected to the network `192.168.50.0/24`. You can also access the victim2 host using SSH with the same credentials. Enter the passkey `start` to begin the scenario.",
+      "local_content": "Use the username `cyrano` and password `cyrano` to log in. Enter the passkey `start` to begin the scenario."
+    },
+    {
+      "title": "Identify evidence that a shared library has been injected into system processes",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/lib/x86_64-linux-gnu/libsysmon.so.1",
+      "answer_variable_name": null,
+      "content": "The system appears to be behaving unusually, and you suspect that a shared library has been injected into system processes. Your task is to investigate and identify evidence of this injection.",
+      "solution": "1. SSH into the victim host using the provided credentials.\n2. Check the loaded shared libraries for system processes using the `ldd` command.\n3. Look for any suspicious or unauthorized libraries in the output.\n4. Investigate the suspicious library further to confirm its malicious nature.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `ps` command to list all running processes.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ldd` command followed by the process name to check loaded libraries.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for libraries that are not part of the standard system libraries.",
+          "hint_penalty": 2,
+          "order": 2
+        },
+        {
+          "title": "Fourth hint title",
+          "content": "The hidden flag is the name of the suspicious library.",
+          "hint_penalty": 3,
+          "order": 3
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine whether a system-wide preload configuration has been modified to execute unauthorized code",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/ld.so.preload",
+      "answer_variable_name": null,
+      "content": "You suspect that the system-wide preload configuration might have been tampered with to execute unauthorized code. Your task is to investigate and determine if this is the case.",
+      "solution": "1. SSH into the victim host using the provided credentials.\n2. Check the contents of the `/etc/ld.so.preload` file.\n3. Look for any suspicious or unauthorized libraries listed in the file.\n4. Investigate the suspicious library further to confirm its malicious nature.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `cat` command to view the contents of the `/etc/ld.so.preload` file.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any libraries that are not part of the standard system libraries.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The hidden flag is the name of the suspicious library listed in the preload file.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate files or directories concealed from normal system utilities",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/.kit_conf",
+      "answer_variable_name": null,
+      "content": "You suspect that there might be files or directories on the system that are concealed from normal system utilities. Your task is to investigate and locate these hidden artifacts.",
+      "solution": "1. SSH into the victim host using the provided credentials.\n2. Use alternative forensic techniques to search for hidden files or directories.\n3. Investigate any suspicious files or directories found.\n4. Confirm the malicious nature of the hidden artifacts.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `find` command with appropriate options to search for hidden files or directories.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for files or directories with unusual names or permissions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The hidden flag is the name of the hidden artifact.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "example command",
+          "cmd_type": "bash-command",
+          "cmd_regex": "example command",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
