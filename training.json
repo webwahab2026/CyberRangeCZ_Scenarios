@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-04_Linux_P2P_Ransom_Botnet_Investigation_212",
+  "description": "Investigate a Linux P2P Ransom botnet attack, identify indicators of compromise, and mitigate the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigation of ransomware attacks",
+    "Identification of indicators of compromise",
+    "Mitigation of ransomware threats"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim machine was attacked by the Linux P2P Ransom botnet malware. The attackers encrypted some files and left a ransom note behind. Your task is to investigate the attack, identify the indicators of compromise, and take appropriate actions to mitigate the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim machine with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim machine with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation"
+    },
+    {
+      "title": "Identify C2 Server Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4443",
+      "answer_variable_name": null,
+      "content": "The attackers encrypted some files and left a ransom note behind. Read this note and identify the C2 server port number.",
+      "solution": "1. SSH into the victim machine using the provided credentials.\n2. Navigate to the home directory of the user `cyrano`.\n3. Read the contents of the file `RANSOM_NOTE.txt`.\n4. Identify the C2 server port number mentioned in the ransom note.\n5. The final flag is `4443`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `cd` command to navigate to the home directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `cat` command to read the contents of the file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the line that mentions the C2 server port number.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /home/cyrano/RANSOM_NOTE.txt",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /home/cyrano/RANSOM_NOTE.txt",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Ransomware Script",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/tmp/.crypt_agent",
+      "answer_variable_name": null,
+      "content": "The attacker left the ransomware script describing different steps performed by the ransomware malware. Identify this script.",
+      "solution": "1. SSH into the victim machine using the provided credentials.\n2. Navigate to the `/tmp` directory.\n3. Look for hidden files using the `ls -la` command.\n4. Identify the ransomware script.\n5. The final flag is `/tmp/.crypt_agent`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `cd /tmp/` command to navigate to the `/tmp` directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `ls -la` command to list all files, including hidden ones.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for a file that resembles a script.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ls -la /tmp/",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ls -la /tmp/",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Exfiltration Destination",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "exfil-server:/var/exfil/victim/",
+      "answer_variable_name": null,
+      "content": "Analyze the script identified in the previous step to find the remote destination used to send files to the exfiltration server.",
+      "solution": "1. SSH into the victim machine using the provided credentials.\n2. Navigate to the `/tmp` directory.\n3. Read the contents of the ransomware script identified in the previous step.\n4. Identify the remote destination used for exfiltration.\n5. The final flag is `exfil-server:/var/exfil/victim/`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `cd /tmp/` command to navigate to the `/tmp` directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the `cat` command to read the contents of the ransomware script.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the `rsync` command and its arguments.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cat /tmp/.crypt_agent",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /tmp/.crypt_agent",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
