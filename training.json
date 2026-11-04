@@ -1,0 +1,205 @@
+{
+  "title": "2026-11-04_Okiru_Worm_Investigation_2b1",
+  "description": "Security monitoring has detected unusual network activity originating from the internal network. Initial analysis suggests the presence of the Okiru worm, a variant of the Mirai botnet malware. Your task is to investigate the compromised hosts, identify the worm's behavior, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Linux commands and system administration.",
+    "Familiarity with network security concepts and incident response procedures."
+  ],
+  "outcomes": [
+    "Enumerate running services and identify suspicious activities.",
+    "Investigate network communication and determine the command and control (C2) infrastructure.",
+    "Analyze persistence mechanisms and contain the threat."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual network activity originating from the internal network. Initial analysis suggests the presence of the Okiru worm, a variant of the Mirai botnet malware. Your task is to investigate the compromised hosts, identify the worm's behavior, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox environment via the provided cloud link. Use the following credentials to log in: username: cyrano, password: cyrano. Enter the word 'start' to begin the scenario and progress to the training levels.",
+      "local_content": "Local sandbox access is available. Use the following credentials to log in: username: cyrano, password: cyrano. Enter the word 'start' to begin the scenario and progress to the training levels."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual CPU-intensive and network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. Access the entry host:\n```bash\nssh cyrano@patient-zero\n```\n\n2. List all running services:\n```bash\nsystemctl list-units --type=service --all\n```\n\n3. Identify suspicious services:\nLook for services with unusual names or descriptions. Pay attention to services that are not part of the standard system configuration.\n\n4. Check service details:\n```bash\nsystemctl status <service_name>\n```\n\n5. Identify the suspicious service:\nThe service responsible for the suspicious activity is `sysnet-monitor.service`. This is the final flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <service_name>` to check the details of a suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        },
+        {
+          "state_name": "check_service_details",
+          "prereq_state": [],
+          "cmd": "systemctl status <service_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status <service_name>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "52869",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Access the entry host:\n```bash\nssh cyrano@patient-zero\n```\n\n2. Inspect the suspicious service:\n```bash\nsystemctl cat sysnet-monitor.service\n```\n\n3. Identify the port number:\nLook for the `ExecStart` line in the service file. The port number is specified in this line.\n\n4. Verify the port:\n```bash\nss -tulnp | grep <port_number>\n```\n\n5. Identify the port number:\nThe port number responsible for the suspicious activity is `52869`. This is the final flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat sysnet-monitor.service` to inspect the service file.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` line to find the port number.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `ss -tulnp | grep <port_number>` to verify the port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "inspect_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl cat sysnet-monitor.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat sysnet-monitor.service",
+          "optional": false
+        },
+        {
+          "state_name": "verify_port",
+          "prereq_state": [],
+          "cmd": "ss -tulnp | grep <port_number>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp | grep <port_number>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the beaconing service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "1. Access the entry host:\n```bash\nssh cyrano@patient-zero\n```\n\n2. List all timers:\n```bash\nsystemctl list-timers --all\n```\n\n3. Identify the suspicious timer:\nLook for timers associated with the `sysnet-monitor.service`.\n\n4. Inspect the timer details:\n```bash\nsystemctl cat sysnet-monitor.timer\n```\n\n5. Identify the timer name:\nThe timer responsible for the suspicious activity is `sysnet-monitor.timer`. This is the final flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers associated with the `sysnet-monitor.service`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat sysnet-monitor.timer` to inspect the timer details.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "list_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        },
+        {
+          "state_name": "inspect_timer_details",
+          "prereq_state": [],
+          "cmd": "systemctl cat sysnet-monitor.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat sysnet-monitor.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
