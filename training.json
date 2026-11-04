@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-04_Gafgyt_Botnet_Investigation_9e7",
+  "description": "Investigate the Gafgyt botnet, also known as BASHLITE, which targets IoT devices and Linux-based systems to conduct DDoS attacks and other malicious activities.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction to Gafgyt Botnet",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Gafgyt botnet, also known as BASHLITE, is a malware family that targets Internet of Things (IoT) devices and Linux-based systems. It aims to compromise and gain control of these devices, often by exploiting weak or default passwords and known vulnerabilities. Gafgyt has been around since 2014 and has evolved into multiple variants, each with its own set of features and capabilities, including conducting DDoS attacks and performing other malicious activities."
+    },
+    {
+      "title": "Access the Sandbox",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have access to the following hosts:\n- **c2-server**: The command-and-control server.\n- **bot1**: A compromised host in the botnet.\n- **bot2**: Another compromised host in the botnet.\n- **victim**: A target host being attacked by the botnet.\n\nYou can access these hosts using SSH with the username `cyrano` and password `cyrano`.\n\nTo begin, enter the passkey `start` in the provided field.",
+      "local_content": "Local sandbox access is not required for this scenario. You can access the hosts using SSH with the username `cyrano` and password `cyrano`. To begin, enter the passkey `start` in the provided field."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host `bot1`. Investigate the running services and identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution": "1. **Access the Host**: SSH into `bot1` using the provided credentials.\n   ```bash\n   ssh cyrano@bot1\n   ```\n2. **List All Services**: Use the following command to list all services, including inactive ones.\n   ```bash\n   systemctl list-units --type=service --all\n   ```\n3. **Identify Suspicious Services**: Look for services with unusual names or descriptions. Pay particular attention to services that are not part of the standard system services.\n4. **Check Service Status**: Use the following command to check the status of the suspicious service.\n   ```bash\n   systemctl status <service_name>\n   ```\n5. **Find the Hidden Flag**: The hidden flag is the name of the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <service_name>` to check the status of the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Communication Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2222",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. **Access the Host**: SSH into `bot1` using the provided credentials.\n   ```bash\n   ssh cyrano@bot1\n   ```\n2. **Inspect the Service**: Use the following command to inspect the service configuration.\n   ```bash\n   systemctl cat <service_name>\n   ```\n3. **Identify the Port**: Look for the `ExecStart` line in the service configuration. This line specifies the path of the script launched by the service.\n4. **Check the Script**: Use the following command to check the script for the communication port with the C2 server.\n   ```bash\n   cat /usr/local/lib/.botcache/beacon.sh\n   ```\n5. **Find the Hidden Flag**: The hidden flag is the port number used for communication with the C2 server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat <service_name>` to inspect the service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` line in the service configuration.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `cat /usr/local/lib/.botcache/beacon.sh` to check the script for the communication port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "determine_communication_port",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat <service_name>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Scheduling Component",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect how the C2 beacon service automatically resumes after the system starts and continues to execute periodically. Determine which system component is responsible for scheduling this activity.",
+      "solution": "1. **Access the Host**: SSH into `bot1` using the provided credentials.\n   ```bash\n   ssh cyrano@bot1\n   ```\n2. **List All Timers**: Use the following command to list all timers, including inactive ones.\n   ```bash\n   systemctl list-timers --all\n   ```\n3. **Identify Suspicious Timers**: Look for timers with unusual names or descriptions. Pay particular attention to timers that are not part of the standard system timers.\n4. **Check Timer Status**: Use the following command to check the status of the suspicious timer.\n   ```bash\n   systemctl status <timer_name>\n   ```\n5. **Find the Hidden Flag**: The hidden flag is the name of the suspicious timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <timer_name>` to check the status of the suspicious timer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_scheduling_component",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
