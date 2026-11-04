@@ -1,0 +1,246 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Access the sandbox via SSH using the following credentials: Host: bot1, Username: cyrano, Password: cyrano. Enter 'start' to begin."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Access the sandbox via SSH using the following credentials: Host: bot1, Username: cyrano, Password: cyrano. Enter 'start' to begin."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The answer 'bot-beacon.service' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the service responsible for beaconing.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to identify the service responsible for sending beacon periodically to the C2 Server.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The solution provides a step-by-step methodology and usable commands to obtain the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The answer '443' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the network port associated with the communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to determine the network port associated with the communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The solution provides a step-by-step methodology and usable commands to obtain the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The answer 'bot-beacon.timer' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the timer associated with the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content explicitly states that the trainee needs to determine which system component is responsible for scheduling the activity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The solution provides a step-by-step methodology and usable commands to obtain the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Persistence Mechanism",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The scenario design explicitly states the username and password, but the training_json does not explicitly state the username and password in the cloud_content and local_content fields.",
+      "fix": "Explicitly state the username and password in the cloud_content and local_content fields in the training_json."
+    },
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The scenario design explicitly states the passkey 'start', but the training_json does not explicitly state the passkey 'start' in the cloud_content and local_content fields.",
+      "fix": "Explicitly state the passkey 'start' in the cloud_content and local_content fields in the training_json."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify the Beacon Service",
+      "current_flag": "bot-beacon.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service 'bot-beacon.service' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the Communication Port",
+      "current_flag": "443",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port '443' is used by the C2 server in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify the Persistence Mechanism",
+      "current_flag": "bot-beacon.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer 'bot-beacon.timer' is provisioned in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-structured and covers the attack chain comprehensively. However, the training_json does not explicitly state the username, password, and passkey 'start' in the cloud_content and local_content fields, which are required for compliance."
+}
