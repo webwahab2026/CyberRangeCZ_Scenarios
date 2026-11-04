@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: cyrano, Password: cyrano, Enter 'start' to begin the scenario."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: cyrano, Password: cyrano, Enter 'start' to begin the scenario."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag 'bkd.service' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The flag '4444' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Unauthorized Data Collection",
+      "status": "pass",
+      "evidence": "The flag 'local-inventory.timer' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Unauthorized Data Collection",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'The name of the suspicious service.'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'The network port number used by the suspicious service.'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Unauthorized Data Collection",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value must be submitted: 'The name of the service or timer responsible for the unauthorized data collection.'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Unauthorized Data Collection",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution provides a step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The solution provides a step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Unauthorized Data Collection",
+      "status": "pass",
+      "evidence": "The solution provides a step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Unauthorized Data Collection",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Unauthorized Data Collection",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Unauthorized Data Collection",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Identify Suspicious Service",
+      "description": "The solution does not explicitly state the final flag in the first level.",
+      "fix": "Explicitly state the final flag in the solution."
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Determine Network Port",
+      "description": "The solution does not explicitly state the final flag in the second level.",
+      "fix": "Explicitly state the final flag in the solution."
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Identify Unauthorized Data Collection",
+      "description": "The solution does not explicitly state the final flag in the third level.",
+      "fix": "Explicitly state the final flag in the solution."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "bkd.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service 'bkd.service' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Network Port",
+      "current_flag": "4444",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port '4444' is used by the service 'bkd.service' in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Unauthorized Data Collection",
+      "current_flag": "local-inventory.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer 'local-inventory.timer' is provisioned in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-structured and aligns with the Sednit Xagent Backdoor Investigation theme. The training levels are logically progression, and the flags are valid and correspond to real sandbox artifacts. However, the solutions for each level do not explicitly state the final flag, which needs to be addressed."
+}

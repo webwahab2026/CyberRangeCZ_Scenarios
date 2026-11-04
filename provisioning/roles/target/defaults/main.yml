@@ -1,0 +1,17 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: scroll.dll
+  content: "scroll.dll\n"
+- name: cd1c521b6ae08fc97e3d69f242f00f9e
+  content: "cd1c521b6ae08fc97e3d69f242f00f9e\n"
+- name: scroll.dll
+  content: "scroll.dll\n"
+packages_to_install:
+- openssh-server
