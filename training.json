@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-04_Linux_NyaDrop_Backdoor_Investigation_870",
+  "description": "Investigate the Linux/NyaDrop backdoor malware that targets MIPS-based IoT devices.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Linux/NyaDrop is a backdoor and dropper malware that targets MIPS-based IoT devices. It opens an internet socket (AF_INET) to remotely connect to a remote host for receiving data of any Linux executable stream intended to infect the compromised machine. The received data is saved as 'nya' ELF malware file and then executed by Linux/NyaDrop with its permission privilege on the targeted MIPS CPU architecture device. The 'nya' dropped file will be deleted every time the next new attacks are successfully logged in to the MIPS machine and then updating the previously saved 'nya' malware."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the target machine with the following credentials:\n- Hostname: target\n- IP Address: 192.168.50.5\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the scenario.",
+      "local_content": "Local sandbox access is not required for this scenario. Use the following credentials to access the target machine:\n- Hostname: target\n- IP Address: 192.168.50.5\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the scenario."
+    },
+    {
+      "title": "Suspicious C2 Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "nyadrop.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service name responsible for the suspicious activity.",
+      "solution": "1. List all services using the command: `systemctl list-units --type=service --all`\n2. The suspicious service is named `nyadrop.service`.\n3. The final flag is `nyadrop.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl` commands to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual or unfamiliar names.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is a systemd service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the port number associated with this communication.",
+      "solution": "1. Check the status of the suspicious service using the command: `systemctl status nyadrop.service`\n2. The port number is `4444`.\n3. The final flag is `4444`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl status` to inspect the service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the port number in the ExecStart line.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The port number is specified as an argument to the service command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl status nyadrop.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status nyadrop.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious File Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/local-inventory.sh",
+      "answer_variable_name": null,
+      "content": "Investigation indicates that an unauthorized component is executing files on the compromised host. Identify the file path responsible for collecting system information.",
+      "solution": "1. Inspect the service configuration using the command: `systemctl cat nyadrop.service`\n2. The file responsible for collecting system information is `/usr/local/bin/local-inventory.sh`.\n3. The final flag is `/usr/local/bin/local-inventory.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat` to view the service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the ExecStart line to find the executed file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The file is located in the `/usr/local/bin` directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "file_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl cat nyadrop.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat nyadrop.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

@@ -1,0 +1,258 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Flag 'nyadrop.service' corresponds to a real sandbox artifact in provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Flag '4444' corresponds to a real sandbox artifact in provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Flag '/usr/local/bin/local-inventory.sh' corresponds to a real sandbox artifact in provisioning files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Flag requires completion of the intended task",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Flag requires completion of the intended task",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Flag requires completion of the intended task",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted (service name)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted (port number)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted (file path)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Solution flag matches answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Solution flag matches answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Solution flag matches answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Suspicious C2 Service Discovery",
+      "description": "Solution does not explicitly state the final flag is 'nyadrop.service'",
+      "fix": "Explicitly state the final flag in the solution"
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "C2 Communication Discovery (Port)",
+      "description": "Solution does not explicitly state the final flag is '4444'",
+      "fix": "Explicitly state the final flag in the solution"
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Suspicious File Discovery",
+      "description": "Solution does not explicitly state the final flag is '/usr/local/bin/local-inventory.sh'",
+      "fix": "Explicitly state the final flag in the solution"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious C2 Service Discovery",
+      "current_flag": "nyadrop.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in the sandbox as a systemd service",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "4444",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in the sandbox as the listening port for the C2 service",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious File Discovery",
+      "current_flag": "/usr/local/bin/local-inventory.sh",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in the sandbox as the script for collecting system information",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "Provisioning files correctly set up the target machine with the required services and files",
+      "SSH access is properly configured with the provided credentials",
+      "Systemd services and timers are correctly implemented"
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and meets most of the requirements. However, the solutions for each training level need to explicitly state the final flag to fully comply with the C7 condition."
+}
