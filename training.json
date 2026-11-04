@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-04_Mirai_Trojan_Investigation_38a",
+  "description": "Security monitoring has detected unusual network activity on a compromised Linux host. Your task is to investigate the Mirai Trojan infection, identify its components, and understand its behavior. The Mirai Trojan is known for conducting DDoS attacks by infecting IoT devices and using them as part of a botnet.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual network activity on a compromised Linux host. Your task is to investigate the Mirai Trojan infection, identify its components, and understand its behavior. The Mirai Trojan is known for conducting DDoS attacks by infecting IoT devices and using them as part of a botnet."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox in the cloud, use the following credentials:\nUsername: trainee\nPassword: training123\nEnter 'start' to begin the investigation.",
+      "local_content": "To access the local sandbox, use the following credentials:\nUsername: trainee\nPassword: training123\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "dvrHelper.timer",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity of periodically collecting `/etc/passwd`, home directory listings, and sensitive files, then exfiltrating them to a C2 server.",
+      "solution": "1. **Enumerate Running Services:**\n   - Use the command `systemctl list-units --type=service --all` to list all services.\n   - Look for unfamiliar service names or misspellings of legitimate services.\n   - Use `systemctl status <service>` to check the status and description of each service.\n\n2. **Identify Suspicious Service:**\n   - The service responsible for the suspicious activity is likely to have an unusual description or startup behavior.\n   - Look for services with names like `dvrHelper.timer` or `network-diagnostics.timer`.\n\n3. **Verify the Service:**\n   - Use `systemctl cat <service>` to view the service configuration.\n   - Check the `ExecStart` field to see if it points to a script that collects and exfiltrates data.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual descriptions or startup behavior.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat <service>` to view the service configuration.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "5556",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system for exfiltrating data to a C2 server. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. **Identify the Suspicious Service:**\n   - From the previous task, you identified the service `dvrHelper.timer`.\n   - Use `systemctl cat dvrHelper.timer` to view the timer configuration.\n\n2. **Find the Port Number:**\n   - The timer configuration points to a service unit file. Use `systemctl cat dvrHelper.service` to view the service configuration.\n   - Look for the `ExecStart` field, which specifies the path to the script launched by the service.\n   - Use `cat /usr/local/lib/.netd/harvester.sh` to view the script and find the port number.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat dvrHelper.timer` to view the timer configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` field in the service unit file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `cat /usr/local/lib/.netd/harvester.sh` to find the port number.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat dvrHelper.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat dvrHelper.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "dvrHelper.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the Credential Harvester Service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "1. **Identify the Persistence Mechanism:**\n   - Use `systemctl list-timers --all` to list all timers.\n   - Look for timers associated with the suspicious service identified in the previous tasks.\n\n2. **Verify the Timer:**\n   - Use `systemctl cat dvrHelper.timer` to view the timer configuration.\n   - Check the `OnCalendar` field to see the schedule for the timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers associated with the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat dvrHelper.timer` to view the timer configuration.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
