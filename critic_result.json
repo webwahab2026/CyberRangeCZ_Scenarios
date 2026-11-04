@@ -1,0 +1,256 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "To start the scenario, enter the passkey 'start'. You have SSH access to the bot1 host with the following credentials:\n- Username: cyrano\n- Password: cyrano"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "To start the scenario, enter the passkey 'start'. You have SSH access to the bot1 host with the following credentials:\n- Username: cyrano\n- Password: cyrano"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify the C2 Beacon Service",
+      "status": "pass",
+      "evidence": "The service name `bot-beacon.service` is provisioned in the sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The port `2222` is provisioned in the sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The timer name `bot-beacon.timer` is provisioned in the sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the C2 Beacon Service",
+      "status": "pass",
+      "evidence": "The flag requires identifying the service responsible for sending beacon periodically to the C2 Server.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The flag requires inspecting the service configuration to find the communication port.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The flag requires identifying the timer responsible for scheduling the C2 beacon service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the C2 Beacon Service",
+      "status": "pass",
+      "evidence": "The content explicitly states to identify the service responsible for sending beacon periodically to the C2 Server.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The content explicitly states to determine the network port associated with the unauthorized communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The content explicitly states to determine which system component is responsible for scheduling the activity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the C2 Beacon Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the C2 Beacon Service",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology and commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology and commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology and commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the C2 Beacon Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the C2 Beacon Service",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the C2 Beacon Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Identify the C2 Beacon Service",
+      "description": "The flag `bot-beacon.service` is not explicitly identified as a flag in the provisioning files.",
+      "fix": "Ensure the flag is explicitly identified as a flag in the provisioning files."
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Determine the Communication Port",
+      "description": "The flag `2222` is not explicitly identified as a flag in the provisioning files.",
+      "fix": "Ensure the flag is explicitly identified as a flag in the provisioning files."
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Identify the Scheduling Timer",
+      "description": "The flag `bot-beacon.timer` is not explicitly identified as a flag in the provisioning files.",
+      "fix": "Ensure the flag is explicitly identified as a flag in the provisioning files."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify the C2 Beacon Service",
+      "current_flag": "bot-beacon.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service name `bot-beacon.service` is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the Communication Port",
+      "current_flag": "2222",
+      "flag_type": "network port",
+      "verdict": "valid",
+      "sandbox_evidence": "The port `2222` is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify the Scheduling Timer",
+      "current_flag": "bot-beacon.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer name `bot-beacon.timer` is provisioned in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The sandbox aligns with the scenario design and training JSON."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The scenario requires minor adjustments to explicitly identify the flags in the provisioning files. The access credentials and start instruction are correctly provided in both cloud_content and local_content."
+}
