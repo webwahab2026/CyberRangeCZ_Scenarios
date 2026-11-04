@@ -1,0 +1,183 @@
+{
+  "title": "2026-11-04_Cryptocurrency_Miner_Investigation_7b6",
+  "description": "Security monitoring has detected unusual CPU usage and network activity on a compromised host. Your task is to investigate the system, identify the malicious activity, and determine how it was deployed and spread across the network.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Enumerate running services and processes",
+    "Investigate network connections and listeners",
+    "Analyze systemd services and timers",
+    "Identify persistence mechanisms",
+    "Investigate lateral movement techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual CPU usage and network activity on a compromised host. Your task is to investigate the system, identify the malicious activity, and determine how it was deployed and spread across the network."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Connect to the miner-host using SSH with the provided credentials. Username: trainee, Password: trainee. Enter 'start' to begin.",
+      "local_content": "Local sandbox access is not required for this scenario. Connect to the miner-host using SSH with the provided credentials. Username: trainee, Password: trainee. Enter 'start' to begin."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual CPU-intensive and network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. Connect to the miner-host using SSH with the provided credentials.\n2. List all running services using the command `systemctl list-units --type=service --state=running`.\n3. Identify the service with an unusual name or description.\n4. Check the status of the suspicious service using `systemctl status <service>`.\n5. Note the service name for the hidden flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --state=running` to list all running services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions that do not match typical system services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <service>` to check the status and details of a suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "3333",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. From the miner-host, investigate the suspicious service identified in the previous task.\n2. Use `systemctl cat <service>` to view the service configuration file.\n3. Look for the `ExecStart` line, which specifies the path to the script launched by the service.\n4. Inspect the script using `cat <script>` to find the port number used for communication.\n5. Note the port number for the hidden flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat <service>` to view the service configuration file.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` line in the service configuration file to find the script path.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `cat <script>` to inspect the script and find the port number used for communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_identification",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat <service>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/cron.d/sysupdate",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the miner service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "1. From the miner-host, investigate the suspicious service identified in the previous tasks.\n2. Use `systemctl status <service>` to check the status and details of the service.\n3. Look for any associated timers or cron jobs that might be responsible for persistence.\n4. Use `grep -Rni . /etc/cron.d/ 2>/dev/null` to search for cron jobs related to the service.\n5. Note the cron job name for the hidden flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl status <service>` to check the status and details of the service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any associated timers or cron jobs that might be responsible for persistence.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `grep -Rni . /etc/cron.d/ 2>/dev/null` to search for cron jobs related to the service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_identification",
+          "prereq_state": [],
+          "cmd": "systemctl status <service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status <service>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
