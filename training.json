@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_KrustyLoader_Investigation_196",
+  "description": "Investigate the compromise of a victim host exhibiting suspicious behavior, including unauthorized network connections and unusual file modifications.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The victim host has exhibited suspicious behavior, including unauthorized network connections and unusual file modifications. Your task is to investigate the compromise, identify the malware, and determine the extent of the intrusion. Enter the passkey 'start' to begin the investigation."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter the passkey 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the victim host with the following credentials:\n- Hostname: victim\n- Username: cyrano\n- Password: cyrano\n\nEnter the passkey 'start' to begin the investigation"
+    },
+    {
+      "title": "Investigate the suspicious service running on the compromised host",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.service",
+      "answer_variable_name": null,
+      "content": "Investigate the suspicious service running on the compromised host. Submit the service name as the answer.",
+      "solution": "1. Log in to the victim host using the provided credentials.\n2. List all running services using the command: `systemctl list-units --type=service --state=running`\n3. Identify the suspicious service named `session-mgr.timer`.\n4. Inspect the service details using the command: `systemctl cat session-mgr.timer`\n5. Note the service name `session-mgr.service` and inspect its details using the command: `systemctl cat session-mgr.service`\n6. The hidden flag is the name of the suspicious service: `session-mgr.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-units --type=service --state=running` to list all running services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual or generic names that might indicate malicious activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl cat <service_name>` to inspect the details of a suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "session-mgr.timer",
+      "answer_variable_name": null,
+      "content": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity. Submit the timer name as the answer.",
+      "solution": "1. List all active timers using the command: `systemctl list-timers --all`\n2. Identify the suspicious timer named `session-mgr.timer`.\n3. Inspect the timer details using the command: `systemctl cat session-mgr.timer`\n4. Note the schedule defined in the timer, which indicates periodic execution.\n5. The hidden flag is the name of the suspicious timer: `session-mgr.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-timers --all` to list all active timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with unusual or generic names that might indicate malicious activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl cat <timer_name>` to inspect the details of a suspicious timer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Locate files introduced onto the system by the malicious software",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "rat.sh",
+      "answer_variable_name": null,
+      "content": "Locate files introduced onto the system by the malicious software. Submit the filename as the answer.",
+      "solution": "1. Navigate to the suspicious directory using the command: `cd /tmp/.session`\n2. List the contents of the directory using the command: `ls -la`\n3. Identify the suspicious files named `rat.sh` and `stealer.sh`.\n4. The hidden flag is the name of one of the suspicious files: `rat.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Look for directories with unusual or hidden names that might contain malicious files.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `ls -la` to list the contents of a directory, including hidden files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Investigate files with unusual or generic names that might indicate malicious activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cd /tmp/.session",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cd /tmp/.session",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
