@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_Kinsing_Cryptominer_Investigation_b66",
+  "description": "Investigate a compromised system to identify and analyze the Kinsing malware's activities.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Kinsing malware is a cryptocurrency miner that targets Linux systems. It exploits vulnerabilities to gain access and install malicious components. In this scenario, you will investigate a compromised system to identify and analyze the Kinsing malware's activities."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the `miner-host` with the username `cyrano` and password `cyrano`. From there, you can investigate the system and connected hosts. Enter `start` to begin.",
+      "local_content": "You have SSH access to the `miner-host` with the username `cyrano` and password `cyrano`. Local sandbox access is not required for this scenario. Enter `start` to begin."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual CPU-intensive process on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. SSH into the `miner-host` using the provided credentials.\n2. List all running services using `systemctl list-units --type=service --state=running`.\n3. Identify the service with an unusual name or description.\n4. The hidden flag is the name of the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --state=running` to list all running services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is related to system monitoring.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_identification",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Inspect the suspicious service identified in TRAINING_LEVEL 1 using `systemctl cat <service>`.\n2. Look for the port number in the service configuration or associated script.\n3. The hidden flag is the port number used for communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat <service>` to inspect the service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the port number in the ExecStart or other relevant fields.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The port number is used for communication with an external system.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_identification",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat <service>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/cron.d/sysupdate",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the miner service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "1. Check the status of the suspicious service using `systemctl status <service>`.\n2. Look for information about the service's persistence mechanism.\n3. The hidden flag is the path to the cron job responsible for the service's persistence.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl status <service>` to check the service status.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for information about the service's persistence mechanism.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The cron job path is located in the `/etc/cron.d/` directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_identification",
+          "prereq_state": [],
+          "cmd": "systemctl status <service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status <service>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
