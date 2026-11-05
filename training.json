@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_XMRig_Cryptominer_Investigation_ea5",
+  "description": "Investigate a compromised Linux host running a cryptocurrency miner, identify the malicious components, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "This scenario presents a compromised Linux host running a cryptocurrency miner. Your task is to investigate the infection, identify the malicious components, and contain the threat.\n\nThe compromised host is `miner-host` with IP address `192.168.50.5`. You have SSH access to this host with the username `cyrano` and password `cyrano`. To begin the scenario, enter 'start' in the access level."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox in the cloud, use the following credentials:\nUsername: cyrano\nPassword: cyrano\nEnter 'start' to begin the scenario.",
+      "local_content": "To access the local sandbox, use the following credentials:\nUsername: cyrano\nPassword: cyrano\nEnter 'start' to begin the scenario."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bash.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual CPU-intensive process on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. Connect to the miner-host using SSH: `ssh cyrano@192.168.50.5`\n2. List all services: `systemctl list-units --type=service --all`\n3. Identify the suspicious service by looking for unusual service names or high CPU usage\n4. Check the status of the suspicious service: `systemctl status bash.service`\n5. The hidden flag is `bash.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `ps aux --sort=-%cpu` to identify the process consuming the most CPU resources.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the service status with `systemctl status <service>`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "3333",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Check the service configuration: `systemctl cat bash.service`\n2. Look for the port number in the ExecStart parameter\n3. The hidden flag is `3333`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `ss -tulnp` to list all listening ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the service configuration with `systemctl cat <service>`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the port number in the ExecStart parameter.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat bash.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bash.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/cron.d/sysupdate",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the miner service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "1. Check the service status: `systemctl status bash.service`\n2. Look for the path to the cron job file in the output\n3. The hidden flag is `/etc/cron.d/sysupdate`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `grep -Rni . /etc/cron.d/ 2>/dev/null` to search for cron jobs.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the service status with `systemctl status <service>`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the path to the cron job file in the output.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl status bash.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bash.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
