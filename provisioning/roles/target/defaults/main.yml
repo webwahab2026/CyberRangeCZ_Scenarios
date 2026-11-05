@@ -1,0 +1,15 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: 80c4d1a1ef433ac44c4fe72e6ca42395261fbca36eff243b07438263a1b1cf06
+  content: "80c4d1a1ef433ac44c4fe72e6ca42395261fbca36eff243b07438263a1b1cf06\n"
+- name: kdeinit4
+  content: "kdeinit4\n"
+packages_to_install:
+- openssh-server

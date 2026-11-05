@@ -1,0 +1,183 @@
+{
+  "title": "2026-11-05_Linux.Bew_Backdoor_Investigation_3ba",
+  "description": "You are an incident responder tasked with investigating a compromised Linux host infected with the Linux.Bew backdoor. This backdoor is designed for Bitcoin mining and establishes network connections to command and control (C2) servers, performs lateral movement, and maintains persistence on the infected system. Your goal is to investigate the compromised host, identify the malicious activities, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Linux commands and system administration.",
+    "Familiarity with systemd and network services.",
+    "Understanding of incident response and threat containment."
+  ],
+  "outcomes": [
+    "Enumerate running and inactive services to identify suspicious activities.",
+    "Investigate systemd services and timers to discover persistence mechanisms.",
+    "Analyze network connections to identify unauthorized communication.",
+    "Contain the threat by terminating malicious processes and disabling persistence mechanisms."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised Linux host infected with the Linux.Bew backdoor. This backdoor is designed for Bitcoin mining and establishes network connections to command and control (C2) servers, performs lateral movement, and maintains persistence on the infected system. Your goal is to investigate the compromised host, identify the malicious activities, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "1. Connect to the target host using SSH:\n   ```\n   ssh cyrano@192.168.50.5\n   ```\n2. Use the provided password to log in. The username is 'cyrano' and the password is 'start'.\n3. Enter the passkey 'start' to proceed.",
+      "local_content": "Local sandbox access is not required for this scenario. The username is 'cyrano' and the password is 'start'. Enter the passkey 'start' to proceed."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. List all systemd services, including inactive ones:\n   ```\n   systemctl list-units --type=service --all\n   ```\n2. Look for unfamiliar or suspicious service names. Pay attention to services with unusual descriptions or startup behavior.\n3. Identify the service named `bkd.service` as the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl` command to list all services, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions that do not match typical system services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Pay attention to services that might be related to network communication or data collection.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "443",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Inspect the suspicious service identified in the previous task:\n   ```\n   systemctl cat bkd.service\n   ```\n2. Look for the `ExecStart` line in the service definition, which specifies the command launched by the service.\n3. Identify the port number specified as an argument to the command. In this case, the port number is `443`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl cat` command to view the service definition.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` line in the service definition, which specifies the command launched by the service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Identify the port number specified as an argument to the command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_network_port",
+          "prereq_state": [],
+          "cmd": "systemctl cat bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Data Collection Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the service responsible for this activity.",
+      "solution": "1. List all systemd services, including timers:\n   ```\n   systemctl list-timers --all\n   ```\n2. Look for timers that might be related to data collection or system information gathering.\n3. Identify the timer named `local-inventory.timer` as the suspicious timer.\n4. Inspect the timer definition to confirm its purpose:\n   ```\n   systemctl cat local-inventory.timer\n   ```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl list-timers --all` command to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers that might be related to data collection or system information gathering.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Inspect the timer definition to confirm its purpose.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_data_collection_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
