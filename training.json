@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_Mirai_Worm_Investigation_371",
+  "description": "Investigate a network compromised by a variant of the Mirai worm. Identify infected hosts, understand the malware's behavior, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Mirai worm is a well-known malware that targets Linux-based IoT devices. It scans for vulnerable devices, exploits them using embedded exploits, and then uses the compromised devices to launch distributed denial-of-service (DDoS) attacks. In this scenario, you will investigate a network compromised by a variant of the Mirai worm. Your goal is to identify the infected hosts, understand the malware's behavior, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the following hosts with the username `cyrano` and password `cyrano`:\n- **patient-zero** (192.168.90.5)\n- **host-a** (192.168.90.10)\n- **host-b** (192.168.90.20)\n- **attacker** (192.168.90.30)\n\nYou have sudo privileges on the **attacker** host.\n\nTo begin, enter the passkey: `start`.",
+      "local_content": "You have SSH access to the following hosts with the username `cyrano` and password `cyrano`:\n- **patient-zero** (192.168.90.5)\n- **host-a** (192.168.90.10)\n- **host-b** (192.168.90.20)\n- **attacker** (192.168.90.30)\n\nYou have sudo privileges on the **attacker** host.\n\nTo begin, enter the passkey: `start`."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual CPU-intensive and network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity. Submit the service name as your answer.",
+      "solution": "1. SSH into the **patient-zero** host using the provided credentials.\n2. List all running and inactive services using the command `systemctl list-units --type=service --all`.\n3. Look for any unfamiliar or suspicious service names. Pay attention to services with unusual descriptions or startup behavior.\n4. Identify the service responsible for the suspicious activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions that do not match typical system services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the status of suspicious services using `systemctl status <service_name>`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "52869",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication. Submit the port number as your answer.",
+      "solution": "1. SSH into the **patient-zero** host using the provided credentials.\n2. Inspect the suspicious service identified in TRAINING_LEVEL 1 using the command `systemctl cat <service_name>`.\n3. Look for the network port specified in the service configuration, typically in the `ExecStart` line.\n4. Verify the port by checking the service status with `systemctl status <service_name>`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl cat <service_name>` to view the service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` line in the service configuration to find the port number.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Verify the port by checking the service status with `systemctl status <service_name>`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "determine_port",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat <service_name>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the beaconing service running across reboots and process termination. Determine which system component is responsible for this activity. Submit the timer name as your answer.",
+      "solution": "1. SSH into the **patient-zero** host using the provided credentials.\n2. List all timers using the command `systemctl list-timers --all`.\n3. Identify the timer associated with the suspicious service by checking the `WantedBy` field in the timer configuration.\n4. Verify the timer's status with `systemctl status <timer_name>`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with unusual names or descriptions that match the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Verify the timer's status with `systemctl status <timer_name>`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_persistence",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
