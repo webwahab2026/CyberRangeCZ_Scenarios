@@ -1,0 +1,238 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: cyrano, Password: cyrano123, enter the passkey 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: cyrano, Password: cyrano123, enter the passkey 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag '-bash.service' corresponds to a real sandbox artifact in provisioning_files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Network Port",
+      "status": "pass",
+      "evidence": "The flag '4444' corresponds to a real sandbox artifact in provisioning_files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The flag 'local-inventory.service' corresponds to a real sandbox artifact in provisioning_files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Network Port",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content explicitly states what type of value must be submitted: 'The service name is the hidden flag.'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Network Port",
+      "status": "pass",
+      "evidence": "The content explicitly states what type of value must be submitted: 'The port number is the hidden flag.'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The content explicitly states what type of value must be submitted: 'The service name is the hidden flag.'",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Network Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Network Port",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The solution provides methodology, commands, and the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Network Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Network Port",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Network Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify System Information Collection Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The password in the scenario design does not match the password in the training JSON.",
+      "fix": "Ensure the password in the scenario design matches the password in the training JSON."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "-bash.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Network Port",
+      "current_flag": "4444",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify System Information Collection Service",
+      "current_flag": "local-inventory.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. However, there is a major issue with the password mismatch between the scenario design and the training JSON. This needs to be resolved before the scenario can be approved."
+}

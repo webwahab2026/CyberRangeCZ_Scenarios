@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_Tsunami_Kaiten_Backdoor_Investigation_6a1",
+  "description": "Security monitoring has detected unusual network activity on the target system, potentially indicating a compromise by the Tsunami/Kaiten backdoor. Your task is to investigate the compromised host, identify the malicious components, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual network activity on the target system, potentially indicating a compromise by the Tsunami/Kaiten backdoor. Your task is to investigate the compromised host, identify the malicious components, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox in the cloud, use the following credentials:\nUsername: cyrano\nPassword: cyrano123\nAfter logging in, enter the passkey 'start' to begin the investigation.",
+      "local_content": "To access the local sandbox, use the following credentials:\nUsername: cyrano\nPassword: cyrano123\nAfter logging in, enter the passkey 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "-bash.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. Access the target host:\n```bash\nssh cyrano@target\n```\n2. List all services:\n```bash\nsystemctl list-units --type=service --all\n```\n3. Identify suspicious services:\nLook for services with unusual names or descriptions. Pay attention to services that are not part of the standard system services.\n4. Check the status of suspicious services:\n```bash\nsystemctl status <service_name>\n```\n5. Identify the service responsible for suspicious activity:\nThe service name is the hidden flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <service_name>` to check the status of suspicious services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Access the target host:\n```bash\nssh cyrano@target\n```\n2. List all listening ports:\n```bash\nss -tulnp\n```\n3. Identify the port associated with the suspicious service:\nLook for ports that are not part of the standard system services.\n4. Check the service configuration:\n```bash\nsystemctl cat <service_name>\n```\n5. Identify the network port associated with the suspicious activity:\nThe port number is the hidden flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `ss -tulnp` to list all listening ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for ports that are not part of the standard system services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat <service_name>` to check the service configuration.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify System Information Collection Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.service",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the service responsible for this activity.",
+      "solution": "1. Access the target host:\n```bash\nssh cyrano@target\n```\n2. List all services:\n```bash\nsystemctl list-units --type=service --all\n```\n3. Identify suspicious services:\nLook for services with unusual names or descriptions. Pay attention to services that are not part of the standard system services.\n4. Check the status of suspicious services:\n```bash\nsystemctl status <service_name>\n```\n5. Identify the service responsible for collecting system information:\nThe service name is the hidden flag.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <service_name>` to check the status of suspicious services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
