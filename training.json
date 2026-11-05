@@ -1,0 +1,189 @@
+{
+  "title": "2026-11-05_Rhombus_Botnet_Investigation_and_Response_422",
+  "description": "Investigate and respond to a Rhombus botnet infection on Linux systems.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The security team has detected unusual network activity originating from several Linux systems in your environment. Initial analysis suggests these systems may be infected with the Rhombus botnet, which is known to target VPS and IoT devices. Your task is to investigate these systems, identify the malicious components, and implement appropriate containment measures."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the following systems with the username `cyrano` and password `cyrano`:\n- `bot1` (192.168.70.10)\n- `bot2` (192.168.70.11)\n- `c2-server` (192.168.70.5)\n\nYou can use standard Linux commands and tools to investigate these systems.\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the following systems with the username `cyrano` and password `cyrano`:\n- `bot1` (192.168.70.10)\n- `bot2` (192.168.70.11)\n- `c2-server` (192.168.70.5)\n\nYou can use standard Linux commands and tools to investigate these systems.\n\nEnter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution": "1. SSH into `bot1` using the provided credentials.\n2. List all systemd services to identify suspicious ones:\n   ```\nsystemctl list-units --type=service --all\n   ```\n3. Look for unfamiliar or suspicious service names, such as those with unusual descriptions or misspellings of legitimate services.\n4. The suspicious service is likely named `bot-beacon.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl` commands to list all services and look for anything unusual.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Pay attention to service descriptions and names that don't match standard system services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is likely related to network communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Communication Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2222",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. On `bot1`, inspect the suspicious service identified in the previous task:\n   ```\nsystemctl cat bot-beacon.service\n   ```\n2. Look for the `ExecStart` line, which specifies the path of the script launched by the service.\n3. Inspect the script at `/usr/local/lib/.botcache/beacon.sh` to find the communication port with the C2 server:\n   ```\ncat /usr/local/lib/.botcache/beacon.sh\n   ```\n4. The script will show the port number used for communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat` to inspect the service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` line to find the script path.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Inspect the script to find the communication port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "determine_port",
+          "prereq_state": [],
+          "cmd": "systemctl cat bot-beacon.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bot-beacon.service",
+          "optional": false
+        },
+        {
+          "state_name": "inspect_script",
+          "prereq_state": [],
+          "cmd": "cat /usr/local/lib/.botcache/beacon.sh",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /usr/local/lib/.botcache/beacon.sh",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Scheduling Component",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect how the C2 beacon service automatically resumes after the system starts and continues to execute periodically. Determine which system component is responsible for scheduling this activity.",
+      "solution": "1. On `bot1`, list all systemd timers to identify the one responsible for scheduling the suspicious service:\n   ```\nsystemctl list-timers --all\n   ```\n2. Look for a timer associated with the `bot-beacon.service`.\n3. The timer is likely named `bot-beacon.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers` to identify the timer responsible for scheduling the service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for a timer associated with the `bot-beacon.service`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The timer name will be similar to the service name but with a `.timer` suffix.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_timer",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
