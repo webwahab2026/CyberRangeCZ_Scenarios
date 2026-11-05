@@ -1,0 +1,183 @@
+{
+  "title": "2026-11-05_Linux.Ngioweb_Botnet_Investigation_cef",
+  "description": "Security monitoring has detected unusual network activity involving multiple Linux web servers in your organization. Initial analysis suggests these systems may be compromised by the Linux.Ngioweb botnet, which is known to operate as a proxy botnet and potentially record traffic passing through infected systems. Your task is to investigate these compromised hosts, identify the malicious components, and implement appropriate containment measures.",
+  "prerequisites": [
+    "Basic Linux command line knowledge",
+    "Familiarity with systemd service management",
+    "Understanding of network protocols and ports"
+  ],
+  "outcomes": [
+    "Identify and analyze suspicious services and their behavior",
+    "Investigate network communication patterns",
+    "Discover and disable persistence mechanisms",
+    "Implement appropriate containment measures"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual network activity involving multiple Linux web servers in your organization. Initial analysis suggests these systems may be compromised by the Linux.Ngioweb botnet, which is known to operate as a proxy botnet and potentially record traffic passing through infected systems. Your task is to investigate these compromised hosts, identify the malicious components, and implement appropriate containment measures."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Connect to bot1 using SSH with the username 'analyst' and password 'analyst123'. Enter 'start' to begin the investigation.",
+      "local_content": "Connect to bot1 using SSH with the username 'analyst' and password 'analyst123'. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on bot1. Investigate the running services and identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution": "1. Connect to bot1 using SSH with the provided credentials.\n2. List all systemd services to identify suspicious ones:\n   ```\nsystemctl list-units --type=service --all\n   ```\n3. Check the status of the suspicious service to gather more information:\n   ```\nsystemctl status <service_name>\n   ```\n4. The hidden flag is the name of the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Look for services with unusual names or descriptions that don't match typical system services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Hint 2",
+          "content": "Use `systemctl list-unit-files --type=service` to see all installed services, including inactive ones.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Hint 3",
+          "content": "Check the service status with `systemctl status <service_name>` to see when it was last activated and its description.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2222",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. From bot1, examine the suspicious service identified in the previous task.\n2. View the service configuration to find the port it listens on:\n   ```\nsystemctl cat <service_name>\n   ```\n3. Look for the `ExecStart` line in the service configuration, which contains the script path.\n4. Examine the script to find the port number used for communication:\n   ```\ncat /usr/local/lib/.botcache/beacon.sh\n   ```\n5. The hidden flag is the port number used for communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "The service configuration file contains important information about how the service is started.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Hint 2",
+          "content": "The script launched by the service contains the port number used for communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Hint 3",
+          "content": "Look for the `ExecStart` line in the service configuration to find the script path.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "determine_network_port",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat <service_name>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that the suspicious service automatically resumes after the system starts and continues to execute periodically. Determine which system component is responsible for scheduling this activity.",
+      "solution": "1. From bot1, list all systemd timers to identify the one associated with the suspicious service:\n   ```\nsystemctl list-timers --all\n   ```\n2. Examine the timer configuration to understand its scheduling behavior:\n   ```\nsystemctl cat <timer_name>\n   ```\n3. The hidden flag is the name of the timer responsible for scheduling the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Hint 1",
+          "content": "Timers are systemd components that control when services are started.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Hint 2",
+          "content": "Use `systemctl list-unit-files --type=timer` to see all installed timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Hint 3",
+          "content": "The timer configuration file contains information about when and how often the associated service is started.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 120,
+  "variant_sandboxes": false
+}
