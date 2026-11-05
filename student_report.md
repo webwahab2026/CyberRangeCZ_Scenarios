@@ -1,0 +1,96 @@
+# Linux.Mirai Incident Response — Student Briefing
+
+## 1. Malware Overview
+- **Family / type**: Linux.Mirai (Trojan)
+- **Aliases**: Linux.DDoS.87, Linux.DDoS.89
+- **Behaviour class**: DDoS botnet malware
+- **What it does**: Linux.Mirai targets Linux systems, particularly IoT devices. It performs DDoS attacks by infecting devices and using them as part of a botnet. The malware collects sensitive data such as `/etc/passwd`, home directory listings, and other sensitive files, then exfiltrates them to a C2 server.
+- **Associated MITRE ATT&CK techniques**:
+  - Persistence: T1547.001 (Registry Run Keys / Startup Folder)
+  - Command and Control: T1071 (Application Layer Protocol)
+  - Exfiltration: T1041 (Exfiltration Over C2 Channel)
+- **Associated CVEs**: Not specified in this scenario.
+
+## 2. Exercise Objective
+- The learning goal of this cyber-range exercise is to investigate a compromised host infected with the Linux.Mirai trojan, identify its activities, and take appropriate measures to contain and remediate the threat.
+- **Difficulty level**: Intermediate
+- **Cybersecurity approach**: Defence-oriented
+- **NICE work role**: Incident Response
+- **Successful trainee**: By the end, a successful trainee will have demonstrated the ability to investigate a compromised host, identify suspicious services, determine network ports used for unauthorized communication, and identify persistence mechanisms.
+
+## 3. Sandbox Topology & Malware Emulation
+- **Hosts**:
+  - **dist-server**: 192.168.60.5
+  - **victim**: 192.168.60.10
+  - **c2-server**: 192.168.60.20
+  - **router**: 192.168.60.1
+- **Network layout**:
+  ```
+  [router] <---> [dist-server] <---> [victim] <---> [c2-server]
+  ```
+- **Malware emulation**:
+  - **Service**: `dvrHelper.service` (emulates the suspicious activity of collecting and exfiltrating data)
+  - **Port**: 5556 (used for communication with the C2 server)
+  - **Persistence mechanism**: `dvrHelper.timer` (ensures the service runs across reboots and process termination)
+  - **Files**:
+    - `/usr/local/lib/.netd/harvester.sh` (script for collecting and exfiltrating data)
+    - `/var/lib/.netd/harvest.log` (log file for the harvester script)
+    - `/etc/systemd/system/dvrHelper.service` (service configuration)
+    - `/etc/systemd/system/dvrHelper.timer` (timer configuration)
+  - **Hosts**:
+    - **victim**: Host running the emulated malware behaviour.
+    - **c2-server**: Host receiving the exfiltrated data.
+
+## 4. Student Tasks
+- **ACCESS step**:
+  - **Credentials**: Username: `cyrano`, Password: `cyrano`
+  - **Start passkey**: `start`
+- **TRAINING_LEVEL 1**:
+  - **Task**: Investigate the running services and identify the service responsible for the suspicious activity of periodically collecting `/etc/passwd`, home directory listings, and sensitive files, then exfiltrating them to a C2 server.
+  - **TYPE of artifact/flag expected**: Service name.
+- **TRAINING_LEVEL 2**:
+  - **Task**: Investigate the service and determine the network port associated with the unauthorized communication for exfiltrating data to a C2 server.
+  - **TYPE of artifact/flag expected**: Port number.
+- **TRAINING_LEVEL 3**:
+  - **Task**: Determine which system component is responsible for keeping the identified service running across reboots and process termination.
+  - **TYPE of artifact/flag expected**: Timer name.
+
+## 5. Solution Walkthrough & Flags
+- **TRAINING_LEVEL 1**:
+  - **Methodology**:
+    1. List all services on the system using `systemctl list-units --type=service --all`.
+    2. Look for unfamiliar service names or misspellings of legitimate services.
+    3. Check the service descriptions and startup behavior for any unusual activity.
+    4. Identify the service responsible for the suspicious activity.
+  - **Expected flag**: `dvrHelper.service`
+- **TRAINING_LEVEL 2**:
+  - **Methodology**:
+    1. Use `systemctl cat dvrHelper.service` to inspect the service configuration.
+    2. Pay particular attention to the `ExecStart` field, which specifies the path to the script launched by the service.
+    3. Inspect the script to find the port number used for communication.
+  - **Expected flag**: `5556`
+- **TRAINING_LEVEL 3**:
+  - **Methodology**:
+    1. List all timers on the system using `systemctl list-timers --all`.
+    2. Look for timers associated with the identified service.
+    3. Inspect the timer configuration using `systemctl cat <timer>`.
+    4. Identify the timer responsible for the recurring execution of the service.
+  - **Expected flag**: `dvrHelper.timer`
+
+## 6. Knowledge Gained
+- **Skills**:
+  - Usage of `systemctl` for service and timer management.
+  - Investigating suspicious services and network ports.
+  - Identifying persistence mechanisms.
+- **Tools**:
+  - `systemctl`
+  - `ncat`
+- **Concepts**:
+  - Malware persistence mechanisms.
+  - Command and control (C2) communication.
+  - Data exfiltration techniques.
+- **NICE role**: Incident Response
+- **MITRE techniques**:
+  - Persistence: T1547.001 (Registry Run Keys / Startup Folder)
+  - Command and Control: T1071 (Application Layer Protocol)
+  - Exfiltration: T1041 (Exfiltration Over C2 Channel)
