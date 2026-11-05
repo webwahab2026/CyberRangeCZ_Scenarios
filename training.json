@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_Mirai_Botnet_Investigation_841",
+  "description": "You are an incident responder tasked with investigating a compromised network infected with the Mirai botnet. Your goal is to identify and contain the malicious activities, including C2 communication, data collection, and flood attacks.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised network infected with the Mirai botnet. Your goal is to identify and contain the malicious activities, including C2 communication, data collection, and flood attacks."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox in the cloud, use the following credentials:\nUsername: cyrano\nPassword: cyrano\nAfter logging in, enter 'start' to begin the training.",
+      "local_content": "To access the local sandbox, use the following credentials:\nUsername: cyrano\nPassword: cyrano\nAfter logging in, enter 'start' to begin the training."
+    },
+    {
+      "title": "Identify the Beacon Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution": "1. Use the command `systemctl list-units --type=service --state=running` to list all running services. 2. Look for any unfamiliar or suspicious service names. 3. Use the command `systemctl status <service_name>` to get detailed information about the suspicious service. 4. The service responsible for sending beacon periodically to the C2 Server is likely to have a name related to 'beacon' or 'health check'. 5. Use the command `systemctl cat <service_name>` to inspect the service definition and confirm its behavior.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --state=running` to list all running services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any unfamiliar or suspicious service names.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <service_name>` to get detailed information about the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2222",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Use the command `systemctl list-units --type=service --all` to list all services. 2. Look for any unfamiliar or suspicious service names. 3. Use the command `systemctl cat <service_name>` to inspect the service definition. 4. Pay particular attention to the `ExecStart` line, which specifies the path of the script launched by the service. 5. Navigate to the script path specified in the `ExecStart` line. 6. Use a text editor or `cat` command to view the script and identify the communication port with the C2 server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any unfamiliar or suspicious service names.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat <service_name>` to inspect the service definition and identify the communication port.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Scheduling Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that the C2 beacon service automatically resumes after the system starts and continues to execute periodically. Determine which system component is responsible for scheduling this activity.",
+      "solution": "1. Use the command `systemctl list-timers --all` to list all timers. 2. Look for any unfamiliar or suspicious timer names. 3. Use the command `systemctl cat <timer_name>` to inspect the timer definition. 4. Pay particular attention to the `OnCalendar` line, which specifies the schedule for the timer. 5. Use the command `systemctl status <timer_name>` to verify the timer status and confirm its behavior.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any unfamiliar or suspicious timer names.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat <timer_name>` to inspect the timer definition and identify the scheduling mechanism.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
