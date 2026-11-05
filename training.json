@@ -1,0 +1,241 @@
+{
+  "title": "2026-11-05_BiBi-Linux_Wiper_Incident_Response_da9",
+  "description": "Security monitoring systems have detected unusual activity on the workstation host within your organization's network. Initial analysis suggests the presence of the BiBi-Linux Wiper malware, a Linux-based wiper malware used by pro-Hamas hacktivists to target Israeli entities. Your task is to investigate the incident, identify the malware's behavior, and take appropriate response actions.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Investigate and analyze the BiBi-Linux Wiper malware's behavior.",
+    "Identify the malware's persistence mechanisms and lateral movement capabilities.",
+    "Take appropriate response actions to contain and mitigate the threat."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring systems have detected unusual activity on the workstation host within your organization's network. Initial analysis suggests the presence of the BiBi-Linux Wiper malware, a Linux-based wiper malware used by pro-Hamas hacktivists to target Israeli entities. Your task is to investigate the incident, identify the malware's behavior, and take appropriate response actions."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the workstation host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation.",
+      "local_content": "Access the workstation host via SSH using the following credentials: Username: cyrano, Password: cyrano. Enter 'start' to begin the investigation."
+    },
+    {
+      "title": "Identify the Malicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bibi-linux.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual service on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity that enumerated, zeroed, and renamed the company files on the workstation.",
+      "solution": "The service responsible for the suspicious activity is `bibi-linux.service`. 1. List all services using the command `systemctl list-units --type=service --all` to list all services. 2. Identify suspicious services by looking for services with unusual names or descriptions related to disk maintenance. 3. Check the status of the suspicious service using the command `systemctl status <service>`. 4. Inspect the service configuration using the command `systemctl cat <service>`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions related to disk maintenance.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <service>` to check the status of the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        },
+        {
+          "state_name": "check_service_status",
+          "prereq_state": [
+            "identify_service"
+          ],
+          "cmd": "systemctl status bibi-linux.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status bibi-linux.service",
+          "optional": false
+        },
+        {
+          "state_name": "inspect_service_configuration",
+          "prereq_state": [
+            "check_service_status"
+          ],
+          "cmd": "systemctl cat bibi-linux.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bibi-linux.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "The network port associated with this communication is `4444`. 1. Inspect the service configuration using the command `systemctl cat bibi-linux.service` to inspect the service configuration file. 2. Identify the script by looking for references to scripts or executables in the service configuration. 3. Inspect the script using the command `cat /usr/local/sbin/disk-maintenance` to inspect the script. 4. Identify the port by looking for references to a C2 server with the port number `4444`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat bibi-linux.service` to inspect the service configuration file.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for references to scripts or executables in the service configuration.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `cat /usr/local/sbin/disk-maintenance` to inspect the script and identify the port number.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "inspect_service_configuration",
+          "prereq_state": [],
+          "cmd": "systemctl cat bibi-linux.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bibi-linux.service",
+          "optional": false
+        },
+        {
+          "state_name": "identify_script",
+          "prereq_state": [
+            "inspect_service_configuration"
+          ],
+          "cmd": "cat /usr/local/sbin/disk-maintenance",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cat /usr/local/sbin/disk-maintenance",
+          "optional": false
+        },
+        {
+          "state_name": "identify_port",
+          "prereq_state": [
+            "identify_script"
+          ],
+          "cmd": "grep -oP 'C2_HOST=\\K[^ ]+' /usr/local/sbin/disk-maintenance",
+          "cmd_type": "bash-command",
+          "cmd_regex": "grep -oP 'C2_HOST=\\K[^ ]+' /usr/local/sbin/disk-maintenance",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bibi-linux.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the malicious service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "The timer responsible for the suspicious activity is `bibi-linux.timer`. 1. List all timers using the command `systemctl list-timers --all` to list all timers. 2. Identify suspicious timers by looking for timers with unusual names or descriptions related to disk maintenance. 3. Inspect the timer configuration using the command `systemctl cat <timer>` to inspect the timer configuration file. 4. Identify the malicious timer by looking for the timer responsible for the suspicious activity, likely named `bibi-linux.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with unusual names or descriptions related to disk maintenance.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat <timer>` to inspect the timer configuration file and identify the malicious timer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "list_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        },
+        {
+          "state_name": "identify_suspicious_timers",
+          "prereq_state": [
+            "list_timers"
+          ],
+          "cmd": "systemctl list-timers --all | grep -i 'disk maintenance'",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all | grep -i 'disk maintenance'",
+          "optional": false
+        },
+        {
+          "state_name": "inspect_timer_configuration",
+          "prereq_state": [
+            "identify_suspicious_timers"
+          ],
+          "cmd": "systemctl cat bibi-linux.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bibi-linux.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
