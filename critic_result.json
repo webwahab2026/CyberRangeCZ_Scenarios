@@ -1,0 +1,238 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: cyrano, Password: cyrano. Enter 'start' as the passkey."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: cyrano, Password: cyrano. Enter 'start' as the passkey."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "systemkernelservicedefender.service is provisioned in the sandbox",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Port 80 is provisioned in the sandbox",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Timer",
+      "status": "pass",
+      "evidence": "lab-checkin.timer is provisioned in the sandbox",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag requires investigation of services",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The flag requires investigation of service configuration",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Timer",
+      "status": "pass",
+      "evidence": "The flag requires investigation of timers",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Content specifies to identify the service responsible for suspicious activity",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Content specifies to determine the network port associated with unauthorized communication",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Timer",
+      "status": "pass",
+      "evidence": "Content specifies to identify the service responsible for automatic system information collection",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Content does not expose the exact flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Content does not expose the exact flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Timer",
+      "status": "pass",
+      "evidence": "Content does not expose the exact flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Solution provides step-by-step methodology and commands",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Solution provides step-by-step methodology and commands",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Timer",
+      "status": "pass",
+      "evidence": "Solution provides step-by-step methodology and commands",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Timer",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Timer",
+      "status": "pass",
+      "evidence": "Hints follow the required hierarchy",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Timer",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C5",
+      "severity": "major",
+      "component": "content",
+      "level": "Introduction",
+      "description": "Content does not explicitly state the type of value to be submitted",
+      "fix": "Explicitly state the type of value to be submitted in the content"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "systemkernelservicedefender.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in the sandbox",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Network Port",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in the sandbox",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Suspicious Timer",
+      "current_flag": "lab-checkin.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in the sandbox",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training JSON are well-aligned with the topology and provisioning files. The scenario requires revision due to a major issue with the content in the Introduction level not explicitly stating the type of value to be submitted."
+}
