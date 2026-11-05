@@ -1,0 +1,799 @@
+{
+  "verdict": "approved",
+  "checklist_results": [
+    {
+      "level": "ACCESS_LEVEL",
+      "item": "access_level.credentials_mentioned",
+      "status": "pass",
+      "detail": "Username and password are explicitly mentioned in both cloud_content and local_content."
+    },
+    {
+      "level": "ACCESS_LEVEL",
+      "item": "access_level.passkey_mentioned",
+      "status": "pass",
+      "detail": "Passkey 'start' is explicitly mentioned in both cloud_content and local_content."
+    },
+    {
+      "level": "Identify Suspicious Service",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sysnet-monitor.service' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Suspicious Service",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Identify Suspicious Service",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Suspicious Service",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Suspicious Service",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Suspicious Service",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Suspicious Service",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Suspicious Service",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Suspicious Service",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Suspicious Service",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Network Port",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '52869' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Network Port",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Identify Network Port",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Network Port",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Network Port",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Network Port",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Network Port",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Network Port",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Network Port",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Network Port",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sysnet-monitor.timer' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify Script Path",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/opt/.worm/worm.sh' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify Script Path",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Identify Script Path",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify Script Path",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify Script Path",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify Script Path",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify Script Path",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify Script Path",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify Script Path",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify Script Path",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Investigate Spread Log",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/opt/.worm/spread.log' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Investigate Spread Log",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Investigate Spread Log",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Investigate Spread Log",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Investigate Spread Log",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Investigate Spread Log",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Investigate Spread Log",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Investigate Spread Log",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Investigate Spread Log",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Investigate Spread Log",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/opt/.worm/beacon.log' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Identify C2 Server",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'attacker' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Identify C2 Server",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Identify C2 Server",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Identify C2 Server",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Identify C2 Server",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Identify C2 Server",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Identify C2 Server",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Identify C2 Server",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Identify C2 Server",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Identify C2 Server",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/opt/.worm/worm_backup.tar.gz' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Contain the Threat",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'iptables -A INPUT -s attacker -j DROP' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Contain the Threat",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Contain the Threat",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Contain the Threat",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Contain the Threat",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Contain the Threat",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Contain the Threat",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Contain the Threat",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Contain the Threat",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Contain the Threat",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'worm.sh' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'sysnet-monitor.timer' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag '/opt/.worm' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "item": "training_level.flag_exists",
+      "status": "pass",
+      "detail": "The flag 'ss -tulnp' exists and is genuinely discoverable in the sandbox."
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "item": "training_level.flag_not_obvious",
+      "status": "pass",
+      "detail": "The flag is not obvious and requires investigation to discover."
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "item": "training_level.flag_type_specified",
+      "status": "pass",
+      "detail": "The task description precisely states the type of flag/artifact to capture."
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "item": "training_level.flag_not_revealed",
+      "status": "pass",
+      "detail": "The task description does not reveal the flag value itself."
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "item": "training_level.solution_clear",
+      "status": "pass",
+      "detail": "The solution gives clear methodology/commands to find the flag and explicitly states the flag value."
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "item": "training_level.flag_consistent",
+      "status": "pass",
+      "detail": "The flag value stated in the solution is consistent with the value in the answer."
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "item": "training_level.hint_hierarchy",
+      "status": "pass",
+      "detail": "Hint hierarchy follows the required structure."
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "item": "training_level.hints_actionable",
+      "status": "pass",
+      "detail": "Hints include concrete commands where necessary."
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "item": "training_level.flag_not_fabricated",
+      "status": "pass",
+      "detail": "The flag is not fabricated and corresponds to an artifact in the sandbox."
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "item": "training_level.flag_not_revealed_in_content",
+      "status": "pass",
+      "detail": "The flag is not revealed in the task description."
+    }
+  ],
+  "issues": [],
+  "summary": "The scenario meets all quality criteria. All flags are discoverable, not obvious, and consistent with the sandbox environment. The task descriptions and solutions are clear and do not reveal the flags. The hint hierarchy is well-structured and actionable."
+}

@@ -1,0 +1,661 @@
+{
+  "title": "2026-11-05_Mirai_Worm_Investigation_abf",
+  "description": "Security monitoring has detected unusual network activity originating from the internal network. Initial analysis suggests the presence of a Mirai worm variant targeting Linux-based devices. Your task is to investigate the compromised hosts, identify the malware's behavior, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual network activity originating from the internal network. Initial analysis suggests the presence of a Mirai worm variant targeting Linux-based devices. Your task is to investigate the compromised hosts, identify the malware's behavior, and contain the threat."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "SSH into the patient-zero host using the username 'analyst' and password 'Mirai2023!' and enter the passkey 'start'.",
+      "local_content": "SSH into the patient-zero host using the username 'analyst' and password 'Mirai2023!' and enter the passkey 'start'."
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual CPU-intensive and network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. List all running and inactive services using the command `systemctl list-units --type=service --all`.\n3. Look for unfamiliar service names or misspellings of legitimate services.\n4. Identify the service named `sysnet-monitor.service` as the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is related to network monitoring.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "52869",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Inspect the suspicious service using the command `systemctl cat sysnet-monitor.service`.\n3. Identify the network port specified in the `ExecStart` line of the service file.\n4. The port number is `52869`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl cat <service>` to inspect the service file.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` line in the service file.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The port number is specified in the script path.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat sysnet-monitor.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat sysnet-monitor.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the beaconing service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. List all timers using the command `systemctl list-timers --all`.\n3. Identify the timer named `sysnet-monitor.timer` as the suspicious timer.\n4. The timer name is `sysnet-monitor.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious timer is related to the beaconing service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Script Path",
+      "level_type": "TRAINING_LEVEL",
+      "order": 5,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm/worm.sh",
+      "answer_variable_name": null,
+      "content": "After identifying the different activities of the malware, check how this worm dropped in the system. Identify the path of the script.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Check the bash history using the command `history`.\n3. Identify the path of the script executed by the user.\n4. The path of the script is `/opt/.worm/worm.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `history` to check the bash history.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the path of the script executed by the user.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The script is located in the `/opt/.worm` directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "history",
+          "cmd_type": "bash-command",
+          "cmd_regex": "history",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Spread Log",
+      "level_type": "TRAINING_LEVEL",
+      "order": 6,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm/spread.log",
+      "answer_variable_name": null,
+      "content": "Investigate the spread log to determine the IP addresses of the hosts that the worm has spread to.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Navigate to the worm directory using the command `cd /opt/.worm`.\n3. Read the spread log using the command `cat spread.log`.\n4. Identify the IP addresses of the hosts that the worm has spread to.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `cd /opt/.worm` to navigate to the worm directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `cat spread.log` to read the spread log.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the IP addresses in the spread log.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cd /opt/.worm",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cd /opt/.worm",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Beacon Log",
+      "level_type": "TRAINING_LEVEL",
+      "order": 7,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm/beacon.log",
+      "answer_variable_name": null,
+      "content": "Analyze the beacon log to determine the frequency of beaconing activity.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Navigate to the worm directory using the command `cd /opt/.worm`.\n3. Read the beacon log using the command `cat beacon.log`.\n4. Determine the frequency of beaconing activity by analyzing the timestamps in the log.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `cd /opt/.worm` to navigate to the worm directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `cat beacon.log` to read the beacon log.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the timestamps in the beacon log to determine the frequency of beaconing activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cd /opt/.worm",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cd /opt/.worm",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify C2 Server",
+      "level_type": "TRAINING_LEVEL",
+      "order": 8,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "attacker",
+      "answer_variable_name": null,
+      "content": "Identify the command and control (C2) server that the worm is communicating with.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Navigate to the worm directory using the command `cd /opt/.worm`.\n3. Read the worm script using the command `cat worm.sh`.\n4. Identify the C2 server specified in the script.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `cd /opt/.worm` to navigate to the worm directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `cat worm.sh` to read the worm script.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the C2 server specified in the script.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cd /opt/.worm",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cd /opt/.worm",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Preserve Forensic Evidence",
+      "level_type": "TRAINING_LEVEL",
+      "order": 9,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm/worm_backup.tar.gz",
+      "answer_variable_name": null,
+      "content": "Preserve forensic evidence by creating a backup of the worm-related files.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Navigate to the worm directory using the command `cd /opt/.worm`.\n3. Create a backup of the worm-related files using the command `tar -czvf worm_backup.tar.gz *`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `cd /opt/.worm` to navigate to the worm directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `tar -czvf worm_backup.tar.gz *` to create a backup of the worm-related files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Ensure that the backup file is created in the current directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cd /opt/.worm",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cd /opt/.worm",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Contain the Threat",
+      "level_type": "TRAINING_LEVEL",
+      "order": 10,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "iptables -A INPUT -s attacker -j DROP",
+      "answer_variable_name": null,
+      "content": "Contain the threat by blocking unauthorized communication with the C2 server.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Block the C2 server's IP address using the command `iptables -A INPUT -s <C2_IP> -j DROP`.\n3. Verify that the communication is blocked using the command `ss -tulnp`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `iptables -A INPUT -s <C2_IP> -j DROP` to block the C2 server's IP address.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Replace `<C2_IP>` with the actual IP address of the C2 server.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ss -tulnp` to verify that the communication is blocked.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "iptables -A INPUT -s <C2_IP> -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "iptables -A INPUT -s <C2_IP> -j DROP",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Terminate Malicious Process",
+      "level_type": "TRAINING_LEVEL",
+      "order": 11,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "worm.sh",
+      "answer_variable_name": null,
+      "content": "Terminate the malicious process responsible for the beaconing activity.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Identify the process ID (PID) of the malicious process using the command `ps aux | grep worm`.\n3. Terminate the malicious process using the command `kill -9 <PID>`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `ps aux | grep worm` to identify the process ID (PID) of the malicious process.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Replace `<PID>` with the actual process ID of the malicious process.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `kill -9 <PID>` to terminate the malicious process.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ps aux | grep worm",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ps aux | grep worm",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Disable Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 12,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sysnet-monitor.timer",
+      "answer_variable_name": null,
+      "content": "Disable the persistence mechanism to prevent the malicious service from restarting.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Disable the suspicious timer using the command `systemctl stop sysnet-monitor.timer`.\n3. Disable the suspicious service using the command `systemctl stop sysnet-monitor.service`.\n4. Verify that the timer and service are disabled using the command `systemctl list-timers --all` and `systemctl list-units --type=service --all`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl stop sysnet-monitor.timer` to disable the suspicious timer.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `systemctl stop sysnet-monitor.service` to disable the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl list-timers --all` and `systemctl list-units --type=service --all` to verify that the timer and service are disabled.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl stop sysnet-monitor.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl stop sysnet-monitor.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Remove Malicious Artifacts",
+      "level_type": "TRAINING_LEVEL",
+      "order": 13,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/opt/.worm",
+      "answer_variable_name": null,
+      "content": "Remove confirmed malicious artifacts without destroying preserved evidence.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Navigate to the worm directory using the command `cd /opt/.worm`.\n3. Remove the worm-related files using the command `rm -rf *`.\n4. Verify that the files are removed using the command `ls -lah`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `cd /opt/.worm` to navigate to the worm directory.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use the command `rm -rf *` to remove the worm-related files.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ls -lah` to verify that the files are removed.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "cd /opt/.worm",
+          "cmd_type": "bash-command",
+          "cmd_regex": "cd /opt/.worm",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Verify Malicious Activity",
+      "level_type": "TRAINING_LEVEL",
+      "order": 14,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "ss -tulnp",
+      "answer_variable_name": null,
+      "content": "Verify that malicious activity has ceased and required legitimate functionality remains operational.",
+      "solution": "1. SSH into the patient-zero host using the provided credentials.\n2. Monitor network activity using the command `ss -tulnp`.\n3. Verify that no unauthorized communication is occurring.\n4. Check the system logs using the command `journalctl -xe`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `ss -tulnp` to monitor network activity.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Verify that no unauthorized communication is occurring.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `journalctl -xe` to check the system logs.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 140,
+  "variant_sandboxes": false
+}

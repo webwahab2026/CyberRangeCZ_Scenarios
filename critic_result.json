@@ -1,0 +1,164 @@
+{
+  "coherence_score": 4,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": false,
+      "password_present": false,
+      "start_instruction_present": true,
+      "evidence": "cloud_content contains explicit instruction to enter 'start' but does not contain explicit username or password."
+    },
+    "local_content": {
+      "username_present": false,
+      "password_present": false,
+      "start_instruction_present": true,
+      "evidence": "local_content contains explicit instruction to enter 'start' but does not contain explicit username or password."
+    },
+    "c1_status": "fail",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C1",
+      "level": "ACCESS_LEVEL",
+      "status": "fail",
+      "evidence": "cloud_content and local_content do not contain explicit username and password.",
+      "required_fix": "Add explicit username and password in both cloud_content and local_content."
+    },
+    {
+      "condition": "C2",
+      "level": "ACCESS_LEVEL",
+      "status": "pass",
+      "evidence": "Both cloud_content and local_content contain explicit instruction to enter 'start'.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "cloud_content and local_content do not contain explicit username and password.",
+      "fix": "Add explicit username and password in both cloud_content and local_content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "sysnet-monitor.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service 'sysnet-monitor.service' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Network Port",
+      "current_flag": "52869",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port number '52869' is specified in the provisioning files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Persistence Mechanism",
+      "current_flag": "sysnet-monitor.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer 'sysnet-monitor.timer' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify Script Path",
+      "current_flag": "/opt/.worm/worm.sh",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The script path '/opt/.worm/worm.sh' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Investigate Spread Log",
+      "current_flag": "/opt/.worm/spread.log",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The spread log '/opt/.worm/spread.log' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Analyze Beacon Log",
+      "current_flag": "/opt/.worm/beacon.log",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The beacon log '/opt/.worm/beacon.log' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify C2 Server",
+      "current_flag": "attacker",
+      "flag_type": "hostname",
+      "verdict": "valid",
+      "sandbox_evidence": "The C2 server 'attacker' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Preserve Forensic Evidence",
+      "current_flag": "/opt/.worm/worm_backup.tar.gz",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The backup file '/opt/.worm/worm_backup.tar.gz' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Contain the Threat",
+      "current_flag": "iptables -A INPUT -s attacker -j DROP",
+      "flag_type": "command",
+      "verdict": "valid",
+      "sandbox_evidence": "The command 'iptables -A INPUT -s attacker -j DROP' is usable in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Terminate Malicious Process",
+      "current_flag": "worm.sh",
+      "flag_type": "process name",
+      "verdict": "valid",
+      "sandbox_evidence": "The process 'worm.sh' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Disable Persistence Mechanism",
+      "current_flag": "sysnet-monitor.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer 'sysnet-monitor.timer' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Remove Malicious Artifacts",
+      "current_flag": "/opt/.worm",
+      "flag_type": "directory path",
+      "verdict": "valid",
+      "sandbox_evidence": "The directory '/opt/.worm' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Verify Malicious Activity",
+      "current_flag": "ss -tulnp",
+      "flag_type": "command",
+      "verdict": "valid",
+      "sandbox_evidence": "The command 'ss -tulnp' is usable in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and provisioning files are well-aligned, and the flags are valid. However, the scenario fails C1 because the cloud_content and local_content do not contain explicit username and password. This issue must be addressed before the scenario can be approved."
+}
