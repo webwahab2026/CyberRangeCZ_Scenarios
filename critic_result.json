@@ -1,0 +1,238 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: investigator, Password: Exaramel2023!, Enter 'start' to proceed."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Username: investigator, Password: Exaramel2023!, Enter 'start' to proceed."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Exaramel.service is a provisioned service in the sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Port 4444 is used by the Exaramel.service in the sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify System Information Collection",
+      "status": "pass",
+      "evidence": "local-inventory.timer is a provisioned timer in the sandbox.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The flag requires investigation of services.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The flag requires investigation of the service configuration.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify System Information Collection",
+      "status": "pass",
+      "evidence": "The flag requires investigation of timers.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content specifies to identify the service responsible for suspicious activity.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The content specifies to determine the network port associated with unauthorized communication.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify System Information Collection",
+      "status": "pass",
+      "evidence": "The content specifies to identify the service responsible for system information collection.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify System Information Collection",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology and commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology and commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify System Information Collection",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology and commands.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify System Information Collection",
+      "status": "pass",
+      "evidence": "The solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hints follow the hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Hints follow the hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify System Information Collection",
+      "status": "pass",
+      "evidence": "Hints follow the hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify Suspicious Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine Network Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify System Information Collection",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "other",
+      "severity": "major",
+      "component": "access",
+      "level": "Get Access",
+      "description": "The username and password in the ACCESS_LEVEL do not match the provided credentials in the training JSON.",
+      "fix": "Update the username and password in the ACCESS_LEVEL to match the provided credentials in the training JSON."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify Suspicious Service",
+      "current_flag": "Exaramel.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Exaramel.service is a provisioned service in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine Network Port",
+      "current_flag": "4444",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Port 4444 is used by the Exaramel.service in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify System Information Collection",
+      "current_flag": "local-inventory.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "local-inventory.timer is a provisioned timer in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with valid flags and proper hint hierarchy. However, the username and password in the ACCESS_LEVEL do not match the provided credentials in the training JSON, which needs to be fixed."
+}
