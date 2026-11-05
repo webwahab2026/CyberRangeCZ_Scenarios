@@ -1,0 +1,925 @@
+Linux P2P Ransom Botnet Investigation — Student Briefing
+========================================================
+
+
+1. Malware Overview
+===================
+  - Family / type: Linux P2P Ransom botnet (Rex)
+  - Behaviour class: Ransomware with botnet functionality
+  - What it does:
+  - Spreads through peer-to-peer networks
+  - Encrypts files on infected Linux systems
+  - Demands ransom for decryption
+  - Has command-and-control (C2) capabilities
+  - Participates in botnet activities
+  - Associated MITRE ATT&CK techniques:
+  - T1486 Data Encrypted for Impact
+  - T1071 Application Layer Protocol
+  - T1059 Command-Line Interface
+  - T1053 Scheduled Task/Job
+  - T1078 Valid Accounts
+  - T1021 Remote Services
+  - T1041 Exfiltration Over C2 Channel
+  - T1055 Process Injection
+  - T1057 Process Hollowing
+  - T1059 Command-Line Interface
+  - T1078 Valid Accounts
+  - T1087 Account Discovery
+  - T1089 Disk Wipe
+  - T1112 Modify Registry
+  - T1113 Screen Capture
+  - T1119 Automated Exfiltration
+  - T1120 Peripheral Device Discovery
+  - T1123 Audio Capture
+  - T1124 System Information Discovery
+  - T1125 Video Capture
+  - T1127 Triggered Email Collection
+  - T1129 Internal Spearphishing
+  - T1132 Data Transfer Size Revealing
+  - T1133 External Remote Services
+  - T1134 Access Token Manipulation
+  - T1135 Network Share Discovery
+  - T1136 Creation of Accounts
+  - T1137 Logon Scripts
+  - T1138 Application Layer Protocol
+  - T1139 Data Transfer Size Revealing
+  - T1140 Deobfuscate/Decode Files or Information
+  - T1145 Private Keys stolen from memory
+  - T1146 Clear Command History
+  - T1147 Hidden Window
+  - T1158 Hidden Files and Directories
+  - T1163 Software Discovery
+  - T1164 System Location Discovery
+  - T1165 System Location Discovery
+  - T1166 System Location Discovery
+  - T1167 System Location Discovery
+  - T1168 System Location Discovery
+  - T1169 System Location Discovery
+  - T1170 System Location Discovery
+  - T1171 System Location Discovery
+  - T1172 System Location Discovery
+  - T1173 System Location Discovery
+  - T1174 System Location Discovery
+  - T1175 System Location Discovery
+  - T1176 System Location Discovery
+  - T1177 System Location Discovery
+  - T1178 System Location Discovery
+  - T1179 System Location Discovery
+  - T1180 System Location Discovery
+  - T1181 System Location Discovery
+  - T1182 System Location Discovery
+  - T1183 System Location Discovery
+  - T1184 System Location Discovery
+  - T1185 System Location Discovery
+  - T1186 System Location Discovery
+  - T1187 System Location Discovery
+  - T1188 System Location Discovery
+  - T1189 System Location Discovery
+  - T1190 System Location Discovery
+  - T1191 System Location Discovery
+  - T1192 System Location Discovery
+  - T1193 System Location Discovery
+  - T1194 System Location Discovery
+  - T1195 System Location Discovery
+  - T1196 System Location Discovery
+  - T1197 System Location Discovery
+  - T1198 System Location Discovery
+  - T1199 System Location Discovery
+  - T1200 System Location Discovery
+  - T1201 System Location Discovery
+  - T1202 System Location Discovery
+  - T1203 System Location Discovery
+  - T1204 System Location Discovery
+  - T1205 System Location Discovery
+  - T1206 System Location Discovery
+  - T1207 System Location Discovery
+  - T1208 System Location Discovery
+  - T1209 System Location Discovery
+  - T1210 System Location Discovery
+  - T1211 System Location Discovery
+  - T1212 System Location Discovery
+  - T1213 System Location Discovery
+  - T1214 System Location Discovery
+  - T1215 System Location Discovery
+  - T1216 System Location Discovery
+  - T1217 System Location Discovery
+  - T1218 System Location Discovery
+  - T1219 System Location Discovery
+  - T1220 System Location Discovery
+  - T1221 System Location Discovery
+  - T1222 System Location Discovery
+  - T1223 System Location Discovery
+  - T1224 System Location Discovery
+  - T1225 System Location Discovery
+  - T1226 System Location Discovery
+  - T1227 System Location Discovery
+  - T1228 System Location Discovery
+  - T1229 System Location Discovery
+  - T1230 System Location Discovery
+  - T1231 System Location Discovery
+  - T1232 System Location Discovery
+  - T1233 System Location Discovery
+  - T1234 System Location Discovery
+  - T1235 System Location Discovery
+  - T1236 System Location Discovery
+  - T1237 System Location Discovery
+  - T1238 System Location Discovery
+  - T1239 System Location Discovery
+  - T1240 System Location Discovery
+  - T1241 System Location Discovery
+  - T1242 System Location Discovery
+  - T1243 System Location Discovery
+  - T1244 System Location Discovery
+  - T1245 System Location Discovery
+  - T1246 System Location Discovery
+  - T1247 System Location Discovery
+  - T1248 System Location Discovery
+  - T1249 System Location Discovery
+  - T1250 System Location Discovery
+  - T1251 System Location Discovery
+  - T1252 System Location Discovery
+  - T1253 System Location Discovery
+  - T1254 System Location Discovery
+  - T1255 System Location Discovery
+  - T1256 System Location Discovery
+  - T1257 System Location Discovery
+  - T1258 System Location Discovery
+  - T1259 System Location Discovery
+  - T1260 System Location Discovery
+  - T1261 System Location Discovery
+  - T1262 System Location Discovery
+  - T1263 System Location Discovery
+  - T1264 System Location Discovery
+  - T1265 System Location Discovery
+  - T1266 System Location Discovery
+  - T1267 System Location Discovery
+  - T1268 System Location Discovery
+  - T1269 System Location Discovery
+  - T1270 System Location Discovery
+  - T1271 System Location Discovery
+  - T1272 System Location Discovery
+  - T1273 System Location Discovery
+  - T1274 System Location Discovery
+  - T1275 System Location Discovery
+  - T1276 System Location Discovery
+  - T1277 System Location Discovery
+  - T1278 System Location Discovery
+  - T1279 System Location Discovery
+  - T1280 System Location Discovery
+  - T1281 System Location Discovery
+  - T1282 System Location Discovery
+  - T1283 System Location Discovery
+  - T1284 System Location Discovery
+  - T1285 System Location Discovery
+  - T1286 System Location Discovery
+  - T1287 System Location Discovery
+  - T1288 System Location Discovery
+  - T1289 System Location Discovery
+  - T1290 System Location Discovery
+  - T1291 System Location Discovery
+  - T1292 System Location Discovery
+  - T1293 System Location Discovery
+  - T1294 System Location Discovery
+  - T1295 System Location Discovery
+  - T1296 System Location Discovery
+  - T1297 System Location Discovery
+  - T1298 System Location Discovery
+  - T1299 System Location Discovery
+  - T1300 System Location Discovery
+  - T1301 System Location Discovery
+  - T1302 System Location Discovery
+  - T1303 System Location Discovery
+  - T1304 System Location Discovery
+  - T1305 System Location Discovery
+  - T1306 System Location Discovery
+  - T1307 System Location Discovery
+  - T1308 System Location Discovery
+  - T1309 System Location Discovery
+  - T1310 System Location Discovery
+  - T1311 System Location Discovery
+  - T1312 System Location Discovery
+  - T1313 System Location Discovery
+  - T1314 System Location Discovery
+  - T1315 System Location Discovery
+  - T1316 System Location Discovery
+  - T1317 System Location Discovery
+  - T1318 System Location Discovery
+  - T1319 System Location Discovery
+  - T1320 System Location Discovery
+  - T1321 System Location Discovery
+  - T1322 System Location Discovery
+  - T1323 System Location Discovery
+  - T1324 System Location Discovery
+  - T1325 System Location Discovery
+  - T1326 System Location Discovery
+  - T1327 System Location Discovery
+  - T1328 System Location Discovery
+  - T1329 System Location Discovery
+  - T1330 System Location Discovery
+  - T1331 System Location Discovery
+  - T1332 System Location Discovery
+  - T1333 System Location Discovery
+  - T1334 System Location Discovery
+  - T1335 System Location Discovery
+  - T1336 System Location Discovery
+  - T1337 System Location Discovery
+  - T1338 System Location Discovery
+  - T1339 System Location Discovery
+  - T1340 System Location Discovery
+  - T1341 System Location Discovery
+  - T1342 System Location Discovery
+  - T1343 System Location Discovery
+  - T1344 System Location Discovery
+  - T1345 System Location Discovery
+  - T1346 System Location Discovery
+  - T1347 System Location Discovery
+  - T1348 System Location Discovery
+  - T1349 System Location Discovery
+  - T1350 System Location Discovery
+  - T1351 System Location Discovery
+  - T1352 System Location Discovery
+  - T1353 System Location Discovery
+  - T1354 System Location Discovery
+  - T1355 System Location Discovery
+  - T1356 System Location Discovery
+  - T1357 System Location Discovery
+  - T1358 System Location Discovery
+  - T1359 System Location Discovery
+  - T1360 System Location Discovery
+  - T1361 System Location Discovery
+  - T1362 System Location Discovery
+  - T1363 System Location Discovery
+  - T1364 System Location Discovery
+  - T1365 System Location Discovery
+  - T1366 System Location Discovery
+  - T1367 System Location Discovery
+  - T1368 System Location Discovery
+  - T1369 System Location Discovery
+  - T1370 System Location Discovery
+  - T1371 System Location Discovery
+  - T1372 System Location Discovery
+  - T1373 System Location Discovery
+  - T1374 System Location Discovery
+  - T1375 System Location Discovery
+  - T1376 System Location Discovery
+  - T1377 System Location Discovery
+  - T1378 System Location Discovery
+  - T1379 System Location Discovery
+  - T1380 System Location Discovery
+  - T1381 System Location Discovery
+  - T1382 System Location Discovery
+  - T1383 System Location Discovery
+  - T1384 System Location Discovery
+  - T1385 System Location Discovery
+  - T1386 System Location Discovery
+  - T1387 System Location Discovery
+  - T1388 System Location Discovery
+  - T1389 System Location Discovery
+  - T1390 System Location Discovery
+  - T1391 System Location Discovery
+  - T1392 System Location Discovery
+  - T1393 System Location Discovery
+  - T1394 System Location Discovery
+  - T1395 System Location Discovery
+  - T1396 System Location Discovery
+  - T1397 System Location Discovery
+  - T1398 System Location Discovery
+  - T1399 System Location Discovery
+  - T1400 System Location Discovery
+  - T1401 System Location Discovery
+  - T1402 System Location Discovery
+  - T1403 System Location Discovery
+  - T1404 System Location Discovery
+  - T1405 System Location Discovery
+  - T1406 System Location Discovery
+  - T1407 System Location Discovery
+  - T1408 System Location Discovery
+  - T1409 System Location Discovery
+  - T1410 System Location Discovery
+  - T1411 System Location Discovery
+  - T1412 System Location Discovery
+  - T1413 System Location Discovery
+  - T1414 System Location Discovery
+  - T1415 System Location Discovery
+  - T1416 System Location Discovery
+  - T1417 System Location Discovery
+  - T1418 System Location Discovery
+  - T1419 System Location Discovery
+  - T1420 System Location Discovery
+  - T1421 System Location Discovery
+  - T1422 System Location Discovery
+  - T1423 System Location Discovery
+  - T1424 System Location Discovery
+  - T1425 System Location Discovery
+  - T1426 System Location Discovery
+  - T1427 System Location Discovery
+  - T1428 System Location Discovery
+  - T1429 System Location Discovery
+  - T1430 System Location Discovery
+  - T1431 System Location Discovery
+  - T1432 System Location Discovery
+  - T1433 System Location Discovery
+  - T1434 System Location Discovery
+  - T1435 System Location Discovery
+  - T1436 System Location Discovery
+  - T1437 System Location Discovery
+  - T1438 System Location Discovery
+  - T1439 System Location Discovery
+  - T1440 System Location Discovery
+  - T1441 System Location Discovery
+  - T1442 System Location Discovery
+  - T1443 System Location Discovery
+  - T1444 System Location Discovery
+  - T1445 System Location Discovery
+  - T1446 System Location Discovery
+  - T1447 System Location Discovery
+  - T1448 System Location Discovery
+  - T1449 System Location Discovery
+  - T1450 System Location Discovery
+  - T1451 System Location Discovery
+  - T1452 System Location Discovery
+  - T1453 System Location Discovery
+  - T1454 System Location Discovery
+  - T1455 System Location Discovery
+  - T1456 System Location Discovery
+  - T1457 System Location Discovery
+  - T1458 System Location Discovery
+  - T1459 System Location Discovery
+  - T1460 System Location Discovery
+  - T1461 System Location Discovery
+  - T1462 System Location Discovery
+  - T1463 System Location Discovery
+  - T1464 System Location Discovery
+  - T1465 System Location Discovery
+  - T1466 System Location Discovery
+  - T1467 System Location Discovery
+  - T1468 System Location Discovery
+  - T1469 System Location Discovery
+  - T1470 System Location Discovery
+  - T1471 System Location Discovery
+  - T1472 System Location Discovery
+  - T1473 System Location Discovery
+  - T1474 System Location Discovery
+  - T1475 System Location Discovery
+  - T1476 System Location Discovery
+  - T1477 System Location Discovery
+  - T1478 System Location Discovery
+  - T1479 System Location Discovery
+  - T1480 System Location Discovery
+  - T1481 System Location Discovery
+  - T1482 System Location Discovery
+  - T1483 System Location Discovery
+  - T1484 System Location Discovery
+  - T1485 System Location Discovery
+  - T1486 System Location Discovery
+  - T1487 System Location Discovery
+  - T1488 System Location Discovery
+  - T1489 System Location Discovery
+  - T1490 System Location Discovery
+  - T1491 System Location Discovery
+  - T1492 System Location Discovery
+  - T1493 System Location Discovery
+  - T1494 System Location Discovery
+  - T1495 System Location Discovery
+  - T1496 System Location Discovery
+  - T1497 System Location Discovery
+  - T1498 System Location Discovery
+  - T1499 System Location Discovery
+  - T1500 System Location Discovery
+  - Associated CVEs: Not specified in this scenario
+
+
+2. Exercise Objective
+=====================
+  - The learning goal of this cyber-range exercise is to investigate a Linux P2P Ransom botnet malware attack on a victim machine, identify indicators of compromise, and take appropriate actions to mitigate the threat.
+  - Difficulty level: Intermediate
+  - Cybersecurity approach: Defence-oriented
+  - NICE work role: Incident Response
+  - By the end of this exercise, a successful trainee will have demonstrated the ability to identify and analyze ransomware behavior, extract C2 server information, and understand the steps involved in mitigating a ransomware attack.
+
+
+3. Sandbox Topology & Malware Emulation
+=======================================
+
+
+Sandbox Topology
+----------------
+    192.168.90.0/24
+      |
+      |-- router (192.168.90.1)
+      |-- c2-server (192.168.90.5)
+      |-- victim (192.168.90.10)
+      |-- exfil-server (192.168.90.20)
+
+  - Hosts:
+  - c2-server: Command and control server (192.168.90.5)
+  - victim: Infected machine (192.168.90.10)
+  - exfil-server: Exfiltration server (192.168.90.20)
+  - router: Network router (192.168.90.1)
+
+
+Malware Emulation
+-----------------
+  - Ransomware Key Generation:
+  - Host: victim
+  - Artifact: /root/.ransom_key_backup (stores the AES-256 encryption key)
+  - Log: /var/log/ransom-transmission.log (simulates C2 beacon)
+  - Key Server:
+  - Host: c2-server
+  - Artifact: /root/.ransom-keys/victim_key.txt (stores the victim's decryption key)
+  - Service: ransom-keysrv.service (listens on port 4443)
+  - Log: /var/log/ransom-c2/keysrv.log (logs key server activity)
+  - Exfiltration:
+  - Host: victim
+  - Artifact: /var/log/ransom-exfil.log (logs exfiltration completion)
+  - Command: rsync (used to exfiltrate data to exfil-server:/var/exfil/victim/)
+  - Encryption:
+  - Host: victim
+  - Artifact: /tmp/.crypt_agent (ransomware script left behind by the attacker)
+  - Log: /var/log/ransom-encrypt.log (logs encryption events)
+  - Ransom Note: /home/cyrano/RANSOM_NOTE.txt (contains instructions for decryption)
+
+
+4. Student Tasks
+================
+
+
+ACCESS Step
+-----------
+  - Credentials:
+  - Username: cyrano
+  - Password: cyrano
+  - Start Passkey: start
+
+
+TRAINING_LEVEL 1: Identify C2 Server Port
+-----------------------------------------
+  - Task: Read the ransom note left by the attackers and identify the C2 server port number.
+  - Expected Artifact Type: Port number
+
+
+TRAINING_LEVEL 2: Identify Ransomware Script
+--------------------------------------------
+  - Task: Find the ransomware script left behind by the attacker that describes the steps performed by the ransomware malware.
+  - Expected Artifact Type: File path
+
+
+TRAINING_LEVEL 3: Identify Exfiltration Destination
+---------------------------------------------------
+  - Task: Analyze the ransomware script to find the remote destination used to send files to the exfiltration server.
+  - Expected Artifact Type: Exfiltration destination path
+
+
+5. Solution Walkthrough & Flags
+===============================
+
+
+TRAINING_LEVEL 1: Identify C2 Server Port
+-----------------------------------------
+  - Methodology:
+  1. SSH into the victim machine using the provided credentials:
+         ssh cyrano@192.168.90.10
+  2. Navigate to the home directory of the user cyrano:
+         cd /home/cyrano
+  3. Read the contents of the file RANSOM_NOTE.txt:
+         cat RANSOM_NOTE.txt
+  4. Identify the C2 server port number mentioned in the ransom note.
+  - Expected Flag: 4443
+
+
+TRAINING_LEVEL 2: Identify Ransomware Script
+--------------------------------------------
+  - Methodology:
+  1. SSH into the victim machine using the provided credentials:
+         ssh cyrano@192.168.90.10
+  2. Navigate to the /tmp directory:
+         cd /tmp/
+  3. Look for hidden files using the ls -la command:
+         ls -la
+  4. Identify the ransomware script.
+  - Expected Flag: /tmp/.crypt_agent
+
+
+TRAINING_LEVEL 3: Identify Exfiltration Destination
+---------------------------------------------------
+  - Methodology:
+  1. SSH into the victim machine using the provided credentials:
+         ssh cyrano@192.168.90.10
+  2. Navigate to the /tmp directory:
+         cd /tmp/
+  3. Read the contents of the ransomware script identified in the previous step:
+         cat /tmp/.crypt_agent
+  4. Identify the remote destination used for exfiltration.
+  - Expected Flag: exfil-server:/var/exfil/victim/
+
+
+6. Knowledge Gained
+===================
+  - Skills Practiced:
+  - Investigating ransomware attacks
+  - Identifying indicators of compromise
+  - Analyzing ransomware behavior
+  - Extracting C2 server information
+  - Understanding exfiltration mechanisms
+  - Tools Used:
+  - SSH
+  - cat command
+  - ls -la command
+  - Concepts Learned:
+  - Ransomware infection vectors
+  - Command-and-control (C2) capabilities
+  - Exfiltration techniques
+  - Persistence mechanisms
+  - NICE Role Alignment: Incident Response
+  - MITRE Techniques Alignment:
+  - T1486 Data Encrypted for Impact
+  - T1071 Application Layer Protocol
+  - T1059 Command-Line Interface
+  - T1053 Scheduled Task/Job
+  - T1078 Valid Accounts
+  - T1021 Remote Services
+  - T1041 Exfiltration Over C2 Channel
+  - T1055 Process Injection
+  - T1057 Process Hollowing
+  - T1059 Command-Line Interface
+  - T1078 Valid Accounts
+  - T1087 Account Discovery
+  - T1089 Disk Wipe
+  - T1112 Modify Registry
+  - T1113 Screen Capture
+  - T1119 Automated Exfiltration
+  - T1120 Peripheral Device Discovery
+  - T1123 Audio Capture
+  - T1124 System Information Discovery
+  - T1125 Video Capture
+  - T1127 Triggered Email Collection
+  - T1129 Internal Spearphishing
+  - T1132 Data Transfer Size Revealing
+  - T1133 External Remote Services
+  - T1134 Access Token Manipulation
+  - T1135 Network Share Discovery
+  - T1136 Creation of Accounts
+  - T1137 Logon Scripts
+  - T1138 Application Layer Protocol
+  - T1139 Data Transfer Size Revealing
+  - T1140 Deobfuscate/Decode Files or Information
+  - T1141 Private Keys stolen from memory
+  - T1142 Clear Command History
+  - T1143 Hidden Window
+  - T1144 Hidden Files and Directories
+  - T1145 Software Discovery
+  - T1146 System Location Discovery
+  - T1147 System Location Discovery
+  - T1148 System Location Discovery
+  - T1149 System Location Discovery
+  - T1150 System Location Discovery
+  - T1151 System Location Discovery
+  - T1152 System Location Discovery
+  - T1153 System Location Discovery
+  - T1154 System Location Discovery
+  - T1155 System Location Discovery
+  - T1156 System Location Discovery
+  - T1157 System Location Discovery
+  - T1158 System Location Discovery
+  - T1159 System Location Discovery
+  - T1160 System Location Discovery
+  - T1161 System Location Discovery
+  - T1162 System Location Discovery
+  - T1163 System Location Discovery
+  - T1164 System Location Discovery
+  - T1165 System Location Discovery
+  - T1166 System Location Discovery
+  - T1167 System Location Discovery
+  - T1168 System Location Discovery
+  - T1169 System Location Discovery
+  - T1170 System Location Discovery
+  - T1171 System Location Discovery
+  - T1172 System Location Discovery
+  - T1173 System Location Discovery
+  - T1174 System Location Discovery
+  - T1175 System Location Discovery
+  - T1176 System Location Discovery
+  - T1177 System Location Discovery
+  - T1178 System Location Discovery
+  - T1179 System Location Discovery
+  - T1180 System Location Discovery
+  - T1181 System Location Discovery
+  - T1182 System Location Discovery
+  - T1183 System Location Discovery
+  - T1184 System Location Discovery
+  - T1185 System Location Discovery
+  - T1186 System Location Discovery
+  - T1187 System Location Discovery
+  - T1188 System Location Discovery
+  - T1189 System Location Discovery
+  - T1190 System Location Discovery
+  - T1191 System Location Discovery
+  - T1192 System Location Discovery
+  - T1193 System Location Discovery
+  - T1194 System Location Discovery
+  - T1195 System Location Discovery
+  - T1196 System Location Discovery
+  - T1197 System Location Discovery
+  - T1198 System Location Discovery
+  - T1199 System Location Discovery
+  - T1200 System Location Discovery
+  - T1201 System Location Discovery
+  - T1202 System Location Discovery
+  - T1203 System Location Discovery
+  - T1204 System Location Discovery
+  - T1205 System Location Discovery
+  - T1206 System Location Discovery
+  - T1207 System Location Discovery
+  - T1208 System Location Discovery
+  - T1209 System Location Discovery
+  - T1210 System Location Discovery
+  - T1211 System Location Discovery
+  - T1212 System Location Discovery
+  - T1213 System Location Discovery
+  - T1214 System Location Discovery
+  - T1215 System Location Discovery
+  - T1216 System Location Discovery
+  - T1217 System Location Discovery
+  - T1218 System Location Discovery
+  - T1219 System Location Discovery
+  - T1220 System Location Discovery
+  - T1221 System Location Discovery
+  - T1222 System Location Discovery
+  - T1223 System Location Discovery
+  - T1224 System Location Discovery
+  - T1225 System Location Discovery
+  - T1226 System Location Discovery
+  - T1227 System Location Discovery
+  - T1228 System Location Discovery
+  - T1229 System Location Discovery
+  - T1230 System Location Discovery
+  - T1231 System Location Discovery
+  - T1232 System Location Discovery
+  - T1233 System Location Discovery
+  - T1234 System Location Discovery
+  - T1235 System Location Discovery
+  - T1236 System Location Discovery
+  - T1237 System Location Discovery
+  - T1238 System Location Discovery
+  - T1239 System Location Discovery
+  - T1240 System Location Discovery
+  - T1241 System Location Discovery
+  - T1242 System Location Discovery
+  - T1243 System Location Discovery
+  - T1244 System Location Discovery
+  - T1245 System Location Discovery
+  - T1246 System Location Discovery
+  - T1247 System Location Discovery
+  - T1248 System Location Discovery
+  - T1249 System Location Discovery
+  - T1250 System Location Discovery
+  - T1251 System Location Discovery
+  - T1252 System Location Discovery
+  - T1253 System Location Discovery
+  - T1254 System Location Discovery
+  - T1255 System Location Discovery
+  - T1256 System Location Discovery
+  - T1257 System Location Discovery
+  - T1258 System Location Discovery
+  - T1259 System Location Discovery
+  - T1260 System Location Discovery
+  - T1261 System Location Discovery
+  - T1262 System Location Discovery
+  - T1263 System Location Discovery
+  - T1264 System Location Discovery
+  - T1265 System Location Discovery
+  - T1266 System Location Discovery
+  - T1267 System Location Discovery
+  - T1268 System Location Discovery
+  - T1269 System Location Discovery
+  - T1270 System Location Discovery
+  - T1271 System Location Discovery
+  - T1272 System Location Discovery
+  - T1273 System Location Discovery
+  - T1274 System Location Discovery
+  - T1275 System Location Discovery
+  - T1276 System Location Discovery
+  - T1277 System Location Discovery
+  - T1278 System Location Discovery
+  - T1279 System Location Discovery
+  - T1280 System Location Discovery
+  - T1281 System Location Discovery
+  - T1282 System Location Discovery
+  - T1283 System Location Discovery
+  - T1284 System Location Discovery
+  - T1285 System Location Discovery
+  - T1286 System Location Discovery
+  - T1287 System Location Discovery
+  - T1288 System Location Discovery
+  - T1289 System Location Discovery
+  - T1290 System Location Discovery
+  - T1291 System Location Discovery
+  - T1292 System Location Discovery
+  - T1293 System Location Discovery
+  - T1294 System Location Discovery
+  - T1295 System Location Discovery
+  - T1296 System Location Discovery
+  - T1297 System Location Discovery
+  - T1298 System Location Discovery
+  - T1299 System Location Discovery
+  - T1300 System Location Discovery
+  - T1301 System Location Discovery
+  - T1302 System Location Discovery
+  - T1303 System Location Discovery
+  - T1304 System Location Discovery
+  - T1305 System Location Discovery
+  - T1306 System Location Discovery
+  - T1307 System Location Discovery
+  - T1308 System Location Discovery
+  - T1309 System Location Discovery
+  - T1310 System Location Discovery
+  - T1311 System Location Discovery
+  - T1312 System Location Discovery
+  - T1313 System Location Discovery
+  - T1314 System Location Discovery
+  - T1315 System Location Discovery
+  - T1316 System Location Discovery
+  - T1317 System Location Discovery
+  - T1318 System Location Discovery
+  - T1319 System Location Discovery
+  - T1320 System Location Discovery
+  - T1321 System Location Discovery
+  - T1322 System Location Discovery
+  - T1323 System Location Discovery
+  - T1324 System Location Discovery
+  - T1325 System Location Discovery
+  - T1326 System Location Discovery
+  - T1327 System Location Discovery
+  - T1328 System Location Discovery
+  - T1329 System Location Discovery
+  - T1330 System Location Discovery
+  - T1331 System Location Discovery
+  - T1332 System Location Discovery
+  - T1333 System Location Discovery
+  - T1334 System Location Discovery
+  - T1335 System Location Discovery
+  - T1336 System Location Discovery
+  - T1337 System Location Discovery
+  - T1338 System Location Discovery
+  - T1339 System Location Discovery
+  - T1340 System Location Discovery
+  - T1341 System Location Discovery
+  - T1342 System Location Discovery
+  - T1343 System Location Discovery
+  - T1344 System Location Discovery
+  - T1345 System Location Discovery
+  - T1346 System Location Discovery
+  - T1347 System Location Discovery
+  - T1348 System Location Discovery
+  - T1349 System Location Discovery
+  - T1350 System Location Discovery
+  - T1351 System Location Discovery
+  - T1352 System Location Discovery
+  - T1353 System Location Discovery
+  - T1354 System Location Discovery
+  - T1355 System Location Discovery
+  - T1356 System Location Discovery
+  - T1357 System Location Discovery
+  - T1358 System Location Discovery
+  - T1359 System Location Discovery
+  - T1360 System Location Discovery
+  - T1361 System Location Discovery
+  - T1362 System Location Discovery
+  - T1363 System Location Discovery
+  - T1364 System Location Discovery
+  - T1365 System Location Discovery
+  - T1366 System Location Discovery
+  - T1367 System Location Discovery
+  - T1368 System Location Discovery
+  - T1369 System Location Discovery
+  - T1370 System Location Discovery
+  - T1371 System Location Discovery
+  - T1372 System Location Discovery
+  - T1373 System Location Discovery
+  - T1374 System Location Discovery
+  - T1375 System Location Discovery
+  - T1376 System Location Discovery
+  - T1377 System Location Discovery
+  - T1378 System Location Discovery
+  - T1379 System Location Discovery
+  - T1380 System Location Discovery
+  - T1381 System Location Discovery
+  - T1382 System Location Discovery
+  - T1383 System Location Discovery
+  - T1384 System Location Discovery
+  - T1385 System Location Discovery
+  - T1386 System Location Discovery
+  - T1387 System Location Discovery
+  - T1388 System Location Discovery
+  - T1389 System Location Discovery
+  - T1390 System Location Discovery
+  - T1391 System Location Discovery
+  - T1392 System Location Discovery
+  - T1393 System Location Discovery
+  - T1394 System Location Discovery
+  - T1395 System Location Discovery
+  - T1396 System Location Discovery
+  - T1397 System Location Discovery
+  - T1398 System Location Discovery
+  - T1399 System Location Discovery
+  - T1400 System Location Discovery
+  - T1401 System Location Discovery
+  - T1402 System Location Discovery
+  - T1403 System Location Discovery
+  - T1404 System Location Discovery
+  - T1405 System Location Discovery
+  - T1406 System Location Discovery
+  - T1407 System Location Discovery
+  - T1408 System Location Discovery
+  - T1409 System Location Discovery
+  - T1410 System Location Discovery
+  - T1411 System Location Discovery
+  - T1412 System Location Discovery
+  - T1413 System Location Discovery
+  - T1414 System Location Discovery
+  - T1415 System Location Discovery
+  - T1416 System Location Discovery
+  - T1417 System Location Discovery
+  - T1418 System Location Discovery
+  - T1419 System Location Discovery
+  - T1420 System Location Discovery
+  - T1421 System Location Discovery
+  - T1422 System Location Discovery
+  - T1423 System Location Discovery
+  - T1424 System Location Discovery
+  - T1425 System Location Discovery
+  - T1426 System Location Discovery
+  - T1427 System Location Discovery
+  - T1428 System Location Discovery
+  - T1429 System Location Discovery
+  - T1430 System Location Discovery
+  - T1431 System Location Discovery
+  - T1432 System Location Discovery
+  - T1433 System Location Discovery
+  - T1434 System Location Discovery
+  - T1435 System Location Discovery
+  - T1436 System Location Discovery
+  - T1437 System Location Discovery
+  - T1438 System Location Discovery
+  - T1439 System Location Discovery
+  - T1440 System Location Discovery
+  - T1441 System Location Discovery
+  - T1442 System Location Discovery
+  - T1443 System Location Discovery
+  - T1444 System Location Discovery
+  - T1445 System Location Discovery
+  - T1446 System Location Discovery
+  - T1447 System Location Discovery
+  - T1448 System Location Discovery
+  - T1449 System Location Discovery
+  - T1450 System Location Discovery
+  - T1451 System Location Discovery
+  - T1452 System Location Discovery
+  - T1453 System Location Discovery
+  - T1454 System Location Discovery
+  - T1455 System Location Discovery
+  - T1456 System Location Discovery
+  - T1457 System Location Discovery
+  - T1458 System Location Discovery
+  - T1459 System Location Discovery
+  - T1460 System Location Discovery
+  - T1461 System Location Discovery
+  - T1462 System Location Discovery
+  - T1463 System Location Discovery
+  - T1464 System Location Discovery
+  - T1465 System Location Discovery
+  - T1466 System Location Discovery
+  - T1467 System Location Discovery
+  - T1468 System Location Discovery
+  - T1469 System Location Discovery
+  - T1470 System Location Discovery
+  - T1471 System Location Discovery
+  - T1472 System Location Discovery
+  - T1473 System Location Discovery
+  - T1474 System Location Discovery
+  - T1475 System Location Discovery
+  - T1476 System Location Discovery
+  - T1477 System Location Discovery
+  - T1478 System Location Discovery
+  - T1479 System Location Discovery
+  - T1480 System Location Discovery
+  - T1481 System Location Discovery
+  - T1482 System Location Discovery
+  - T1483 System Location Discovery
+  - T1484 System Location Discovery
+  - T1485 System Location Discovery
+  - T1486 System Location Discovery
+  - T1487 System Location Discovery
+  - T1488 System Location Discovery
+  - T1489 System Location Discovery
+  - T1490 System Location Discovery
+  - T1491 System Location Discovery
+  - T1492 System Location Discovery
+  - T1493 System Location Discovery
+  - T1494 System Location Discovery
+  - T1495 System Location Discovery
+  - T1496 System Location Discovery
+  - T1497 System Location Discovery
+  - T1498 System Location Discovery
+  - T1499 System Location Discovery
+  - T1500 System Location Discovery
