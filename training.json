@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_Supreme_Backdoor_Factory_Investigation_a32",
+  "description": "Investigate and mitigate the threat posed by the Supreme Backdoor Factory malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Supreme Backdoor Factory is a set of malicious GitHub accounts and repositories used to deliver payloads. The malware creates scheduled tasks to download and execute PowerShell code from dynamic DNS subdomains. Your task is to investigate and mitigate the threat posed by this backdoor."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can investigate the system and perform necessary actions to contain and eradicate the threat. Enter 'start' to begin.",
+      "local_content": "You have SSH access to the `target` host with the username `cyrano` and password `cyrano`. From there, you can investigate the system and perform necessary actions to contain and eradicate the threat. Enter 'start' to begin."
+    },
+    {
+      "title": "Suspicious C2 Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. Access the Target Host:\n```bash\nssh cyrano@target\n```\n\n2. List All Services:\n```bash\nsystemctl list-units --type=service --all\n```\n\n3. Identify Suspicious Services:\nLook for services with unusual names or descriptions. Pay attention to services that are not part of standard system services.\n\n4. Check Service Status:\n```bash\nsystemctl status <service_name>\n```\n\n5. Find the Hidden Flag:\nThe hidden flag is the name of the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <service_name>` to check the status of a suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Access the Target Host:\n```bash\nssh cyrano@target\n```\n\n2. List All Listening Ports:\n```bash\nss -tulnp\n```\n\n3. Identify the Suspicious Port:\nLook for ports that are not part of standard system services.\n\n4. Check the Service Configuration:\n```bash\nsystemctl cat <service_name>\n```\n\n5. Find the Hidden Flag:\nThe hidden flag is the port number associated with the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `ss -tulnp` to list all listening ports.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for ports that are not part of standard system services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat <service_name>` to check the service configuration.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious Data Collection Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the service responsible for this activity.",
+      "solution": "1. Access the Target Host:\n```bash\nssh cyrano@target\n```\n\n2. List All Timers:\n```bash\nsystemctl list-timers --all\n```\n\n3. Identify Suspicious Timers:\nLook for timers with unusual names or descriptions.\n\n4. Check Timer Configuration:\n```bash\nsystemctl cat <timer_name>\n```\n\n5. Find the Hidden Flag:\nThe hidden flag is the name of the suspicious timer.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat <timer_name>` to check the timer configuration.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
