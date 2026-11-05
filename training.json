@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_BRICKSTORM_Backdoor_Investigation_a55",
+  "description": "Investigate and respond to a BRICKSTORM backdoor infection on a Linux system.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a suspected BRICKSTORM backdoor infection on a Linux system. Your goal is to identify the malicious activity, contain the threat, and remove it from the system.\n\nThe BRICKSTORM backdoor is a sophisticated 64-bit ELF executable written in Go. It uses advanced techniques such as SOCKS proxying, multi-layered web service communication, and varied command execution to evade detection. The backdoor also employs DoH, nested TLS encryption, and abuses a legitimate cloud service for command and control (C2) communication."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target system using the provided credentials and perform an initial investigation to identify any suspicious services or processes. Enter 'start' to begin.\n\nUsername: cyrano\nPassword: Cyrano123!\n\nSSH into the target system using the provided credentials:\n\n```\nssh cyrano@192.168.50.5\n```\n\nOnce logged in, list all running services to identify any suspicious activity:\n\n```\nsystemctl list-units --type=service --all\n```\n\nLook for any unfamiliar or suspicious service names, descriptions, or startup behaviors.",
+      "local_content": "Access the target system using the provided credentials and perform an initial investigation to identify any suspicious services or processes. Enter 'start' to begin.\n\nUsername: cyrano\nPassword: Cyrano123!\n\nSSH into the target system using the provided credentials:\n\n```\nssh cyrano@192.168.50.5\n```\n\nOnce logged in, list all running services to identify any suspicious activity:\n\n```\nsystemctl list-units --type=service --all\n```\n\nLook for any unfamiliar or suspicious service names, descriptions, or startup behaviors."
+    },
+    {
+      "title": "Suspicious C2 Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. List all services to identify any suspicious activity:\n\n```\nsystemctl list-units --type=service --all\n```\n\n2. Investigate the suspicious service by checking its status and configuration:\n\n```\nsystemctl status updatemgr.service\nsystemctl cat updatemgr.service\n```\n\n3. Identify the service name responsible for the suspicious activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl` command to list all services and look for any unfamiliar or suspicious service names.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the status of the suspicious service using `systemctl status <service_name>`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is named `updatemgr.service`. Check its configuration using `systemctl cat updatemgr.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. List all services to identify any suspicious activity:\n\n```\nsystemctl list-units --type=service --all\n```\n\n2. Investigate the suspicious service by checking its status and configuration:\n\n```\nsystemctl status updatemgr.service\nsystemctl cat updatemgr.service\n```\n\n3. Identify the network port associated with the suspicious service by examining the `ExecStart` command in the service configuration.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl` command to list all services and look for any unfamiliar or suspicious service names.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the status of the suspicious service using `systemctl status <service_name>`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is named `updatemgr.service`. Check its configuration using `systemctl cat updatemgr.service` and look for the port number in the `ExecStart` command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious Data Collection Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.service",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the service responsible for this activity.",
+      "solution": "1. List all services and timers to identify any suspicious activity:\n\n```\nsystemctl list-units --type=service --all\nsystemctl list-timers --all\n```\n\n2. Investigate the suspicious service by checking its status, configuration, and logs:\n\n```\nsystemctl status local-inventory.service\nsystemctl cat local-inventory.service\njournalctl -u local-inventory.service\n```\n\n3. Identify the service name responsible for the suspicious data collection activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl` command to list all services and timers and look for any unfamiliar or suspicious service names.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the status of the suspicious service using `systemctl status <service_name>`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is named `local-inventory.service`. Check its configuration using `systemctl cat local-inventory.service`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
