@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_Octopus-Rex_Botnet_Investigation_eb8",
+  "description": "Investigate a compromised host to identify and mitigate the Octopus-Rex botnet activities.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Octopus-Rex botnet is a multi-task botnet malware developed in Go that targets Linux servers. It has been observed evolving with various features over the last seven months. The botnet is known for its command-and-control (C2) capabilities, persistence mechanisms, and ability to perform lateral movement within a network. In this scenario, you will investigate a compromised host to identify and mitigate the Octopus-Rex botnet activities."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the sandbox via the provided cloud environment. Username: admin, Password: admin123. Enter 'start' to begin.",
+      "local_content": "Instructions for local sandbox usage. Username: admin, Password: admin123. Enter 'start' to begin."
+    },
+    {
+      "title": "Identify the Beacon Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution": "1. Use the command `systemctl list-units --type=service --state=running` to list all running services.\n2. Look for any unfamiliar or suspicious service names.\n3. Use the command `systemctl list-units --type=service --state=inactive` to list all inactive services.\n4. Look for any unfamiliar or suspicious service names.\n5. Use the command `systemctl cat <service>` to inspect the details of the suspicious service.\n6. Pay attention to the `ExecStart` field, which specifies the path of the script launched by the service.\n7. The beacon service is likely to have a name that does not match common system services.\n8. The service should have a description related to system health or network diagnostics.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-units --type=service --all` to list all services, both running and inactive.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual descriptions or those that do not match common system services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl cat <service>` to inspect the details of a suspicious service and look for the `ExecStart` field.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2222",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. From the previous task, identify the beacon service.\n2. Use the command `systemctl cat <service>` to inspect the configuration of the beacon service.\n3. Look for the `ExecStart` field, which specifies the path of the script launched by the service.\n4. Use a text editor or `cat` command to examine the script specified in the `ExecStart` field.\n5. Look for the network port used for communication with the C2 server.\n6. Use the command `ss -tulnp` to verify that the identified port is being used by the beacon service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl cat <service>` to inspect the configuration of the beacon service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` field in the service configuration and examine the script specified.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ss -tulnp` to verify the network port used by the beacon service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat <service>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Beacon Timer",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that the beacon service automatically resumes after the system starts and continues to execute periodically. Determine which system component is responsible for scheduling this activity.",
+      "solution": "1. Use the command `systemctl list-timers --all` to list all systemd timers.\n2. Look for any unfamiliar or suspicious timer names.\n3. Use the command `systemctl cat <timer>` to inspect the details of the suspicious timer.\n4. Pay attention to the `OnCalendar` field, which specifies the schedule for the timer.\n5. Use the command `systemctl status <timer>` to verify the status of the timer.\n6. Ensure that the timer is enabled and active.\n7. The beacon timer is likely to have a name that matches or is related to the beacon service.\n8. The timer should have a schedule that matches the periodic execution of the beacon service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-timers --all` to list all systemd timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with unusual names or those that do not match common system timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl cat <timer>` to inspect the details of a suspicious timer and look for the `OnCalendar` field.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
