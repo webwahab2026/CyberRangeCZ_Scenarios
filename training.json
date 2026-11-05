@@ -1,0 +1,182 @@
+{
+  "title": "2026-11-05_Adwind_jRAT_Incident_Response_bf6",
+  "description": "Investigate a compromised host infected with the Adwind/jRAT trojan, identify malicious activities, understand the infection vector, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Enumerate running and inactive services to identify suspicious activities.",
+    "Investigate systemd service configurations to discover persistence mechanisms.",
+    "Analyze network communication to identify command and control (C2) activities.",
+    "Preserve forensic evidence and contain the threat."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Scenario Overview",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised host infected with the Adwind/jRAT trojan. This cross-platform remote access trojan (RAT) is capable of stealing credentials, recording keystrokes, taking screenshots, and exfiltrating data. Your mission is to identify the malicious activities, understand the infection vector, and contain the threat."
+    },
+    {
+      "title": "Access Information",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the victim host (IP: 192.168.60.10) via SSH using the provided credentials. Username: investigator, Password: SecurePass123.",
+      "local_content": "Access the victim host (IP: 192.168.60.10) via SSH using the provided credentials. Username: investigator, Password: SecurePass123."
+    },
+    {
+      "title": "Identify the Credential Harvester Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "net-diag-harvest.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity of periodically collecting `/etc/passwd`, home directory listings, and sensitive files, then exfiltrating them to a C2 server.",
+      "solution": "1. Enumerate Running Services:\n```bash\nsystemctl list-units --type=service --all\n```\nLook for unfamiliar or suspicious service names.\n\n2. Inspect Service Details:\n```bash\nsystemctl cat net-diag-harvest.service\n```\nExamine the service configuration for suspicious ExecStart paths or descriptions.\n\n3. Check Service Status:\n```bash\nsystemctl status net-diag-harvest.service\n```\nVerify if the service is active and running.\n\n4. Identify the Service Name:\nThe service responsible for the suspicious activity is `net-diag-harvest.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat <service>` to inspect the service configuration.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Network Port for Exfiltration",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "1033",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system for exfiltrating data to a C2 server. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Inspect the Service Configuration:\n```bash\nsystemctl cat net-diag-harvest.service\n```\nLook for the ExecStart path, which contains the script launched by the service.\n\n2. Examine the Script:\n```bash\ncat /usr/local/lib/.netd/harvester.sh\n```\nIdentify the port number used for communication with the C2 server.\n\n3. Verify the Port:\nThe port number used for exfiltration is `1033`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat <service>` to inspect the service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the ExecStart path in the service configuration.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Examine the script at the specified path to find the port number.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat net-diag-harvest.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat net-diag-harvest.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "net-diag-harvest.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the Credential Harvester Service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "1. List All Timers:\n```bash\nsystemctl list-timers --all\n```\nLook for timers associated with the suspicious service.\n\n2. Inspect the Timer Configuration:\n```bash\nsystemctl cat net-diag-harvest.timer\n```\nExamine the timer configuration for details about its activation.\n\n3. Check Timer Status:\n```bash\nsystemctl status net-diag-harvest.timer\n```\nVerify if the timer is active and running.\n\n4. Identify the Timer Name:\nThe timer responsible for the persistence of the Credential Harvester Service is `net-diag-harvest.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers associated with the suspicious service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl cat <timer>` to inspect the timer configuration.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
