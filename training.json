@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_BlackTech_PLEAD_Backdoor_Investigation_634",
+  "description": "Investigate a compromised host within your network that shows signs of PLEAD infection.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The BlackTech threat group has been linked to cyber espionage campaigns targeting various organizations. Their malware, known as PLEAD, is a backdoor that establishes command and control (C2) communication, performs lateral movement, and exfiltrates data. Your task is to investigate a compromised host within your network that shows signs of PLEAD infection."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the compromised host `target` with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation.",
+      "local_content": "You have SSH access to the compromised host `target` with the following credentials:\n- Username: cyrano\n- Password: cyrano\n\nEnter 'start' to begin the investigation"
+    },
+    {
+      "title": "Suspicious C2 Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. **List all services**: Use the `systemctl` command to list all services on the host.\n   ```\nsystemctl list-units --type=service --all\n```\n\n2. **Filter running services**: Narrow down the list to only running services.\n   ```\nsystemctl list-units --type=service --state=running\n```\n\n3. **Inspect service details**: Look for any unfamiliar or suspicious services. Pay attention to their descriptions and paths.\n   ```\nsystemctl cat <service>\n```\n\n4. **Identify the suspicious service**: Based on the descriptions and paths, identify the service responsible for the suspicious activity.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "List all services",
+          "content": "Use the `systemctl list-units --type=service --all` command to see all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Filter running services",
+          "content": "Use the `systemctl list-units --type=service --state=running` command to see only running services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Inspect service details",
+          "content": "Use the `systemctl cat <service>` command to inspect the details of a specific service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. **Inspect the suspicious service**: Use the `systemctl cat` command to inspect the details of the suspicious service identified in the previous task.\n   ```\nsystemctl cat <service>\n```\n\n2. **Identify the port**: Look for the port number in the service configuration, typically specified in the `ExecStart` line.\n   ```\nsystemctl cat <service>\n```\n\n3. **Verify the port**: Use the `ss` command to verify that the port is being listened on.\n   ```\nss -tulnp\n```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "Inspect the suspicious service",
+          "content": "Use the `systemctl cat <service>` command to inspect the details of the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Identify the port",
+          "content": "Look for the port number in the service configuration, typically specified in the `ExecStart` line.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Verify the port",
+          "content": "Use the `ss -tulnp` command to verify that the port is being listened on.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat <service>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious Data Collection Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the service responsible for this activity.",
+      "solution": "1. **List all services**: Use the `systemctl` command to list all services on the host.\n   ```\nsystemctl list-units --type=service --all\n```\n\n2. **List all timers**: Use the `systemctl` command to list all timers on the host.\n   ```\nsystemctl list-timers --all\n```\n\n3. **Inspect timer details**: Look for any unfamiliar or suspicious timers. Pay attention to their descriptions and paths.\n   ```\nsystemctl cat <timer>\n```\n\n4. **Identify the suspicious service**: Based on the descriptions and paths, identify the service responsible for the suspicious activity.\n   ```\nsystemctl cat <service>\n```",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "List all services",
+          "content": "Use the `systemctl list-units --type=service --all` command to see all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "List all timers",
+          "content": "Use the `systemctl list-timers --all` command to see all timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Inspect timer details",
+          "content": "Use the `systemctl cat <timer>` command to inspect the details of a specific timer.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
