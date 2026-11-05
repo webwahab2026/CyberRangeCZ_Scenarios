@@ -1,0 +1,183 @@
+{
+  "title": "2026-11-05_Kinsing_Cryptominer_Investigation_557",
+  "description": "Security monitoring has detected unusual CPU usage and network activity on a Linux host in your environment. Initial analysis suggests the presence of cryptocurrency mining malware. Your task is to investigate the compromised host, identify the malicious activities, and take appropriate remediation steps.",
+  "prerequisites": [
+    "Basic knowledge of Linux commands and system administration.",
+    "Familiarity with common cybersecurity tools and techniques."
+  ],
+  "outcomes": [
+    "Enumerate running services and identify suspicious activities.",
+    "Investigate network communication to discover unauthorized connections.",
+    "Analyze persistence mechanisms to understand how the malware maintains its presence.",
+    "Investigate lateral movement to identify how the malware spreads to other hosts.",
+    "Identify the initial compromise vector and remediate the infection."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual CPU usage and network activity on a Linux host in your environment. Initial analysis suggests the presence of cryptocurrency mining malware. Your task is to investigate the compromised host, identify the malicious activities, and take appropriate remediation steps."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Log in to the miner-host using SSH with the provided credentials. Username: analyst, Password: Analyst123!",
+      "local_content": "Log in to the miner-host using SSH with the provided credentials. Username: analyst, Password: Analyst123!"
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "sys-monitor.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual CPU-intensive and network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. Log in to the miner-host using SSH with the provided credentials.\n2. List all running services using the command `systemctl list-units --type=service --state=running`.\n3. Look for any unfamiliar or suspicious service names. Pay attention to services with unusual descriptions or those that are not part of the standard system services.\n4. Identify the service associated with high CPU consumption by sorting processes by CPU usage using the command `ps aux --sort=-%cpu | head -20`.\n5. Investigate the identified service further by checking its status and configuration using `systemctl status <service>` and `systemctl cat <service>`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-units --type=service --state=running` to list all running services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Sort processes by CPU usage with `ps aux --sort=-%cpu | head -20` to identify the high-CPU consumption process.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the status and configuration of the suspicious service using `systemctl status <service>` and `systemctl cat <service>`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate Network Communication",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. From the miner-host, investigate the network listeners using the command `ss -tulnp`.\n2. Identify the port associated with the suspicious service by checking the service configuration using `systemctl cat <service>`.\n3. Look for the `ExecStart` line in the service configuration, which specifies the path to the script launched by the miner service.\n4. Examine the script to find the port number used for communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `ss -tulnp` to list all network listeners.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the service configuration using `systemctl cat <service>` to find the `ExecStart` line.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Examine the script specified in the `ExecStart` line to find the port number.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "investigate_network_communication",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Analyze Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/cron.d/sysupdate",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the miner service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "1. From the miner-host, check the status of the suspicious service using `systemctl status <service>`.\n2. Look for any associated timers or cron jobs that might be responsible for the service's persistence.\n3. Use the command `grep -Rni . /etc/cron.d/ 2>/dev/null` to search for cron jobs.\n4. Examine the identified cron job or timer to understand its role in maintaining the service's persistence.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Check the status of the suspicious service using `systemctl status <service>`.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Search for cron jobs using `grep -Rni . /etc/cron.d/ 2>/dev/null`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Examine the identified cron job or timer to understand its role in maintaining the service's persistence.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "analyze_persistence_mechanism",
+          "prereq_state": [],
+          "cmd": "systemctl status <service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status <service>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
