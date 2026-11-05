@@ -1,0 +1,213 @@
+{
+  "title": "2026-11-05_Mirai_Botnet_Investigation_3af",
+  "description": "Investigate a compromised host that is part of a Mirai botnet and identify and mitigate the malicious activities associated with this botnet.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "The Mirai botnet is a well-known malware family that targets Linux-based IoT devices to create a network of compromised systems, or \"bots,\" which can be used to launch distributed denial-of-service (DDoS) attacks. The Mirai variant known as Linux/Mirai-Hilix incorporates a new TABLE encoder, which is an obfuscation or encoding technique designed to evade detection and analysis by security tools.\n\nIn this scenario, you will investigate a compromised host that is part of a Mirai botnet. Your goal is to identify and mitigate the malicious activities associated with this botnet."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You have SSH access to the compromised host `bot1` with the username `cyrano` and password `cyrano`. Enter the passkey `start` to proceed. You can use this access to investigate the system and identify any suspicious activities.",
+      "local_content": "You have SSH access to the compromised host `bot1` with the username `cyrano` and password `cyrano`. Enter the passkey `start` to proceed. You can use this access to investigate the system and identify any suspicious activities."
+    },
+    {
+      "title": "Identify the Beacon Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-Hilix.sh.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution": "1. **List all services**: Use the command `systemctl list-units --type=service --all` to list all services on the system.\n2. **Identify suspicious services**: Look for services with unusual names or descriptions. Pay attention to services that are not part of the standard system services.\n3. **Check service status**: Use the command `systemctl status <service>` to check the status of the suspicious service. Look for services that are running or enabled.\n4. **Identify the beacon service**: The service responsible for sending beacon periodically to the C2 Server is likely to have a name or description related to \"beacon\" or \"health check.\"",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-units --type=service --all` to list all services on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions. Pay attention to services that are not part of the standard system services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl status <service>` to check the status of the suspicious service. Look for services that are running or enabled.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "list_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        },
+        {
+          "state_name": "check_service_status",
+          "prereq_state": [],
+          "cmd": "systemctl status <service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status .*",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "21",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. **Identify the suspicious service**: From the previous task, you should have identified the service responsible for sending beacon periodically to the C2 Server.\n2. **Inspect the service configuration**: Use the command `systemctl cat <service>` to inspect the service configuration file. Look for the `ExecStart` line, which specifies the path of the script launched by the service.\n3. **Check the script**: Open the script specified in the `ExecStart` line and look for the network port used for communication. The port is likely specified as an argument to a network command like `nc` (netcat).\n4. **Verify the port**: Use the command `ss -tulnp` to verify that the port is being used by the suspicious service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl cat <service>` to inspect the service configuration file. Look for the `ExecStart` line.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Open the script specified in the `ExecStart` line and look for the network port used for communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `ss -tulnp` to verify that the port is being used by the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "inspect_service_configuration",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat .*",
+          "optional": false
+        },
+        {
+          "state_name": "verify_port",
+          "prereq_state": [],
+          "cmd": "ss -tulnp",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tulnp",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Scheduling Component",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon-Hilix.sh.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect how the C2 beacon service automatically resumes after the system starts and continues to execute periodically. Determine which system component is responsible for scheduling this activity.",
+      "solution": "1. **List all timers**: Use the command `systemctl list-timers --all` to list all timers on the system.\n2. **Identify suspicious timers**: Look for timers with unusual names or descriptions. Pay attention to timers that are not part of the standard system timers.\n3. **Inspect the timer configuration**: Use the command `systemctl cat <timer>` to inspect the timer configuration file. Look for the `OnCalendar` line, which specifies the schedule for the timer.\n4. **Verify the timer**: Use the command `systemctl status <timer>` to verify that the timer is active and scheduled to run periodically.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the command `systemctl list-timers --all` to list all timers on the system.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with unusual names or descriptions. Pay attention to timers that are not part of the standard system timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use the command `systemctl cat <timer>` to inspect the timer configuration file. Look for the `OnCalendar` line.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "list_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        },
+        {
+          "state_name": "inspect_timer_configuration",
+          "prereq_state": [],
+          "cmd": "systemctl cat <timer>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat .*",
+          "optional": false
+        },
+        {
+          "state_name": "verify_timer",
+          "prereq_state": [],
+          "cmd": "systemctl status <timer>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status .*",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
