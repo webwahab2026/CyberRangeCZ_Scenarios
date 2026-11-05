@@ -1,0 +1,254 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username `cyrano`, password `cyrano`, and instruction to enter `start`."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The flag `python.service` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag `80` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The flag `local-inventory.timer` corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: port number.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to submit: timer name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Suspicious C2 Service Discovery",
+      "description": "The solution does not explicitly state the final flag.",
+      "fix": "Explicitly state the final flag in the solution."
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "C2 Communication Discovery (Port)",
+      "description": "The solution does not explicitly state the final flag.",
+      "fix": "Explicitly state the final flag in the solution."
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Suspicious Data Collection Service Discovery",
+      "description": "The solution does not explicitly state the final flag.",
+      "fix": "Explicitly state the final flag in the solution."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious C2 Service Discovery",
+      "current_flag": "python.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service `python.service` is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "80",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port `80` is used by the service `python.service` in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious Data Collection Service Discovery",
+      "current_flag": "local-inventory.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer `local-inventory.timer` is provisioned in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-structured and meets most of the required conditions. However, the solutions for each training level do not explicitly state the final flag, which needs to be addressed."
+}
