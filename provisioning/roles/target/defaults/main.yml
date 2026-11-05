@@ -1,0 +1,19 @@
+---
+username: cyrano
+password: cyrano
+hosts_entries:
+- {ip: "192.168.50.5", name: "target"}
+- {ip: "192.168.40.5", name: "c2-server"}
+- {ip: "192.168.50.6", name: "next-target"}
+files_to_copy: []
+files_to_create:
+- name: callservice
+  content: "callservice\n"
+- name: 6b15cf51e4dff3e25b805173eef88940dbeb52b2662bd265450e6e54d5bb84d6
+  content: "6b15cf51e4dff3e25b805173eef88940dbeb52b2662bd265450e6e54d5bb84d6\n"
+- name: callservice
+  content: "callservice\n"
+- name: .linux
+  content: ".linux\n"
+packages_to_install:
+- openssh-server

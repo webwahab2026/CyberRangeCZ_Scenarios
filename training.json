@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_CDRThief_Investigation_32d",
+  "description": "Security monitoring has detected unusual activity on the target VoIP platform. Your task is to investigate and respond to this potential compromise involving the CDRThief malware.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "CDRThief Investigation",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual activity on the target VoIP platform. Your task is to investigate and respond to this potential compromise involving the CDRThief malware.\n\n**Objective:**\nIdentify and contain the CDRThief malware affecting the VoIP platform. Investigate the compromised host, determine the extent of the infection, and implement containment measures.\n\n**Learning Objectives:**\n- Enumerate running services and identify suspicious activities.\n- Investigate network communication and data exfiltration.\n- Implement containment measures to prevent further unauthorized access."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target host via SSH using the provided credentials. Username: investigator, Password: SecurePass123. Enter 'start' to begin.",
+      "local_content": "Access the target host via SSH using the provided credentials. Username: investigator, Password: SecurePass123. Enter 'start' to begin."
+    },
+    {
+      "title": "Investigate Running Services",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "callservice.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. **List all running services:**\n   ```bash\n   systemctl list-units --type=service --state=running\n   ```\n2. **Identify suspicious services:**\n   Look for services with unusual names or descriptions. Pay attention to services that are not part of the standard VoIP platform.\n3. **Inspect the suspicious service:**\n   ```bash\n   systemctl status <service_name>\n   ```\n   Replace `<service_name>` with the name of the suspicious service identified in the previous step.\n4. **Check the service configuration:**\n   ```bash\n   systemctl cat <service_name>\n   ```\n   Look for any unusual configurations or commands being executed.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to see all services, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual descriptions or those that are not part of the standard VoIP platform.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `ss -tulnp` to check for network listeners associated with the suspicious service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_investigation",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. **Identify the suspicious service:**\n   Use the information gathered from the previous task to identify the service responsible for the suspicious activity.\n2. **Inspect the service configuration:**\n   ```bash\n   systemctl cat <service_name>\n   ```\n   Look for the `ExecStart` line, which specifies the command launched by the service.\n3. **Determine the port number:**\n   The port number is typically specified as an argument in the `ExecStart` command. For example, if the command is `/usr/bin/ncat -lk 80 -c \"cat /var/log/local-inventory/inventory.log\"`, the port number is `80`.\n4. **Verify the port is listening:**\n   ```bash\n   ss -tulnp | grep <port_number>\n   ```\n   Replace `<port_number>` with the port number identified in the previous step.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl status <service_name>` to check the current status and configuration of the service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` line in the service configuration to identify the port number.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `ss -tulnp` to verify that the port is actively listening for connections.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_identification",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat <service_name>",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Investigate System Information Collection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the service responsible for this activity.",
+      "solution": "1. **List all systemd timers:**\n   ```bash\n   systemctl list-timers --all\n   ```\n2. **Identify suspicious timers:**\n   Look for timers that are not part of the standard VoIP platform or those that execute scripts collecting system information.\n3. **Inspect the suspicious timer:**\n   ```bash\n   systemctl cat <timer_name>\n   ```\n   Replace `<timer_name>` with the name of the suspicious timer identified in the previous step.\n4. **Check the associated service:**\n   ```bash\n   systemctl cat <service_name>\n   ```\n   Replace `<service_name>` with the name of the service associated with the timer. Look for any unusual configurations or commands being executed.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-unit-files --type=timer` to see all timers, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers that execute scripts collecting system information or those that are not part of the standard VoIP platform.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `journalctl -u <service_name>` to check the logs of the associated service for any suspicious activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_investigation",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
