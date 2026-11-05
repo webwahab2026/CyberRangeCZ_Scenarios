@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-05_Umbreon_Rootkit_Investigation_75e",
+  "description": "Security monitoring has detected unusual network activity on the victim host. Your task is to investigate the compromise, identify the rootkit's behavior, and contain the threat.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual network activity on the victim host. Your task is to investigate the compromise, identify the rootkit's behavior, and contain the threat.\n\n**Learning Objectives:**\n- Enumerate running services and identify suspicious activities\n- Investigate network communication and lateral movement\n- Discover persistence mechanisms\n- Identify hidden privileged user accounts\n- Investigate initial compromise vectors"
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the victim host (IP: 192.168.50.5) using the provided credentials. Username: analyst, Password: Umbreon2023!",
+      "local_content": "Access the victim host (IP: 192.168.50.5) using the provided credentials. Username: analyst, Password: Umbreon2023!"
+    },
+    {
+      "title": "Identify Suspicious Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "espeon-shell.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity that periodically sends beacon to the attacker.",
+      "solution": "1. List all services on the victim host:\n   ```\nsystemctl list-units --type=service --all\n   ```\n2. Identify the suspicious service by looking for unfamiliar service names or misspellings of legitimate services. Pay attention to services with unusual descriptions or startup behavior.\n3. The suspicious service is named \"espeon-shell.service\".",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the following command to list all services, including inactive ones:\n```\nsystemctl list-units --type=service --all\n```",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions that might indicate malicious activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is related to a beaconing activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_list",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine Network Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Inspect the suspicious service identified in TRAINING_LEVEL 1:\n   ```\nsystemctl cat espeon-shell.service\n   ```\n2. Look for the ExecStart parameter, which specifies the path to the script launched by the beacon service.\n3. The script contains the port number to establish communication with the attacker.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the following command to inspect the service configuration:\n```\nsystemctl cat espeon-shell.service\n```",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the ExecStart parameter in the service configuration.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The port number is specified in the script launched by the beacon service.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_inspection",
+          "prereq_state": [],
+          "cmd": "systemctl cat espeon-shell.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat espeon-shell.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify Persistence Mechanism",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/cron.d/dbus-cleanup",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the beaconing service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "1. Check the status of the suspicious service:\n   ```\nsystemctl status espeon-shell.service\n   ```\n2. Look for any related timers or cron jobs that might be responsible for the service's persistence.\n3. The cron job responsible for the service's persistence is located at \"/etc/cron.d/dbus-cleanup\".",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the following command to check the status of the suspicious service:\n```\nsystemctl status espeon-shell.service\n```",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for any related timers or cron jobs that might be responsible for the service's persistence.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The cron job is located in the \"/etc/cron.d/\" directory.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_status",
+          "prereq_state": [],
+          "cmd": "systemctl status espeon-shell.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status espeon-shell.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
