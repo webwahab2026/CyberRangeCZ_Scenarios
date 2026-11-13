@@ -5,26 +5,26 @@ hosts:
     base_box:
       image: ubuntu-noble-x86_64
       man_user: ubuntu
-    flavor: standard.small
+    flavor: m1.tiny
 
   - name: target
     base_box:
       image: ubuntu-noble-x86_64
       man_user: ubuntu
-    flavor: standard.small
+    flavor: m1.tiny
 
   - name: next-target
     base_box:
       image: ubuntu-noble-x86_64
       man_user: ubuntu
-    flavor: standard.small
+    flavor: m1.tiny
 
 routers:
   - name: router
     base_box:
       image: debian-12-x86_64
       man_user: debian
-    flavor: standard.small
+    flavor: m1.tiny
 
 networks:
   - name: server-switch
