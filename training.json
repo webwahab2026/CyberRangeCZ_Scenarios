@@ -1,0 +1,230 @@
+{
+  "title": "2026-11-17_Sofacy_Fysbis_Backdoor_Investigation_1d2",
+  "description": "Security monitoring has detected unusual activity on the target system, potentially indicating the presence of the Sofacy Fysbis backdoor. Your task is to investigate this activity, identify the malicious components, and implement appropriate containment measures.",
+  "prerequisites": [
+    "Familiarity with Linux command line",
+    "Basic knowledge of systemd services",
+    "Understanding of network security principles"
+  ],
+  "outcomes": [
+    "Investigate suspicious services and network activity",
+    "Identify malicious components and their behavior",
+    "Implement containment measures to prevent further unauthorized access"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the file responsible for this activity."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Access the target system (192.168.50.5) via SSH using the provided credentials.",
+      "local_content": "Access the target system (192.168.50.5) via SSH using the provided credentials."
+    },
+    {
+      "title": "Suspicious File Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/local-inventory.sh",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the file responsible for this activity.",
+      "solution": "1. List all systemd services to identify suspicious components:\n   ```\nsystemctl list-units --type=service --all\n   ```\n2. Investigate the local-inventory.service, which appears to be responsible for collecting system information:\n   ```\nsystemctl cat local-inventory.service\n   ```\n3. Identify the executable file responsible for the data collection:\n   ```\nsystemctl show local-inventory.service -p ExecStart\n   ```\n4. The file /usr/local/bin/local-inventory.sh is responsible for collecting system information.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use systemctl commands to list and investigate services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The ExecStart property of a service unit file shows the command that is executed when the service starts.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat local-inventory.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat local-inventory.service",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl show local-inventory.service -p ExecStart",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl show local-inventory.service -p ExecStart",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Data Exfiltration Detection",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "/var/log/local-inventory/inventory.log",
+      "answer_variable_name": null,
+      "content": "Security monitoring suggests that information collected from the compromised host may be accessible to an unauthorized remote system. Investigate the available network and filesystem evidence to identify the affected data file and determine how it is exposed or transferred.",
+      "solution": "1. List all active network connections to identify suspicious communication:\n   ```\nss -tunap\n   ```\n2. Investigate the bkd.service, which appears to be responsible for network communication:\n   ```\nsystemctl cat bkd.service\n   ```\n3. Check the journal logs for the bkd.service to understand its behavior:\n   ```\njournalctl -u bkd.service\n   ```\n4. The service is listening on port 80 and sending the contents of /var/log/local-inventory/inventory.log to connecting clients.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use ss command to list active network connections.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Investigate the service responsible for the suspicious network communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the journal logs for the service to understand its behavior.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "ss -tunap",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tunap",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bkd.service",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "journalctl -u bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Containment",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 30,
+      "minimal_possible_solve_time": null,
+      "answer": "192.168.40.5",
+      "answer_variable_name": null,
+      "content": "Investigation has identified unauthorized communication involving the compromised host. Apply an appropriate network control to prevent further communication with the suspicious remote system while preserving legitimate network access.",
+      "solution": "1. Identify the IP address of the remote system communicating with the compromised host:\n   ```\njournalctl -u bkd.service | grep \"connected from\"\n   ```\n2. Block the remote IP address using iptables:\n   ```\nsudo iptables -I INPUT -s <remote_ip> -j DROP\n   ```\n3. Verify that the remote IP address is blocked:\n   ```\nsudo iptables -L -n -v\n   ```\n4. The remote IP address <remote_ip> is now blocked, preventing further unauthorized communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use journalctl command to identify the remote IP address.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Use iptables command to block the remote IP address.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Verify that the remote IP address is blocked using iptables command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "journalctl -u bkd.service | grep \"connected from\"",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u bkd.service | grep \"connected from\"",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "sudo iptables -I INPUT -s <remote_ip> -j DROP",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo iptables -I INPUT -s <remote_ip> -j DROP",
+          "optional": false
+        },
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "sudo iptables -L -n -v",
+          "cmd_type": "bash-command",
+          "cmd_regex": "sudo iptables -L -n -v",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 120,
+  "variant_sandboxes": false
+}

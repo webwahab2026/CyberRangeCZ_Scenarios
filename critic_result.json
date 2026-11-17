@@ -1,0 +1,252 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": false,
+      "password_present": false,
+      "start_instruction_present": true,
+      "evidence": "cloud_content instructs to enter 'start' but does not provide explicit username and password."
+    },
+    "local_content": {
+      "username_present": false,
+      "password_present": false,
+      "start_instruction_present": true,
+      "evidence": "local_content instructs to enter 'start' but does not provide explicit username and password."
+    },
+    "c1_status": "fail",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C1",
+      "level": "ACCESS_LEVEL",
+      "status": "fail",
+      "evidence": "cloud_content and local_content do not contain explicit username and password.",
+      "required_fix": "Provide explicit username and password in both cloud_content and local_content."
+    },
+    {
+      "condition": "C2",
+      "level": "ACCESS_LEVEL",
+      "status": "pass",
+      "evidence": "Both cloud_content and local_content explicitly instruct to enter 'start'.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The flag /usr/local/bin/local-inventory.sh corresponds to a real sandbox artifact in provisioning_files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to be submitted (file path).",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The flag /var/log/local-inventory/inventory.log corresponds to a real sandbox artifact in provisioning_files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to be submitted (file path).",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Data Exfiltration Detection",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The flag 192.168.40.5 corresponds to a real sandbox artifact in provisioning_files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The content explicitly states the type of value to be submitted (IP address).",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Containment",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "cloud_content and local_content do not contain explicit username and password.",
+      "fix": "Provide explicit username and password in both cloud_content and local_content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious File Discovery",
+      "current_flag": "/usr/local/bin/local-inventory.sh",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in provisioning_files.",
+      "recommendation": ""
+    },
+    {
+      "level": "Data Exfiltration Detection",
+      "current_flag": "/var/log/local-inventory/inventory.log",
+      "flag_type": "file path",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in provisioning_files.",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Containment",
+      "current_flag": "192.168.40.5",
+      "flag_type": "IP address",
+      "verdict": "valid",
+      "sandbox_evidence": "The flag corresponds to a real sandbox artifact in provisioning_files.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with valid flags and proper hint hierarchy. However, it fails C1 because the explicit username and password are not provided in both cloud_content and local_content. This issue needs to be addressed before the scenario can be approved."
+}
