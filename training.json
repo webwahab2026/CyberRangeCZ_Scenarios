@@ -1,0 +1,183 @@
+{
+  "title": "2026-11-17_Sofacy_Fysbis_Backdoor_Investigation_a84",
+  "description": "You are an incident responder tasked with investigating a compromised Linux host that may be infected with the Sofacy Fysbis backdoor. Your goal is to identify and contain the malicious activity while preserving evidence for further analysis.",
+  "prerequisites": [
+    "Basic Linux command line knowledge",
+    "Familiarity with systemd service management",
+    "Understanding of network security concepts"
+  ],
+  "outcomes": [
+    "Enumerate running services to identify suspicious activity",
+    "Investigate systemd services and timers for persistence mechanisms",
+    "Analyze network connections for unauthorized communication",
+    "Identify and contain malicious components"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised Linux host that may be infected with the Sofacy Fysbis backdoor. Your goal is to identify and contain the malicious activity while preserving evidence for further analysis.\n\n**Learning Objectives:**\n- Enumerate running services to identify suspicious activity\n- Investigate systemd services and timers for persistence mechanisms\n- Analyze network connections for unauthorized communication\n- Identify and contain malicious components\n\n**Prerequisites:**\n- Basic Linux command line knowledge\n- Familiarity with systemd service management\n- Understanding of network security concepts\n\n**Duration:** 60 minutes\n\n**Difficulty:** Beginner\n\n**Type:** Exercise\n\n**Approach:** Defence-oriented"
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "Connect to the target host using SSH with the provided credentials.",
+      "local_content": "Connect to the target host using SSH with the provided credentials."
+    },
+    {
+      "title": "Suspicious C2 Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bkd.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. Connect to the target host using SSH with the provided credentials.\n2. List all systemd services, including inactive ones, to identify suspicious services:\n   ```\nsystemctl list-units --type=service --all\n   ```\n3. Look for services with unusual names or descriptions. Pay attention to services that might be related to network communication.\n4. Identify the service named \"bkd.service\" as the suspicious component.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use this command to list all systemd services, including inactive ones:\n```\nsystemctl list-units --type=service --all\n```",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions that might indicate network communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Pay attention to services that might be listening on network ports.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "80",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Examine the suspicious service identified in Task 1 using the following command:\n   ```\nsystemctl cat bkd.service\n   ```\n2. Look for the ExecStart parameter in the service definition, which specifies the command launched by the service.\n3. Identify the port number specified as an argument to the ncat command in the ExecStart parameter.\n4. The port number is 80.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use this command to examine the suspicious service:\n```\nsystemctl cat bkd.service\n```",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the ExecStart parameter in the service definition, which specifies the command launched by the service.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Identify the port number specified as an argument to the ncat command in the ExecStart parameter.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl cat bkd.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bkd.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious Data Collection Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the service responsible for this activity.",
+      "solution": "1. List all systemd timers to identify services that execute periodically:\n   ```\nsystemctl list-timers --all\n   ```\n2. Look for timers with unusual names or descriptions that might indicate data collection activity.\n3. Identify the timer named \"local-inventory.timer\" as the suspicious component.\n4. Examine the associated service using the following command:\n   ```\nsystemctl cat local-inventory.service\n   ```\n5. Verify that the service is responsible for collecting system information.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use this command to list all systemd timers:\n```\nsystemctl list-timers --all\n```",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with unusual names or descriptions that might indicate data collection activity.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Examine the associated service using the following command:\n```\nsystemctl cat local-inventory.service\n```",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "data_collection_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
