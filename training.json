@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-18_Remaiten_Botnet_Investigation_8d6",
+  "description": "You are an incident responder tasked with investigating a compromised network that has been infected with the Remaiten botnet malware. Your goal is to identify and analyze the malicious activities performed by the botnet on the infected hosts.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Enumerate running and inactive services to identify suspicious activities.",
+    "Investigate systemd service activation and scheduling to identify persistence mechanisms.",
+    "Correlate network listeners, service configurations, and running processes to identify communication ports."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised network that has been infected with the Remaiten botnet malware. Your goal is to identify and analyze the malicious activities performed by the botnet on the infected hosts."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To begin your investigation, you need to access the sandbox environment where the compromised host is located. This environment has been set up to simulate a real-world scenario where the Remaiten botnet has infected the network. Use the following credentials to log in:\n\nHostname: bot1\nUsername: cyrano\nPassword: cyrano\n\nType 'start' to proceed to the next level.",
+      "local_content": "To begin your investigation, you need to access the sandbox environment where the compromised host is located. This environment has been set up to simulate a real-world scenario where the Remaiten botnet has infected the network. Use the following credentials to log in:\n\nHostname: bot1\nUsername: cyrano\nPassword: cyrano\n\nType 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious C2 Beacon Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution": "1. List all services:\n```bash\nsystemctl list-units --type=service --all\n```\nThis command will display all services, including inactive ones.\n\n2. Filter for running services:\n```bash\nsystemctl list-units --type=service --state=running\n```\nThis will help you identify services that are currently active.\n\n3. Check service descriptions and paths:\nLook for services with unusual names or descriptions. Pay attention to services that might be related to network communication.\n\n4. Identify the suspicious service:\nThe service responsible for sending beacon to the C2 server is likely to have a name or description that indicates network activity. In this case, the service name is `bot-beacon.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Filter for running services using `systemctl list-units --type=service --state=running`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services with unusual names or descriptions that might indicate network activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery for C2 Beaconing Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect how the C2 beacon service automatically resumes after the system starts and continues to execute periodically. Determine which system component is responsible for scheduling this activity.",
+      "solution": "1. List all timers:\n```bash\nsystemctl list-timers --all\n```\nThis command will display all timers, including inactive ones.\n\n2. Filter for active timers:\n```bash\nsystemctl list-timers --state=active\n```\nThis will help you identify timers that are currently active.\n\n3. Inspect the timer unit file:\n```bash\nsystemctl cat bot-beacon.timer\n```\nThis command will show the configuration of the timer unit file.\n\n4. Identify the timer responsible for the C2 beacon service:\nThe timer name is `bot-beacon.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Filter for active timers using `systemctl list-timers --state=active`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Inspect the timer unit file using `systemctl cat <timer>`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious Flood Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-flood.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual outbound traffic toward an IP address. Investigate the running services and identify the service responsible for attack flooding periodically to the target.",
+      "solution": "1. List all services:\n```bash\nsystemctl list-units --type=service --all\n```\nThis command will display all services, including inactive ones.\n\n2. Filter for running services:\n```bash\nsystemctl list-units --type=service --state=running\n```\nThis will help you identify services that are currently active.\n\n3. Check service descriptions and paths:\nLook for services with unusual names or descriptions. Pay attention to services that might be related to network communication.\n\n4. Identify the suspicious service:\nThe service responsible for sending flood to the target is likely to have a name or description that indicates network activity. In this case, the service name is `bot-flood.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Filter for running services using `systemctl list-units --type=service --state=running`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services with unusual names or descriptions that might indicate network activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
