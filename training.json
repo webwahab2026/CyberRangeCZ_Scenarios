@@ -1,0 +1,183 @@
+{
+  "title": "2026-11-18_BRICKSTORM_Backdoor_Investigation_24f",
+  "description": "Security monitoring has detected unusual network activity on the target system, potentially indicating a compromise by the BRICKSTORM backdoor. Your task is to investigate the compromised host, identify the malicious activities, and gather evidence to understand the extent of the intrusion.",
+  "prerequisites": [
+    "Basic knowledge of Linux commands and system administration.",
+    "Familiarity with systemd services and network analysis tools."
+  ],
+  "outcomes": [
+    "Enumerate running services to identify suspicious activities.",
+    "Investigate network communication to discover unauthorized connections.",
+    "Analyze systemd services and timers to uncover persistence mechanisms.",
+    "Identify and analyze suspicious files and scripts.",
+    "Investigate lateral movement activities."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual network activity on the target system, potentially indicating a compromise by the BRICKSTORM backdoor. Your task is to investigate the compromised host, identify the malicious activities, and gather evidence to understand the extent of the intrusion."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox environment, use the following credentials:\n\nEntry Host: target\nUsername: cyrano\nPassword: cyrano\n\nType the word 'start' to proceed to the next level.",
+      "local_content": "To access the sandbox environment, use the following credentials:\n\nEntry Host: target\nUsername: cyrano\nPassword: cyrano\n\nType the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious C2 Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. List all services:\n```bash\nsystemctl list-units --type=service --all\n```\nThis command will list all services, including inactive ones.\n\n2. Filter running services:\n```bash\nsystemctl list-units --type=service --state=running\n```\nThis command will show only the services that are currently running.\n\n3. Inspect the suspicious service:\nLook for any unfamiliar or suspicious service names. Pay attention to services with unusual descriptions or those that you do not recognize as part of the standard system configuration.\n\n4. Identify the suspicious service:\nBased on the list of running services, identify the service that appears to be responsible for the suspicious activity. This service is likely the one that stands out as unusual or unfamiliar.\n\nThe hidden flag is the name of the suspicious service. For example, if the suspicious service is named `updatemgr.service`, the hidden flag would be `updatemgr.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl list-units --type=service --all` command to list all services, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Filter the list of services to show only the running services using the `systemctl list-units --type=service --state=running` command.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for any unfamiliar or suspicious service names in the list of running services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "443",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Inspect the suspicious service:\n```bash\nsystemctl cat updatemgr.service\n```\nThis command will display the configuration details of the `updatemgr.service`.\n\n2. Check the service status:\n```bash\nsystemctl status updatemgr.service\n```\nThis command will show the current status and any recent logs associated with the service.\n\n3. Identify the port:\nLook for the `ExecStart` line in the service configuration. This line specifies the command launched by the service and includes the port number as an argument.\n\n4. Verify the port:\nUse the `ss -tulnp` command to list all listening ports and verify that the identified port is indeed being used by the suspicious service.\n\nThe hidden flag is the port number associated with the suspicious service. For example, if the port number is `443`, the hidden flag would be `443`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl cat updatemgr.service` command to inspect the configuration details of the suspicious service.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the service status using the `systemctl status updatemgr.service` command to see any recent logs.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the `ExecStart` line in the service configuration to identify the port number.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat updatemgr.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat updatemgr.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious Data Collection Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the service responsible for this activity.",
+      "solution": "1. List all timers:\n```bash\nsystemctl list-timers --all\n```\nThis command will list all timers, including inactive ones.\n\n2. Filter active timers:\n```bash\nsystemctl list-timers --state=active\n```\nThis command will show only the timers that are currently active.\n\n3. Inspect the suspicious timer:\nLook for any unfamiliar or suspicious timer names. Pay attention to timers with unusual descriptions or those that you do not recognize as part of the standard system configuration.\n\n4. Identify the suspicious timer:\nBased on the list of active timers, identify the timer that appears to be responsible for the suspicious data collection activity. This timer is likely the one that stands out as unusual or unfamiliar.\n\nThe hidden flag is the name of the suspicious timer. For example, if the suspicious timer is named `local-inventory.timer`, the hidden flag would be `local-inventory.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl list-timers --all` command to list all timers, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Filter the list of timers to show only the active timers using the `systemctl list-timers --state=active` command.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for any unfamiliar or suspicious timer names in the list of active timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
