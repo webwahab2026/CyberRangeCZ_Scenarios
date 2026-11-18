@@ -1,0 +1,222 @@
+{
+  "title": "2026-11-18_BRICKSTORM_Backdoor_Investigation_a3e",
+  "description": "Security monitoring has detected unusual activity on the target system, potentially indicating the presence of the BRICKSTORM backdoor. Your task is to investigate the compromised host, identify the malicious components, and gather evidence of the backdoor's activities.",
+  "prerequisites": [
+    "Basic knowledge of Linux commands and system administration.",
+    "Familiarity with systemd service management.",
+    "Understanding of network services and ports."
+  ],
+  "outcomes": [
+    "Enumerate running and inactive services to identify suspicious activity.",
+    "Investigate systemd services and timers to discover unauthorized data collection and lateral movement mechanisms.",
+    "Correlate network connections and service configurations to identify potential data exfiltration."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual activity on the target system, potentially indicating the presence of the BRICKSTORM backdoor. Your task is to investigate the compromised host, identify the malicious components, and gather evidence of the backdoor's activities."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 5,
+      "minimal_possible_solve_time": 2,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox environment, use the following credentials:\n\nEntry Host: target\nUsername: cyrano\nPassword: cyrano\n\nType 'start' to proceed to the next level.",
+      "local_content": "To access the sandbox environment, use the following credentials:\n\nEntry Host: target\nUsername: cyrano\nPassword: cyrano\n\nType 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious C2 Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "updatemgr.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity.",
+      "solution": "1. List all services:\n```bash\nsystemctl list-units --type=service --all\n```\nThis command will display all services, including inactive ones.\n\n2. Filter for running services:\n```bash\nsystemctl list-units --type=service --state=running\n```\nThis will help you identify services that are currently active.\n\n3. Check service details:\n```bash\nsystemctl status updatemgr.service\n```\nThis command provides detailed information about the `updatemgr.service`, including its description, execution command, and status.\n\n4. Identify the suspicious service:\nBased on the output from the previous commands, you should notice that the `updatemgr.service` has an unusual description and is responsible for the suspicious activity.\n\nThe service name is `updatemgr.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Filter for running services using `systemctl list-units --type=service --state=running`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the details of the suspicious service with `systemctl status <service>`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        },
+        {
+          "state_name": "running_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        },
+        {
+          "state_name": "service_details",
+          "prereq_state": [],
+          "cmd": "systemctl status updatemgr.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status updatemgr.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious Data Collection Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "local-inventory.timer",
+      "answer_variable_name": null,
+      "content": "System information appears to be collected automatically without an authorized administrative purpose. Investigate the host and identify the service responsible for this activity.",
+      "solution": "1. List all timers:\n```bash\nsystemctl list-timers --all\n```\nThis command will display all timers, including inactive ones.\n\n2. Filter for active timers:\n```bash\nsystemctl list-timers --state=active\n```\nThis will help you identify timers that are currently active.\n\n3. Check timer details:\n```bash\nsystemctl cat local-inventory.timer\n```\nThis command provides detailed information about the `local-inventory.timer`, including its execution command and status.\n\n4. Identify the suspicious timer:\nBased on the output from the previous commands, you should notice that the `local-inventory.timer` is responsible for the suspicious data collection activity.\n\nThe timer name is `local-inventory.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Filter for active timers using `systemctl list-timers --state=active`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Check the details of the suspicious timer with `systemctl cat <timer>`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        },
+        {
+          "state_name": "active_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --state=active",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --state=active",
+          "optional": false
+        },
+        {
+          "state_name": "timer_details",
+          "prereq_state": [],
+          "cmd": "systemctl cat local-inventory.timer",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat local-inventory.timer",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Suspicious File Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/usr/local/bin/local-inventory.sh",
+      "answer_variable_name": null,
+      "content": "Investigation indicates that an unauthorized component is executing files on the compromised host. Identify the name of the script responsible for collecting system information.",
+      "solution": "1. List all services:\n```bash\nsystemctl list-units --type=service --all\n```\nThis command will display all services, including inactive ones.\n\n2. Check service details:\n```bash\nsystemctl cat local-inventory.service\n```\nThis command provides detailed information about the `local-inventory.service`, including its execution command.\n\n3. Identify the suspicious script:\nBased on the output from the previous commands, you should notice that the `local-inventory.service` executes the script `/usr/local/bin/local-inventory.sh`.\n\nThe filename is `/usr/local/bin/local-inventory.sh`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services, including inactive ones.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the details of the suspicious service with `systemctl cat <service>`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for the `ExecStart` line in the service details to identify the script being executed.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        },
+        {
+          "state_name": "service_details",
+          "prereq_state": [],
+          "cmd": "systemctl cat local-inventory.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat local-inventory.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

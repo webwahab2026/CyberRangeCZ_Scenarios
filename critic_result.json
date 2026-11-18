@@ -1,0 +1,256 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to 'Type 'start' to proceed to the next level.'"
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Contains explicit username 'cyrano', password 'cyrano', and instruction to 'Type 'start' to proceed to the next level.'"
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The flag 'updatemgr.service' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The flag 'local-inventory.timer' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The flag '/usr/local/bin/local-inventory.sh' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the suspicious service.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the suspicious timer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task to identify the suspicious script.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is the service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is the timer name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is the filename.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented with conceptual, directional, and near-spoiler hints.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious C2 Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious Data Collection Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious File Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Suspicious C2 Service Discovery",
+      "description": "The solution does not explicitly state the final flag in a clear and concise manner.",
+      "fix": "Explicitly state the final flag in the solution."
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Suspicious Data Collection Service Discovery",
+      "description": "The solution does not explicitly state the final flag in a clear and concise manner.",
+      "fix": "Explicitly state the final flag in the solution."
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Suspicious File Discovery",
+      "description": "The solution does not explicitly state the final flag in a clear and concise manner.",
+      "fix": "Explicitly state the final flag in the solution."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious C2 Service Discovery",
+      "current_flag": "updatemgr.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service 'updatemgr.service' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious Data Collection Service Discovery",
+      "current_flag": "local-inventory.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer 'local-inventory.timer' is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Suspicious File Discovery",
+      "current_flag": "/usr/local/bin/local-inventory.sh",
+      "flag_type": "filename",
+      "verdict": "valid",
+      "sandbox_evidence": "The script '/usr/local/bin/local-inventory.sh' is provisioned in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The provisioning files correctly set up the required services and timers."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design is well-structured and meets the requirements for C1-C10. However, the solutions for the training levels need to explicitly state the final flags in a clear and concise manner. The scenario is ready for approval once this minor issue is addressed."
+}
