@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-18_Remaiten_Botnet_Investigation_f55",
+  "description": "You are an incident responder tasked with investigating a compromised network infected with the Remaiten botnet. Your goal is to identify and analyze the malicious activities performed by the botnet on the infected hosts. The botnet is known to perform command and control (C2) communication, lateral movement, and exfiltration of data.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify suspicious services and their associated network ports.",
+    "Analyze systemd timers and services for persistence mechanisms.",
+    "Investigate unauthorized network communication and data collection activities."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised network infected with the Remaiten botnet. Your goal is to identify and analyze the malicious activities performed by the botnet on the infected hosts. The botnet is known to perform command and control (C2) communication, lateral movement, and exfiltration of data."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox environment, use the following credentials:\n\nEntry Host: bot1\nUsername: cyrano\nPassword: cyrano\n\nType the word 'start' to proceed to the next level.",
+      "local_content": "To access the sandbox environment, use the following credentials:\n\nEntry Host: bot1\nUsername: cyrano\nPassword: cyrano\n\nType the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious C2 Beacon Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution": "1. Connect to the bot1 host using SSH with the provided credentials.\n2. List all services to identify any suspicious or unfamiliar services.\n   ```\nsystemctl list-units --type=service --all\n```\n3. Check the status of all services to find any unusual or suspicious services.\n   ```\nsystemctl list-units --type=service --state=running\n```\n4. Look for services with unusual names or descriptions that might indicate malicious activity.\n5. Identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl` command to list all services and look for any unfamiliar or suspicious service names.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the status of all running services to identify any unusual or suspicious services.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for services with unusual names or descriptions that might indicate malicious activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "C2 Communication Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "53",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Connect to the bot1 host using SSH with the provided credentials.\n2. Inspect the service configuration to find the network port associated with the C2 communication.\n   ```\nsystemctl cat bot-beacon.service\n```\n3. Check the ExecStart line in the service configuration to identify the script responsible for the C2 communication.\n4. Inspect the script to find the network port used for the C2 communication.\n   ```\ncat /usr/local/lib/.botcache/beacon.sh\n```\n5. Identify the network port associated with the C2 communication.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl cat` command to inspect the service configuration and find the network port.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the ExecStart line in the service configuration to identify the script responsible for the C2 communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Inspect the script to find the network port used for the C2 communication.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl cat bot-beacon.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bot-beacon.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery for C2 Beaconing Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect how the C2 beacon service automatically resumes after the system starts and continues to execute periodically. Determine which system component is responsible for scheduling this activity.",
+      "solution": "1. Connect to the bot1 host using SSH with the provided credentials.\n2. List all timers to identify any suspicious or unfamiliar timers.\n   ```\nsystemctl list-timers --all\n```\n3. Check the status of all timers to find any unusual or suspicious timers.\n   ```\nsystemctl list-unit-files --type=timer\n```\n4. Look for timers with unusual names or descriptions that might indicate malicious activity.\n5. Identify the timer responsible for scheduling the C2 beacon service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use the `systemctl list-timers` command to list all timers and look for any unfamiliar or suspicious timer names.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the status of all timers to identify any unusual or suspicious timers.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Look for timers with unusual names or descriptions that might indicate malicious activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "timer_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
