@@ -1,0 +1,240 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Credentials and start instruction explicitly present in cloud_content."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Credentials and start instruction explicitly present in local_content."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon.service' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is a service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag '2222' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is a port number.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon.timer' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is a timer name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "The hints follow the required hierarchy: conceptual, directional, and near-spoiler.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "other",
+      "severity": "minor",
+      "component": "content",
+      "level": "Get Access",
+      "description": "The content does not explicitly state the type of value that must be submitted for the passkey.",
+      "fix": "Explicitly state that the passkey is the word 'start'."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "current_flag": "bot-beacon.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is defined in the provisioning files and is reachable with the provided commands.",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "2222",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port number is used in the beacon script and is reachable with the provided commands.",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "current_flag": "bot-beacon.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer is defined in the provisioning files and is reachable with the provided commands.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The sandbox environment is well-aligned with the scenario objectives."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and meets the requirements for C1-C10. However, a minor issue exists in the content for the ACCESS_LEVEL, which does not explicitly state the type of value that must be submitted for the passkey. This issue should be addressed to achieve full compliance."
+}
