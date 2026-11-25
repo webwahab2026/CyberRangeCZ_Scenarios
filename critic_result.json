@@ -1,0 +1,248 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Credentials and start instruction explicitly present in cloud_content."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Credentials and start instruction explicitly present in local_content."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon-wget.service' corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is a service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The solution provides a step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The hints follow a proper hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses real provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "The flag '2222' corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is a port number.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "The solution provides a step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "The hints follow a proper hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the Network Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses real provisioned tools.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify the Beacon Timer",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon-wget.timer' corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Beacon Timer",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Beacon Timer",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is a timer name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Beacon Timer",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Beacon Timer",
+      "status": "pass",
+      "evidence": "The solution provides a step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Beacon Timer",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Beacon Timer",
+      "status": "pass",
+      "evidence": "The hints follow a proper hierarchy from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Beacon Timer",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and uses real provisioned tools.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The scenario fails to explicitly state the username and password in the ACCESS_LEVEL section of the scenario design.",
+      "fix": "Explicitly state the username and password in the ACCESS_LEVEL section of the scenario design."
+    },
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The scenario fails to explicitly instruct the trainee to enter the passkey 'start' in the ACCESS_LEVEL section of the scenario design.",
+      "fix": "Explicitly instruct the trainee to enter the passkey 'start' in the ACCESS_LEVEL section of the scenario design."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify the Beacon Service",
+      "current_flag": "bot-beacon-wget.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned in the sandbox and matches the described behavior.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the Network Port",
+      "current_flag": "2222",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port number is used in the beacon script and matches the described behavior.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify the Beacon Timer",
+      "current_flag": "bot-beacon-wget.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer is provisioned in the sandbox and matches the described behavior.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "The sandbox environment is well-aligned with the scenario objectives and learning outcomes."
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed and meets most of the required conditions. However, it fails to explicitly state the username, password, and the instruction to enter the passkey 'start' in the ACCESS_LEVEL section of the scenario design. These issues need to be addressed for the scenario to be approved."
+}
