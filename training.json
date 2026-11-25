@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-25_Umbreon_Rootkit_Investigation_524",
+  "description": "Security monitoring has detected unusual activity on the victim host, suggesting the presence of a rootkit. Your task is to investigate the compromised system, identify the rootkit's behavior, and determine how it maintains persistence and communicates with the attacker.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Usage of nmap",
+    "Usage of metasploit",
+    "Password cracking techniques"
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "Security monitoring has detected unusual activity on the victim host, suggesting the presence of a rootkit. Your task is to investigate the compromised system, identify the rootkit's behavior, and determine how it maintains persistence and communicates with the attacker."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox environment, use the following credentials:\n\nHostname: victim\nUsername: cyrano\nPassword: cyrano\n\nType 'start' to proceed to the next level.",
+      "local_content": "To access the sandbox environment, use the following credentials:\n\nHostname: victim\nUsername: cyrano\nPassword: cyrano\n\nType 'start' to proceed to the next level."
+    },
+    {
+      "title": "Suspicious C2 Beaconing Service Discovery",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "espeon.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for the suspicious activity that periodically sends beacon to the attacker.",
+      "solution": "1. List all running and inactive services using the command:\n   ```bash\n   systemctl list-units --type=service --all\n   ```\n2. Look for unfamiliar service names or misspellings of legitimate services. Pay attention to services with unusual descriptions or startup behavior.\n3. Identify the service named `espeon.service`, which appears to be related to the suspicious activity.\n\nThe hidden flag is the name of the suspicious service: `espeon.service`",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The suspicious service is related to the beaconing activity.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "service_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Communication with the Attacker Host Discovery (Port)",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "4444",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Inspect the beaconing service definition using the command:\n   ```bash\n   systemctl cat espeon.service\n   ```\n2. Pay particular attention to the `ExecStart` line, which specifies the path to the script launched by the beacon service.\n3. Open the script located at `/home/cyrano/.kit_beacon.sh` and look for the port number used to establish communication with the attacker.\n4. The port number used for communication is `4444`.\n\nThe hidden flag is the port number used for communication: `4444`",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat espeon.service` to inspect the service definition.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `ExecStart` line in the service definition.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Open the script located at `/home/cyrano/.kit_beacon.sh` and search for the port number.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "port_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl cat espeon.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat espeon.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Persistence Discovery for Beacon Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "/etc/cron.d/dbus-cleanup",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that a mechanism keeps the beaconing service running across reboots and process termination. Determine which system component is responsible for this activity.",
+      "solution": "1. Check the status of the beaconing service using the command:\n   ```bash\n   systemctl status espeon.service\n   ```\n2. Look for any related timers or cron jobs that might be responsible for restarting the service.\n3. Use the command to list all timers:\n   ```bash\n   systemctl list-timers --all\n   ```\n4. The path to the cron job is `/etc/cron.d/dbus-cleanup`.\n\nThe hidden flag is the path to the cron job: `/etc/cron.d/dbus-cleanup`",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl status espeon.service` to check the service status.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for related timers or cron jobs.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "persistence_discovery",
+          "prereq_state": [],
+          "cmd": "systemctl status espeon.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl status espeon.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}
