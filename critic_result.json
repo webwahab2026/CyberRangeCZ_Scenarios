@@ -1,0 +1,258 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Credentials and start instruction explicitly provided."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Credentials and start instruction explicitly provided."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Flag corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Flag corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "Flag corresponds to a real sandbox artifact in provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "Flag requires completion of the intended task.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "Content explicitly states the type of value to be submitted.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "Content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "Solution provides methodology, commands, and flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "Solution flag matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "Hint hierarchy is correctly implemented.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "C2 Communication Discovery (Port)",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "description": "Solution does not explicitly state the final flag in a clear manner.",
+      "fix": "Explicitly state the final flag in the solution."
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "C2 Communication Discovery (Port)",
+      "description": "Solution does not explicitly state the final flag in a clear manner.",
+      "fix": "Explicitly state the final flag in the solution."
+    },
+    {
+      "condition": "C7",
+      "severity": "minor",
+      "component": "solution",
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "description": "Solution does not explicitly state the final flag in a clear manner.",
+      "fix": "Explicitly state the final flag in the solution."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Suspicious C2 Beacon Service Discovery",
+      "current_flag": "bot-beacon.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in bot-beacon role.",
+      "recommendation": ""
+    },
+    {
+      "level": "C2 Communication Discovery (Port)",
+      "current_flag": "2222",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in c2-command-listener role.",
+      "recommendation": ""
+    },
+    {
+      "level": "Persistence Discovery for C2 Beaconing Service",
+      "current_flag": "bot-beacon.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "Provisioned in bot-beacon role.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [
+      "bot1 host with correct credentials and services",
+      "c2-server host with correct services",
+      "bot2 host with correct credentials and services"
+    ],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario is well-designed with valid flags and proper sandbox provisioning. However, the solutions for each training level need to explicitly state the final flag in a clear manner. The scenario meets all mandatory requirements but requires minor adjustments to the solutions."
+}
