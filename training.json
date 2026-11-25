@@ -1,0 +1,181 @@
+{
+  "title": "2026-11-25_XOR.DDoS_Botnet_Investigation_b6d",
+  "description": "You are an incident responder tasked with investigating a compromised Linux-based host that is part of a botnet. The malware, known as Groundhog, is designed to participate in large DDoS (Distributed Denial of Service) attack campaigns. Your goal is to identify and analyze the malicious activities on the infected host.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Enumerate running and inactive services to identify suspicious activities.",
+    "Investigate systemd service activation and scheduling to identify persistence mechanisms.",
+    "Correlate network listeners, service configurations, and running processes to identify communication ports."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a compromised Linux-based host that is part of a botnet. The malware, known as Groundhog, is designed to participate in large DDoS (Distributed Denial of Service) attack campaigns. Your goal is to identify and analyze the malicious activities on the infected host."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "You are about to access a sandbox environment that simulates a compromised Linux host infected with the Groundhog DDoS botnet malware. Your task is to investigate this host to identify and analyze the malicious activities. Use the following credentials to access the environment:\n\nHostname: bot1\nUsername: cyrano\nPassword: cyrano\n\nType 'start' to proceed to the next level.",
+      "local_content": "You are about to access a sandbox environment that simulates a compromised Linux host infected with the Groundhog DDoS botnet malware. Your task is to investigate this host to identify and analyze the malicious activities. Use the following credentials to access the environment:\n\nHostname: bot1\nUsername: cyrano\nPassword: cyrano\n\nType 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify the Beacon Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution": "1. List all services:\n```bash\nsystemctl list-units --type=service --all\n```\nThis command will display all services, including inactive ones.\n\n2. Identify suspicious services:\nLook for services with unusual names or descriptions. Pay attention to services that might be related to network communication or system health monitoring.\n\n3. Check the status of suspicious services:\n```bash\nsystemctl status <service_name>\n```\nReplace `<service_name>` with the name of the suspicious service identified in the previous step.\n\n4. Inspect the service configuration:\n```bash\nsystemctl cat <service_name>\n```\nThis command will show the service unit file, which contains details about the service, including the ExecStart command that launches the service.\n\n5. Analyze the ExecStart command:\nThe ExecStart command in the service unit file will point to the script or binary responsible for the service. Look for any unusual paths or commands.\n\n6. Identify the beacon service:\nBased on the information gathered, identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for services with unusual names or descriptions related to network communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <service_name>` to check the status of suspicious services.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Communication Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "2222",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Inspect the service configuration:\n```bash\nsystemctl cat bot-beacon.service\n```\nThis command will show the service unit file for the beacon service.\n\n2. Analyze the ExecStart command:\nThe ExecStart command in the service unit file will point to the script responsible for the beacon service. Look for any unusual paths or commands.\n\n3. Check the beacon script:\n```bash\ncat /usr/local/lib/.botcache/beacon.sh\n```\nThis command will display the contents of the beacon script, which includes the network port used for communication.\n\n4. Identify the communication port:\nWithin the beacon script, look for the `nc` (netcat) command. The port number will be specified as the second argument to the `nc` command.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat bot-beacon.service` to inspect the service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for the `nc` (netcat) command in the beacon script to identify the communication port.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "The port number is specified as the second argument to the `nc` command.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl cat bot-beacon.service",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat bot-beacon.service",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Timer Responsible for the Beacon Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that the C2 beacon service automatically resumes after the system starts and continues to execute periodically. Determine which system component is responsible for scheduling this activity.",
+      "solution": "1. List all timers:\n```bash\nsystemctl list-timers --all\n```\nThis command will display all timers, including inactive ones.\n\n2. Identify suspicious timers:\nLook for timers with unusual names or descriptions. Pay attention to timers that might be related to network communication or system health monitoring.\n\n3. Check the status of suspicious timers:\n```bash\nsystemctl status <timer_name>\n```\nReplace `<timer_name>` with the name of the suspicious timer identified in the previous step.\n\n4. Inspect the timer configuration:\n```bash\nsystemctl cat <timer_name>\n```\nThis command will show the timer unit file, which contains details about the timer, including the OnCalendar directive that specifies the schedule.\n\n5. Analyze the OnCalendar directive:\nThe OnCalendar directive in the timer unit file will specify the schedule for the timer. Look for any unusual schedules or intervals.\n\n6. Identify the timer responsible for the beacon service:\nBased on the information gathered, identify the timer responsible for scheduling the C2 beacon service.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Look for timers with unusual names or descriptions related to network communication.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Use `systemctl status <timer_name>` to check the status of suspicious timers.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "state_identifier",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 30,
+  "variant_sandboxes": false
+}
