@@ -1,0 +1,33 @@
+---
+- name: Add ransomop user
+  user:
+    name: '{{ username }}'
+    password: '{{ password | password_hash("sha512") }}'
+    shell: '/bin/bash'
+    groups: sudo
+    append: yes
+
+- name: Add host aliases
+  lineinfile:
+    path: '/etc/hosts'
+    line: "{{ item.ip }} {{ item.name }}"
+    state: present
+  loop: "{{ hosts_entries }}"
+
+- name: Create key storage directory
+  file:
+    path: /root/.ransom-keys
+    state: directory
+    owner: root
+    group: root
+    mode: "0700"
+
+- name: Create C2 connection log directory
+  file:
+    path: /var/log/ransom-c2
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+
