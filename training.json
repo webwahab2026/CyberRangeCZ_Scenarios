@@ -1,0 +1,246 @@
+{
+  "title": "2026-11-25_Remaiten_Botnet_Investigation_d9e",
+  "description": "You are an incident responder tasked with investigating a suspected Remaiten botnet infection on a compromised network. The botnet is known to target routers and IoT devices, using telnet scanning to spread and guessing login credentials. Your goal is to identify and analyze the malicious activities on the infected hosts.",
+  "prerequisites": [
+    "Basic knowledge of Unix/Linux",
+    "Basic networking knowledge"
+  ],
+  "outcomes": [
+    "Identify suspicious services and their behaviors.",
+    "Analyze network communication patterns.",
+    "Investigate persistence mechanisms.",
+    "Correlate findings to understand the botnet's operations."
+  ],
+  "state": "UNRELEASED",
+  "show_stepper_bar": true,
+  "levels": [
+    {
+      "title": "Introduction",
+      "level_type": "INFO_LEVEL",
+      "order": 0,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "content": "You are an incident responder tasked with investigating a suspected Remaiten botnet infection on a compromised network. The botnet is known to target routers and IoT devices, using telnet scanning to spread and guessing login credentials. Your goal is to identify and analyze the malicious activities on the infected hosts."
+    },
+    {
+      "title": "Get Access",
+      "level_type": "ACCESS_LEVEL",
+      "order": 1,
+      "estimated_duration": 0,
+      "minimal_possible_solve_time": null,
+      "passkey": "start",
+      "cloud_content": "To access the sandbox environment, use the following credentials:\n\nEntry Host: bot1\nUsername: cyrano\nPassword: cyrano\n\nEnter the word 'start' to proceed to the next level.",
+      "local_content": "To access the sandbox environment, use the following credentials:\n\nEntry Host: bot1\nUsername: cyrano\nPassword: cyrano\n\nEnter the word 'start' to proceed to the next level."
+    },
+    {
+      "title": "Identify the Beacon Service",
+      "level_type": "TRAINING_LEVEL",
+      "order": 2,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.service",
+      "answer_variable_name": null,
+      "content": "Security monitoring has detected an unusual network-facing component on the compromised host. Investigate the running services and identify the service responsible for sending beacon periodically to the C2 Server.",
+      "solution": "1. List all services:\n```bash\nsystemctl list-units --type=service --all\n```\nThis command will display all services, including inactive ones.\n\n2. Filter for active services:\n```bash\nsystemctl list-units --type=service --state=running\n```\nThis will show only the services that are currently running.\n\n3. Inspect the suspicious service:\nLook for any unfamiliar or suspicious service names. Pay attention to services with unusual descriptions or those that you do not recognize as part of the standard system services.\n\n4. Check the service details:\n```bash\nsystemctl cat <service_name>\n```\nReplace `<service_name>` with the name of the suspicious service you identified. This command will show the service configuration file, which may contain clues about its behavior.\n\n5. Examine the service logs:\n```bash\njournalctl -u <service_name>\n```\nThis will display the logs associated with the service, which can help you understand its activities.\n\n6. Identify the beacon service:\nBased on the service configuration and logs, identify the service responsible for sending beacon periodically to the C2 Server.\n\nThe service name is `bot-beacon.service`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-units --type=service --all` to list all services.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Filter for running services with `systemctl list-units --type=service --state=running`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Inspect the suspicious service with `systemctl cat <service_name>`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_beacon_service",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --all",
+          "optional": false
+        },
+        {
+          "state_name": "filter_active_services",
+          "prereq_state": [],
+          "cmd": "systemctl list-units --type=service --state=running",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-units --type=service --state=running",
+          "optional": false
+        },
+        {
+          "state_name": "inspect_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat .+",
+          "optional": false
+        },
+        {
+          "state_name": "examine_service_logs",
+          "prereq_state": [],
+          "cmd": "journalctl -u <service_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u .+",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Determine the Communication Port",
+      "level_type": "TRAINING_LEVEL",
+      "order": 3,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "53",
+      "answer_variable_name": null,
+      "content": "An unfamiliar network service appears to be involved in unauthorized communication with an external system. Investigate the service and determine the network port associated with this communication.",
+      "solution": "1. Identify the suspicious service:\nFrom the previous task, you should have identified the service responsible for sending beacon periodically to the C2 Server. Let's assume it is named `<service_name>`.\n\n2. Inspect the service configuration:\n```bash\nsystemctl cat <service_name>\n```\nThis will show the service configuration file, which may contain the port number used for communication.\n\n3. Check the service logs:\n```bash\njournalctl -u <service_name>\n```\nThis will display the logs associated with the service, which can help you understand its activities and the port used for communication.\n\n4. List all network connections:\n```bash\nss -tunap\n```\nThis command will display all network connections, including the port used by the suspicious service.\n\n5. Identify the communication port:\nBased on the service configuration, logs, and network connections, identify the network port associated with the unauthorized communication.\n\nThe C2 port number is `53`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl cat <service_name>` to inspect the service configuration.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Check the service logs with `journalctl -u <service_name>`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "List all network connections with `ss -tunap`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "identify_suspicious_service",
+          "prereq_state": [],
+          "cmd": "systemctl cat <service_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat .+",
+          "optional": false
+        },
+        {
+          "state_name": "check_service_logs",
+          "prereq_state": [],
+          "cmd": "journalctl -u <service_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u .+",
+          "optional": false
+        },
+        {
+          "state_name": "list_network_connections",
+          "prereq_state": [],
+          "cmd": "ss -tunap",
+          "cmd_type": "bash-command",
+          "cmd_regex": "ss -tunap",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    },
+    {
+      "title": "Identify the Scheduling Timer",
+      "level_type": "TRAINING_LEVEL",
+      "order": 4,
+      "estimated_duration": 10,
+      "minimal_possible_solve_time": null,
+      "answer": "bot-beacon.timer",
+      "answer_variable_name": null,
+      "content": "Investigators suspect that the C2 beacon service automatically resumes after the system starts and continues to execute periodically. Determine which system component is responsible for scheduling this activity.",
+      "solution": "1. List all timers:\n```bash\nsystemctl list-timers --all\n```\nThis command will display all timers, including inactive ones.\n\n2. Filter for active timers:\n```bash\nsystemctl list-timers --state=active\n```\nThis will show only the timers that are currently active.\n\n3. Inspect the suspicious timer:\nLook for any unfamiliar or suspicious timer names. Pay attention to timers with unusual descriptions or those that you do not recognize as part of the standard system timers.\n\n4. Check the timer details:\n```bash\nsystemctl cat <timer_name>\n```\nReplace `<timer_name>` with the name of the suspicious timer you identified. This command will show the timer configuration file, which may contain clues about its behavior.\n\n5. Examine the timer logs:\n```bash\njournalctl -u <timer_name>\n```\nThis will display the logs associated with the timer, which can help you understand its activities.\n\n6. Identify the timer responsible for scheduling the C2 beacon service:\nBased on the timer configuration and logs, identify the timer responsible for scheduling the C2 beacon service.\n\nThe timer name is `bot-beacon.timer`.",
+      "solution_penalized": true,
+      "hints": [
+        {
+          "title": "First hint title",
+          "content": "Use `systemctl list-timers --all` to list all timers.",
+          "hint_penalty": 0,
+          "order": 0
+        },
+        {
+          "title": "Second hint title",
+          "content": "Filter for active timers with `systemctl list-timers --state=active`.",
+          "hint_penalty": 1,
+          "order": 1
+        },
+        {
+          "title": "Third hint title",
+          "content": "Inspect the suspicious timer with `systemctl cat <timer_name>`.",
+          "hint_penalty": 2,
+          "order": 2
+        }
+      ],
+      "incorrect_answer_limit": 10,
+      "attachments": [],
+      "max_score": 10,
+      "variant_answers": false,
+      "reference_solution": [
+        {
+          "state_name": "list_all_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --all",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --all",
+          "optional": false
+        },
+        {
+          "state_name": "filter_active_timers",
+          "prereq_state": [],
+          "cmd": "systemctl list-timers --state=active",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl list-timers --state=active",
+          "optional": false
+        },
+        {
+          "state_name": "inspect_suspicious_timer",
+          "prereq_state": [],
+          "cmd": "systemctl cat <timer_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "systemctl cat .+",
+          "optional": false
+        },
+        {
+          "state_name": "examine_timer_logs",
+          "prereq_state": [],
+          "cmd": "journalctl -u <timer_name>",
+          "cmd_type": "bash-command",
+          "cmd_regex": "journalctl -u .+",
+          "optional": false
+        }
+      ],
+      "expected_commands": [],
+      "commands_required": false
+    }
+  ],
+  "estimated_duration": 60,
+  "variant_sandboxes": false
+}

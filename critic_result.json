@@ -1,0 +1,246 @@
+{
+  "coherence_score": 8,
+  "verdict": "needs_revision",
+  "access_review": {
+    "cloud_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Credentials and start instruction explicitly provided."
+    },
+    "local_content": {
+      "username_present": true,
+      "password_present": true,
+      "start_instruction_present": true,
+      "evidence": "Credentials and start instruction explicitly provided."
+    },
+    "c1_status": "pass",
+    "c2_status": "pass"
+  },
+  "condition_review": [
+    {
+      "condition": "C3",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon.service' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is the service name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Beacon Service",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The flag '53' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is the network port.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Determine the Communication Port",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and runtime.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C3",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The flag 'bot-beacon.timer' corresponds to a real sandbox artifact in the provisioning files.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C4",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The flag requires completion of the intended task and is not trivially available.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C5",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The content explicitly states that the answer is the timer name.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C6",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The content does not expose the exact answer or make it trivially derivable.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C7",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The solution provides step-by-step methodology, usable commands, and explicitly states the final flag.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C8",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The final flag in the solution matches the answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C9",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "The hints follow a hierarchical structure from conceptual to near-spoiler without revealing the final answer.",
+      "required_fix": ""
+    },
+    {
+      "condition": "C10",
+      "level": "Identify the Scheduling Timer",
+      "status": "pass",
+      "evidence": "Hint 3 contains a usable command that matches the sandbox OS and runtime.",
+      "required_fix": ""
+    }
+  ],
+  "issues": [
+    {
+      "condition": "C1",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The scenario design explicitly provides credentials, but the training_json does not explicitly state the credentials in the content.",
+      "fix": "Ensure the training_json explicitly states the credentials in both cloud_content and local_content."
+    },
+    {
+      "condition": "C2",
+      "severity": "major",
+      "component": "access",
+      "level": "ACCESS_LEVEL",
+      "description": "The scenario design explicitly provides the passkey 'start', but the training_json does not explicitly state the passkey in the content.",
+      "fix": "Ensure the training_json explicitly states the passkey 'start' in both cloud_content and local_content."
+    }
+  ],
+  "flag_review": [
+    {
+      "level": "Identify the Beacon Service",
+      "current_flag": "bot-beacon.service",
+      "flag_type": "service name",
+      "verdict": "valid",
+      "sandbox_evidence": "The service is provisioned in the sandbox.",
+      "recommendation": ""
+    },
+    {
+      "level": "Determine the Communication Port",
+      "current_flag": "53",
+      "flag_type": "port number",
+      "verdict": "valid",
+      "sandbox_evidence": "The port is used by the C2 listener service.",
+      "recommendation": ""
+    },
+    {
+      "level": "Identify the Scheduling Timer",
+      "current_flag": "bot-beacon.timer",
+      "flag_type": "timer name",
+      "verdict": "valid",
+      "sandbox_evidence": "The timer is provisioned in the sandbox.",
+      "recommendation": ""
+    }
+  ],
+  "sandbox_review": {
+    "aligned": [],
+    "missing": [],
+    "gaps": []
+  },
+  "scenario_review": {
+    "attack_chain_coverage": "complete",
+    "technique_accuracy": "accurate",
+    "narrative_strength": "strong",
+    "difficulty_progression": "correct"
+  },
+  "summary": "The scenario design and training_json are well-aligned, but the training_json does not explicitly state the credentials and passkey in the content. This needs to be addressed to meet the compliance requirements."
+}
